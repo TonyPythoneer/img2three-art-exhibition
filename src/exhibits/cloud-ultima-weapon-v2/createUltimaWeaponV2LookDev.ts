@@ -176,6 +176,8 @@ const STAGE = {
   /** Wide enough that its edge never enters a presentation framing. */
   floorSpan: 16,
   keyHeight: 2.6,
+  /** Degrees the key leans off vertical. Zero is coaxial with the spin axis — see the note below. */
+  keyTilt: 13,
   /** Cone half-angle: covers the weapon plus a margin of floor for the pool to read on. */
   coneCoverage: 1.25,
 } as const;
@@ -209,23 +211,27 @@ function blackBoxRig(bounds?: THREE.Sphere): LookDevRig {
   // to build from. 4.6 was that floor and it was too dark: the viewer's slider tops out at a
   // multiple of this value, so a low base put the whole usable range in the dark half.
   key.intensity = 20 * height * height;
-  // Straight down, as specified — and that costs the shell most of its brightness, which is worth
-  // knowing before anyone "fixes" the numbers around it. A vertical blade under a vertical light
-  // is lit at grazing incidence, so it has almost no diffuse to collect and lives on reflection.
+  // Leaned off vertical, on the reference key's own azimuth. The brief said straight down; the
+  // spin is why it no longer is. A key at (0, h, 0) aimed at the centre points exactly along the
+  // axis Auto Rotate and the drag both turn the weapon about — and so does the rest of this rig,
+  // the ambient being isotropic and the environment gradient varying only with latitude. The whole
+  // stage was therefore invariant under that rotation: measured at 0.00 degrees off-axis, with the
+  // render at 0 and at 90 carrying identical shading and an unmoved floor pool. The weapon turned
+  // and its lighting did not, which is exactly what a light bolted to the model looks like.
   //
-  // Two levers were measured against that, everything else held. Tilting this one line by 13
+  // Tilting is also the cheap lever on the physics, and that stays on the record. A vertical blade
+  // under a vertical light is lit at grazing incidence, so it has almost no diffuse to collect and
+  // lives on reflection. Two levers were measured against that, everything else held. This same 13
   // degrees: shell 27 -> 80, floor 40 -> 39. Raising the intensity instead, at 1.5 / 4.6 / 20 / 60
-  // times height squared: shell 17 / 27 / 52 / 79, floor 20 / 40 / 86 / 145.
-  //
-  // Both reach a shell around 80, but they spend different things to get there. The floor faces
-  // the light squarely, so it takes every extra candela at full cosine while the blade takes
-  // almost none — push the intensity far enough to light the shell and the stage stops being
-  // black. Tilting spends nothing: it moves the light onto the blade's faces instead of pouring
-  // more of it into the floor. The floor's albedo is set below to buy some of that back.
-  //
-  // The angle is the lever being declined here, and it is declined on the brief's instruction
-  // rather than on the physics.
-  key.position.set(centre.x, centre.y + height, centre.z);
+  // times height squared: shell 17 / 27 / 52 / 79, floor 20 / 40 / 86 / 145. Both reach a shell
+  // around 80 and spend different things doing it — the floor faces the light squarely so it takes
+  // every extra candela at full cosine while the blade takes almost none, so pushing the intensity
+  // far enough to light the shell stops the stage being black. Tilting spends nothing.
+  const azimuth = new THREE.Vector3(KEY_DIRECTION.x, 0, KEY_DIRECTION.z).normalize();
+  key.position
+    .copy(centre)
+    .addScaledVector(azimuth, height * Math.tan(THREE.MathUtils.degToRad(STAGE.keyTilt)));
+  key.position.y += height;
   key.target.position.copy(centre);
   key.castShadow = true;
   key.shadow.mapSize.set(2048, 2048);
