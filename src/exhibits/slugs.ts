@@ -5,4 +5,4 @@
 // reload that races velite's delete-then-write into a crash loop. So the slugs live here,
 // velite-free, and src/exhibits/index.ts consumes `.velite` for client data instead.
 // Keep in sync with the `slug` values in src/exhibits/index.ts.
-export const exhibitSlugs = ["balamb-garden", "ff7-cloud-ultima-weapon"];
+export const exhibitSlugs = ["ff7-cloud-ultima-weapon"];

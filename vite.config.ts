@@ -40,9 +40,6 @@ export default defineConfig({
     // balamb-garden.html, which not every static host serves at /balamb-garden.
     dirStyle: "nested",
     // An allowlist, not a filter, so a new page is never prerendered by accident.
-    // /render-harness must stay out of it: it mounts WebGL, and prerendering
-    // would evaluate Three.js in node where there is no GL context. The capture
-    // harness reaches it through the SPA fallback in tools/capture.mjs instead.
-    includedRoutes: () => ["/", "/progress", ...exhibitSlugs.map((s) => `/${s}`)],
+    includedRoutes: () => ["/", ...exhibitSlugs.map((s) => `/${s}`)],
   },
 } as Parameters<typeof defineConfig>[0]);

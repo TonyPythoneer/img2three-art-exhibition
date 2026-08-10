@@ -67,7 +67,6 @@ import { computed, ref } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import { useSeoMeta } from "@unhead/vue";
 import { exhibitBySlug } from "~/exhibits/index.js";
-import BalambStage from "~/exhibits/balamb-garden-center/BalambStage.vue";
 import UltimaV2Stage from "~/exhibits/cloud-ultima-weapon-v2/UltimaV2Stage.vue";
 
 const REPO = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/master/src/exhibits";
@@ -112,10 +111,7 @@ const prompt = computed(() => {
   return promptTexts[`../exhibits/${found.assetDir ?? found.slug}/${found.promptFile}`] ?? "";
 });
 
-const MODEL_NOTES: Record<string, string> = {
-  "balamb-garden":
-    "This is a work in progress, not a finished model. The silhouette gate has not passed yet; the material and decoration phases per spec have not started.",
-};
+const MODEL_NOTES: Record<string, string> = {};
 
 const modelNote = computed(() => MODEL_NOTES[slug.value] ?? "");
 
@@ -124,9 +120,8 @@ const modelNote = computed(() => MODEL_NOTES[slug.value] ?? "");
 // supplies its own viewer and review controls; everything else is shared. An exhibit
 // absent from this map falls through to the plain document page below.
 const STAGES = {
-  "balamb-garden": BalambStage,
   "ff7-cloud-ultima-weapon": UltimaV2Stage,
-} as Record<string, typeof BalambStage | typeof UltimaV2Stage | undefined>;
+} as Record<string, typeof UltimaV2Stage | undefined>;
 
 const stage = computed(() => STAGES[slug.value]);
 

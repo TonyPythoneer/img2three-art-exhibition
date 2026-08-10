@@ -31,7 +31,7 @@ const FF7_ROUTES = ["/ff7-cloud-ultima-weapon"];
 
 /** Routes that bring their own chrome: the landing page has its own nav and footer, and the
  *  exhibit stages are full-viewport viewers a sticky header would cover. */
-const SHOWCASE_ROUTES = ["", "/balamb-garden", "/ff7-cloud-ultima-weapon", "/ff7-menu"];
+const SHOWCASE_ROUTES = ["", "/ff7-cloud-ultima-weapon", "/ff7-menu"];
 
 // The class sits on the app shell, not on the page component, because the header and footer
 // have to change with it — a page in FF7 blue under an unstyled nav bar reads as a bug.

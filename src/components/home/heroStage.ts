@@ -4,7 +4,6 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
-import { createBalambGardenCenter } from "~/exhibits/balamb-garden-center/createBalambGardenCenter";
 import { createUltimaWeaponV2Model } from "~/exhibits/cloud-ultima-weapon-v2/createUltimaWeaponV2Model";
 
 /**
@@ -288,11 +287,6 @@ export class HeroStage {
  */
 export function heroEntries(): HeroEntry[] {
   return [
-    {
-      slug: "balamb-garden",
-      title: "Balamb Garden",
-      build: () => createBalambGardenCenter({ detail: "full" }),
-    },
     {
       slug: "ff7-cloud-ultima-weapon",
       title: "Ultima Weapon",

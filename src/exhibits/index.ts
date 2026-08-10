@@ -63,38 +63,6 @@ function veliteFields(
 
 export const exhibits: Exhibit[] = [
   {
-    slug: "balamb-garden",
-    title: "Balamb Garden",
-    subtitle: "Final Fantasy VIII 的中央主建築，程序化 Three.js 重建",
-    status: "building",
-    liveModel: true,
-    source: "FF8 設定集空拍概念圖（671×503 掃描稿）與 Garden 冠冕紋章細節圖",
-    images: [
-      {
-        file: "settei-front-three-quarter.png",
-        caption:
-          "設定資料「ガーデン・本校舎」，作者 Yusuke Naora 簽名。比空拍圖清楚，且作者註明裝飾類是上漆的浮雕、數量還會再增加。",
-      },
-      {
-        file: "aerial.png",
-        caption:
-          "主參考圖。中央建築為青瓷灰綠色船體，中央塔樓為淺藍灰底加洛可可壁畫，冠冕懸浮於後上方",
-      },
-      {
-        file: "crown-emblem.png",
-        caption: "冠冕紋章細節。銀色巴洛克蕾絲框、四片琥珀嵌板、長短不一的金色光芒",
-      },
-    ],
-    promptFile: "/SPEC.md",
-    docs: [
-      {
-        file: "/SPEC.md",
-        label:
-          "SPEC.md（單一權威規格，取代 prompt-v1/v2/v3 與四份 amendment；附錄 A 為歷史引用對照，附錄 B 為未決事項）",
-      },
-    ],
-  },
-  {
     slug: "ff7-cloud-ultima-weapon",
     assetDir: "cloud-ultima-weapon-v2",
     status: "done",
