@@ -63,6 +63,7 @@ const imageUrls = import.meta.glob("../../exhibits/*/*.png", {
 
 const cover = (exhibit: Exhibit): string | undefined => {
   const first = exhibit.images[0];
-  return first ? imageUrls[`../../exhibits/${exhibit.slug}/${first.file}`] : undefined;
+  const dir = exhibit.assetDir ?? exhibit.slug;
+  return first ? imageUrls[`../../exhibits/${dir}/${first.file}`] : undefined;
 };
 </script>

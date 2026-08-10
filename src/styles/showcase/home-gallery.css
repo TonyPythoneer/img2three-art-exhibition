@@ -20,8 +20,10 @@
 
 .grid {
   display: grid;
-  /* min() keeps the track from overflowing viewports narrower than the 270px minimum */
-  grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr));
+  /* auto-fill (not auto-fit): keeps the column tracks even when there's only
+     one card, instead of stretching it to fill the row.
+     min() keeps the track from overflowing viewports narrower than the 270px minimum */
+  grid-template-columns: repeat(auto-fill, minmax(min(270px, 100%), 1fr));
   gap: 1.4rem;
 }
 
