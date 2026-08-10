@@ -163,7 +163,7 @@ const emit = defineEmits<{
 const grouped = computed(() => {
   const groups = new Map<string, PartInfo[]>();
   for (const p of props.parts) {
-    const key = p.module ?? "—";
+    const key = p.module ?? "(none)";
     const list = groups.get(key);
     if (list) list.push(p);
     else groups.set(key, [p]);
