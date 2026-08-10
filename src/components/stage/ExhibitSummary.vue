@@ -5,11 +5,12 @@
 
   <div class="demo-meta">
     <div class="badges">
-      <span class="badge badge-object">{{ "Live Model" }}</span>
-      <span class="badge badge-version">{{ "img2three.js v1.4" }}</span>
-      <span class="badge badge-status" :class="`status-${exhibit.status}`">
-        {{ STATUS_LABELS[exhibit.status] }}
-      </span>
+      <span
+        v-for="badge in exhibitBadges(exhibit)"
+        :key="badge.class"
+        :class="`badge ${badge.class}`"
+        >{{ badge.label }}</span
+      >
     </div>
     <p>{{ exhibit.source }}</p>
     <p v-if="note">{{ note }}</p>
@@ -19,7 +20,7 @@
 <script setup lang="ts">
 import PanelSectionTitle from "./PanelSectionTitle.vue";
 import type { Exhibit } from "~/exhibits/index.js";
-import { STATUS_LABELS } from "~/exhibits/status";
+import { exhibitBadges } from "~/exhibits/status";
 
 // Styles: src/styles/showcase/stage-panel.css
 

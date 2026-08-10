@@ -30,9 +30,12 @@
           <div class="card-title">{{ exhibit.title }}</div>
           <div class="card-author">{{ exhibit.subtitle }}</div>
           <div class="badges">
-            <span class="badge badge-object">{{
-              exhibit.liveModel ? "Live Model" : "Static"
-            }}</span>
+            <span
+              v-for="badge in exhibitBadges(exhibit)"
+              :key="badge.class"
+              :class="`badge ${badge.class}`"
+              >{{ badge.label }}</span
+            >
           </div>
         </div>
       </RouterLink>
@@ -43,7 +46,7 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 import { exhibits, type Exhibit } from "~/exhibits/index.js";
-import { STATUS_LABELS } from "~/exhibits/status";
+import { exhibitBadges, STATUS_LABELS } from "~/exhibits/status";
 
 // Styles: src/styles/showcase/home-gallery.css
 
