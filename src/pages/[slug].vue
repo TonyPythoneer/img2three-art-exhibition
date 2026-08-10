@@ -36,7 +36,7 @@
           "Run outputs (masks, camera landmarks, renders, gate results) live in the project root's "
         }}
         <code class="bg-panel rounded px-1">artifacts/</code>
-        {{ " directory — not rendered on this page." }}
+        {{ " directory, not rendered on this page." }}
       </p>
       <ul class="mt-4 space-y-2">
         <li v-for="doc in exhibit.docs" :key="doc.file">

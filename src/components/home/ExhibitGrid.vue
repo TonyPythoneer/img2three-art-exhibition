@@ -2,7 +2,7 @@
   <section class="gallery">
     <div class="gallery-head">
       <h2>{{ "Exhibits" }}</h2>
-      <p>{{ "Every model is generated TypeScript — spin it, read what it was rebuilt from." }}</p>
+      <p>{{ "Every model is generated TypeScript. Spin it, read what it was rebuilt from." }}</p>
     </div>
     <div class="grid">
       <RouterLink
