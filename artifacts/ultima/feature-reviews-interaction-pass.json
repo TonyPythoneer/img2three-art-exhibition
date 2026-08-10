@@ -1,0 +1,9 @@
+[
+  {
+    "id": "explode-assembly-legibility",
+    "score": 0.82,
+    "visible": true,
+    "verdict": "pass",
+    "notes": "setExplode recomputes every position from a cached assembled transform, so a 0->0.5->1->0.5->0 sweep returns bit-identical positions. Orientation preserved, no rotation or scale change. All 46 non-root nodes separate along the brief's prescribed directions."
+  }
+]

@@ -1,0 +1,567 @@
+{
+  "detail": "full",
+  "mode": "referenceLighting",
+  "purpose": "review",
+  "gate": "tier1",
+  "renders": [
+    {
+      "view": "left-side-thickness",
+      "explode": null,
+      "file": "left-side-thickness-before.png",
+      "width": 584,
+      "height": 1168,
+      "info": {
+        "view": "left-side-thickness",
+        "mode": "referenceLighting",
+        "detail": "full",
+        "explode": null,
+        "transparent": false,
+        "checker": false,
+        "wireframe": false,
+        "flat": false,
+        "hide": [],
+        "width": 584,
+        "height": 1168,
+        "cameraName": "left-side-thickness",
+        "namedParts": 22,
+        "meshCount": 19,
+        "triangles": 932,
+        "drawingBufferWidth": 584,
+        "drawingBufferHeight": 1168
+      }
+    },
+    {
+      "view": "front-orthographic",
+      "explode": null,
+      "file": "front-orthographic-before.png",
+      "width": 584,
+      "height": 1168,
+      "info": {
+        "view": "front-orthographic",
+        "mode": "referenceLighting",
+        "detail": "full",
+        "explode": null,
+        "transparent": false,
+        "checker": false,
+        "wireframe": false,
+        "flat": false,
+        "hide": [],
+        "width": 584,
+        "height": 1168,
+        "cameraName": "front-orthographic",
+        "namedParts": 22,
+        "meshCount": 19,
+        "triangles": 932,
+        "drawingBufferWidth": 584,
+        "drawingBufferHeight": 1168
+      }
+    },
+    {
+      "view": "exploded-three-quarter",
+      "explode": null,
+      "file": "exploded-three-quarter-before.png",
+      "width": 1000,
+      "height": 1168,
+      "info": {
+        "view": "exploded-three-quarter",
+        "mode": "referenceLighting",
+        "detail": "full",
+        "explode": null,
+        "transparent": false,
+        "checker": false,
+        "wireframe": false,
+        "flat": false,
+        "hide": [],
+        "width": 1000,
+        "height": 1168,
+        "cameraName": "exploded-three-quarter",
+        "namedParts": 22,
+        "meshCount": 19,
+        "triangles": 932,
+        "drawingBufferWidth": 1000,
+        "drawingBufferHeight": 1168
+      }
+    }
+  ],
+  "parts": {
+    "model": "cloud-ultima-weapon-v2",
+    "parts": [
+      {
+        "name": "bladeGroup",
+        "kind": "container",
+        "triangles": 408,
+        "bounds": {
+          "minX": -0.8299999833106995,
+          "maxX": 0.8299999833106995,
+          "minY": 0.12999999523162842,
+          "maxY": 7.599999904632568,
+          "minZ": -0.2478514313697815,
+          "maxZ": 0.2478514313697815
+        }
+      },
+      {
+        "name": "hiltGroup",
+        "kind": "container",
+        "triangles": 524,
+        "bounds": {
+          "minX": -1.59732796670367,
+          "maxX": 1.59732796670367,
+          "minY": -2.1070001125335693,
+          "maxY": 0.6335687296663342,
+          "minZ": -0.21400000154972076,
+          "maxZ": 0.21400000154972076
+        }
+      },
+      {
+        "name": "outerCrystalShell",
+        "kind": "part",
+        "triangles": 128,
+        "bounds": {
+          "minX": -0.8299999833106995,
+          "maxX": 0.8299999833106995,
+          "minY": 0.12999999523162842,
+          "maxY": 7.599999904632568,
+          "minZ": -0.14000000059604645,
+          "maxZ": 0.14000000059604645
+        }
+      },
+      {
+        "name": "purpleEnergyInsertFront",
+        "kind": "part",
+        "triangles": 74,
+        "bounds": {
+          "minX": -0.4300000071525574,
+          "maxX": 0.4300000071525574,
+          "minY": 0.41999998688697815,
+          "maxY": 4.800000190734863,
+          "minZ": 0.07831842452287674,
+          "maxZ": 0.15399999916553497
+        }
+      },
+      {
+        "name": "purpleEnergyInsertRear",
+        "kind": "part",
+        "triangles": 74,
+        "bounds": {
+          "minX": -0.4300000071525574,
+          "maxX": 0.4300000071525574,
+          "minY": 0.41999998688697815,
+          "maxY": 4.800000190734863,
+          "minZ": -0.15399999916553497,
+          "maxZ": -0.07831842452287674
+        }
+      },
+      {
+        "name": "darkCoreTriangleFront",
+        "kind": "part",
+        "triangles": 30,
+        "bounds": {
+          "minX": -0.20999999344348907,
+          "maxX": 0.20999999344348907,
+          "minY": 0.550000011920929,
+          "maxY": 1.8700000047683716,
+          "minZ": 0.13251058757305145,
+          "maxZ": 0.1679999977350235
+        }
+      },
+      {
+        "name": "darkCoreTriangleRear",
+        "kind": "part",
+        "triangles": 30,
+        "bounds": {
+          "minX": -0.20999999344348907,
+          "maxX": 0.20999999344348907,
+          "minY": 0.550000011920929,
+          "maxY": 1.8700000047683716,
+          "minZ": -0.1679999977350235,
+          "maxZ": -0.13251058757305145
+        }
+      },
+      {
+        "name": "rootDiamondGemFront",
+        "kind": "part",
+        "triangles": 36,
+        "bounds": {
+          "minX": -0.17000000178813934,
+          "maxX": 0.17000000178813934,
+          "minY": 0.12999999523162842,
+          "maxY": 0.9700000286102295,
+          "minZ": 0,
+          "maxZ": 0.2478514313697815
+        }
+      },
+      {
+        "name": "rootDiamondGemRear",
+        "kind": "part",
+        "triangles": 36,
+        "bounds": {
+          "minX": -0.17000000178813934,
+          "maxX": 0.17000000178813934,
+          "minY": 0.12999999523162842,
+          "maxY": 0.9700000286102295,
+          "minZ": -0.2478514313697815,
+          "maxZ": 0
+        }
+      },
+      {
+        "name": "crystalClampLeft",
+        "kind": "part",
+        "triangles": 8,
+        "bounds": {
+          "minX": -0.3400000035762787,
+          "maxX": 0,
+          "minY": 0.05999999865889549,
+          "maxY": 0.550000011920929,
+          "minZ": -0.1599999964237213,
+          "maxZ": 0.1599999964237213
+        }
+      },
+      {
+        "name": "crystalClampRight",
+        "kind": "part",
+        "triangles": 8,
+        "bounds": {
+          "minX": 0,
+          "maxX": 0.3400000035762787,
+          "minY": 0.05999999865889549,
+          "maxY": 0.550000011920929,
+          "minZ": -0.1599999964237213,
+          "maxZ": 0.1599999964237213
+        }
+      },
+      {
+        "name": "leatherConnectorLeft",
+        "kind": "part",
+        "triangles": 32,
+        "bounds": {
+          "minX": -0.8560443431230857,
+          "maxX": -0.16676275424152387,
+          "minY": -0.5665693521138399,
+          "maxY": 0.17501733115146845,
+          "minZ": -0.14782072603702545,
+          "maxZ": 0.14782072603702545
+        }
+      },
+      {
+        "name": "leatherConnectorRight",
+        "kind": "part",
+        "triangles": 32,
+        "bounds": {
+          "minX": 0.16676275424152387,
+          "maxX": 0.8560443431230855,
+          "minY": -0.5665693521138399,
+          "maxY": 0.17501733115146836,
+          "minZ": -0.14782072603702545,
+          "maxZ": 0.14782072603702545
+        }
+      },
+      {
+        "name": "spinnerEndLeft",
+        "kind": "part",
+        "triangles": 72,
+        "bounds": {
+          "minX": -0.9281365162301677,
+          "maxX": -0.5574776417184489,
+          "minY": -1.097000002861023,
+          "maxY": -0.3746858239173889,
+          "minZ": -0.21400000154972076,
+          "maxZ": 0.21400000154972076
+        }
+      },
+      {
+        "name": "spinnerEndRight",
+        "kind": "part",
+        "triangles": 72,
+        "bounds": {
+          "minX": 0.5574776417184489,
+          "maxX": 0.9281365162301677,
+          "minY": -1.097000002861023,
+          "maxY": -0.3746858239173889,
+          "minZ": -0.21400000154972076,
+          "maxZ": 0.21400000154972076
+        }
+      },
+      {
+        "name": "driverArray",
+        "kind": "container",
+        "triangles": 192,
+        "bounds": {
+          "minX": -1.59732796670367,
+          "maxX": 1.59732796670367,
+          "minY": -0.3782385541122298,
+          "maxY": 0.6335687296663342,
+          "minZ": -0.10162674635648727,
+          "maxZ": 0.10162674635648727
+        }
+      },
+      {
+        "name": "driverLeftUpper",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": -1.3214666152472545,
+          "maxX": -0.4786489855603186,
+          "minY": -0.17722560135400367,
+          "maxY": 0.6335687296663342,
+          "minZ": -0.10162674635648727,
+          "maxZ": 0.10162674635648727
+        }
+      },
+      {
+        "name": "driverLeftLower",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": -1.59732796670367,
+          "maxX": -0.6588938656378188,
+          "minY": -0.3782385541122298,
+          "maxY": 0.20957144710143022,
+          "minZ": -0.10162674635648727,
+          "maxZ": 0.10162674635648727
+        }
+      },
+      {
+        "name": "driverRightUpper",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": 0.47864898556031865,
+          "maxX": 1.3214666152472545,
+          "minY": -0.17722560135400367,
+          "maxY": 0.6335687296663339,
+          "minZ": -0.10162674635648727,
+          "maxZ": 0.10162674635648727
+        }
+      },
+      {
+        "name": "driverRightLower",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": 0.6588938656378188,
+          "maxX": 1.59732796670367,
+          "minY": -0.3782385541122298,
+          "maxY": 0.2095714471014301,
+          "minZ": -0.10162674635648727,
+          "maxZ": 0.10162674635648727
+        }
+      },
+      {
+        "name": "leatherGrip",
+        "kind": "part",
+        "triangles": 96,
+        "bounds": {
+          "minX": -0.2875142991542816,
+          "maxX": 0.2875142991542816,
+          "minY": -1.7999999523162842,
+          "maxY": 0.1599999964237213,
+          "minZ": -0.11086554080247879,
+          "maxZ": 0.11086554080247879
+        }
+      },
+      {
+        "name": "pointedMetalPommel",
+        "kind": "part",
+        "triangles": 12,
+        "bounds": {
+          "minX": -0.0952627956867218,
+          "maxX": 0.0952627956867218,
+          "minY": -2.1070001125335693,
+          "maxY": -1.7999999523162842,
+          "minZ": -0.10999999940395355,
+          "maxZ": 0.10999999940395355
+        }
+      }
+    ],
+    "unnamedMeshes": 0,
+    "integralMeshes": 19,
+    "shellPenetration": {
+      "epsilon": 0.0001,
+      "latticeOrder": 6,
+      "parts": {
+        "purpleEnergyInsertFront": {
+          "shell": {
+            "samples": 2072,
+            "inside": 414,
+            "worst": 0.048943482575909414,
+            "worstAt": [0, 0.41999998688697815, 0.07831842452287674],
+            "insideMaxY": 4.300000071525574
+          },
+          "stack": {
+            "samples": 2072,
+            "inside": 414,
+            "worst": 0.048943482575909414,
+            "worstAt": [0, 0.41999998688697815, 0.07831842452287674],
+            "insideMaxY": 4.300000071525574
+          }
+        },
+        "purpleEnergyInsertRear": {
+          "shell": {
+            "samples": 2072,
+            "inside": 414,
+            "worst": 0.048943482575909414,
+            "worstAt": [0, 0.41999998688697815, -0.07831842452287674],
+            "insideMaxY": 4.300000071525574
+          },
+          "stack": {
+            "samples": 2072,
+            "inside": 414,
+            "worst": 0.048943482575909414,
+            "worstAt": [0, 0.41999998688697815, -0.07831842452287674],
+            "insideMaxY": 4.300000071525574
+          }
+        },
+        "darkCoreTriangleFront": {
+          "shell": {
+            "samples": 840,
+            "inside": 10,
+            "worst": 0.0024894177913683535,
+            "worstAt": [0, 0.550000011920929, 0.13251058757305145],
+            "insideMaxY": 0.699999988079071
+          },
+          "stack": {
+            "samples": 840,
+            "inside": 150,
+            "worst": 0.016489416360855103,
+            "worstAt": [0, 0.550000011920929, 0.13251058757305145],
+            "insideMaxY": 1.3566666841506958
+          }
+        },
+        "darkCoreTriangleRear": {
+          "shell": {
+            "samples": 840,
+            "inside": 10,
+            "worst": 0.0024894177913683535,
+            "worstAt": [0, 0.550000011920929, -0.13251058757305145],
+            "insideMaxY": 0.699999988079071
+          },
+          "stack": {
+            "samples": 840,
+            "inside": 150,
+            "worst": 0.016489416360855103,
+            "worstAt": [0, 0.550000011920929, -0.13251058757305145],
+            "insideMaxY": 1.3566666841506958
+          }
+        },
+        "rootDiamondGemFront": {
+          "shell": {
+            "samples": 1008,
+            "inside": 487,
+            "worst": 0.14000000059604645,
+            "worstAt": [0, 0.8650000095367432, 0],
+            "insideMaxY": 0.9700000286102295
+          },
+          "stack": {
+            "samples": 1008,
+            "inside": 527,
+            "worst": 0.1679999977350235,
+            "worstAt": [0, 0.8650000095367432, 0],
+            "insideMaxY": 0.9700000286102295
+          }
+        },
+        "rootDiamondGemRear": {
+          "shell": {
+            "samples": 1008,
+            "inside": 489,
+            "worst": 0.14000000059604645,
+            "worstAt": [0, 0.8650000095367432, 0],
+            "insideMaxY": 0.9700000286102295
+          },
+          "stack": {
+            "samples": 1008,
+            "inside": 529,
+            "worst": 0.1679999977350235,
+            "worstAt": [0, 0.8650000095367432, 0],
+            "insideMaxY": 0.9700000286102295
+          }
+        },
+        "crystalClampLeft": {
+          "shell": {
+            "samples": 156,
+            "inside": 69,
+            "worst": 0.12165143658358168,
+            "worstAt": [-0.17000000178813934, 0.550000011920929, 0],
+            "insideMaxY": 0.550000011920929
+          },
+          "stack": {
+            "samples": 156,
+            "inside": 69,
+            "worst": 0.12165143658358168,
+            "worstAt": [-0.17000000178813934, 0.550000011920929, 0],
+            "insideMaxY": 0.550000011920929
+          }
+        },
+        "crystalClampRight": {
+          "shell": {
+            "samples": 156,
+            "inside": 71,
+            "worst": 0.12165143658358168,
+            "worstAt": [0.17000000178813934, 0.550000011920929, 0],
+            "insideMaxY": 0.550000011920929
+          },
+          "stack": {
+            "samples": 156,
+            "inside": 71,
+            "worst": 0.12165143658358168,
+            "worstAt": [0.17000000178813934, 0.550000011920929, 0],
+            "insideMaxY": 0.550000011920929
+          }
+        },
+        "leatherGrip": {
+          "shell": {
+            "samples": 288,
+            "inside": 204,
+            "worst": 0.11178571411541505,
+            "worstAt": [-1.3877787807814457e-17, 0.1599999964237213, 0],
+            "insideMaxY": 0.1599999964237213
+          },
+          "stack": {
+            "samples": 288,
+            "inside": 204,
+            "worst": 0.11178571411541505,
+            "worstAt": [-1.3877787807814457e-17, 0.1599999964237213, 0],
+            "insideMaxY": 0.1599999964237213
+          }
+        }
+      }
+    },
+    "mirrorColour": {
+      "purpleEnergyInsert": {
+        "inward": {
+          "front": [0.08488694511028616, 0.024248247390945145, 0.40057578838968844],
+          "rear": [0.08488694511028616, 0.024248247390945145, 0.40057578838968844],
+          "delta": 0
+        },
+        "outward": {
+          "front": [0.10241969000169825, 0.029207428176850018, 0.4824860858460275],
+          "rear": [0.10241969000169825, 0.029207428176850018, 0.4824860858460275],
+          "delta": 0
+        }
+      },
+      "darkCoreTriangle": {
+        "inward": {
+          "front": [0.030282744559958347, 0.002950936811052625, 0.04604732621161038],
+          "rear": [0.030282744559958347, 0.002950936811052625, 0.04604732621161038],
+          "delta": 0
+        },
+        "outward": {
+          "front": [0.03579934062426194, 0.0034758636637447697, 0.054302079670041775],
+          "rear": [0.03579934062426195, 0.0034758636637447714, 0.05430207967004179],
+          "delta": 1.3877787807814457e-17
+        }
+      },
+      "rootDiamondGem": {
+        "inward": {
+          "front": [0.705907495141628, 0.024644609048196396, 0.09495942450807715],
+          "rear": [0.705907495141628, 0.024644609048196396, 0.09495942450807715],
+          "delta": 0
+        },
+        "outward": {
+          "front": [0.8344811121475231, 0.02799350375689043, 0.11266179570027955],
+          "rear": [0.8345153551635285, 0.027994789646115285, 0.11266636986780851],
+          "delta": 0.00003424301600540858
+        }
+      }
+    }
+  }
+}

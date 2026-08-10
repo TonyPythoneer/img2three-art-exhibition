@@ -1,0 +1,9 @@
+[
+  {
+    "id": "layered-palette-separation",
+    "score": 0.86,
+    "visible": true,
+    "verdict": "pass",
+    "notes": "Seven classes stay separable: shell 3.1, grip 3.3, crimson 4.5, olive 4.8, gunmetal 5.8, spine 9.6, core 10.5 dE. Mean class dE 5.9. Violet survives ACES at exposure 0.95. Core remains the weakest at 10.5 \u2014 it still reads lighter than the reference's darkest band (50 against 27)."
+  }
+]

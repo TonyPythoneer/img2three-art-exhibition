@@ -1,0 +1,38 @@
+[
+  {
+    "id": "blade-layer-stack",
+    "score": 0.86,
+    "visible": true,
+    "notes": "All four blade parts present and correctly ordered front to back: gem, dark core, violet insert, pale shell. The shell clears the insert by at least 54 units per side at every height."
+  },
+  {
+    "id": "driver-quad-array",
+    "score": 0.9,
+    "visible": true,
+    "notes": "Exactly four instances of one shared geometry placed by four transforms. Verified in the exploded view: no rod is independently remodelled."
+  },
+  {
+    "id": "driver-socket-insertion",
+    "score": 0.85,
+    "visible": true,
+    "notes": "Each rod is a faceted cylinder of radius 11 with eight radial segments, and each enters its own socket collar (radii 52-68 on the same axis). The socket is deliberately shorter than the rod's root taper so the taper straddles the mouth and the insertion reads in the close-up. The rods sit at Z=0 with a real circular section, not pushed forward onto the guard's front face."
+  },
+  {
+    "id": "crystal-clamp-mount",
+    "score": 0.8,
+    "visible": true,
+    "notes": "Two mirrored jaws, inner edges running (17,48)->(11,16) so each stays outside the gem's half-width at every station, lower ends landing on the central socket's shoulders at (24,3). The pair stops short of meeting at the centre, which is what keeps it from reading as one chevron."
+  },
+  {
+    "id": "hilt-proportion-system",
+    "score": 0.88,
+    "visible": true,
+    "notes": "Unchanged from the blockout; the structural pass adds no length-bearing geometry."
+  },
+  {
+    "id": "guard-compactness",
+    "score": 0.76,
+    "visible": true,
+    "notes": "Central socket plus two leather arms raked -50 degrees, each ending in a compact spinner. Narrow and subordinate to the blade and the four rods."
+  }
+]

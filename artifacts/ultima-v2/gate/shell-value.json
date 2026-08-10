@@ -1,0 +1,28 @@
+{
+  "mask": {
+    "chroma": 20,
+    "floor": 170,
+    "ceiling": 250
+  },
+  "artwork": {
+    "pixels": 10910,
+    "meanRGB": [216, 217, 227],
+    "lumP5": 193,
+    "lumP50": 218,
+    "lumP95": 241,
+    "lumSpan": 48,
+    "lumLevels": 80
+  },
+  "render": {
+    "pixels": 11719,
+    "meanRGB": [215, 216, 228],
+    "lumP5": 212,
+    "lumP50": 215,
+    "lumP95": 231,
+    "lumSpan": 19,
+    "lumLevels": 76
+  },
+  "renderPath": "artifacts/ultima-v2/gate/full.png",
+  "meanDelta": [-1, -1, 1],
+  "spanRatio": 0.396
+}

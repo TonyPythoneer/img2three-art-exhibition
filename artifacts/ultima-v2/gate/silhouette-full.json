@@ -1,0 +1,95 @@
+{
+  "render": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/ultima-v2/full/artwork-match.png",
+  "iou": 0.8608,
+  "registrationOffsetFractionOfSpan": [-0.0039, 0.0078],
+  "referenceOnlyFraction": 0.0865,
+  "renderOnlyFraction": 0.0528,
+  "landmarkErrorFractionOfHeight": {
+    "tip": 0.01,
+    "pommelTip": 0.0059,
+    "leftExtreme": 0.01,
+    "rightExtreme": 0.01
+  },
+  "widthProfileByBand": [
+    {
+      "band": 0.0,
+      "reference": 0.0183,
+      "render": 0.0173
+    },
+    {
+      "band": 0.0625,
+      "reference": 0.0579,
+      "render": 0.0599
+    },
+    {
+      "band": 0.125,
+      "reference": 0.0977,
+      "render": 0.0994
+    },
+    {
+      "band": 0.1875,
+      "reference": 0.1274,
+      "render": 0.1282
+    },
+    {
+      "band": 0.25,
+      "reference": 0.1432,
+      "render": 0.1436
+    },
+    {
+      "band": 0.3125,
+      "reference": 0.1512,
+      "render": 0.1517
+    },
+    {
+      "band": 0.375,
+      "reference": 0.1583,
+      "render": 0.158
+    },
+    {
+      "band": 0.4375,
+      "reference": 0.1639,
+      "render": 0.1653
+    },
+    {
+      "band": 0.5,
+      "reference": 0.1696,
+      "render": 0.1718
+    },
+    {
+      "band": 0.5625,
+      "reference": 0.1764,
+      "render": 0.1776
+    },
+    {
+      "band": 0.625,
+      "reference": 0.1833,
+      "render": 0.1836
+    },
+    {
+      "band": 0.6875,
+      "reference": 0.2271,
+      "render": 0.2157
+    },
+    {
+      "band": 0.75,
+      "reference": 0.2333,
+      "render": 0.1869
+    },
+    {
+      "band": 0.8125,
+      "reference": 0.1324,
+      "render": 0.1071
+    },
+    {
+      "band": 0.875,
+      "reference": 0.0473,
+      "render": 0.0484
+    },
+    {
+      "band": 0.9375,
+      "reference": 0.0251,
+      "render": 0.023
+    }
+  ]
+}

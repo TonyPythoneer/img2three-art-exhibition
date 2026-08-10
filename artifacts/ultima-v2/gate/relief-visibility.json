@@ -1,0 +1,98 @@
+{
+  "renderDir": "artifacts/ultima-v2/vis",
+  "floor": 0.7,
+  "layers": {
+    "purpleEnergyInsert": {
+      "pieces": {
+        "front": {
+          "mesh": "purpleEnergyInsertFront",
+          "view": "front-orthographic",
+          "scoredBy": "identity",
+          "footprintPx": 27014,
+          "proudPx": 26281,
+          "proudFraction": 0.9729,
+          "proudPercent": 97.3
+        },
+        "rear": {
+          "mesh": "purpleEnergyInsertRear",
+          "view": "back-orthographic",
+          "scoredBy": "identity",
+          "footprintPx": 27014,
+          "proudPx": 26281,
+          "proudFraction": 0.9729,
+          "proudPercent": 97.3
+        }
+      },
+      "frontRearSkew": 0.0
+    },
+    "darkCoreTriangle": {
+      "pieces": {
+        "front": {
+          "mesh": "darkCoreTriangleFront",
+          "view": "front-orthographic",
+          "scoredBy": "identity",
+          "footprintPx": 2986,
+          "proudPx": 2742,
+          "proudFraction": 0.9183,
+          "proudPercent": 91.8
+        },
+        "rear": {
+          "mesh": "darkCoreTriangleRear",
+          "view": "back-orthographic",
+          "scoredBy": "identity",
+          "footprintPx": 2986,
+          "proudPx": 2742,
+          "proudFraction": 0.9183,
+          "proudPercent": 91.8
+        }
+      },
+      "frontRearSkew": 0.0
+    },
+    "rootDiamondGem": {
+      "pieces": {
+        "front": {
+          "mesh": "rootDiamondGemFront",
+          "view": "front-orthographic",
+          "scoredBy": "survival",
+          "footprintPx": 1378,
+          "proudPx": 1378,
+          "proudFraction": 1.0,
+          "proudPercent": 100.0
+        },
+        "rear": {
+          "mesh": "rootDiamondGemRear",
+          "view": "back-orthographic",
+          "scoredBy": "survival",
+          "footprintPx": 1378,
+          "proudPx": 1378,
+          "proudFraction": 1.0,
+          "proudPercent": 100.0
+        }
+      },
+      "frontRearSkew": 0.0
+    }
+  },
+  "seating": {
+    "rootDiamondGem": {
+      "under": "darkCoreTriangle",
+      "pieces": {
+        "front": {
+          "mesh": "rootDiamondGemFront",
+          "view": "front-orthographic",
+          "footprintPx": 1378,
+          "proudPx": 1378,
+          "proudFraction": 1.0,
+          "proudPercent": 100.0
+        },
+        "rear": {
+          "mesh": "rootDiamondGemRear",
+          "view": "back-orthographic",
+          "footprintPx": 1378,
+          "proudPx": 1378,
+          "proudFraction": 1.0,
+          "proudPercent": 100.0
+        }
+      }
+    }
+  }
+}

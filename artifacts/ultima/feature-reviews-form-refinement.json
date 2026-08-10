@@ -1,0 +1,23 @@
+[
+  {
+    "id": "leaf-silhouette-and-proportion",
+    "score": 0.92,
+    "visible": true,
+    "verdict": "pass",
+    "notes": "Row-span IoU 0.9407, aspect delta 0.0046, foreground area ratio 1.01x. Custom extruded polygon from the measured half-profile, not a box or capsule."
+  },
+  {
+    "id": "radial-guard-cluster",
+    "score": 0.8,
+    "visible": true,
+    "verdict": "pass",
+    "notes": "Six named rods at 23/35/46 deg from a fan origin at local y=-0.29, hub, two gunmetal shoulders, gold collar pair, two fins and two inferred olive blocks \u2014 all separate meshes. Guard-region row deltas within +/-3 px. Open conflict: leftEmitterLower projects onto empty background in the reference."
+  },
+  {
+    "id": "low-poly-facet-language",
+    "score": 0.88,
+    "visible": true,
+    "verdict": "pass",
+    "notes": "836 triangles across 36 meshes. Flat shading everywhere, 6-segment rods, 8-sided grip, chamfer carried as real rim geometry rather than a normal map. No engravings or fasteners added beyond the reference."
+  }
+]

@@ -1,0 +1,5760 @@
+{
+  "targetName": "Codex Sol Ultima Weapon",
+  "targetId": "codexSolUltimaWeapon",
+  "schemaVersion": "2.1",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "src/exhibits/cloud-ultima-weapon/reference-ultima-weapon.png",
+  "referenceCamera": {
+    "solved": false,
+    "fovDegrees": 30.0,
+    "aspect": 0.5,
+    "orientation": {
+      "yaw": 8.0,
+      "pitch": -3.0,
+      "roll": -17.5
+    },
+    "positionHint": [0.45, 0.1, 8.0],
+    "note": "Single shallow three-quarter view; roll and shallow yaw are visually estimated and must be overlay-reviewed."
+  },
+  "suitability": "conditional",
+  "scores": {
+    "object_isolation": 3,
+    "silhouette_readability": 3,
+    "depth_inference": 1,
+    "primitive_decomposition": 3,
+    "material_procedurality": 2,
+    "occlusion_risk": 2,
+    "interaction_fit": 3
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "fantasy greatsword",
+      "primaryDomain": "object",
+      "formLanguage": ["hard-surface", "geometric", "transparent-like"],
+      "structureKind": [
+        "compound object",
+        "layered shell",
+        "branching hierarchy",
+        "repeated modules"
+      ],
+      "motionPotential": ["static prop", "whole-object transform", "detachable"],
+      "materialFamilies": ["glass-like", "plastic", "metal", "mixed"],
+      "notes": "One low-resolution flat-shaded game render supports an approximate real-time procedural prop. Back faces, exact thickness, and the complete handle remain inferred."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 1,
+        "materialLayerCount": 3,
+        "localDetailDensity": 1,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 3,
+        "mesoComponents": 11,
+        "microFeatureGroups": 10,
+        "materialLayers": 7,
+        "repetitionSystems": 1
+      },
+      "reasoning": [
+        "Three macro assemblies contain layered blade profiles, bilateral guard subassemblies, and a repeated six-rod fan.",
+        "Seven visually distinct surfaces and explodable/selectable runtime requirements justify the complex tier.",
+        "The single shallow three-quarter view raises occlusion risk but does not block a conservative symmetric procedural approximation."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": ["macro", "meso", "micro"],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 10,
+      "details": [
+        {
+          "id": "shell-apex-contour",
+          "kind": "contour",
+          "description": "Pale shell apex tapers to a rounded offset point above the purple core.",
+          "region": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "macro edge across the upper blade third",
+          "affects": "silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "outerShell/apexContour"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r0c0.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "shell-left-rim",
+          "kind": "bevel",
+          "description": "A narrow darker blue-grey band follows the shell's visible lateral edge.",
+          "region": {
+            "x": 0.0,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "0.03 of local shell width",
+          "affects": "geometry and edge lighting",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "outerShell/lateralRim"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r1c0.png",
+          "confidence": 0.72
+        },
+        {
+          "id": "shell-edge-value",
+          "kind": "contour",
+          "description": "The shell edge is lower-value blue-grey while the broad face remains near white.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.0,
+            "width": 0.3333,
+            "height": 0.6666,
+            "units": "normalized"
+          },
+          "scale": "thin lateral band",
+          "affects": "albedo and roughness separation",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "outerShellMaterial/edgeBand"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r0c1.png",
+          "confidence": 0.74
+        },
+        {
+          "id": "core-tip-facet",
+          "kind": "bevel",
+          "description": "The purple core begins at a pointed apex with a darker left facet and brighter right facet.",
+          "region": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "upper 0.12 of core length",
+          "affects": "geometry and vertex color",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "purpleCore/tipFacet"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r0c0.png",
+          "confidence": 0.86
+        },
+        {
+          "id": "core-longitudinal-band",
+          "kind": "linework",
+          "description": "A vivid violet longitudinal face band runs along the core's visible right side.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "0.18 of core width over most of its length",
+          "affects": "albedo",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "purpleCoreMaterial/longitudinalBand"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r1c1.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "core-lower-notch",
+          "kind": "groove",
+          "description": "The core divides into two lower prongs around the central magenta spine.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.3333,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "0.16 of core length",
+          "affects": "negative-space geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "purpleCore/lowerProngNotch"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r1c1.png",
+          "confidence": 0.84
+        },
+        {
+          "id": "spine-wedge",
+          "kind": "ridge",
+          "description": "A narrow magenta wedge rises from the hub into the core notch along the shaft axis.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "0.08 of blade length",
+          "affects": "geometry and albedo",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "magentaSpine/axialWedge"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r2c1.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "left-rod-fan",
+          "kind": "ridge",
+          "description": "Three narrow crimson rods radiate laterally from the lower hub on the visible left side.",
+          "region": {
+            "x": 0.0,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "three repeated rods at distinct radial angles",
+          "affects": "repeated geometry and silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "guardAssembly/leftRodFan"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r2c0.png",
+          "confidence": 0.88
+        },
+        {
+          "id": "right-rod-fan",
+          "kind": "ridge",
+          "description": "Three narrow crimson rods radiate laterally from the lower hub on the visible right side.",
+          "region": {
+            "x": 0.6667,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "three repeated rods at distinct radial angles",
+          "affects": "repeated geometry and silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "guardAssembly/rightRodFan"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r2c2.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "rod-root-overlap",
+          "kind": "seam",
+          "description": "Rod roots disappear beneath the dark central hub instead of floating at its edge.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "0.04 of guard width embed",
+          "affects": "attachment geometry",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "guardAssembly/rodRootEmbed"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r2c1.png",
+          "confidence": 0.78
+        },
+        {
+          "id": "olive-lower-fittings",
+          "kind": "linework",
+          "description": "Muted olive polygonal fittings cap the lower ends of both dark guard wings.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.6667,
+            "width": 0.6667,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "each fitting is about one quarter of its wing height",
+          "affects": "albedo and material separation",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "fittingMaterial/guardEndCaps"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r2c2.png",
+          "confidence": 0.86
+        },
+        {
+          "id": "grip-highlight-band",
+          "kind": "linework",
+          "description": "A narrow grey highlight band follows the visible lateral face of the dark grip.",
+          "region": {
+            "x": 0.3333,
+            "y": 0.6667,
+            "width": 0.3333,
+            "height": 0.3333,
+            "units": "normalized"
+          },
+          "scale": "0.12 of grip width",
+          "affects": "albedo and roughness",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "gripMaterial/lateralHighlight"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-codex-sol/spec/detail-inventory/zone-r2c1.png",
+          "confidence": 0.68
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [],
+      "confidence": 0.0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "src/exhibits/cloud-ultima-weapon/reference-ultima-weapon.png"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "Reference view preserves the pale shell silhouette around a narrower pointed purple core and central magenta spine.",
+      "The guard reads as two dark polygonal wings with six crimson rods radiating from a shared center below the blade root.",
+      "Outer shell, purple core, magenta spine, crimson rods, dark guard, olive fittings, and dark grip remain visually separable under reference and neutral lighting.",
+      "Front, side, three-quarter, and exploded views show attached, selectable assemblies with conservative symmetric inferred backs and shallow thickness."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 7,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": ["full-object"],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": ["full-object"],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": ["full-object"],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": ["full-object"],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": ["full-object"],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ],
+    "mustNotDo": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
+      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
+      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.7,
+    "mustMatch": [
+      "macro silhouette and proportions",
+      "primary material albedo/roughness response",
+      "reference-derived PBR material response at or above 0.7 confidence when source pixels are usable",
+      "most recognizable local features"
+    ],
+    "niceToHave": ["micro scratches, stains, chips, and dirt masks", "secondary lighting match"],
+    "fpsTarget": 60,
+    "reviewViewpoints": ["reference", "front", "side", "three-quarter", "exploded-three-quarter"]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.8,
+        "importantAverageThreshold": 0.65,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+      }
+    },
+    "reviewAfterPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "allowedActions": ["continue", "refine-spec", "refine-code", "request-input", "stop"],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+      "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "blade-envelope-core",
+      "name": "Pale shell and inset purple core silhouette",
+      "tier": "critical",
+      "passIds": ["blockout", "form-refinement"],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": ["outerShell", "purpleCore", "magentaSpine"],
+      "evidenceRefs": ["full-object"]
+    },
+    {
+      "id": "guard-wing-proportions",
+      "name": "Bilateral dark guard wings and olive end fittings",
+      "tier": "critical",
+      "passIds": ["blockout", "structural-pass", "form-refinement"],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "guardAssembly",
+        "leftGuardWing",
+        "rightGuardWing",
+        "leftFitting",
+        "rightFitting"
+      ],
+      "evidenceRefs": ["full-object"]
+    },
+    {
+      "id": "rod-fan-origin",
+      "name": "Six crimson rods sharing the low radiation center",
+      "tier": "critical",
+      "passIds": ["structural-pass", "form-refinement"],
+      "minimumScore": 0.82,
+      "mustPass": true,
+      "componentRefs": ["rodFan", "centralHub"],
+      "evidenceRefs": ["full-object"]
+    },
+    {
+      "id": "material-separation",
+      "name": "Seven observed material/color systems remain separable",
+      "tier": "critical",
+      "passIds": ["material-pass", "surface-pass", "lighting-pass"],
+      "minimumScore": 0.78,
+      "mustPass": true,
+      "componentRefs": [
+        "outerShell",
+        "purpleCore",
+        "magentaSpine",
+        "guardAssembly",
+        "rodFan",
+        "leftFitting",
+        "grip"
+      ],
+      "evidenceRefs": ["full-object"]
+    },
+    {
+      "id": "action-ready-hierarchy",
+      "name": "Explodable and selectable named assemblies",
+      "tier": "important",
+      "passIds": ["structural-pass", "interaction-pass", "optimization-pass"],
+      "minimumScore": 0.7,
+      "mustPass": false,
+      "componentRefs": ["bladeAssembly", "guardAssembly", "handleAssembly"],
+      "evidenceRefs": ["full-object"]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "blockout",
+    "completedPasses": [],
+    "lastCompletedPass": "",
+    "blockedReason": "blockout requires a browser screenshot and self-correction review before structural-pass unlocks",
+    "nextRequiredEvidence": [
+      "blockout browser render screenshot from your agent's browser/screenshot tool",
+      "side-by-side reference/render comparison sheet",
+      "AI vision score >= 0.7 with layer scores and mismatch critique",
+      "critical semantic feature scores from the same image pair meeting their individual thresholds",
+      "reviewHistory entry for blockout with action=continue"
+    ]
+  },
+  "lookDevTargets": {
+    "qualityPriority": "reference-fidelity",
+    "materialPass": {
+      "albedoPaletteRequired": true,
+      "roughnessVariationRequired": true,
+      "normalOrBumpRequired": true,
+      "localOverridesRequired": true,
+      "minimumTextureResolution": 1024,
+      "preferredTextureResolution": 2048,
+      "independentMapChannels": ["albedo", "roughness", "height", "normal", "ambient-occlusion"],
+      "requiredSurfaceFrequencyBands": ["macro", "meso", "micro"],
+      "geometryReliefRequiredWhenSilhouetteAffected": true,
+      "referencePbrExtraction": {
+        "requiredWhenSourceImagePresent": false,
+        "targetThreshold": 0.7,
+        "stopOnLowConfidence": true,
+        "script": "forge/stage1_intake/extract_pbr_evidence.py",
+        "acceptedLimitation": "The 146x292 flat-shaded source bakes lighting and antialiasing into all visible edges; extracted normal/height maps would encode raster steps. Use observed palettes and independent procedural roughness/AO instead."
+      },
+      "mustAvoid": [
+        "single flat albedo per material",
+        "uniform roughness",
+        "albedo texture reused as roughness/height/normal/AO",
+        "single-frequency random noise",
+        "plastic-looking smooth bark, stone, cloth, foliage, or aged material",
+        "local color/detail described only in prose without material masks",
+        "claiming exact PBR recovery when confidence is below the target threshold"
+      ]
+    },
+    "lightingPass": {
+      "requiredTerms": [
+        "key light",
+        "fill light",
+        "rim or environment light",
+        "exposure",
+        "tone mapping",
+        "background",
+        "contact shadow"
+      ],
+      "mustAvoid": [
+        "ambient-only lighting",
+        "flat value range",
+        "missing contact shadow",
+        "reference lighting copied without separating material readability"
+      ]
+    },
+    "screenshotReview": [
+      "Compare albedo palette and local color zones.",
+      "Compare roughness/normal/bump response under light.",
+      "Compare cavity dirt, edge wear, stains, moss, scratches, or other local masks.",
+      "Compare key/fill/rim structure, exposure, tone mapping, background, and contact shadows.",
+      "Capture a neutral-light render to verify material readability without reference lighting.",
+      "Capture a grazing-light close-up to expose flat normals, uniform roughness, tiling, and plastic highlights.",
+      "Capture a reference-matched render from the same camera framing as the source."
+    ]
+  },
+  "actionReadiness": {
+    "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+    "defaultRigType": "action-ready-static-rig",
+    "rootMotionNode": "codexSolUltimaWeapon",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+      "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+      "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+      "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+    }
+  },
+  "assumptions": [
+    "Rear faces mirror the visible front profile.",
+    "Blade and guard use shallow thickness because no side view exists.",
+    "The cropped grip continues straight and ends in a compact dark pommel.",
+    "Raster edge steps are antialiasing rather than physical relief."
+  ],
+  "coordinateFrame": {
+    "front": "+Z faces the reference camera",
+    "up": "+Y follows the weapon shaft from grip to blade tip",
+    "scaleReference": "visible object height is 8.0 world units"
+  },
+  "silhouette": {
+    "boundingShape": "elongated layered blade with a wide radial guard and narrow cropped grip",
+    "aspectRatios": [
+      "visible height:maximum guard width = 4.0:1",
+      "outer shell width:core width = 1.75:1"
+    ],
+    "symmetry": "bilateral in object space; shallow yaw creates projected asymmetry",
+    "dominantCurves": [
+      "outer shell convex lateral taper",
+      "pointed purple core",
+      "three-angle radial rod fans"
+    ],
+    "negativeSpaces": [
+      "core notch around magenta spine",
+      "gaps between rod instances",
+      "gap between guard wings and grip"
+    ],
+    "landmarks": [
+      "shell apex",
+      "core apex",
+      "core lower notch",
+      "rod radiation center",
+      "guard lower fittings",
+      "grip axis"
+    ]
+  },
+  "viewEvidence": [
+    {
+      "id": "full-object",
+      "view": "primary shallow three-quarter",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1.0,
+        "height": 1.0,
+        "units": "normalized"
+      },
+      "observations": [
+        "Pale shell encloses a narrower purple core.",
+        "Six crimson rods radiate from below the blade root.",
+        "Dark guard wings terminate in olive fittings.",
+        "Grip and extreme tip are constrained by the image crop and low resolution."
+      ],
+      "confidence": 0.82
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "codexSolUltimaWeapon",
+      "name": "Codex Sol Ultima Weapon",
+      "level": "macro",
+      "role": "body",
+      "importance": 1.0,
+      "confidence": 0.95,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Root pivot spans the complete rigid prop and carries no organic curvature.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(17, 17, 22, 1.0)",
+        "secondaryAlbedo": "rgba(53, 49, 58, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.95,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(17, 17, 22, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(53, 49, 58, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": null,
+      "attachment": null,
+      "dimensions": {
+        "width": 2.2,
+        "height": 8.0,
+        "depth": 0.34,
+        "units": "relative",
+        "confidence": 0.95
+      },
+      "transform": {
+        "position": [0.0, 0.0, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "root",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.95
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "codexSolUltimaWeapon-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [2.2, 8.0, 0.34],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "codexSolUltimaWeapon",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "guardMaterial"
+        }
+      },
+      "material": "guardMaterial",
+      "materialLayers": ["guardMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "hero"
+    },
+    {
+      "id": "bladeAssembly",
+      "name": "Blade assembly",
+      "level": "macro",
+      "role": "blade",
+      "importance": 1.0,
+      "confidence": 0.88,
+      "primitive": "extrude",
+      "topologyClass": "conforming-shell",
+      "topologyRationale": "Layered shallow blade envelope follows the inset core profile.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(231, 234, 244, 1.0)",
+        "secondaryAlbedo": "rgba(190, 200, 224, 1.0)",
+        "materialClass": "glass",
+        "materialClassConfidence": 0.88,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(231, 234, 244, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(190, 200, 224, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "codexSolUltimaWeapon",
+      "attachment": {
+        "parentId": "codexSolUltimaWeapon",
+        "parentSocket": "codexSolUltimaWeapon-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -2.8, 0.0],
+        "localEnd": [0.0, 2.8, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.675,
+        "endRadius": 0.675
+      },
+      "dimensions": {
+        "width": 1.35,
+        "height": 5.6,
+        "depth": 0.22,
+        "units": "relative",
+        "confidence": 0.88
+      },
+      "transform": {
+        "position": [0.0, 1.35, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.88
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "bladeAssembly-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [1.35, 5.6, 0.22],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "bladeAssembly",
+          "seamRefs": [],
+          "detachableFragments": ["bladeAssembly"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "outerShellMaterial"
+        }
+      },
+      "material": "outerShellMaterial",
+      "materialLayers": ["outerShellMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "hero"
+    },
+    {
+      "id": "guardAssembly",
+      "name": "Guard assembly",
+      "level": "macro",
+      "role": "guard",
+      "importance": 1.0,
+      "confidence": 0.86,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete guard blocks and hub have countable hard faces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(17, 17, 22, 1.0)",
+        "secondaryAlbedo": "rgba(53, 49, 58, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.86,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(17, 17, 22, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(53, 49, 58, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "codexSolUltimaWeapon",
+      "attachment": {
+        "parentId": "codexSolUltimaWeapon",
+        "parentSocket": "codexSolUltimaWeapon-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -0.625, 0.0],
+        "localEnd": [0.0, 0.625, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 1.1,
+        "endRadius": 1.1
+      },
+      "dimensions": {
+        "width": 2.2,
+        "height": 1.25,
+        "depth": 0.34,
+        "units": "relative",
+        "confidence": 0.86
+      },
+      "transform": {
+        "position": [0.0, -1.72, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.86
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "guardAssembly-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [2.2, 1.25, 0.34],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "guardAssembly",
+          "seamRefs": [],
+          "detachableFragments": ["guardAssembly"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "guardMaterial"
+        }
+      },
+      "material": "guardMaterial",
+      "materialLayers": ["guardMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "leftRodFan",
+          "kind": "ridge",
+          "description": "Three left radial rods.",
+          "evidenceRefs": ["full-object"]
+        },
+        {
+          "id": "rightRodFan",
+          "kind": "ridge",
+          "description": "Three right radial rods.",
+          "evidenceRefs": ["full-object"]
+        },
+        {
+          "id": "rodRootEmbed",
+          "kind": "seam",
+          "description": "Rod roots overlap the hub by 0.03 world units.",
+          "evidenceRefs": ["full-object"]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "hero"
+    },
+    {
+      "id": "handleAssembly",
+      "name": "Handle assembly",
+      "level": "macro",
+      "role": "handle",
+      "importance": 1.0,
+      "confidence": 0.62,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Straight rigid grip and pommel form a discrete assembly.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(13, 13, 18, 1.0)",
+        "secondaryAlbedo": "rgba(52, 52, 61, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.62,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(13, 13, 18, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(52, 52, 61, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "codexSolUltimaWeapon",
+      "attachment": {
+        "parentId": "codexSolUltimaWeapon",
+        "parentSocket": "codexSolUltimaWeapon-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -1.1, 0.0],
+        "localEnd": [0.0, 1.1, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.16,
+        "endRadius": 0.16
+      },
+      "dimensions": {
+        "width": 0.32,
+        "height": 2.2,
+        "depth": 0.3,
+        "units": "relative",
+        "confidence": 0.62
+      },
+      "transform": {
+        "position": [0.0, -3.05, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.62
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "handleAssembly-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.32, 2.2, 0.3],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "handleAssembly",
+          "seamRefs": [],
+          "detachableFragments": ["handleAssembly"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "gripMaterial"
+        }
+      },
+      "material": "gripMaterial",
+      "materialLayers": ["gripMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "hero"
+    },
+    {
+      "id": "outerShell",
+      "name": "Outer blade shell",
+      "level": "meso",
+      "role": "blade",
+      "importance": 0.8,
+      "confidence": 0.9,
+      "primitive": "extrude",
+      "topologyClass": "conforming-shell",
+      "topologyRationale": "Thin pale shell follows the blade profile around the purple core.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(231, 234, 244, 1.0)",
+        "secondaryAlbedo": "rgba(190, 200, 224, 1.0)",
+        "materialClass": "glass",
+        "materialClassConfidence": 0.9,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(231, 234, 244, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(190, 200, 224, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "bladeAssembly",
+      "attachment": {
+        "parentId": "bladeAssembly",
+        "parentSocket": "bladeAssembly-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -2.8, 0.0],
+        "localEnd": [0.0, 2.8, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.675,
+        "endRadius": 0.675
+      },
+      "dimensions": {
+        "width": 1.35,
+        "height": 5.6,
+        "depth": 0.18,
+        "units": "relative",
+        "confidence": 0.9
+      },
+      "transform": {
+        "position": [0.0, 0.0, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.9
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "outerShell-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [1.35, 5.6, 0.18],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "outerShell",
+          "seamRefs": [],
+          "detachableFragments": ["outerShell"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "outerShellMaterial"
+        }
+      },
+      "material": "outerShellMaterial",
+      "materialLayers": ["outerShellMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "apexContour",
+          "kind": "contour",
+          "description": "Rounded offset shell apex.",
+          "evidenceRefs": ["full-object"]
+        },
+        {
+          "id": "lateralRim",
+          "kind": "bevel",
+          "description": "Narrow darker lateral shell rim.",
+          "evidenceRefs": ["full-object"]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "purpleCore",
+      "name": "Purple energy core",
+      "level": "meso",
+      "role": "blade",
+      "importance": 0.8,
+      "confidence": 0.9,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Faceted tapered slab has hard planar faces and a real lower notch.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(36, 27, 130, 1.0)",
+        "secondaryAlbedo": "rgba(118, 80, 216, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.9,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(36, 27, 130, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(118, 80, 216, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "bladeAssembly",
+      "attachment": {
+        "parentId": "bladeAssembly",
+        "parentSocket": "bladeAssembly-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -2.275, 0.0],
+        "localEnd": [0.0, 2.275, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.39,
+        "endRadius": 0.39
+      },
+      "dimensions": {
+        "width": 0.78,
+        "height": 4.55,
+        "depth": 0.2,
+        "units": "relative",
+        "confidence": 0.9
+      },
+      "transform": {
+        "position": [0.0, -0.25, 0.04],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.9
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "purpleCore-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.78, 4.55, 0.2],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "purpleCore",
+          "seamRefs": [],
+          "detachableFragments": ["purpleCore"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "purpleCoreMaterial"
+        }
+      },
+      "material": "purpleCoreMaterial",
+      "materialLayers": ["purpleCoreMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "tipFacet",
+          "kind": "bevel",
+          "description": "Darker and brighter core tip facets.",
+          "evidenceRefs": ["full-object"]
+        },
+        {
+          "id": "lowerProngNotch",
+          "kind": "groove",
+          "description": "Open notch dividing the two lower core prongs.",
+          "evidenceRefs": ["full-object"]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "magentaSpine",
+      "name": "Magenta central spine",
+      "level": "meso",
+      "role": "connector",
+      "importance": 0.8,
+      "confidence": 0.88,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Narrow rigid wedge bridges the hub and core notch.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(107, 21, 60, 1.0)",
+        "secondaryAlbedo": "rgba(174, 46, 118, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.88,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(107, 21, 60, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(174, 46, 118, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "bladeAssembly",
+      "attachment": {
+        "parentId": "bladeAssembly",
+        "parentSocket": "bladeAssembly-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -0.7, 0.0],
+        "localEnd": [0.0, 0.7, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.13,
+        "endRadius": 0.13
+      },
+      "dimensions": {
+        "width": 0.26,
+        "height": 1.4,
+        "depth": 0.24,
+        "units": "relative",
+        "confidence": 0.88
+      },
+      "transform": {
+        "position": [0.0, -2.0, 0.08],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.88
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "magentaSpine-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.26, 1.4, 0.24],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "magentaSpine",
+          "seamRefs": [],
+          "detachableFragments": ["magentaSpine"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "magentaSpineMaterial"
+        }
+      },
+      "material": "magentaSpineMaterial",
+      "materialLayers": ["magentaSpineMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "axialWedge",
+          "kind": "ridge",
+          "description": "Magenta wedge rising through the core notch.",
+          "evidenceRefs": ["full-object"]
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "centralHub",
+      "name": "Central guard hub",
+      "level": "meso",
+      "role": "connector",
+      "importance": 0.8,
+      "confidence": 0.82,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Compact faceted connector surrounds the shaft and covers rod roots.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(17, 17, 22, 1.0)",
+        "secondaryAlbedo": "rgba(53, 49, 58, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(17, 17, 22, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(53, 49, 58, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "guardAssembly",
+      "attachment": {
+        "parentId": "guardAssembly",
+        "parentSocket": "guardAssembly-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -0.35, 0.0],
+        "localEnd": [0.0, 0.35, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.34,
+        "endRadius": 0.34
+      },
+      "dimensions": {
+        "width": 0.68,
+        "height": 0.7,
+        "depth": 0.36,
+        "units": "relative",
+        "confidence": 0.82
+      },
+      "transform": {
+        "position": [0.0, 0.1, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.82
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "centralHub-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.68, 0.7, 0.36],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "centralHub",
+          "seamRefs": [],
+          "detachableFragments": ["centralHub"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "guardMaterial"
+        }
+      },
+      "material": "guardMaterial",
+      "materialLayers": ["guardMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "leftGuardWing",
+      "name": "Left guard wing",
+      "level": "meso",
+      "role": "wing",
+      "importance": 0.8,
+      "confidence": 0.8,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Polygonal rigid plate projects laterally and downward.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(17, 17, 22, 1.0)",
+        "secondaryAlbedo": "rgba(53, 49, 58, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.8,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(17, 17, 22, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(53, 49, 58, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "guardAssembly",
+      "attachment": {
+        "parentId": "guardAssembly",
+        "parentSocket": "guardAssembly-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -0.43, 0.0],
+        "localEnd": [0.0, 0.43, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.36,
+        "endRadius": 0.36
+      },
+      "dimensions": {
+        "width": 0.72,
+        "height": 0.86,
+        "depth": 0.3,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [-0.62, -0.15, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "leftGuardWing-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.72, 0.86, 0.3],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "leftGuardWing",
+          "seamRefs": [],
+          "detachableFragments": ["leftGuardWing"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "guardMaterial"
+        }
+      },
+      "material": "guardMaterial",
+      "materialLayers": ["guardMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "rightGuardWing",
+      "name": "Right guard wing",
+      "level": "meso",
+      "role": "wing",
+      "importance": 0.8,
+      "confidence": 0.78,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Polygonal rigid plate mirrors the left wing in object space.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(17, 17, 22, 1.0)",
+        "secondaryAlbedo": "rgba(53, 49, 58, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.78,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(17, 17, 22, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(53, 49, 58, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "guardAssembly",
+      "attachment": {
+        "parentId": "guardAssembly",
+        "parentSocket": "guardAssembly-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -0.43, 0.0],
+        "localEnd": [0.0, 0.43, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.36,
+        "endRadius": 0.36
+      },
+      "dimensions": {
+        "width": 0.72,
+        "height": 0.86,
+        "depth": 0.3,
+        "units": "relative",
+        "confidence": 0.78
+      },
+      "transform": {
+        "position": [0.62, -0.15, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.78
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "rightGuardWing-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.72, 0.86, 0.3],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "rightGuardWing",
+          "seamRefs": [],
+          "detachableFragments": ["rightGuardWing"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "guardMaterial"
+        }
+      },
+      "material": "guardMaterial",
+      "materialLayers": ["guardMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "leftFitting",
+      "name": "Left olive fitting",
+      "level": "meso",
+      "role": "connector",
+      "importance": 0.8,
+      "confidence": 0.82,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete polygonal cap overlaps the lower wing edge.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(98, 99, 74, 1.0)",
+        "secondaryAlbedo": "rgba(140, 139, 98, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.82,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(98, 99, 74, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(140, 139, 98, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "leftGuardWing",
+      "attachment": {
+        "parentId": "leftGuardWing",
+        "parentSocket": "leftGuardWing-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -0.26, 0.0],
+        "localEnd": [0.0, 0.26, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.19,
+        "endRadius": 0.19
+      },
+      "dimensions": {
+        "width": 0.38,
+        "height": 0.52,
+        "depth": 0.32,
+        "units": "relative",
+        "confidence": 0.82
+      },
+      "transform": {
+        "position": [-0.08, -0.58, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.82
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "leftFitting-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.38, 0.52, 0.32],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "leftFitting",
+          "seamRefs": [],
+          "detachableFragments": ["leftFitting"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "fittingMaterial"
+        }
+      },
+      "material": "fittingMaterial",
+      "materialLayers": ["fittingMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "rightFitting",
+      "name": "Right olive fitting",
+      "level": "meso",
+      "role": "connector",
+      "importance": 0.8,
+      "confidence": 0.8,
+      "primitive": "extrude",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Discrete polygonal cap mirrors the left fitting.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(98, 99, 74, 1.0)",
+        "secondaryAlbedo": "rgba(140, 139, 98, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.8,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(98, 99, 74, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(140, 139, 98, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "rightGuardWing",
+      "attachment": {
+        "parentId": "rightGuardWing",
+        "parentSocket": "rightGuardWing-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -0.26, 0.0],
+        "localEnd": [0.0, 0.26, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.19,
+        "endRadius": 0.19
+      },
+      "dimensions": {
+        "width": 0.38,
+        "height": 0.52,
+        "depth": 0.32,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [0.08, -0.58, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "rightFitting-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.38, 0.52, 0.32],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "rightFitting",
+          "seamRefs": [],
+          "detachableFragments": ["rightFitting"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "fittingMaterial"
+        }
+      },
+      "material": "fittingMaterial",
+      "materialLayers": ["fittingMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "rodFan",
+      "name": "Six-rod radial fan",
+      "level": "meso",
+      "role": "connector",
+      "importance": 0.8,
+      "confidence": 0.88,
+      "primitive": "instanced-cluster",
+      "topologyClass": "fiber-strand",
+      "topologyRationale": "Six long thin repeated rods radiate from one hub-centered distribution.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(90, 16, 36, 1.0)",
+        "secondaryAlbedo": "rgba(154, 39, 72, 1.0)",
+        "materialClass": "metal",
+        "materialClassConfidence": 0.88,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(90, 16, 36, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(154, 39, 72, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "guardAssembly",
+      "attachment": {
+        "parentId": "guardAssembly",
+        "parentSocket": "guardAssembly-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -0.35, 0.0],
+        "localEnd": [0.0, 0.35, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 1.0,
+        "endRadius": 1.0
+      },
+      "dimensions": {
+        "width": 2.0,
+        "height": 0.7,
+        "depth": 0.16,
+        "units": "relative",
+        "confidence": 0.88
+      },
+      "transform": {
+        "position": [0.0, 0.12, -0.04],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.88
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "rodFan-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [2.0, 0.7, 0.16],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "rodFan",
+          "seamRefs": [],
+          "detachableFragments": ["rodFan"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "rodMaterial"
+        }
+      },
+      "material": "rodMaterial",
+      "materialLayers": ["rodMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "grip",
+      "name": "Main grip",
+      "level": "meso",
+      "role": "handle",
+      "importance": 0.8,
+      "confidence": 0.64,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Long rigid dark grip has countable planar faces.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(13, 13, 18, 1.0)",
+        "secondaryAlbedo": "rgba(52, 52, 61, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.64,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(13, 13, 18, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(52, 52, 61, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "handleAssembly",
+      "attachment": {
+        "parentId": "handleAssembly",
+        "parentSocket": "handleAssembly-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -1.0, 0.0],
+        "localEnd": [0.0, 1.0, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.12,
+        "endRadius": 0.12
+      },
+      "dimensions": {
+        "width": 0.24,
+        "height": 2.0,
+        "depth": 0.26,
+        "units": "relative",
+        "confidence": 0.64
+      },
+      "transform": {
+        "position": [0.0, 0.0, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.64
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "grip-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.24, 2.0, 0.26],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "grip",
+          "seamRefs": [],
+          "detachableFragments": ["grip"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "gripMaterial"
+        }
+      },
+      "material": "gripMaterial",
+      "materialLayers": ["gripMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "gripAccent",
+      "name": "Grip lateral highlight carrier",
+      "level": "meso",
+      "role": "body",
+      "importance": 0.8,
+      "confidence": 0.62,
+      "primitive": "plane-card",
+      "topologyClass": "material-only",
+      "topologyRationale": "Thin carrier represents the observed lighter lateral face band without adding unsupported relief.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(13, 13, 18, 1.0)",
+        "secondaryAlbedo": "rgba(52, 52, 61, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.62,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(13, 13, 18, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(52, 52, 61, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "handleAssembly",
+      "attachment": {
+        "parentId": "handleAssembly",
+        "parentSocket": "handleAssembly-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -0.9, 0.0],
+        "localEnd": [0.0, 0.9, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.02,
+        "endRadius": 0.02
+      },
+      "dimensions": {
+        "width": 0.04,
+        "height": 1.8,
+        "depth": 0.01,
+        "units": "relative",
+        "confidence": 0.62
+      },
+      "transform": {
+        "position": [0.12, 0.0, 0.14],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.62
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "gripAccent-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.04, 1.8, 0.01],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "gripAccent",
+          "seamRefs": [],
+          "detachableFragments": ["gripAccent"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "gripMaterial"
+        }
+      },
+      "material": "gripMaterial",
+      "materialLayers": ["gripMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    },
+    {
+      "id": "pommel",
+      "name": "Compact pommel",
+      "level": "meso",
+      "role": "connector",
+      "importance": 0.8,
+      "confidence": 0.32,
+      "primitive": "box",
+      "topologyClass": "assembled-solid",
+      "topologyRationale": "Small inferred terminal block closes the cropped grip conservatively.",
+      "geometryDescriptor": {
+        "topologyIntent": "low-poly hard-surface prop with stable named pivot",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.02,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "generated object-space coordinates",
+        "normalStrategy": "flat or weighted vertex normals matching visible facets"
+      },
+      "colorMaterialRecipe": {
+        "dominantAlbedo": "rgba(13, 13, 18, 1.0)",
+        "secondaryAlbedo": "rgba(52, 52, 61, 1.0)",
+        "materialClass": "plastic",
+        "materialClassConfidence": 0.32,
+        "colorGradient": {
+          "type": "linear",
+          "axis": "long-axis",
+          "stops": [
+            {
+              "position": 0.0,
+              "color": "rgba(13, 13, 18, 1.0)"
+            },
+            {
+              "position": 1.0,
+              "color": "rgba(52, 52, 61, 1.0)"
+            }
+          ]
+        },
+        "evidenceRefs": ["full-object"]
+      },
+      "parent": "handleAssembly",
+      "attachment": {
+        "parentId": "handleAssembly",
+        "parentSocket": "handleAssembly-socket",
+        "contactType": "overlap",
+        "localStart": [0.0, -0.14, 0.0],
+        "localEnd": [0.0, 0.14, 0.0],
+        "contactNormal": [0.0, 1.0, 0.0],
+        "embedDepth": 0.03,
+        "overlap": 0.03,
+        "gapTolerance": 0.01,
+        "baseRadius": 0.17,
+        "endRadius": 0.17
+      },
+      "dimensions": {
+        "width": 0.34,
+        "height": 0.28,
+        "depth": 0.32,
+        "units": "relative",
+        "confidence": 0.32
+      },
+      "transform": {
+        "position": [0.0, -1.12, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "actionProfile": {
+        "animationRole": "detachable-part",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [0.0, 0.0, 0.0],
+          "axis": [0.0, 1.0, 0.0],
+          "confidence": 0.32
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "bend": false,
+          "twist": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "pommel-socket",
+            "localPosition": [0.0, 0.0, 0.0],
+            "localRotation": [0.0, 0.0, 0.0]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [0.0, 0.0, 0.0],
+          "scale": [0.34, 0.28, 0.32],
+          "isTrigger": false,
+          "notes": "Conservative compound proxy."
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "pommel",
+          "seamRefs": [],
+          "detachableFragments": ["pommel"],
+          "breakImpulse": 1.0,
+          "debrisMaterial": "gripMaterial"
+        }
+      },
+      "material": "gripMaterial",
+      "materialLayers": ["gripMaterial"],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.12,
+        "microRoughness": 0.03,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "low-amplitude independent field",
+        "displacementPattern": "none",
+        "occlusionPattern": "contact-only",
+        "edgeWearPattern": "none visible",
+        "notes": "Faceted color and real profile geometry carry the visible detail."
+      },
+      "evidenceRefs": ["full-object"],
+      "details": [],
+      "fidelityTier": "detail"
+    }
+  ],
+  "materials": [
+    {
+      "id": "outerShellMaterial",
+      "name": "Pale translucent outer shell",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#E7EAF4",
+      "color": "#E7EAF4",
+      "albedo": {
+        "dominant": "#E7EAF4",
+        "secondary": ["#BEC8E0", "#F7F8FC"],
+        "samplingNotes": "Palette follows visible flat-shaded color zones; edge antialiasing is excluded."
+      },
+      "colorVariation": {
+        "palette": ["#E7EAF4", "#BEC8E0", "#F7F8FC"],
+        "pattern": "faceted longitudinal bands",
+        "amplitude": 0.12,
+        "heightCorrelation": 0.0
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "generated-object-space",
+        "repeat": [1.0, 1.0],
+        "anisotropy": 4,
+        "texelDensityIntent": "Keep faceted color bands stable in object space without raster-edge detail."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.0,
+          "amplitude": 0.12,
+          "role": "observed regional albedo separation"
+        },
+        {
+          "id": "meso",
+          "frequency": 6.0,
+          "amplitude": 0.03,
+          "role": "face-to-face value change"
+        },
+        {
+          "id": "micro",
+          "frequency": 32.0,
+          "amplitude": 0.01,
+          "role": "minimal highlight breakup; reference interiors are flat"
+        }
+      ],
+      "roughness": {
+        "base": 0.38,
+        "variation": 0.05,
+        "map": "independent-procedural-field",
+        "localResponse": "small face variation only; no contour aliasing encoded"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-low-amplitude-fine-field",
+        "strength": 0.04,
+        "scale": 32.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.35,
+        "map": "independent-contact-field",
+        "notes": "Restrict AO to overlaps at blade root, rod sockets, fittings, and grip socket."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#17151A"
+      },
+      "localOverrides": [
+        {
+          "id": "edgeBand",
+          "region": "lateral shell rim",
+          "baseColor": "#BEC8E0",
+          "roughness": 0.46,
+          "evidenceRefs": ["full-object"]
+        }
+      ],
+      "shaderNotes": [
+        "Use transmission 0.18, opacity 0.72, clearcoat 0.18, and depthWrite true for a readable layered silhouette.",
+        "Albedo, roughness, normal, and ambient occlusion are independent fields.",
+        "Do not convert antialiasing steps from the 146x292 reference into height or normal relief."
+      ],
+      "notes": "Use transmission 0.18, opacity 0.72, clearcoat 0.18, and depthWrite true for a readable layered silhouette."
+    },
+    {
+      "id": "purpleCoreMaterial",
+      "name": "Faceted purple core",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#241B82",
+      "color": "#241B82",
+      "albedo": {
+        "dominant": "#241B82",
+        "secondary": ["#4A2AAE", "#7650D8"],
+        "samplingNotes": "Palette follows visible flat-shaded color zones; edge antialiasing is excluded."
+      },
+      "colorVariation": {
+        "palette": ["#241B82", "#4A2AAE", "#7650D8"],
+        "pattern": "faceted longitudinal bands",
+        "amplitude": 0.12,
+        "heightCorrelation": 0.0
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "generated-object-space",
+        "repeat": [1.0, 1.0],
+        "anisotropy": 4,
+        "texelDensityIntent": "Keep faceted color bands stable in object space without raster-edge detail."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.0,
+          "amplitude": 0.12,
+          "role": "observed regional albedo separation"
+        },
+        {
+          "id": "meso",
+          "frequency": 6.0,
+          "amplitude": 0.03,
+          "role": "face-to-face value change"
+        },
+        {
+          "id": "micro",
+          "frequency": 32.0,
+          "amplitude": 0.01,
+          "role": "minimal highlight breakup; reference interiors are flat"
+        }
+      ],
+      "roughness": {
+        "base": 0.3,
+        "variation": 0.05,
+        "map": "independent-procedural-field",
+        "localResponse": "small face variation only; no contour aliasing encoded"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-low-amplitude-fine-field",
+        "strength": 0.04,
+        "scale": 32.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.35,
+        "map": "independent-contact-field",
+        "notes": "Restrict AO to overlaps at blade root, rod sockets, fittings, and grip socket."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#17151A"
+      },
+      "localOverrides": [
+        {
+          "id": "longitudinalBand",
+          "region": "right longitudinal facet",
+          "baseColor": "#7650D8",
+          "roughness": 0.25,
+          "evidenceRefs": ["full-object"]
+        }
+      ],
+      "shaderNotes": [
+        "Opaque saturated core with low clearcoat and longitudinal vertex-color facets.",
+        "Albedo, roughness, normal, and ambient occlusion are independent fields.",
+        "Do not convert antialiasing steps from the 146x292 reference into height or normal relief."
+      ],
+      "notes": "Opaque saturated core with low clearcoat and longitudinal vertex-color facets."
+    },
+    {
+      "id": "magentaSpineMaterial",
+      "name": "Magenta axial spine",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial",
+      "baseColor": "#6B153C",
+      "color": "#6B153C",
+      "albedo": {
+        "dominant": "#6B153C",
+        "secondary": ["#AE2E76"],
+        "samplingNotes": "Palette follows visible flat-shaded color zones; edge antialiasing is excluded."
+      },
+      "colorVariation": {
+        "palette": ["#6B153C", "#AE2E76"],
+        "pattern": "faceted longitudinal bands",
+        "amplitude": 0.12,
+        "heightCorrelation": 0.0
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "generated-object-space",
+        "repeat": [1.0, 1.0],
+        "anisotropy": 4,
+        "texelDensityIntent": "Keep faceted color bands stable in object space without raster-edge detail."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.0,
+          "amplitude": 0.12,
+          "role": "observed regional albedo separation"
+        },
+        {
+          "id": "meso",
+          "frequency": 6.0,
+          "amplitude": 0.03,
+          "role": "face-to-face value change"
+        },
+        {
+          "id": "micro",
+          "frequency": 32.0,
+          "amplitude": 0.01,
+          "role": "minimal highlight breakup; reference interiors are flat"
+        }
+      ],
+      "roughness": {
+        "base": 0.4,
+        "variation": 0.05,
+        "map": "independent-procedural-field",
+        "localResponse": "small face variation only; no contour aliasing encoded"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-low-amplitude-fine-field",
+        "strength": 0.04,
+        "scale": 32.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.35,
+        "map": "independent-contact-field",
+        "notes": "Restrict AO to overlaps at blade root, rod sockets, fittings, and grip socket."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#17151A"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Opaque red-violet wedge; no emission is evidenced.",
+        "Albedo, roughness, normal, and ambient occlusion are independent fields.",
+        "Do not convert antialiasing steps from the 146x292 reference into height or normal relief."
+      ],
+      "notes": "Opaque red-violet wedge; no emission is evidenced."
+    },
+    {
+      "id": "guardMaterial",
+      "name": "Dark guard",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial",
+      "baseColor": "#111116",
+      "color": "#111116",
+      "albedo": {
+        "dominant": "#111116",
+        "secondary": ["#35313A"],
+        "samplingNotes": "Palette follows visible flat-shaded color zones; edge antialiasing is excluded."
+      },
+      "colorVariation": {
+        "palette": ["#111116", "#35313A"],
+        "pattern": "faceted longitudinal bands",
+        "amplitude": 0.12,
+        "heightCorrelation": 0.0
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "generated-object-space",
+        "repeat": [1.0, 1.0],
+        "anisotropy": 4,
+        "texelDensityIntent": "Keep faceted color bands stable in object space without raster-edge detail."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.0,
+          "amplitude": 0.12,
+          "role": "observed regional albedo separation"
+        },
+        {
+          "id": "meso",
+          "frequency": 6.0,
+          "amplitude": 0.03,
+          "role": "face-to-face value change"
+        },
+        {
+          "id": "micro",
+          "frequency": 32.0,
+          "amplitude": 0.01,
+          "role": "minimal highlight breakup; reference interiors are flat"
+        }
+      ],
+      "roughness": {
+        "base": 0.62,
+        "variation": 0.05,
+        "map": "independent-procedural-field",
+        "localResponse": "small face variation only; no contour aliasing encoded"
+      },
+      "metalness": {
+        "base": 0.45,
+        "variation": 0.02
+      },
+      "normal": {
+        "pattern": "independent-low-amplitude-fine-field",
+        "strength": 0.04,
+        "scale": 32.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.35,
+        "map": "independent-contact-field",
+        "notes": "Restrict AO to overlaps at blade root, rod sockets, fittings, and grip socket."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#17151A"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Dark gunmetal approximation; preserve readable face normals without mirror-like highlights.",
+        "Albedo, roughness, normal, and ambient occlusion are independent fields.",
+        "Do not convert antialiasing steps from the 146x292 reference into height or normal relief."
+      ],
+      "notes": "Dark gunmetal approximation; preserve readable face normals without mirror-like highlights."
+    },
+    {
+      "id": "rodMaterial",
+      "name": "Crimson rods",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial",
+      "baseColor": "#5A1024",
+      "color": "#5A1024",
+      "albedo": {
+        "dominant": "#5A1024",
+        "secondary": ["#9A2748"],
+        "samplingNotes": "Palette follows visible flat-shaded color zones; edge antialiasing is excluded."
+      },
+      "colorVariation": {
+        "palette": ["#5A1024", "#9A2748"],
+        "pattern": "faceted longitudinal bands",
+        "amplitude": 0.12,
+        "heightCorrelation": 0.0
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "generated-object-space",
+        "repeat": [1.0, 1.0],
+        "anisotropy": 4,
+        "texelDensityIntent": "Keep faceted color bands stable in object space without raster-edge detail."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.0,
+          "amplitude": 0.12,
+          "role": "observed regional albedo separation"
+        },
+        {
+          "id": "meso",
+          "frequency": 6.0,
+          "amplitude": 0.03,
+          "role": "face-to-face value change"
+        },
+        {
+          "id": "micro",
+          "frequency": 32.0,
+          "amplitude": 0.01,
+          "role": "minimal highlight breakup; reference interiors are flat"
+        }
+      ],
+      "roughness": {
+        "base": 0.48,
+        "variation": 0.05,
+        "map": "independent-procedural-field",
+        "localResponse": "small face variation only; no contour aliasing encoded"
+      },
+      "metalness": {
+        "base": 0.2,
+        "variation": 0.02
+      },
+      "normal": {
+        "pattern": "independent-low-amplitude-fine-field",
+        "strength": 0.04,
+        "scale": 32.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.35,
+        "map": "independent-contact-field",
+        "notes": "Restrict AO to overlaps at blade root, rod sockets, fittings, and grip socket."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#17151A"
+      },
+      "localOverrides": [],
+      "shaderNotes": [
+        "Three rods per side share dimensions but use alternating face values.",
+        "Albedo, roughness, normal, and ambient occlusion are independent fields.",
+        "Do not convert antialiasing steps from the 146x292 reference into height or normal relief."
+      ],
+      "notes": "Three rods per side share dimensions but use alternating face values."
+    },
+    {
+      "id": "fittingMaterial",
+      "name": "Muted olive fittings",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial",
+      "baseColor": "#62634A",
+      "color": "#62634A",
+      "albedo": {
+        "dominant": "#62634A",
+        "secondary": ["#8C8B62"],
+        "samplingNotes": "Palette follows visible flat-shaded color zones; edge antialiasing is excluded."
+      },
+      "colorVariation": {
+        "palette": ["#62634A", "#8C8B62"],
+        "pattern": "faceted longitudinal bands",
+        "amplitude": 0.12,
+        "heightCorrelation": 0.0
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "generated-object-space",
+        "repeat": [1.0, 1.0],
+        "anisotropy": 4,
+        "texelDensityIntent": "Keep faceted color bands stable in object space without raster-edge detail."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.0,
+          "amplitude": 0.12,
+          "role": "observed regional albedo separation"
+        },
+        {
+          "id": "meso",
+          "frequency": 6.0,
+          "amplitude": 0.03,
+          "role": "face-to-face value change"
+        },
+        {
+          "id": "micro",
+          "frequency": 32.0,
+          "amplitude": 0.01,
+          "role": "minimal highlight breakup; reference interiors are flat"
+        }
+      ],
+      "roughness": {
+        "base": 0.68,
+        "variation": 0.05,
+        "map": "independent-procedural-field",
+        "localResponse": "small face variation only; no contour aliasing encoded"
+      },
+      "metalness": {
+        "base": 0.35,
+        "variation": 0.02
+      },
+      "normal": {
+        "pattern": "independent-low-amplitude-fine-field",
+        "strength": 0.04,
+        "scale": 32.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.35,
+        "map": "independent-contact-field",
+        "notes": "Restrict AO to overlaps at blade root, rod sockets, fittings, and grip socket."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#17151A"
+      },
+      "localOverrides": [
+        {
+          "id": "guardEndCaps",
+          "region": "lower guard wing caps",
+          "baseColor": "#8C8B62",
+          "roughness": 0.72,
+          "evidenceRefs": ["full-object"]
+        }
+      ],
+      "shaderNotes": [
+        "Metalness is conservative because the reference contains no diagnostic highlight.",
+        "Albedo, roughness, normal, and ambient occlusion are independent fields.",
+        "Do not convert antialiasing steps from the 146x292 reference into height or normal relief."
+      ],
+      "notes": "Metalness is conservative because the reference contains no diagnostic highlight."
+    },
+    {
+      "id": "gripMaterial",
+      "name": "Dark grip",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial",
+      "baseColor": "#0D0D12",
+      "color": "#0D0D12",
+      "albedo": {
+        "dominant": "#0D0D12",
+        "secondary": ["#34343D"],
+        "samplingNotes": "Palette follows visible flat-shaded color zones; edge antialiasing is excluded."
+      },
+      "colorVariation": {
+        "palette": ["#0D0D12", "#34343D"],
+        "pattern": "faceted longitudinal bands",
+        "amplitude": 0.12,
+        "heightCorrelation": 0.0
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "generated-object-space",
+        "repeat": [1.0, 1.0],
+        "anisotropy": 4,
+        "texelDensityIntent": "Keep faceted color bands stable in object space without raster-edge detail."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.0,
+          "amplitude": 0.12,
+          "role": "observed regional albedo separation"
+        },
+        {
+          "id": "meso",
+          "frequency": 6.0,
+          "amplitude": 0.03,
+          "role": "face-to-face value change"
+        },
+        {
+          "id": "micro",
+          "frequency": 32.0,
+          "amplitude": 0.01,
+          "role": "minimal highlight breakup; reference interiors are flat"
+        }
+      ],
+      "roughness": {
+        "base": 0.58,
+        "variation": 0.05,
+        "map": "independent-procedural-field",
+        "localResponse": "small face variation only; no contour aliasing encoded"
+      },
+      "metalness": {
+        "base": 0.15,
+        "variation": 0.02
+      },
+      "normal": {
+        "pattern": "independent-low-amplitude-fine-field",
+        "strength": 0.04,
+        "scale": 32.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.35,
+        "map": "independent-contact-field",
+        "notes": "Restrict AO to overlaps at blade root, rod sockets, fittings, and grip socket."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#17151A"
+      },
+      "localOverrides": [
+        {
+          "id": "lateralHighlight",
+          "region": "front-lateral grip face",
+          "baseColor": "#34343D",
+          "roughness": 0.42,
+          "evidenceRefs": ["full-object"]
+        }
+      ],
+      "shaderNotes": [
+        "Long dark grip with one narrow lighter face band.",
+        "Albedo, roughness, normal, and ambient occlusion are independent fields.",
+        "Do not convert antialiasing steps from the 146x292 reference into height or normal relief."
+      ],
+      "notes": "Long dark grip with one narrow lighter face band."
+    }
+  ],
+  "repetitionSystems": [
+    {
+      "id": "sixRodRadialFan",
+      "componentRef": "rodFan",
+      "realization": "instanced-geometry",
+      "buildsGeometry": true,
+      "geometry": {
+        "primitive": "box",
+        "dimensions": [0.12, 0.78, 0.12],
+        "material": "rodMaterial"
+      },
+      "instances": [
+        {
+          "side": -1,
+          "angleDegrees": 26,
+          "lengthScale": 0.88
+        },
+        {
+          "side": -1,
+          "angleDegrees": 8,
+          "lengthScale": 1.0
+        },
+        {
+          "side": -1,
+          "angleDegrees": -12,
+          "lengthScale": 0.94
+        },
+        {
+          "side": 1,
+          "angleDegrees": -26,
+          "lengthScale": 0.88
+        },
+        {
+          "side": 1,
+          "angleDegrees": -8,
+          "lengthScale": 1.0
+        },
+        {
+          "side": 1,
+          "angleDegrees": 12,
+          "lengthScale": 0.94
+        }
+      ],
+      "distribution": "bilateral three-angle fan around a center 0.12 units below the blade root",
+      "evidenceRefs": ["full-object"]
+    }
+  ],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Match macro silhouette and proportions.",
+      "componentRefs": ["codexSolUltimaWeapon", "bladeAssembly", "guardAssembly", "handleAssembly"],
+      "acceptance": [
+        "Silhouette reads correctly without materials.",
+        "Quality contract has named all required macro feature groups before code generation.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Build the component hierarchy implied by the pre-spec complexity assessment.",
+      "componentRefs": [
+        "codexSolUltimaWeapon",
+        "bladeAssembly",
+        "guardAssembly",
+        "handleAssembly",
+        "outerShell",
+        "purpleCore",
+        "magentaSpine",
+        "centralHub",
+        "leftGuardWing",
+        "rightGuardWing",
+        "leftFitting",
+        "rightFitting",
+        "rodFan",
+        "grip",
+        "gripAccent",
+        "pommel"
+      ],
+      "acceptance": [
+        "Macro, meso, and repeated structures meet qualityContract.minimumSpecDepth.",
+        "Parent-child relations, joints, seams, sockets, and contact points are explicit.",
+        "Every attached child appendage/connector has parentSocket, localStart/localEnd, contactType, embedDepth or overlap, and gapTolerance.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "form-refinement",
+      "goal": "Refine shape, deformation, bevels, tapers, curves, asymmetry, and visible local geometry.",
+      "componentRefs": [
+        "outerShell",
+        "purpleCore",
+        "magentaSpine",
+        "leftGuardWing",
+        "rightGuardWing",
+        "leftFitting",
+        "rightFitting",
+        "rodFan",
+        "grip"
+      ],
+      "acceptance": [
+        "Important visible forms are represented in component geometryDescriptor, deformations, localFeatures, or repetitionSystems.",
+        "Endpoint-based child parts are rooted at their attachment sockets and do not visibly float away from parents.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Match material color, roughness, bump, and local variation.",
+      "componentRefs": [
+        "outerShell",
+        "purpleCore",
+        "magentaSpine",
+        "guardAssembly",
+        "rodFan",
+        "leftFitting",
+        "rightFitting",
+        "grip"
+      ],
+      "acceptance": [
+        "Reference-derived albedo palette records dominant, secondary, and accent colors per visible material.",
+        "Each important material defines roughness variation and at least one normal/bump/displacement response.",
+        "Local material overrides, dirt/wear/stains/moss/chips/scratches or equivalent masks are tied to evidenceRefs.",
+        "Thin, transparent, reflective, wet, or fibrous materials document alpha/transmission/clearcoat/metalness/fiber response when relevant.",
+        "Generated preview uses procedural albedo/roughness/bump texture or vertex color variation instead of one flat color.",
+        "Generated preview uses independent PBR maps at 1024px or higher for the quality-first tier.",
+        "If source pixels are available, referencePbr extraction passed at confidence >= 0.7 or the pass is stopped/requesting better references.",
+        "Macro, meso, and micro surface frequency bands are visible at the intended review distance without obvious tiling.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "surface-pass",
+      "goal": "Add procedural surface locality such as normal/bump/displacement, AO, dirt, stains, chips, grain, moss, scratches, and wear.",
+      "componentRefs": [
+        "outerShell",
+        "purpleCore",
+        "magentaSpine",
+        "guardAssembly",
+        "rodFan",
+        "grip"
+      ],
+      "acceptance": [
+        "Every required material feature group has local overrides or surfaceDetail tied to evidenceRefs.",
+        "A grazing-angle close-up proves that normal/height detail breaks highlights naturally and does not read as smooth plastic.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Make material and form readable under neutral turntable lighting plus optional reference lighting.",
+      "componentRefs": ["codexSolUltimaWeapon"],
+      "acceptance": [
+        "lightingFromPhoto identifies key light direction/color/intensity, fill light, rim or environment light, and ambient color.",
+        "Exposure, tone mapping, background color/gradient, shadow softness, and contact shadow behavior are specified.",
+        "Lighting does not hide geometry/material gaps and screenshots can be compared fairly to the reference.",
+        "Neutral, grazing, and reference-matched lighting checks distinguish material errors from lighting errors.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Make the model ready for future animation, transformation, physics, or destruction.",
+      "componentRefs": ["bladeAssembly", "guardAssembly", "handleAssembly"],
+      "acceptance": [
+        "Macro and movable meso components have stable pivot nodes.",
+        "Sockets, collider proxies, and destruction metadata are present for future runtime actions.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Protect runtime performance after visual fidelity is accepted.",
+      "componentRefs": ["codexSolUltimaWeapon", "rodFan"],
+      "acceptance": [
+        "Triangle count, draw calls, instancing, LOD strategy, and FPS target are documented or verified.",
+        "Repeated detail is instanced or simplified where possible without breaking silhouette/material believability."
+      ]
+    }
+  ],
+  "visualEvidence": [],
+  "reviewHistory": [],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 30,
+      "strategy": "merge static components and reduce local feature geometry"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "reference-fidelity",
+    "targetTriangles": 250000,
+    "maxDrawCalls": 160,
+    "textureSize": 2048,
+    "fpsTarget": 30,
+    "optimizationPolicy": "Reach accepted visual fidelity first, then optimize without removing reference-critical geometry or surface layers."
+  },
+  "lightingFromPhoto": [
+    "Reference key light is broad, cool-white, camera-left/front with intensity 2.4.",
+    "Fill light is neutral front-right with intensity 1.1 to preserve dark guard faces.",
+    "A cool rim light behind the blade separates the pale shell edge.",
+    "Ambient environment color is #E9ECF5 at intensity 0.65.",
+    "ACESFilmic tone mapping, exposure 1.05, white background, and soft contact shadow below the cropped grip."
+  ],
+  "proceduralStrategy": [
+    "Extrude independent shell, core, spine, and guard profiles from explicit object-space points.",
+    "Represent the shell rim and core facet band with shallow profile layers and vertex colors, not downloaded textures.",
+    "Build the rod fan from one deterministic box geometry cloned at six recorded angles.",
+    "Keep every macro and meso part under its own pivot group for selection and explode transforms.",
+    "Use conservative shallow depth for hidden thickness and mirrored back faces.",
+    "Use independent PBR parameters and contact-only AO; do not derive normal relief from raster edges."
+  ],
+  "animationAnchors": [
+    {
+      "id": "weaponRoot",
+      "componentRef": "codexSolUltimaWeapon",
+      "localPosition": [0.0, 0.0, 0.0],
+      "purpose": "whole-object transform"
+    },
+    {
+      "id": "gripSocket",
+      "componentRef": "handleAssembly",
+      "localPosition": [0.0, -0.2, 0.0],
+      "purpose": "future hand attachment"
+    }
+  ],
+  "destructionAnchors": [
+    {
+      "id": "bladeGuardSeam",
+      "componentRefs": ["bladeAssembly", "guardAssembly"],
+      "localPosition": [0.0, -1.5, 0.0]
+    },
+    {
+      "id": "guardHandleSeam",
+      "componentRefs": ["guardAssembly", "handleAssembly"],
+      "localPosition": [0.0, -2.0, 0.0]
+    }
+  ],
+  "risks": [],
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Codex Sol Ultima Weapon",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.shader-mapping-csg-boolean-operations-for-sub-mesh-composition",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.rendering_shader_mapping[3]",
+        "score": 2.701183431763,
+        "snippets": [
+          "Constructive solid geometry (union/subtract/intersect) for combining or cutting weapon/knife sub-meshes procedurally instead of hand-modeling every variant. Hình học rắn cấu trúc (hợp/trừ/giao) để kết hợp hoặc cắt các sub-mesh vũ khí/dao theo ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.rendering_shader_mapping[3]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.pbr-subsurface-scattering-sss",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[5]",
+        "score": 2.467928320111,
+        "snippets": [
+          "... than showing a hard black silhouette; Relevant mainly to glove leather/polymer trims and agent-model skin, not metal weapon parts Dấu hiệu nhận diện: Các cạnh/phần mỏng của vật liệu phát sáng mềm khi có ánh sáng ngược thay vì tạo bóng ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[5]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  },
+  "resolvedUncertainties": {
+    "rearFaces": "Use mirrored front profiles.",
+    "thickness": "Use conservative shallow extrusions and verify from side views.",
+    "shellTransmission": "Use low transmission with opacity high enough to preserve the core silhouette.",
+    "fittingMetalness": "Use conservative partial metalness because no diagnostic highlight is visible.",
+    "croppedHandle": "Continue the straight grip to a compact inferred pommel."
+  },
+  "tier1Results": [
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.0785,
+        "aspectRatioDelta": 0.1231,
+        "scaleDelta": 0.0685,
+        "bilateralSymmetryError": 0.0361,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 73.96,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 9.98
+            },
+            {
+              "componentId": null,
+              "deltaE": 73.96
+            },
+            {
+              "componentId": null,
+              "deltaE": 9.98
+            },
+            {
+              "componentId": null,
+              "deltaE": 11.13
+            },
+            {
+              "componentId": null,
+              "deltaE": 73.96
+            },
+            {
+              "componentId": null,
+              "deltaE": 15.39
+            },
+            {
+              "componentId": null,
+              "deltaE": 9.75
+            },
+            {
+              "componentId": null,
+              "deltaE": 9.98
+            },
+            {
+              "componentId": null,
+              "deltaE": 9.98
+            },
+            {
+              "componentId": null,
+              "deltaE": 9.98
+            },
+            {
+              "componentId": null,
+              "deltaE": 30.4
+            },
+            {
+              "componentId": null,
+              "deltaE": 30.4
+            },
+            {
+              "componentId": null,
+              "deltaE": 19.39
+            },
+            {
+              "componentId": null,
+              "deltaE": 11.13
+            },
+            {
+              "componentId": null,
+              "deltaE": 11.13
+            },
+            {
+              "componentId": null,
+              "deltaE": 11.13
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": [
+        "silhouette IoU 0.079 is below threshold 0.85",
+        "aspect-ratio delta 0.123 exceeds threshold 0.05",
+        "blockout requires --map-stripped-render evidence"
+      ],
+      "renderHash": "6ae57fefb082ec5b",
+      "passId": "blockout"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.4471,
+        "aspectRatioDelta": 0.1872,
+        "scaleDelta": 0.1872,
+        "bilateralSymmetryError": 0.2267,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 74.48,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 16.67
+            },
+            {
+              "componentId": null,
+              "deltaE": 74.48
+            },
+            {
+              "componentId": null,
+              "deltaE": 16.67
+            },
+            {
+              "componentId": null,
+              "deltaE": 17.86
+            },
+            {
+              "componentId": null,
+              "deltaE": 74.48
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.11
+            },
+            {
+              "componentId": null,
+              "deltaE": 31.36
+            },
+            {
+              "componentId": null,
+              "deltaE": 16.67
+            },
+            {
+              "componentId": null,
+              "deltaE": 16.67
+            },
+            {
+              "componentId": null,
+              "deltaE": 16.67
+            },
+            {
+              "componentId": null,
+              "deltaE": 29.35
+            },
+            {
+              "componentId": null,
+              "deltaE": 29.35
+            },
+            {
+              "componentId": null,
+              "deltaE": 25.74
+            },
+            {
+              "componentId": null,
+              "deltaE": 17.86
+            },
+            {
+              "componentId": null,
+              "deltaE": 17.86
+            },
+            {
+              "componentId": null,
+              "deltaE": 17.86
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": [
+        "silhouette IoU 0.447 is below threshold 0.85",
+        "aspect-ratio delta 0.187 exceeds threshold 0.05",
+        "scale delta 0.187 exceeds threshold 0.08"
+      ],
+      "renderHash": "6394d6cc108f99f0",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/reference.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.4139,
+        "aspectRatioDelta": 0.105,
+        "scaleDelta": 0.105,
+        "bilateralSymmetryError": 0.2376,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 73.96,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 21.02
+            },
+            {
+              "componentId": null,
+              "deltaE": 73.96
+            },
+            {
+              "componentId": null,
+              "deltaE": 21.02
+            },
+            {
+              "componentId": null,
+              "deltaE": 22.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 73.96
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.23
+            },
+            {
+              "componentId": null,
+              "deltaE": 26.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 21.02
+            },
+            {
+              "componentId": null,
+              "deltaE": 21.02
+            },
+            {
+              "componentId": null,
+              "deltaE": 21.02
+            },
+            {
+              "componentId": null,
+              "deltaE": 30.96
+            },
+            {
+              "componentId": null,
+              "deltaE": 30.96
+            },
+            {
+              "componentId": null,
+              "deltaE": 20.49
+            },
+            {
+              "componentId": null,
+              "deltaE": 22.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 22.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 22.1
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": [
+        "silhouette IoU 0.414 is below threshold 0.85",
+        "aspect-ratio delta 0.105 exceeds threshold 0.05",
+        "scale delta 0.105 exceeds threshold 0.08"
+      ],
+      "renderHash": "b656a47d1850a1ad",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/reference.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.5296,
+        "aspectRatioDelta": 0.1598,
+        "scaleDelta": 0.1598,
+        "bilateralSymmetryError": 0.3504,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 34.93,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 1.37
+            },
+            {
+              "componentId": null,
+              "deltaE": 20.72
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.37
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.55
+            },
+            {
+              "componentId": null,
+              "deltaE": 20.72
+            },
+            {
+              "componentId": null,
+              "deltaE": 19.01
+            },
+            {
+              "componentId": null,
+              "deltaE": 10.25
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.37
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.37
+            },
+            {
+              "componentId": null,
+              "deltaE": 1.37
+            },
+            {
+              "componentId": null,
+              "deltaE": 34.93
+            },
+            {
+              "componentId": null,
+              "deltaE": 34.93
+            },
+            {
+              "componentId": null,
+              "deltaE": 14.77
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.55
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.55
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.55
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": [
+        "silhouette IoU 0.530 is below threshold 0.85",
+        "aspect-ratio delta 0.160 exceeds threshold 0.05",
+        "scale delta 0.160 exceeds threshold 0.08"
+      ],
+      "renderHash": "6c7d2f557cea1607",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/reference.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.4637,
+        "aspectRatioDelta": 0.032,
+        "scaleDelta": 0.032,
+        "bilateralSymmetryError": 0.3085,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 68.13,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 12.01
+            },
+            {
+              "componentId": null,
+              "deltaE": 68.13
+            },
+            {
+              "componentId": null,
+              "deltaE": 12.01
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.16
+            },
+            {
+              "componentId": null,
+              "deltaE": 68.13
+            },
+            {
+              "componentId": null,
+              "deltaE": 20.87
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.58
+            },
+            {
+              "componentId": null,
+              "deltaE": 12.01
+            },
+            {
+              "componentId": null,
+              "deltaE": 12.01
+            },
+            {
+              "componentId": null,
+              "deltaE": 12.01
+            },
+            {
+              "componentId": null,
+              "deltaE": 28.41
+            },
+            {
+              "componentId": null,
+              "deltaE": 28.41
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.8
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.16
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.16
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.16
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.464 is below threshold 0.85"],
+      "renderHash": "43571d2c014ef8c0",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/reference.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.4624,
+        "aspectRatioDelta": 0.032,
+        "scaleDelta": 0.032,
+        "bilateralSymmetryError": 0.3087,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 76.77,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 12.11
+            },
+            {
+              "componentId": null,
+              "deltaE": 76.77
+            },
+            {
+              "componentId": null,
+              "deltaE": 12.11
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.28
+            },
+            {
+              "componentId": null,
+              "deltaE": 76.77
+            },
+            {
+              "componentId": null,
+              "deltaE": 22.07
+            },
+            {
+              "componentId": null,
+              "deltaE": 12.75
+            },
+            {
+              "componentId": null,
+              "deltaE": 12.11
+            },
+            {
+              "componentId": null,
+              "deltaE": 12.11
+            },
+            {
+              "componentId": null,
+              "deltaE": 12.11
+            },
+            {
+              "componentId": null,
+              "deltaE": 28.31
+            },
+            {
+              "componentId": null,
+              "deltaE": 28.31
+            },
+            {
+              "componentId": null,
+              "deltaE": 3.41
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.28
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.28
+            },
+            {
+              "componentId": null,
+              "deltaE": 13.28
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.462 is below threshold 0.85"],
+      "renderHash": "d5a067f459cc78c4",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/reference.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.645,
+        "aspectRatioDelta": 0.032,
+        "scaleDelta": 0.032,
+        "bilateralSymmetryError": 0.4596,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.645 is below threshold 0.85"],
+      "renderHash": "800f68c7054c20e1",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.6652,
+        "aspectRatioDelta": 0.0137,
+        "scaleDelta": 0.0137,
+        "bilateralSymmetryError": 0.4384,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.665 is below threshold 0.85"],
+      "renderHash": "78e8faf5fcfa1fc4",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.6857,
+        "aspectRatioDelta": 0.0183,
+        "scaleDelta": 0.0183,
+        "bilateralSymmetryError": 0.4262,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.686 is below threshold 0.85"],
+      "renderHash": "6df6f66e22b7eead",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.7141,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4153,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.714 is below threshold 0.85"],
+      "renderHash": "c57e158454ecd864",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.7264,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4372,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.726 is below threshold 0.85"],
+      "renderHash": "9d64e2ac04f6b42a",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.7323,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4233,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.732 is below threshold 0.85"],
+      "renderHash": "ab4fa7b91f013556",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.7378,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4237,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.738 is below threshold 0.85"],
+      "renderHash": "97ec98e540e9841a",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.7363,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4104,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.736 is below threshold 0.85"],
+      "renderHash": "4675c9f793a0f9df",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.8047,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.417,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.805 is below threshold 0.85"],
+      "renderHash": "256c4f95d67718ff",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.8158,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4072,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.816 is below threshold 0.85"],
+      "renderHash": "8c1555e549e94fd6",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.8299,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4193,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.830 is below threshold 0.85"],
+      "renderHash": "944a9c6b2182c5e1",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.8318,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4199,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.832 is below threshold 0.85"],
+      "renderHash": "97eaa1002f82b8fe",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.8267,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4328,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 68.15,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 39.44
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 39.44
+            },
+            {
+              "componentId": null,
+              "deltaE": 68.15
+            },
+            {
+              "componentId": null,
+              "deltaE": 41.72
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 19.42
+            },
+            {
+              "componentId": null,
+              "deltaE": 19.42
+            },
+            {
+              "componentId": null,
+              "deltaE": 35.75
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.827 is below threshold 0.85"],
+      "renderHash": "b17e64c767405894",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette-clean.png"
+    },
+    {
+      "passed": false,
+      "checks": {
+        "silhouetteIoU": 0.8349,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4161,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": ["silhouette IoU 0.835 is below threshold 0.85"],
+      "renderHash": "c83a80545022a682",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    },
+    {
+      "passed": true,
+      "checks": {
+        "silhouetteIoU": 0.8599,
+        "aspectRatioDelta": 0.0228,
+        "scaleDelta": 0.0228,
+        "bilateralSymmetryError": 0.4284,
+        "colorDelta": {
+          "checked": 16,
+          "maxDeltaE": 67.1,
+          "perComponent": [
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 67.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 24.68
+            },
+            {
+              "componentId": null,
+              "deltaE": 43.52
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 4.1
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 33.34
+            },
+            {
+              "componentId": null,
+              "deltaE": 38.97
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            },
+            {
+              "componentId": null,
+              "deltaE": 2.56
+            }
+          ],
+          "gated": false
+        }
+      },
+      "failures": [],
+      "renderHash": "d247732364e9fe03",
+      "passId": "blockout",
+      "mapStrippedRender": "artifacts/codex-sol/blockout/silhouette.png"
+    }
+  ]
+}

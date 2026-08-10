@@ -1,0 +1,112 @@
+{
+  "model": "cloud-ultima-weapon-fable",
+  "parts": [
+    {
+      "name": "bladeAssembly",
+      "kind": "container",
+      "triangles": 644
+    },
+    {
+      "name": "guardAssembly",
+      "kind": "container",
+      "triangles": 236
+    },
+    {
+      "name": "handleAssembly",
+      "kind": "container",
+      "triangles": 64
+    },
+    {
+      "name": "outerBladeShell",
+      "kind": "part",
+      "triangles": 328
+    },
+    {
+      "name": "purpleEnergyCore",
+      "kind": "part",
+      "triangles": 252
+    },
+    {
+      "name": "magentaCentralSpine",
+      "kind": "part",
+      "triangles": 44
+    },
+    {
+      "name": "centralGuardHub",
+      "kind": "part",
+      "triangles": 20
+    },
+    {
+      "name": "leftGunmetalShoulder",
+      "kind": "part",
+      "triangles": 20
+    },
+    {
+      "name": "rightGunmetalShoulder",
+      "kind": "part",
+      "triangles": 20
+    },
+    {
+      "name": "emitterRods",
+      "kind": "container",
+      "triangles": 144
+    },
+    {
+      "name": "rightEmitterLower",
+      "kind": "part",
+      "triangles": 24
+    },
+    {
+      "name": "rightEmitterMiddle",
+      "kind": "part",
+      "triangles": 24
+    },
+    {
+      "name": "rightEmitterUpper",
+      "kind": "part",
+      "triangles": 24
+    },
+    {
+      "name": "leftEmitterLower",
+      "kind": "part",
+      "triangles": 24
+    },
+    {
+      "name": "leftEmitterMiddle",
+      "kind": "part",
+      "triangles": 24
+    },
+    {
+      "name": "leftEmitterUpper",
+      "kind": "part",
+      "triangles": 24
+    },
+    {
+      "name": "oliveBlockLeft",
+      "kind": "part",
+      "triangles": 16
+    },
+    {
+      "name": "oliveBlockRight",
+      "kind": "part",
+      "triangles": 16
+    },
+    {
+      "name": "handleNeck",
+      "kind": "part",
+      "triangles": 32
+    },
+    {
+      "name": "blackGripCore",
+      "kind": "part",
+      "triangles": 32
+    },
+    {
+      "name": "cloud-ultima-weapon",
+      "kind": "container",
+      "triangles": 944
+    }
+  ],
+  "unnamedMeshes": 4,
+  "integralMeshes": 16
+}

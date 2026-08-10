@@ -1,0 +1,32 @@
+{
+  "rods-right": {
+    "ref_lab": [19.3, 23.0, 5.8],
+    "ref_share": 0.038,
+    "render_lab": [22.6, 9.0, 8.4],
+    "render_share": 0.172,
+    "deltaE_ref_vs_render": 14.68,
+    "deltaE_recipe_vs_ref": 38.38
+  },
+  "rods-left": {
+    "ref_lab": [25.3, 34.9, 9.5],
+    "ref_share": 0.046,
+    "render_lab": [24.6, 14.8, 4.6],
+    "render_share": 0.154,
+    "deltaE_ref_vs_render": 20.7,
+    "deltaE_recipe_vs_ref": 25.32
+  },
+  "core-blue": {
+    "ref_lab": [21.5, 38.2, -53.3],
+    "ref_share": 0.218,
+    "render_lab": [26.8, 44.2, -65.3],
+    "render_share": 0.042,
+    "deltaE_ref_vs_render": 14.46
+  },
+  "guard": {
+    "ref_lab": [28.1, 2.4, 11.1],
+    "ref_share": 0.121,
+    "render_lab": [19.5, -0.1, 13.2],
+    "render_share": 0.269,
+    "deltaE_ref_vs_render": 9.27
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "layer-material-separation",
+    "score": 0.8,
+    "visible": true,
+    "notes": "Zone separation holds from all six review viewpoints. The clamp jaws and driver sockets run two stops lighter than the guard steel on purpose: against the dark grey leather beside them, the guard steel's own value collapsed the whole hilt into one black mass."
+  },
+  {
+    "id": "connector-leather-reading",
+    "score": 0.74,
+    "visible": true,
+    "notes": "The arms read as dark grey leather rather than black metal: non-metallic, six-sided, one seam, and clearly lighter than the near-black grip leather they sit above."
+  },
+  {
+    "id": "lowpoly-facet-language",
+    "score": 0.85,
+    "visible": true,
+    "notes": "Flat normals throughout; every quad carries its own normal so no facet is smoothed away by shared vertices. The rods are faceted cylinders at eight segments, which is a cylinder in the PS1 sense, not a smooth one."
+  },
+  {
+    "id": "transparency-sort-order",
+    "score": 0.8,
+    "visible": true,
+    "notes": "No sort inversion observed across the orbit; the multi-angle gate reports no degenerate view."
+  }
+]

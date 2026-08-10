@@ -1,0 +1,23 @@
+[
+  {
+    "id": "leaf-silhouette-and-proportion",
+    "score": 0.92,
+    "visible": true,
+    "verdict": "pass",
+    "notes": "Row-span silhouette IoU 0.9407 against the reference at matched framing; width deltas stay within +/-2 px over the whole blade (y=0..168). Aspect delta 0.0046. The front-loaded flare is reproduced: half-width 0.205->0.300 across the first 0.30 unit."
+  },
+  {
+    "id": "radial-guard-cluster",
+    "score": 0.8,
+    "visible": true,
+    "verdict": "pass",
+    "notes": "Fan origin corrected from the hub centre to local y=-0.29, found by extending all four visible rod axes back to X=0. That took the guard-region row deltas from -30/+17 px to within +/-3 px. Six rods present and individually named. Open conflict: the inferred leftEmitterLower lands where the reference shows empty background."
+  },
+  {
+    "id": "low-poly-facet-language",
+    "score": 0.88,
+    "visible": true,
+    "verdict": "pass",
+    "notes": "836 triangles, flat shading throughout, 6-segment rods, 8-sided grip. No smoothing groups, no normal maps."
+  }
+]

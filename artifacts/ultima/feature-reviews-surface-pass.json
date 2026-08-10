@@ -1,0 +1,16 @@
+[
+  {
+    "id": "translucent-shell-over-core",
+    "score": 0.85,
+    "visible": true,
+    "verdict": "pass",
+    "notes": "Separate volumes with separate materials; the core is never baked into the shell. Core row-span IoU 0.9093 with width deltas within +/-2 px, read through a transmission-0.55 / opacity-0.42 shell. Explicit renderOrder 1..5 with depthWrite false on the shell only; no sorting flip across the ten review views. Shell class dE 3.1."
+  },
+  {
+    "id": "low-poly-facet-language",
+    "score": 0.88,
+    "visible": true,
+    "verdict": "pass",
+    "notes": "836 triangles across 36 meshes. Flat shading everywhere, 6-segment rods, 8-sided grip, chamfer carried as real rim geometry rather than a normal map. No engravings or fasteners added beyond the reference."
+  }
+]

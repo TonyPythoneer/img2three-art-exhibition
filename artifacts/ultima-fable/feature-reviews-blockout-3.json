@@ -1,0 +1,34 @@
+[
+  {
+    "id": "leaf-silhouette-axis",
+    "tier": "critical",
+    "score": 0.87,
+    "threshold": 0.8,
+    "passed": true,
+    "notes": "IoU 0.8669 with the shear-corrected per-side outline (row-wise measurements need Y' = axisY - X*tan(17.67°); verified on the wing corner (0.542, 0.247)). Edge fringes now ~1px. Blade:handle ratio and guard width within aspect delta 0.018."
+  },
+  {
+    "id": "core-placement-notch",
+    "tier": "critical",
+    "score": 0.85,
+    "threshold": 0.8,
+    "passed": true,
+    "notes": "Core apex/notch/legs land on the reference under the same shear correction; legs now end asymmetrically (right 0.178, left 0.284) exactly as the measured tail rows show."
+  },
+  {
+    "id": "rod-fan-layout",
+    "tier": "critical",
+    "score": 0.8,
+    "threshold": 0.8,
+    "passed": true,
+    "notes": "Rods use exact measured visible endpoints plus a 0.22u buried root extension behind the shoulders — no floating rods; formally gated at structural-pass."
+  },
+  {
+    "id": "guard-cluster-massing",
+    "tier": "important",
+    "score": 0.75,
+    "threshold": 0.7,
+    "passed": true,
+    "notes": "Shoulders enlarged to fill the reference's dark cluster; olive blocks on measured bboxes; hub apex raised to 0.31."
+  }
+]

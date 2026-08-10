@@ -1,0 +1,26 @@
+[
+  {
+    "id": "core-through-shell",
+    "tier": "critical",
+    "score": 0.88,
+    "threshold": 0.8,
+    "passed": true,
+    "notes": "Polish improves this read: the perceptual-tone gradient keeps the core vividly violet in orbit views (it collapsed to near-black off-axis before), and the solid-milky shell still leaves the core window fully readable with its contact-shadow rim."
+  },
+  {
+    "id": "facet-shading-language",
+    "tier": "important",
+    "score": 0.82,
+    "threshold": 0.7,
+    "passed": true,
+    "notes": "Unmirrored back plates + plate-pair tip remove the double-edge seam at the apex; facet steps stay crisp under the same rigs."
+  },
+  {
+    "id": "material-zone-separation",
+    "tier": "critical",
+    "score": 0.88,
+    "threshold": 0.75,
+    "passed": true,
+    "notes": "Seven zones read cleaner than before the polish: solid milky shell no longer washes the base wings into glassy shards, violet core / crimson rods / olive plates / black guard separation unchanged."
+  }
+]

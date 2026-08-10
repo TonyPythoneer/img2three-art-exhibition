@@ -1,0 +1,273 @@
+{
+  "detail": "full",
+  "mode": "referenceLighting",
+  "renders": [
+    {
+      "view": "reference-matched-three-quarter",
+      "explode": null,
+      "file": "reference-matched-three-quarter.png",
+      "width": 584,
+      "height": 1168,
+      "info": {
+        "view": "reference-matched-three-quarter",
+        "mode": "referenceLighting",
+        "detail": "full",
+        "explode": null,
+        "transparent": false,
+        "wireframe": false,
+        "flat": false,
+        "hide": [],
+        "width": 584,
+        "height": 1168,
+        "cameraName": "reference-matched-ortho",
+        "namedParts": 47,
+        "meshCount": 36,
+        "triangles": 1010,
+        "drawingBufferWidth": 584,
+        "drawingBufferHeight": 1168
+      }
+    }
+  ],
+  "parts": {
+    "model": "cloud-ultima-weapon-fable",
+    "parts": [
+      {
+        "name": "bladeAssembly",
+        "kind": "container",
+        "triangles": 562
+      },
+      {
+        "name": "guardAssembly",
+        "kind": "container",
+        "triangles": 292
+      },
+      {
+        "name": "handleAssembly",
+        "kind": "container",
+        "triangles": 156
+      },
+      {
+        "name": "outerBladeShell",
+        "kind": "container",
+        "triangles": 126
+      },
+      {
+        "name": "outerShellFront",
+        "kind": "part",
+        "triangles": 36
+      },
+      {
+        "name": "outerShellBack",
+        "kind": "part",
+        "triangles": 36
+      },
+      {
+        "name": "outerShellLeftEdge",
+        "kind": "part",
+        "triangles": 26
+      },
+      {
+        "name": "outerShellRightEdge",
+        "kind": "part",
+        "triangles": 20
+      },
+      {
+        "name": "outerShellTip",
+        "kind": "part",
+        "triangles": 8
+      },
+      {
+        "name": "purpleEnergyCore",
+        "kind": "container",
+        "triangles": 292
+      },
+      {
+        "name": "purpleCoreFront",
+        "kind": "part",
+        "triangles": 56
+      },
+      {
+        "name": "purpleCoreBack",
+        "kind": "part",
+        "triangles": 56
+      },
+      {
+        "name": "purpleCoreEdge",
+        "kind": "part",
+        "triangles": 172
+      },
+      {
+        "name": "purpleCoreTip",
+        "kind": "part",
+        "triangles": 8
+      },
+      {
+        "name": "magentaCentralSpine",
+        "kind": "container",
+        "triangles": 100
+      },
+      {
+        "name": "spineFront",
+        "kind": "part",
+        "triangles": 44
+      },
+      {
+        "name": "spineBack",
+        "kind": "part",
+        "triangles": 44
+      },
+      {
+        "name": "spineBaseSocket",
+        "kind": "part",
+        "triangles": 12
+      },
+      {
+        "name": "bladeMount",
+        "kind": "container",
+        "triangles": 44
+      },
+      {
+        "name": "upperBladeCollar",
+        "kind": "part",
+        "triangles": 12
+      },
+      {
+        "name": "rightBladeClamp",
+        "kind": "part",
+        "triangles": 20
+      },
+      {
+        "name": "leftBladeClamp",
+        "kind": "part",
+        "triangles": 12
+      },
+      {
+        "name": "centralGuardHub",
+        "kind": "part",
+        "triangles": 20
+      },
+      {
+        "name": "leftGunmetalShoulder",
+        "kind": "part",
+        "triangles": 20
+      },
+      {
+        "name": "rightGunmetalShoulder",
+        "kind": "part",
+        "triangles": 20
+      },
+      {
+        "name": "emitterRods",
+        "kind": "container",
+        "triangles": 144
+      },
+      {
+        "name": "rightEmitterLower",
+        "kind": "part",
+        "triangles": 24
+      },
+      {
+        "name": "rightEmitterMiddle",
+        "kind": "part",
+        "triangles": 24
+      },
+      {
+        "name": "rightEmitterUpper",
+        "kind": "part",
+        "triangles": 24
+      },
+      {
+        "name": "leftEmitterLower",
+        "kind": "part",
+        "triangles": 24
+      },
+      {
+        "name": "leftEmitterMiddle",
+        "kind": "part",
+        "triangles": 24
+      },
+      {
+        "name": "leftEmitterUpper",
+        "kind": "part",
+        "triangles": 24
+      },
+      {
+        "name": "goldGuardParts",
+        "kind": "container",
+        "triangles": 56
+      },
+      {
+        "name": "goldCenterCollarFront",
+        "kind": "part",
+        "triangles": 16
+      },
+      {
+        "name": "goldCenterCollarBack",
+        "kind": "part",
+        "triangles": 16
+      },
+      {
+        "name": "goldLowerFinLeft",
+        "kind": "part",
+        "triangles": 12
+      },
+      {
+        "name": "goldLowerFinRight",
+        "kind": "part",
+        "triangles": 12
+      },
+      {
+        "name": "lowerGuardBlocks",
+        "kind": "container",
+        "triangles": 32
+      },
+      {
+        "name": "oliveBlockLeft",
+        "kind": "part",
+        "triangles": 16
+      },
+      {
+        "name": "oliveBlockRight",
+        "kind": "part",
+        "triangles": 16
+      },
+      {
+        "name": "internalTang",
+        "kind": "part",
+        "triangles": 12
+      },
+      {
+        "name": "handleNeck",
+        "kind": "part",
+        "triangles": 32
+      },
+      {
+        "name": "blackGripCore",
+        "kind": "part",
+        "triangles": 32
+      },
+      {
+        "name": "blackGripSleeve",
+        "kind": "part",
+        "triangles": 32
+      },
+      {
+        "name": "pommelCollar",
+        "kind": "part",
+        "triangles": 32
+      },
+      {
+        "name": "goldPommelTip",
+        "kind": "part",
+        "triangles": 16
+      },
+      {
+        "name": "cloud-ultima-weapon",
+        "kind": "container",
+        "triangles": 1010
+      }
+    ],
+    "unnamedMeshes": 0,
+    "integralMeshes": 36
+  }
+}

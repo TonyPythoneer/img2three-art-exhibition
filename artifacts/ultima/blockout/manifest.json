@@ -1,0 +1,29 @@
+{
+  "detail": "blockout",
+  "mode": "referenceLighting",
+  "renders": [
+    {
+      "view": "reference-matched-three-quarter",
+      "explode": null,
+      "file": "reference-matched-three-quarter.png",
+      "width": 584,
+      "height": 1168,
+      "info": {
+        "view": "reference-matched-three-quarter",
+        "mode": "referenceLighting",
+        "detail": "blockout",
+        "explode": null,
+        "transparent": false,
+        "wireframe": false,
+        "width": 584,
+        "height": 1168,
+        "cameraName": "reference-matched-three-quarter",
+        "namedParts": 20,
+        "meshCount": 15,
+        "triangles": 520,
+        "drawingBufferWidth": 584,
+        "drawingBufferHeight": 1168
+      }
+    }
+  ]
+}

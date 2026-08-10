@@ -1,0 +1,10 @@
+[
+  {
+    "id": "explode-runtime",
+    "tier": "critical",
+    "score": 0.87,
+    "threshold": 0.8,
+    "passed": true,
+    "notes": "Explode sweep 0-0.5-1-0.5-0 across fresh page loads: the two 0.5 frames are BIT-IDENTICAL; the 0-vs-0 pair differs by 2 pixels at channel delta 1/255 (first-page GPU warm-up noise, not transform drift — transform error would displace silhouettes). Explode opens real gaps by scaling the layout about the model centre (shell plates, core leaves, guard plates, rod fans, grip segments all separate). Isolated views via setPartVisible: outer shell / purple core / guard assembly each render cleanly. check_part_coverage: 46 specified, 47 built, 0 errors 0 warnings (extra part is the root container). parts.json manifest carries 47 named parts."
+  }
+]

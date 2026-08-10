@@ -1,0 +1,34 @@
+[
+  {
+    "id": "leaf-silhouette-axis",
+    "tier": "critical",
+    "score": 0.85,
+    "threshold": 0.8,
+    "passed": true,
+    "notes": "IoU 0.771→0.8421 after the rod-fan/guard refine. Remaining: a 1-2px excess fringe along the full right edge and deficit on the lower-left — caused by the code building a symmetric outline from averaged half-widths while the reference has a ~0.5px/side asymmetry; and the right base wing modeled too small/low (measured X to 0.542 at Y 0.42, rows 200-205)."
+  },
+  {
+    "id": "core-placement-notch",
+    "tier": "critical",
+    "score": 0.8,
+    "threshold": 0.8,
+    "passed": true,
+    "notes": "Unchanged, still correct. Hub apex slightly narrow — reference hub+spine base fills more of the centre band (red patch at (0.70-0.85 image x)·(215-235 y))."
+  },
+  {
+    "id": "rod-fan-layout",
+    "tier": "critical",
+    "score": 0.7,
+    "threshold": 0.8,
+    "passed": false,
+    "notes": "Mirror fan now lands on the reference rods (each rod overlaps as purple with fringes). Residual: code uses a uniform parametric radius 0.37-0.64 for all six; the four measured rods have exact endpoints (e.g. leftLower (-0.546,0.198)->(-0.304,0.084), rightLower (0.372,0.036)->(0.58,0.128)) and per-rod thickness 0.046-0.072. The inferred rightUpper (59.4°) is visibly exposed because the too-small base wing fails to occlude it as the reference blade does."
+  },
+  {
+    "id": "guard-cluster-massing",
+    "tier": "important",
+    "score": 0.75,
+    "threshold": 0.7,
+    "passed": true,
+    "notes": "Olive blocks and shoulders now at measured local bboxes; only minor fringes remain."
+  }
+]

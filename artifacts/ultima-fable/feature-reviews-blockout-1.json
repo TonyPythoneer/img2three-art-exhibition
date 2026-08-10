@@ -1,0 +1,34 @@
+[
+  {
+    "id": "leaf-silhouette-axis",
+    "tier": "critical",
+    "score": 0.85,
+    "threshold": 0.8,
+    "passed": true,
+    "notes": "Blade leaf reads correctly at the measured 17.67° axis: overlay shows near-solid intersection over the whole blade with only a thin excess fringe on the upper-right edge and a matching thin deficit lower-left (~1-2px rotation/width residue). Tip crop and base flare position match the reference framing."
+  },
+  {
+    "id": "core-placement-notch",
+    "tier": "critical",
+    "score": 0.8,
+    "threshold": 0.8,
+    "passed": true,
+    "notes": "Core apex on-axis at Y=1.847, inverted-V notch present at Y=0.609, legs end bright violet as in reference. Blockout single-volume core lacks the right bevel plane (structural-pass scope). Core saturation through the shell is too muted vs reference — material-pass scope, recorded now."
+  },
+  {
+    "id": "rod-fan-layout",
+    "tier": "critical",
+    "score": 0.25,
+    "threshold": 0.8,
+    "passed": false,
+    "notes": "SPEC ERROR FOUND: the C2-pinwheel reading was my visual misread. Local-coordinate re-measurement (guard-local-measurements.json, 1px-eroded components) proves a MIRROR-symmetric tipward fan: left rods at 154.8°/134.8° mirror right 23.7°/41.6° within 1.5°, all axes passing within 0.05u of the radiation point (0,-0.115), radius span 0.37-0.64 (not 0.13-0.45). The brief's 'mirrored rods' phrasing was correct after all. Render placed left rods pommel-ward and all rods too close in — the single biggest IoU cost."
+  },
+  {
+    "id": "guard-cluster-massing",
+    "tier": "important",
+    "score": 0.45,
+    "threshold": 0.7,
+    "passed": false,
+    "notes": "Olive blocks authored from image-space eyeballing without applying the 17.67° rotation: left block measured at local bbox [-0.383,-0.27,-0.252,-0.059] but modeled at [-0.62..-0.36, -0.35..-0.03] (too far out, too low); right block similar. Shoulders sit ~0.1 too low. Hub position/size is correct."
+  }
+]

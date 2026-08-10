@@ -1,0 +1,338 @@
+{
+  "detail": "full",
+  "mode": "referenceLighting",
+  "renders": [
+    {
+      "view": "front-orthographic",
+      "explode": null,
+      "file": "front-orthographic-gemShell.png",
+      "width": 584,
+      "height": 1168,
+      "info": {
+        "view": "front-orthographic",
+        "mode": "referenceLighting",
+        "detail": "full",
+        "explode": null,
+        "transparent": false,
+        "checker": false,
+        "wireframe": false,
+        "flat": false,
+        "hide": ["purpleEnergyInsert", "darkCoreTriangle"],
+        "width": 584,
+        "height": 1168,
+        "cameraName": "front-orthographic",
+        "namedParts": 21,
+        "meshCount": 18,
+        "triangles": 788,
+        "drawingBufferWidth": 584,
+        "drawingBufferHeight": 1168
+      }
+    },
+    {
+      "view": "back-orthographic",
+      "explode": null,
+      "file": "back-orthographic-gemShell.png",
+      "width": 584,
+      "height": 1168,
+      "info": {
+        "view": "back-orthographic",
+        "mode": "referenceLighting",
+        "detail": "full",
+        "explode": null,
+        "transparent": false,
+        "checker": false,
+        "wireframe": false,
+        "flat": false,
+        "hide": ["purpleEnergyInsert", "darkCoreTriangle"],
+        "width": 584,
+        "height": 1168,
+        "cameraName": "back-orthographic",
+        "namedParts": 21,
+        "meshCount": 18,
+        "triangles": 788,
+        "drawingBufferWidth": 584,
+        "drawingBufferHeight": 1168
+      }
+    }
+  ],
+  "parts": {
+    "model": "cloud-ultima-weapon-v2",
+    "parts": [
+      {
+        "name": "bladeGroup",
+        "kind": "container",
+        "triangles": 240,
+        "bounds": {
+          "minX": -0.8299999833106995,
+          "maxX": 0.8299999833106995,
+          "minY": 0.12999999523162842,
+          "maxY": 7.599999904632568,
+          "minZ": -0.21979999542236328,
+          "maxZ": 0.21979999542236328
+        }
+      },
+      {
+        "name": "hiltGroup",
+        "kind": "container",
+        "triangles": 548,
+        "bounds": {
+          "minX": -1.59732796670367,
+          "maxX": 1.59732796670367,
+          "minY": -2.109999895095825,
+          "maxY": 0.6335687296663342,
+          "minZ": -0.20000000298023224,
+          "maxZ": 0.20000000298023224
+        }
+      },
+      {
+        "name": "outerCrystalShell",
+        "kind": "part",
+        "triangles": 128,
+        "bounds": {
+          "minX": -0.8299999833106995,
+          "maxX": 0.8299999833106995,
+          "minY": 0.12999999523162842,
+          "maxY": 7.599999904632568,
+          "minZ": -0.14000000059604645,
+          "maxZ": 0.14000000059604645
+        }
+      },
+      {
+        "name": "purpleEnergyInsert",
+        "kind": "part",
+        "triangles": 32,
+        "bounds": {
+          "minX": -0.4300000071525574,
+          "maxX": 0.4300000071525574,
+          "minY": 0.41999998688697815,
+          "maxY": 4.800000190734863,
+          "minZ": -0.1679999977350235,
+          "maxZ": 0.1679999977350235
+        }
+      },
+      {
+        "name": "darkCoreTriangle",
+        "kind": "part",
+        "triangles": 32,
+        "bounds": {
+          "minX": -0.20999999344348907,
+          "maxX": 0.20999999344348907,
+          "minY": 0.550000011920929,
+          "maxY": 1.1799999475479126,
+          "minZ": -0.18619999289512634,
+          "maxZ": 0.18619999289512634
+        }
+      },
+      {
+        "name": "rootDiamondGem",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": -0.17000000178813934,
+          "maxX": 0.17000000178813934,
+          "minY": 0.12999999523162842,
+          "maxY": 0.9700000286102295,
+          "minZ": -0.21979999542236328,
+          "maxZ": 0.21979999542236328
+        }
+      },
+      {
+        "name": "crystalClampLeft",
+        "kind": "part",
+        "triangles": 8,
+        "bounds": {
+          "minX": -0.3400000035762787,
+          "maxX": 0,
+          "minY": 0.05999999865889549,
+          "maxY": 0.550000011920929,
+          "minZ": -0.1599999964237213,
+          "maxZ": 0.1599999964237213
+        }
+      },
+      {
+        "name": "crystalClampRight",
+        "kind": "part",
+        "triangles": 8,
+        "bounds": {
+          "minX": 0,
+          "maxX": 0.3400000035762787,
+          "minY": 0.05999999865889549,
+          "maxY": 0.550000011920929,
+          "minZ": -0.1599999964237213,
+          "maxZ": 0.1599999964237213
+        }
+      },
+      {
+        "name": "guardCore",
+        "kind": "part",
+        "triangles": 16,
+        "bounds": {
+          "minX": -0.3400000035762787,
+          "maxX": 0.3400000035762787,
+          "minY": -0.12999999523162842,
+          "maxY": 0.12999999523162842,
+          "minZ": -0.10999999940395355,
+          "maxZ": 0.10999999940395355
+        }
+      },
+      {
+        "name": "leatherConnectorLeft",
+        "kind": "part",
+        "triangles": 32,
+        "bounds": {
+          "minX": -0.8560443431230857,
+          "maxX": -0.16676275424152387,
+          "minY": -0.5665693521138399,
+          "maxY": 0.17501733115146845,
+          "minZ": -0.14782072603702545,
+          "maxZ": 0.14782072603702545
+        }
+      },
+      {
+        "name": "leatherConnectorRight",
+        "kind": "part",
+        "triangles": 32,
+        "bounds": {
+          "minX": 0.16676275424152387,
+          "maxX": 0.8560443431230855,
+          "minY": -0.5665693521138399,
+          "maxY": 0.17501733115146836,
+          "minZ": -0.14782072603702545,
+          "maxZ": 0.14782072603702545
+        }
+      },
+      {
+        "name": "spinnerEndLeft",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": -1.132604913932603,
+          "maxX": -0.610124291721942,
+          "minY": -0.8893038587062702,
+          "maxY": -0.3602179211986301,
+          "minZ": -0.20000000298023224,
+          "maxZ": 0.20000000298023224
+        }
+      },
+      {
+        "name": "spinnerEndRight",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": 0.610124291721942,
+          "maxX": 1.132604913932603,
+          "minY": -0.88930385870627,
+          "maxY": -0.36021792119863016,
+          "minZ": -0.20000000298023224,
+          "maxZ": 0.20000000298023224
+        }
+      },
+      {
+        "name": "driverArray",
+        "kind": "container",
+        "triangles": 192,
+        "bounds": {
+          "minX": -1.59732796670367,
+          "maxX": 1.59732796670367,
+          "minY": -0.3782385541122298,
+          "maxY": 0.6335687296663342,
+          "minZ": -0.10162674635648727,
+          "maxZ": 0.10162674635648727
+        }
+      },
+      {
+        "name": "driverLeftUpper",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": -1.3214666152472545,
+          "maxX": -0.4786489855603186,
+          "minY": -0.17722560135400367,
+          "maxY": 0.6335687296663342,
+          "minZ": -0.10162674635648727,
+          "maxZ": 0.10162674635648727
+        }
+      },
+      {
+        "name": "driverLeftLower",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": -1.59732796670367,
+          "maxX": -0.6588938656378188,
+          "minY": -0.3782385541122298,
+          "maxY": 0.20957144710143022,
+          "minZ": -0.10162674635648727,
+          "maxZ": 0.10162674635648727
+        }
+      },
+      {
+        "name": "driverRightUpper",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": 0.47864898556031865,
+          "maxX": 1.3214666152472545,
+          "minY": -0.17722560135400367,
+          "maxY": 0.6335687296663339,
+          "minZ": -0.10162674635648727,
+          "maxZ": 0.10162674635648727
+        }
+      },
+      {
+        "name": "driverRightLower",
+        "kind": "part",
+        "triangles": 48,
+        "bounds": {
+          "minX": 0.6588938656378188,
+          "maxX": 1.59732796670367,
+          "minY": -0.3782385541122298,
+          "maxY": 0.2095714471014301,
+          "minZ": -0.10162674635648727,
+          "maxZ": 0.10162674635648727
+        }
+      },
+      {
+        "name": "leatherGrip",
+        "kind": "part",
+        "triangles": 64,
+        "bounds": {
+          "minX": -0.11086554080247879,
+          "maxX": 0.11086554080247879,
+          "minY": -1.6799999475479126,
+          "maxY": -0.05000000074505806,
+          "minZ": -0.11086554080247879,
+          "maxZ": 0.11086554080247879
+        }
+      },
+      {
+        "name": "gripEndCollar",
+        "kind": "part",
+        "triangles": 64,
+        "bounds": {
+          "minX": -0.12934313714504242,
+          "maxX": 0.12934313714504242,
+          "minY": -1.7999999523162842,
+          "maxY": -1.659999966621399,
+          "minZ": -0.12934313714504242,
+          "maxZ": 0.12934313714504242
+        }
+      },
+      {
+        "name": "pointedMetalPommel",
+        "kind": "part",
+        "triangles": 36,
+        "bounds": {
+          "minX": -0.0952627956867218,
+          "maxX": 0.0952627956867218,
+          "minY": -2.109999895095825,
+          "maxY": -1.7999999523162842,
+          "minZ": -0.10999999940395355,
+          "maxZ": 0.10999999940395355
+        }
+      }
+    ],
+    "unnamedMeshes": 0,
+    "integralMeshes": 18
+  }
+}

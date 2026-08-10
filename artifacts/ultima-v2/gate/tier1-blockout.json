@@ -1,0 +1,112 @@
+{
+  "passed": false,
+  "checks": {
+    "silhouetteIoU": 0.8206,
+    "aspectRatioDelta": 0.0067,
+    "scaleDelta": 0.026,
+    "bilateralSymmetryError": 0.2904,
+    "colorDelta": {
+      "checked": 23,
+      "maxDeltaE": 70.21,
+      "perComponent": [
+        {
+          "componentId": null,
+          "deltaE": 14.07
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.31
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.31
+        },
+        {
+          "componentId": null,
+          "deltaE": 70.21
+        },
+        {
+          "componentId": null,
+          "deltaE": 70.21
+        },
+        {
+          "componentId": null,
+          "deltaE": 30.77
+        },
+        {
+          "componentId": null,
+          "deltaE": 30.77
+        },
+        {
+          "componentId": null,
+          "deltaE": 59.34
+        },
+        {
+          "componentId": null,
+          "deltaE": 59.34
+        },
+        {
+          "componentId": null,
+          "deltaE": 14.07
+        },
+        {
+          "componentId": null,
+          "deltaE": 21.78
+        },
+        {
+          "componentId": null,
+          "deltaE": 21.78
+        },
+        {
+          "componentId": null,
+          "deltaE": 15.04
+        },
+        {
+          "componentId": null,
+          "deltaE": 19.93
+        },
+        {
+          "componentId": null,
+          "deltaE": 15.04
+        },
+        {
+          "componentId": null,
+          "deltaE": 19.93
+        },
+        {
+          "componentId": null,
+          "deltaE": 36.15
+        },
+        {
+          "componentId": null,
+          "deltaE": 36.15
+        },
+        {
+          "componentId": null,
+          "deltaE": 36.15
+        },
+        {
+          "componentId": null,
+          "deltaE": 36.15
+        },
+        {
+          "componentId": null,
+          "deltaE": 36.15
+        },
+        {
+          "componentId": null,
+          "deltaE": 16.54
+        },
+        {
+          "componentId": null,
+          "deltaE": 25.3
+        }
+      ],
+      "gated": false
+    }
+  },
+  "failures": ["silhouette IoU 0.821 is below threshold 0.85"],
+  "renderHash": "f67c9ac0a5cbe198",
+  "passId": "blockout",
+  "mapStrippedRender": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/ultima-v2/gate/full-flat.png"
+}

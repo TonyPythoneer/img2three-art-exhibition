@@ -1,0 +1,58 @@
+{
+  "flat": {
+    "shell-facing": {
+      "front half": {
+        "file": "back-orthographic-flatInsertFront.png",
+        "pixels": 27019,
+        "srgb": [76.38, 42.45, 161.46]
+      },
+      "rear half": {
+        "file": "front-orthographic-flatInsertRear.png",
+        "pixels": 27019,
+        "srgb": [76.38, 42.45, 161.46]
+      },
+      "linearRatio": 1.0
+    },
+    "outward": {
+      "front half": {
+        "file": "front-orthographic-flatInsertFront.png",
+        "pixels": 27019,
+        "srgb": [83.52, 46.81, 175.55]
+      },
+      "rear half": {
+        "file": "back-orthographic-flatInsertRear.png",
+        "pixels": 27019,
+        "srgb": [83.52, 46.81, 175.55]
+      },
+      "linearRatio": 1.0
+    }
+  },
+  "lit": {
+    "shell-facing": {
+      "front half": {
+        "file": "back-orthographic-litInsertFront.png",
+        "pixels": 28253,
+        "srgb": [66.79, 36.63, 143.19]
+      },
+      "rear half": {
+        "file": "front-orthographic-litInsertRear.png",
+        "pixels": 27019,
+        "srgb": [67.06, 37.07, 144.62]
+      },
+      "linearRatio": 1.022
+    },
+    "outward": {
+      "front half": {
+        "file": "front-orthographic-litInsertFront.png",
+        "pixels": 27019,
+        "srgb": [73.43, 40.96, 157.35]
+      },
+      "rear half": {
+        "file": "back-orthographic-litInsertRear.png",
+        "pixels": 28253,
+        "srgb": [73.08, 40.45, 155.71]
+      },
+      "linearRatio": 0.9772
+    }
+  }
+}

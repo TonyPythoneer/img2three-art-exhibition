@@ -1,0 +1,10 @@
+[
+  {
+    "id": "core-through-shell",
+    "tier": "critical",
+    "score": 0.85,
+    "threshold": 0.8,
+    "passed": true,
+    "notes": "Unchanged from material-pass (no surface-pass code change by design). Grazing render confirms the core panel stays readable through the shell under side light; the recessed panel edge keeps its contact-shadow line."
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "artwork-three-quarter",
+    "sourcePath": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon-v2/assets/artwork-sword-crop.png",
+    "width": 210,
+    "height": 434,
+    "foregroundCoverage": 0.233,
+    "largestComponentFraction": 0.9992,
+    "pHash": 13040450875322664320,
+    "duplicateOfHash": null
+  }
+}
