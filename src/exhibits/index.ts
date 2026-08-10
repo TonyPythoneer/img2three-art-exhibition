@@ -32,6 +32,9 @@ export type Exhibit = {
   /** Set when the exhibit ships a live procedural model. The page mounts the
    *  viewer client side only; three.js must never run during static generation. */
   liveModel?: boolean;
+  /** Build version of the img2three.js sculpt that produced this model, shown on
+   *  the badge shared with the gallery card. */
+  modelVersion?: string;
   /** YouTube video ID for the background-music bar. Only exhibits listed here show it. */
   audioVideoId?: string;
   /** Song title shown in the audio bar's info panel. */
@@ -67,6 +70,7 @@ export const exhibits: Exhibit[] = [
     assetDir: "cloud-ultima-weapon-v2",
     status: "done",
     liveModel: true,
+    modelVersion: "img2three.js v1.4",
     promptFile: "prompt.txt",
     ...veliteFields("cloud-ultima-weapon-v2"),
   },
