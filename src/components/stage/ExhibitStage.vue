@@ -47,6 +47,14 @@
               <path d="M5 3.5h9l5 5v12H5zM14 3.5v5h5M8.5 13h7M8.5 16.5h7" />
             </svg>
           </button>
+
+          <!-- Exhibit-owned viewer toggles ride the rail so they stay reachable without
+               opening a section; pushed to the bottom to keep navigation on top. -->
+          <template v-if="$slots['dock-tools']">
+            <span class="panel-dock-spacer"></span>
+            <span class="panel-dock-divider" aria-hidden="true"></span>
+            <slot name="dock-tools" />
+          </template>
         </nav>
 
         <div id="demo-panel-body" class="demo-panel-body">
@@ -235,9 +243,35 @@ const clearSelection = () => {
   viewer.value?.selectPart(null);
 };
 
+// ponytail: rAF tween instead of a tween library. setExplode just moves parts, and the
+// viewer already renders every frame, so interpolating the amount is the whole animation.
+const EXPLODE_MS = 1600;
+let explodeAmount = 0;
+let explodeRaf = 0;
+
+const stopExplodeTween = () => {
+  if (explodeRaf) cancelAnimationFrame(explodeRaf);
+  explodeRaf = 0;
+};
+
 const toggleExplode = () => {
   exploded.value = !exploded.value;
-  viewer.value?.setExplode?.(exploded.value ? 1 : 0);
+  if (!viewer.value?.setExplode) return;
+
+  stopExplodeTween();
+  const from = explodeAmount;
+  const to = exploded.value ? 1 : 0;
+  const start = performance.now();
+
+  const step = (now: number) => {
+    const t = Math.min(1, (now - start) / EXPLODE_MS);
+    // easeInOutCubic: slow off the mark, slow into place.
+    const eased = t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+    explodeAmount = from + (to - from) * eased;
+    viewer.value?.setExplode?.(explodeAmount);
+    explodeRaf = t < 1 ? requestAnimationFrame(step) : 0;
+  };
+  explodeRaf = requestAnimationFrame(step);
 };
 
 /** Guards against a slow mount resolving after the variant already moved on. */
@@ -251,6 +285,8 @@ const build = async () => {
   selected.value = null;
   isolated.value = false;
   exploded.value = false;
+  stopExplodeTween();
+  explodeAmount = 0;
   if (!host.value) return;
 
   const built = await props.mount(host.value, (sel, iso) => {
@@ -274,6 +310,7 @@ watch(() => props.variant, build);
 
 onBeforeUnmount(() => {
   generation++;
+  stopExplodeTween();
   viewer.value?.dispose();
 });
 </script>

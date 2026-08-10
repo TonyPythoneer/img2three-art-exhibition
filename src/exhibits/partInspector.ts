@@ -1,5 +1,14 @@
 import * as THREE from "three";
-import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+/**
+ * The three bits of a controls object the inspector actually touches. Structural rather than
+ * `OrbitControls`, so an exhibit can hand over ArcballControls (or anything else) instead.
+ */
+export type InspectorControls = {
+  /** `Object3D` because that is how the base `Controls` class types it; it is always a camera. */
+  object: THREE.Object3D;
+  target: THREE.Vector3;
+  update: () => unknown;
+};
 import type { Exhibit } from "./index.js";
 
 /**
@@ -135,7 +144,7 @@ export function createPartInspector(opts: {
   /** The camera currently rendering. A getter, not a value: exhibits swap cameras. */
   getCamera: () => THREE.Camera;
   /** Supplied when isolate should also dolly onto the part. Omit and isolate only hides. */
-  controls?: OrbitControls;
+  controls?: InspectorControls;
   onChange: (selected: PartInfo | null, isolated: boolean) => void;
 }): PartInspector {
   const { root, domElement, getCamera, controls, onChange } = opts;
