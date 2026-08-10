@@ -1,0 +1,31 @@
+/* The showcase layout, split so a block on screen maps to one file here.
+ *
+ *   base.css              tokens, .btn, .badge, .chip, status pills, motion opt-out
+ *   home.css              pages/index.vue — page shell + aurora
+ *   home-nav.css          components/home/HomeNav.vue
+ *   home-hero.css         components/home/HomeHero.vue
+ *   home-hero-stage.css   components/home/HeroStage.vue
+ *   home-gallery.css      components/home/ExhibitGrid.vue
+ *   home-footer.css       components/home/HomeFooter.vue
+ *   home-responsive.css   the home page's breakpoints, read together
+ *   stage.css             components/stage/ExhibitStage.vue — viewport shell
+ *   stage-panel.css       the panel's blocks (bar, summary, plates, prompt, notes, controls)
+ *   stage-parts.css       components/stage/PartInspector.vue
+ *   stage-responsive.css  the stage's breakpoints, read together
+ *
+ * Order is the cascade: atoms first, then blocks, then the breakpoints that move
+ * them. Ported from img2threejs/img2threejs-showcase src/styles.css; the reset
+ * block (html/body/#app/a) is dropped because main.css already owns those.
+ */
+@import "./showcase/base.css";
+@import "./showcase/home.css";
+@import "./showcase/home-nav.css";
+@import "./showcase/home-hero.css";
+@import "./showcase/home-hero-stage.css";
+@import "./showcase/home-gallery.css";
+@import "./showcase/home-footer.css";
+@import "./showcase/home-responsive.css";
+@import "./showcase/stage.css";
+@import "./showcase/stage-panel.css";
+@import "./showcase/stage-parts.css";
+@import "./showcase/stage-responsive.css";

@@ -1,0 +1,19 @@
+/* ExhibitStage.vue — the full-viewport page shell and the canvas mount. */
+/* ---------- Demo page ---------- */
+
+.demo-page {
+  position: relative;
+  height: 100vh;
+  /* dvh tracks the collapsing mobile browser chrome; vh above is the fallback. */
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.demo-canvas-mount {
+  position: absolute;
+  inset: 0;
+  /* the canvas owns all gestures — no page pan/zoom fighting the orbit controls */
+  touch-action: none;
+}

@@ -1,0 +1,43 @@
+/* The exhibit stage's breakpoints: the side panel becomes a bottom sheet on a
+   phone and a narrow column on a short window. Same reasoning as
+   home-responsive.css — these rules only make sense read together. */
+/* --- compact viewports: fold the description away so it can't cover the model --- */
+
+@media (max-width: 860px), (max-height: 520px) {
+  /* The bar carries the title in both states, so the body header doesn't repeat it. */
+  .demo-bar-title {
+    display: block;
+    font-size: 0.95rem;
+  }
+  .demo-panel h2 {
+    display: none;
+  }
+  .demo-panel-head {
+    gap: 0.25rem;
+  }
+  /* Let the sheet do the scrolling: a nested scroller inside it steals the pan gesture. */
+  .parts-scroll {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+/* Phone portrait / small tablet: hide the side panel, model gets the full screen. */
+@media (max-width: 860px) and (min-height: 521px) {
+  .demo-panel {
+    display: none;
+  }
+}
+
+/* Phone landscape / short window: stay a side column, there is no vertical room for a sheet. */
+@media (max-height: 520px) {
+  .demo-panel {
+    width: min(300px, 54vw);
+  }
+  .demo-panel-body {
+    max-height: calc(100dvh - 5.5rem);
+  }
+  .demo-ref {
+    display: none;
+  }
+}

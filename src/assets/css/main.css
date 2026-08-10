@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import "../../styles/showcase.css";
+
+@theme {
+  --color-ink: #e8ecf4;
+  --color-ink-soft: #97a3b8;
+  --color-ground: #0b0f16;
+  --color-panel: #121826;
+  --color-line: #223049;
+  --color-accent: #7fd4ff;
+}
+
+html {
+  scroll-padding-top: 6rem;
+  background: var(--color-ground);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  /* Latin first, then whatever the OS ships for Traditional Chinese. No webfonts:
+     this is a gallery of pictures, and a 300kB font to render captions is not a trade. */
+  font-family:
+    ui-sans-serif, system-ui, "Helvetica Neue", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei",
+    sans-serif;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+}
+
+/* The prompt is shown verbatim. It is authored at ~90 columns, so it must not wrap
+   at narrow widths or the shape of the document is lost. Scroll it instead. */
+.prompt-block {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  white-space: pre;
+  overflow-x: auto;
+  tab-size: 2;
+}

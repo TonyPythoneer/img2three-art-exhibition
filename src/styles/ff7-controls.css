@@ -1,0 +1,315 @@
+/* FF7 chrome for the live 3D viewer on /cloud-ultima-weapon: its container, its buttons,
+   its slider, its stats line. Imported by ff7-page.css. Everything here is scoped under
+   `.ff7-page`, the class RootApp.vue puts on the app shell for that one route — so the
+   identical `.chip` markup on /balamb-garden is not touched.
+
+   The viewer root carries no class of its own and UltimaViewer.vue is off limits, so it is
+   addressed structurally: it is the only element on the page whose direct child is the 4:3
+   WebGL host. `[class~="aspect-4/3"]` rather than `.aspect-4\/3` — same match, one less
+   escape to get wrong.
+
+   Specificity: Tailwind's utilities live in a cascade layer and every rule here is
+   unlayered, so they lose regardless of how they are written. The real fight is
+   UltimaViewer.vue's `<style scoped>`, which compiles `.chip` / `.chip-on` / `.chip:hover`
+   / `.chip-on:hover` to `[data-v-…]` selectors at (0,2,0) and (0,3,0). `.ff7-page
+   button.chip` is (0,2,1) and `.ff7-page button.chip:hover` is (0,3,1), so both win on
+   specificity rather than on source order — which matters, because the order in which Vite
+   injects a scoped SFC block and an imported stylesheet is not something this file
+   controls. Every chip rule below is written in that form for that reason. */
+
+/* ---------------------------------------------------------------------------------- */
+/* Container — one FF7 panel: chamfered, metal framed, no radius, no navy               */
+/* ---------------------------------------------------------------------------------- */
+
+.ff7-page div:has(> div[class~="aspect-4/3"]) {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  /* Use the exact same two-layer blue recipe as `.ff7-panel`. The earlier horizontal-only
+     ramp made the viewer controls visibly flatter and more cyan than the surrounding page. */
+  background-color: #000;
+  background-image:
+    var(--ff7-panel-overlay), linear-gradient(to bottom right, var(--ff7-panel-stops));
+  background-blend-mode: multiply, normal;
+  clip-path: polygon(
+    var(--ff7-chamfer) 0,
+    calc(100% - var(--ff7-chamfer)) 0,
+    100% var(--ff7-chamfer),
+    100% calc(100% - var(--ff7-chamfer)),
+    calc(100% - var(--ff7-chamfer)) 100%,
+    var(--ff7-chamfer) 100%,
+    0 calc(100% - var(--ff7-chamfer)),
+    0 var(--ff7-chamfer)
+  );
+}
+
+/* `.ff7-panel`'s 7px stack verbatim — 1px shadow, 2px middle, 2px highlight, 1px light,
+   1px dark — but painted by a pseudo element rather than the container's own box-shadow.
+   An inset shadow sits under the element's children, and the first child here is an opaque
+   canvas that would cover three sides of it. */
+.ff7-page div:has(> div[class~="aspect-4/3"])::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px var(--ff7-border-shadow),
+    inset 0 0 0 3px var(--ff7-border-middle),
+    inset 0 0 0 5px var(--ff7-border-highlight),
+    inset 0 0 0 6px var(--ff7-border-light),
+    inset 0 0 0 7px var(--ff7-border-dark);
+}
+
+/* Black behind the canvas, not the panel gradient: the canvas is opaque, so anything drawn
+   under it is work nobody sees. The black is only visible for the frame or two before the
+   renderer attaches, and behind the loading line. */
+.ff7-page div:has(> div[class~="aspect-4/3"]) > div[class~="aspect-4/3"] {
+  background: #000;
+}
+
+.ff7-page div:has(> div[class~="aspect-4/3"]) > div[class~="aspect-4/3"] > p {
+  color: var(--ff7-text-dim);
+  text-shadow: 1px 1px 0 var(--ff7-text-shadow);
+}
+
+/* The strip dividers. `border-t` + `border-line` is a flat navy hairline; this is the lit
+   part of the frame stack unrolled into a rule: 1px shadow, 1px middle, 1px highlight. */
+.ff7-page div:has(> div[class~="aspect-4/3"]) > .border-t {
+  border-top: 1px solid var(--ff7-border-shadow);
+  box-shadow:
+    inset 0 1px 0 var(--ff7-border-middle),
+    inset 0 2px 0 var(--ff7-border-highlight);
+}
+
+/* Group labels (視角 / 燈光 / 只顯示 / 分解), the slider readout and the stats line: the
+   quiet rank. `--color-ink-soft` is the gallery's navy-blue grey and reads as a different
+   theme leaking through. */
+.ff7-page div:has(> div[class~="aspect-4/3"]) .text-ink-soft {
+  color: var(--ff7-text-dim);
+}
+
+/* Jersey 10 for the figures. It has no CJK, so the Chinese in the stats sentence falls back
+   to the system face by itself — which is the point: the labels stay legible at 14px and the
+   numbers get the menu's letterforms. `tabular-nums` is Tailwind's and survives untouched,
+   so the slider readout still does not jitter while dragging. */
+.ff7-page div:has(> div[class~="aspect-4/3"]) > p,
+.ff7-page div:has(> div[class~="aspect-4/3"]) .tabular-nums {
+  font-family: var(--ff7-font-family);
+}
+
+/* `bg-panel` and `rounded` on the inline code span in the stats line. */
+.ff7-page div:has(> div[class~="aspect-4/3"]) code {
+  border-radius: 0;
+  background: var(--ff7-progress-track);
+  color: var(--ff7-text-white);
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Chips — FF7 command rows, not pills                                                  */
+/* ---------------------------------------------------------------------------------- */
+
+.ff7-page button.chip {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  min-height: 2rem;
+  padding: 0.35rem 0.85rem 0.35rem calc(var(--ff7-page-hand-gutter) + 0.35rem);
+  background: transparent;
+  color: var(--ff7-text-white);
+  font-family: var(--ff7-font-family);
+  font-size: 1rem;
+  font-weight: var(--ff7-font-weight);
+  font-style: var(--ff7-font-style);
+  line-height: 1.2;
+  letter-spacing: var(--ff7-letter-spacing);
+  word-spacing: var(--ff7-word-spacing);
+  font-synthesis: none;
+  font-kerning: normal;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 0,
+    "clig" 0;
+  font-variant-ligatures: none;
+  font-variant-numeric: lining-nums proportional-nums;
+  text-rendering: optimizeLegibility;
+  text-shadow: var(--ff7-text-shadow-ui);
+  transition: none;
+  /* A real FF7 command list has one frame around the group, not a separate metal box around
+     every row. The hand is the selection cue. */
+  box-shadow: none;
+}
+
+/* The hand sprite: 48x29 native, drawn at half size with nearest-neighbour so the pixels
+   stay pixels. Absolutely positioned so it can never affect layout, and `visibility` rather
+   than `display` so the selected rule only has to flip one property. The URL carries the
+   /img2three-art-exhibition/ base: this is a project page, not a user page. */
+.ff7-page button.chip::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0.35rem;
+  width: var(--ff7-page-hand-width);
+  height: var(--ff7-page-hand-height);
+  margin-top: calc(var(--ff7-page-hand-height) / -2);
+  background-image: url("/img2three-art-exhibition/assets/ff7-hand-cursor.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  visibility: hidden;
+}
+
+.ff7-page button.chip:hover {
+  background: transparent;
+  color: var(--ff7-text-white);
+  box-shadow: none;
+}
+
+/* FF7 leaves the selected word white; the pointing hand carries the state. */
+.ff7-page button.chip-on,
+.ff7-page button.chip-on:hover {
+  background: transparent;
+  color: var(--ff7-text-white);
+  box-shadow: none;
+}
+
+.ff7-page button.chip-on::before {
+  visibility: visible;
+}
+
+.ff7-page button.chip:focus-visible {
+  color: var(--ff7-text-white);
+  outline: 2px solid var(--ff7-text-cyan);
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ff7-page button.chip-on::before {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Explode slider — the FF7 progress bar, rebuilt on a range input                       */
+/* ---------------------------------------------------------------------------------- */
+
+/* The component exposes its value to Vue, not to CSS, and this file may not touch it — so
+   there is no honest way to size a fill gradient off the value. The bar is therefore built
+   as the empty `.ff7-bar`: the same 5px lit end caps, the same 2px rail, the same measured
+   `--ff7-progress-empty` channel and the same 3px `--ff7-progress-track` drop shadow down
+   the right and along the bottom, with a metal block riding it as the thumb. The number to
+   its right is the readout.
+
+   The two engines cannot share a rule — one unknown pseudo element invalidates the whole
+   selector list in both — so the track paint is held in a custom property on the input and
+   both rules reference it. Custom properties inherit into the UA shadow tree; the
+   declarations themselves do not. */
+.ff7-page div:has(> div[class~="aspect-4/3"]) input[type="range"] {
+  --ff7-slider-track:
+    /* the 2px lit rail across the top of the body */
+    linear-gradient(180deg, #d6d7e0 0 1px, #cfd0cb 1px 2px, #0000 2px) 0 0 / calc(100% - 3px) 17px
+      no-repeat,
+    /* left cap, five measured columns */
+    linear-gradient(
+        90deg,
+        #b0b4d7 0 1px,
+        #cdcbd9 1px 2px,
+        #ded2d4 2px 3px,
+        #f0d6d5 3px 4px,
+        var(--ff7-progress-cap-inner) 4px 5px
+      )
+      0 0 / 5px 17px no-repeat,
+    /* right cap */
+    linear-gradient(
+        90deg,
+        #3b3f40 0 1px,
+        #d9dad5 1px 2px,
+        #cfd0cb 2px 3px,
+        #b4b2b3 3px 4px,
+        #aeacad 4px 5px
+      )
+      right 3px top 0 / 5px 17px no-repeat,
+    /* the empty channel, row by row, as sampled */
+    linear-gradient(
+        180deg,
+        #2c2c2c 0 1px,
+        #171717 1px 2px,
+        #232321 2px 3px,
+        #3b3b3b 3px 4px,
+        var(--ff7-progress-empty) 4px 5px,
+        #575759 5px 6px,
+        #585858 6px 7px,
+        #616161 7px 8px,
+        #6b6b6b 8px 9px,
+        #69696b 9px 10px,
+        #69686d 10px 11px,
+        #676769 11px 12px,
+        #8d8f8c 12px 13px,
+        #abadaa 13px 14px,
+        #a0a2a1 14px 15px
+      )
+      5px 2px / calc(100% - 13px) 15px no-repeat,
+    /* the drop shadow the body sits on */
+    linear-gradient(var(--ff7-progress-track), var(--ff7-progress-track));
+
+  appearance: none;
+  -webkit-appearance: none;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ff7-page div:has(> div[class~="aspect-4/3"]) input[type="range"]:focus-visible {
+  outline: 2px solid var(--ff7-text-cyan);
+  outline-offset: 2px;
+}
+
+.ff7-page div:has(> div[class~="aspect-4/3"]) input[type="range"]::-webkit-slider-runnable-track {
+  height: 20px;
+  border: 0;
+  border-radius: 0;
+  background: var(--ff7-slider-track);
+}
+
+.ff7-page div:has(> div[class~="aspect-4/3"]) input[type="range"]::-moz-range-track {
+  height: 20px;
+  border: 0;
+  border-radius: 0;
+  background: var(--ff7-slider-track);
+}
+
+/* The thumb: the frame stack in miniature on the panel blue, square, full track height, so
+   it reads as a metal block sitting on the bar rather than a knob. Track and thumb are the
+   same height, so WebKit needs no margin correction and Firefox centres it itself. */
+.ff7-page div:has(> div[class~="aspect-4/3"]) input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 12px;
+  height: 20px;
+  border: 0;
+  border-radius: 0;
+  margin-top: 0;
+  background-color: #000;
+  background-image: linear-gradient(to bottom right, var(--ff7-panel-stops));
+  box-shadow:
+    inset 0 0 0 1px var(--ff7-border-shadow),
+    inset 0 0 0 2px var(--ff7-border-middle),
+    inset 0 0 0 3px var(--ff7-border-highlight);
+}
+
+.ff7-page div:has(> div[class~="aspect-4/3"]) input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 20px;
+  border: 0;
+  border-radius: 0;
+  background-color: #000;
+  background-image: linear-gradient(to bottom right, var(--ff7-panel-stops));
+  box-shadow:
+    inset 0 0 0 1px var(--ff7-border-shadow),
+    inset 0 0 0 2px var(--ff7-border-middle),
+    inset 0 0 0 3px var(--ff7-border-highlight);
+}

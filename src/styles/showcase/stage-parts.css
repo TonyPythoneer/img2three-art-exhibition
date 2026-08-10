@@ -1,0 +1,189 @@
+/* PartInspector.vue — parts head, selection card, grouped list, provenance. */
+/* ---- part inspector ---- */
+
+.demo-parts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.parts-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.parts-title {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.parts-scroll {
+  max-height: 12rem;
+  overflow-y: scroll;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.parts-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.parts-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.parts-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+.parts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.parts-group {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 0.45rem 0.5rem 0.2rem;
+}
+
+.parts-group-icon {
+  flex: none;
+  display: block;
+}
+
+.parts-list > li {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.part-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.28rem 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  min-width: 0;
+}
+
+.part-item:hover {
+  background: var(--bg-glass);
+}
+
+.part-item.is-active {
+  background: var(--bg-glass);
+  box-shadow: inset 2px 0 0 var(--accent-strong);
+  color: var(--accent-strong);
+}
+
+.part-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.6rem;
+  background: var(--bg-glass);
+}
+
+.part-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+}
+
+.part-kind {
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+  color: var(--text-dim);
+}
+
+.part-kind-part {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.part-facts {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+}
+
+.part-facts > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.part-facts dt {
+  flex: none;
+  width: 4.6rem;
+  color: var(--text-dim);
+}
+
+.part-facts dd {
+  margin: 0;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.part-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.part-btn {
+  flex: 1;
+  justify-content: center;
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 0.3rem 0.5rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.part-btn[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.parts-prov {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  overflow-wrap: anywhere;
+}

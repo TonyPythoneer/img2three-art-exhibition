@@ -1,0 +1,175 @@
+/* The home page's breakpoints. One file rather than a query per component:
+   every rule here is about how the five home blocks reflow *together*, and
+   splitting them would hide that the paddings move in lockstep. */
+/* ---------- Home responsive ---------- */
+
+@media (max-width: 1024px) {
+  .nav,
+  .hero,
+  .gallery,
+  .footer {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+  .hero {
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 1.9rem;
+    align-items: start;
+  }
+  /* stage first: the 3D is the pitch */
+  .hero-stage {
+    min-height: min(78vw, 420px);
+    order: -1;
+  }
+  .hero-sub {
+    font-size: 0.98rem;
+  }
+  .gallery {
+    padding-top: 2.6rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav {
+    padding: 1rem 0.95rem 0;
+    gap: 0.5rem;
+  }
+  .brand-mark {
+    width: 26px;
+    height: 26px;
+  }
+  .brand-name {
+    font-size: 0.95rem;
+  }
+  .nav-actions {
+    gap: 0.4rem;
+  }
+  .nav-star,
+  .nav-donate {
+    font-size: 0.72rem;
+    padding: 0.38rem 0.68rem;
+    white-space: nowrap;
+  }
+
+  .hero {
+    padding: 1.5rem 0.95rem 0.5rem;
+    gap: 1.3rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+  .hero-title {
+    font-size: clamp(1.8rem, 8.6vw, 2.5rem);
+    margin-top: 0.7rem;
+  }
+  .hero-sub {
+    font-size: 0.93rem;
+    line-height: 1.62;
+    margin-top: 0.85rem;
+  }
+  .cta-row {
+    margin-top: 1.25rem;
+    gap: 0.55rem;
+  }
+  .cta-row .btn {
+    flex: 1 1 9rem;
+    justify-content: center;
+    font-size: 0.82rem;
+    padding: 0.72rem 0.85rem;
+  }
+  .pipeline {
+    margin-top: 1.5rem;
+    font-size: 0.71rem;
+    gap: 0.4rem;
+  }
+  .pipeline li:not(.pip-arrow) {
+    padding: 0.34rem 0.55rem;
+  }
+  /* the chips wrap, which leaves an arrow dangling at the end of a row — numbers carry the order */
+  .pip-arrow {
+    display: none;
+  }
+
+  .hero-stage {
+    min-height: 340px;
+    border-radius: 18px;
+  }
+  .stage-input {
+    width: 72px;
+    top: 12px;
+    left: 12px;
+    border-radius: 10px;
+  }
+  /* tight enough for "source photo" to stay on one line inside a 72px inset */
+  .stage-input figcaption {
+    font-size: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  /* the beam needs the desktop gap between thumb and model to read as a beam */
+  .stage-beam {
+    display: none;
+  }
+  /* full-width caption strip so a long title can't collide with the corner hint */
+  .stage-badge {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    font-size: 0.7rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .stage-hint {
+    top: 14px;
+    right: 12px;
+    bottom: auto;
+    font-size: 0.6rem;
+  }
+
+  .gallery {
+    padding: 2.3rem 0.95rem 0.5rem;
+  }
+  .gallery-head p {
+    font-size: 0.9rem;
+    margin-bottom: 1.4rem;
+  }
+  .grid {
+    gap: 1rem;
+  }
+  .card-body {
+    padding: 0.85rem 0.9rem 1rem;
+    gap: 0.45rem;
+  }
+  /* one column — nothing left to align badges against, so drop the reserved second line */
+  .card-title {
+    min-height: 0;
+    font-size: 1rem;
+  }
+
+  .footer {
+    margin-top: 2.6rem;
+    padding: 1.2rem 0.95rem calc(1.2rem + env(safe-area-inset-bottom));
+    font-size: 0.78rem;
+    line-height: 1.7;
+    text-align: center;
+  }
+}
+
+/* Very narrow (≤360px): shed the longest labels rather than wrap the nav. */
+@media (max-width: 400px) {
+  .nav-label-long {
+    display: none;
+  }
+  .hero-stage {
+    min-height: 300px;
+  }
+}

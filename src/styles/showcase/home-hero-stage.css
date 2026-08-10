@@ -1,0 +1,141 @@
+/* HeroStage.vue — the live turntable, its source-photo inset and its beam. */
+
+/* ---------- Hero 3D stage ---------- */
+
+.hero-stage {
+  position: relative;
+  min-height: 460px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(80% 80% at 70% 20%, rgba(56, 232, 255, 0.08), transparent 70%),
+    radial-gradient(90% 90% at 20% 90%, rgba(139, 92, 255, 0.1), transparent 72%), var(--bg-glass);
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
+  transition:
+    opacity 0.9s ease 0.2s,
+    transform 0.9s ease 0.2s;
+}
+
+.home.ready .hero-stage {
+  opacity: 1;
+  transform: none;
+}
+
+.stage-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.stage-canvas canvas {
+  display: block;
+}
+
+.stage-input {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 118px;
+  margin: 0;
+  z-index: 3;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition:
+    opacity 0.26s ease,
+    transform 0.26s ease;
+}
+
+.stage-input.swapping {
+  opacity: 0;
+  transform: scale(0.94) translateY(-4px);
+}
+
+.stage-input.no-photo {
+  display: none;
+}
+
+.stage-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.stage-input figcaption {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 0.3rem 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.stage-beam {
+  position: absolute;
+  top: 90px;
+  left: 128px;
+  width: 84px;
+  height: 2px;
+  z-index: 2;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+  box-shadow: 0 0 12px rgba(56, 232, 255, 0.7);
+  animation: beam 2.4s ease-in-out infinite;
+}
+
+.stage-beam::after {
+  content: "\25B8";
+  position: absolute;
+  right: -4px;
+  top: -9px;
+  color: var(--cyan);
+  font-size: 0.9rem;
+}
+
+@keyframes beam {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(6px);
+  }
+}
+
+.stage-badge {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 3;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--text);
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+  background: rgba(10, 11, 16, 0.72);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+
+.stage-hint {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 3;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}

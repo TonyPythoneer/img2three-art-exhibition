@@ -1,0 +1,394 @@
+/* Final Fantasy VII (1997) menu chrome, sampled pixel by pixel from a 950x598 capture.
+   Self contained on purpose: import this file plus the FF7* components and nothing else.
+   Every token is declared on `.ff7-screen` rather than `:root`, so dropping the theme onto
+   an existing page cannot leak a variable into the surrounding document — which also means
+   every ff7- element has to live inside a `.ff7-screen`. Tailwind is deliberately absent:
+   this is a pixel replica, and utility classes cannot express half of it. */
+
+@font-face {
+  /* Jersey 10 (SIL OFL), vendored as woff2. The site builds statically under the
+     /img2three-art-exhibition/ base, so a Google Fonts <link> would be both a new runtime
+     dependency and — for the font file itself — a URL Vite cannot rewrite. Swap the face by
+     overriding --ff7-font-family; nothing else in the theme names it. */
+  font-family: "Jersey 10";
+  src: url("../assets/fonts/jersey-10-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  /* `block`, not `swap`: the fallback stack is metrically nothing like Jersey 10, and every
+     string here is positioned against a measured pixel grid. A flash of the wrong metrics
+     would visibly tear the layout apart. */
+  font-display: block;
+}
+
+/* The stage reserves the scaled footprint so the page below it does not jump. `--ff7-scale`
+   is the single knob: set it here (inline is fine) and both the reserved height and the
+   screen transform follow. It is the one token NOT declared on `.ff7-screen`, because an
+   element's own declaration beats an inherited one and would shadow whatever the stage set. */
+.ff7-stage {
+  position: relative;
+  width: 100%;
+  height: calc(598px * var(--ff7-scale, 1));
+  overflow: hidden;
+  /* Same black the screen sits on, so a container wider than 950px at scale 1 reads as one
+     letterboxed box instead of a screen with a gap beside it. */
+  background: #000;
+}
+
+/* The tokens are shared by two very different consumers and so live on both hooks:
+   `.ff7-screen` is the 950x598 pixel replica, `.ff7-page` is a whole document wearing the
+   same chrome at its own sizes. Still not `:root` — dropping either class on a subtree must
+   not leak a variable into the rest of the site. */
+.ff7-screen,
+.ff7-page {
+  /* --- frame ---------------------------------------------------------------------- */
+  --ff7-border-shadow: #252523;
+  --ff7-border-middle: #7c7e7b;
+  --ff7-border-highlight: #cfcfd1;
+  --ff7-border-light: #939391;
+  --ff7-border-dark: #272823;
+  /* Brightest at the panel's own top-left, darkest at its bottom-right. Opaque: the source
+     has no transparency, no blur and no backdrop of any kind behind the boxes. Fitted to 22
+     sampled points across the main and command panels; a straight 135deg reads about 12
+     counts of blue too bright through the middle of the ramp. */
+  --ff7-panel-stops:
+    #0057ae 0%, #0052ac 5%, #004298 15%, #00328c 25%, #00217e 35%, #00146f 45%, #00065d 55%,
+    #000051 65%, #000042 75%, #000030 85%, #000022 100%;
+  /* Shared residual layer. Keeping it as one token prevents the page panels and the live
+     viewer from drifting into visibly different blues. */
+  --ff7-panel-overlay: linear-gradient(
+    180deg,
+    #fff 0%,
+    #fff 10%,
+    #ffbdff 45%,
+    #ff51ff 82%,
+    #f0f 100%
+  );
+  /* A 45 degree corner cut, not a border-radius. 5px is the stair measured on the main
+     panel (grey starts x=83 on row 30, x=81 on row 32, x=78 on row 35). */
+  --ff7-chamfer: 5px;
+
+  /* --- type ----------------------------------------------------------------------- */
+  --ff7-font-family: "Jersey 10", "Chakra Petch", "Oswald", ui-sans-serif, sans-serif;
+  --ff7-font-family-cjk: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  --ff7-font-weight: 400;
+  --ff7-font-style: normal;
+  --ff7-letter-spacing: 0px;
+  --ff7-word-spacing: 0px;
+  /* Jersey 10's cap height is 0.5357em and the reference caps measure 20px, so 37.3px lands a
+     19.98px cap. Its letters still run ~12-16% wider than the original bitmap face at that
+     size (digits come out ~3% narrow); cap height won because it is what the eye reads first.
+     Screenshot comparison, not arithmetic, set this: 37.5px inked one row too many. */
+  --ff7-font-size: 37.3px;
+  /* Every y in the measurement pass was taken to the top of the capitals, but CSS positions
+     the line box, which starts above them. This is that gap as a fraction of the font size
+     (line-height 1, ascent 0.80em, descent 0.27em, cap 0.5357em), so `top` can stay the
+     measured number. Retune it if --ff7-font-family changes: the first capture had every
+     glyph sitting exactly 1px high, which is where 0.2293 became 0.2026. */
+  --ff7-cap-lead: 0.2026;
+  --ff7-text-white: #e7e9e6;
+  --ff7-text-cyan: #16dee3;
+  --ff7-text-shadow: #0b0b18;
+  --ff7-text-shadow-ui: 2px 2px 0 var(--ff7-text-shadow);
+  --ff7-text-shadow-page: 1px 1px 0 var(--ff7-text-shadow);
+  /* Not sampled from the menu — the menu has only white and cyan. This is for a document,
+     where a second, quieter rank of prose has to exist without inventing a third hue. */
+  --ff7-text-dim: #a9b3c6;
+
+  /* --- hand cursor ---------------------------------------------------------------- */
+  --ff7-hand-shift: -4px;
+  --ff7-hand-period: 600ms;
+
+  /* --- progress bars -------------------------------------------------------------- */
+  --ff7-progress-empty: #3b3b3d;
+  --ff7-progress-track: #191923;
+  --ff7-progress-cap-inner: #fad4d1;
+}
+
+/* Only the replica gets these: --ff7-font-size is the size that lands a 20px cap on the
+   950px grid, which is a measurement, not a reading size. A page picks its own. */
+.ff7-screen {
+  position: relative;
+  width: 950px;
+  height: 598px;
+  background: #000;
+  overflow: hidden;
+  transform: scale(var(--ff7-scale, 1));
+  transform-origin: top left;
+  font-family: var(--ff7-font-family);
+  font-size: var(--ff7-font-size);
+  font-weight: var(--ff7-font-weight);
+  font-style: var(--ff7-font-style);
+  line-height: 1;
+  letter-spacing: var(--ff7-letter-spacing);
+  word-spacing: var(--ff7-word-spacing);
+  font-synthesis: none;
+  font-kerning: normal;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 0,
+    "clig" 0;
+  font-variant-ligatures: none;
+  font-variant-numeric: lining-nums proportional-nums;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Panel                                                                               */
+/* ---------------------------------------------------------------------------------- */
+
+.ff7-panel {
+  box-sizing: border-box;
+  /* Composed here, not in a token: --ff7-panel-angle is set per panel and a token declared on
+     .ff7-screen would have already substituted the screen's own value before inheriting.
+     The magenta layer is the bilinear residual — one diagonal ramp gets blue right everywhere
+     but leaves the lower-left too cyan, because the green tint dies with height faster than
+     blue does. Multiplying green down the panel costs four lines and takes that error from
+     ~30 counts to ~2. Red and blue are 255 in it, so only green moves. */
+  background-image:
+    var(--ff7-panel-overlay),
+    linear-gradient(var(--ff7-panel-angle, to bottom right), var(--ff7-panel-stops));
+  background-blend-mode: multiply, normal;
+  /* Outermost ring listed first. Each later shadow paints underneath the ones before it, so
+     the ring you actually see is the difference between two consecutive spreads:
+     1px shadow, 2px middle, 2px highlight, 1px light, 1px dark = the 7px stack measured on
+     all four boxes. */
+  box-shadow:
+    inset 0 0 0 1px var(--ff7-border-shadow),
+    inset 0 0 0 3px var(--ff7-border-middle),
+    inset 0 0 0 5px var(--ff7-border-highlight),
+    inset 0 0 0 6px var(--ff7-border-light),
+    inset 0 0 0 7px var(--ff7-border-dark);
+  clip-path: polygon(
+    var(--ff7-chamfer) 0,
+    calc(100% - var(--ff7-chamfer)) 0,
+    100% var(--ff7-chamfer),
+    100% calc(100% - var(--ff7-chamfer)),
+    calc(100% - var(--ff7-chamfer)) 100%,
+    var(--ff7-chamfer) 100%,
+    0 calc(100% - var(--ff7-chamfer)),
+    0 var(--ff7-chamfer)
+  );
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Text                                                                                */
+/* ---------------------------------------------------------------------------------- */
+
+.ff7-text {
+  color: var(--ff7-text-white);
+  font-family: var(--ff7-font-family);
+  font-weight: var(--ff7-font-weight);
+  font-style: var(--ff7-font-style);
+  letter-spacing: var(--ff7-letter-spacing);
+  word-spacing: var(--ff7-word-spacing);
+  line-height: 1;
+  font-synthesis: none;
+  font-kerning: normal;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 0,
+    "clig" 0;
+  font-variant-ligatures: none;
+  font-variant-numeric: lining-nums proportional-nums;
+  text-rendering: optimizeLegibility;
+  /* Hard offset, zero blur. The original is a bitmap font stamped twice, not a drop shadow. */
+  text-shadow: var(--ff7-text-shadow-ui);
+}
+
+.ff7-label-cyan {
+  color: var(--ff7-text-cyan);
+}
+
+/* Absolute placement inside a `.ff7-screen`, in the reference's own pixel coordinates. */
+.ff7-place {
+  position: absolute;
+}
+
+/* Text placed this way is anchored by the top of its capitals, so --ff7-cap-lead has to come
+   back off the top. Non-text children of `.ff7-place` (bars, the cursor) are anchored by
+   their real box and must not get the correction. */
+.ff7-text.ff7-place {
+  margin-top: calc(var(--ff7-cap-lead) * -1em);
+  white-space: pre;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Progress bar — outer 156x20: a 153x17 lit body, then 3px of drop shadow right/bottom  */
+/* ---------------------------------------------------------------------------------- */
+
+.ff7-bar {
+  position: relative;
+  width: 156px;
+  height: 20px;
+  background: var(--ff7-progress-track);
+}
+
+.ff7-bar-body {
+  position: absolute;
+  inset: 0 3px 3px 0;
+  /* Two layers: the 2px lit rail across the top, then the left and right end caps. The
+     middle of the horizontal layer never shows — the track covers it. Hard stops, because
+     every one of these is a single measured pixel column. */
+  background:
+    linear-gradient(180deg, #d6d7e0 0 1px, #cfd0cb 1px 2px, #0000 2px),
+    linear-gradient(
+      90deg,
+      #b0b4d7 0 1px,
+      #cdcbd9 1px 2px,
+      #ded2d4 2px 3px,
+      #f0d6d5 3px 4px,
+      var(--ff7-progress-cap-inner) 4px 5px,
+      #1b1b1d 5px 148px,
+      #3b3f40 148px 149px,
+      #d9dad5 149px 150px,
+      #cfd0cb 150px 151px,
+      #b4b2b3 151px 152px,
+      #aeacad 152px 153px
+    );
+}
+
+.ff7-bar-track {
+  position: absolute;
+  inset: 2px 5px 0 5px;
+  overflow: hidden;
+  background:
+    /* the 1px inner shadow where the track meets the right cap */
+    linear-gradient(90deg, #0000 0 calc(100% - 1px), #121317 calc(100% - 1px)),
+    linear-gradient(
+      180deg,
+      #2c2c2c 0 1px,
+      #171717 1px 2px,
+      #232321 2px 3px,
+      #3b3b3b 3px 4px,
+      var(--ff7-progress-empty) 4px 5px,
+      #575759 5px 6px,
+      #585858 6px 7px,
+      #616161 7px 8px,
+      #6b6b6b 8px 9px,
+      #69696b 9px 10px,
+      #69686d 10px 11px,
+      #676769 11px 12px,
+      #8d8f8c 12px 13px,
+      #abadaa 13px 14px,
+      #a0a2a1 14px 15px
+    );
+}
+
+.ff7-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+}
+
+/* Warm EXP fill, column x=520 of the Cloud "next level" bar, row by row. */
+.ff7-bar-exp .ff7-bar-fill {
+  background: linear-gradient(
+    180deg,
+    #5a3731 0 1px,
+    #552521 1px 2px,
+    #723636 2px 3px,
+    #935556 3px 4px,
+    #9e6c6b 4px 5px,
+    #e8c0be 5px 6px,
+    #e0c1be 6px 7px,
+    #e1bfbe 7px 8px,
+    #ecbec0 8px 9px,
+    #eaafb1 9px 10px,
+    #e6a09e 10px 11px,
+    #da9d9a 11px 12px,
+    #c2a09f 12px 13px,
+    #b4a6a6 13px 14px,
+    #a29e9d 14px 15px
+  );
+}
+
+/* Pink Limit fill, same column of the "Limit level 1" bar. */
+.ff7-bar-limit {
+  --ff7-progress-cap-inner: #f3d2e5;
+}
+
+.ff7-bar-limit .ff7-bar-fill {
+  background: linear-gradient(
+    180deg,
+    #512a3d 0 1px,
+    #5e2945 1px 2px,
+    #834165 2px 3px,
+    #a3527b 3px 4px,
+    #9c597c 4px 5px,
+    #f3d2e5 5px 6px,
+    #d6c2ce 6px 7px,
+    #e3c4d3 7px 8px,
+    #e7bcd0 8px 9px,
+    #e6aec9 9px 10px,
+    #e0a3c2 10px 11px,
+    #d79cb8 11px 12px,
+    #c69baf 12px 13px,
+    #b8a9ae 13px 14px,
+    #7d7d7b 14px 15px
+  );
+}
+
+/* The 2px gauge under each HP / MP figure: a saturated left end washing out to the right. */
+.ff7-gauge {
+  height: 2px;
+}
+
+.ff7-gauge-hp {
+  background: linear-gradient(90deg, #2c71d8 0%, #6098d5 40%, #c0c2e0 100%);
+}
+
+.ff7-gauge-mp {
+  background: linear-gradient(90deg, #34dca8 0%, #6fecc0 40%, #d0d8e2 100%);
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Command menu — one word per line, 32px pitch, one wider row standing in for the gap   */
+/* ---------------------------------------------------------------------------------- */
+
+/* FF7CommandMenu owns --ff7-menu-pitch and --ff7-menu-gap: it has to do the same arithmetic
+   in JS to report where the selected row sits, and two copies of 32 would drift. The
+   fallbacks here are only for a menu rendered without the component. */
+/* flow-root, not plain block: the row's only child carries a negative top margin (the cap-lead
+   correction), and through a block parent with no padding or border that margin collapses out of
+   the row and pulls every following row up with it — the 32px pitch rendered as 23px. A block
+   formatting context contains the margin so the pitch stays what it says it is. */
+.ff7-menu-row {
+  display: flow-root;
+  height: var(--ff7-menu-pitch, 32px);
+}
+
+.ff7-menu-gap {
+  height: var(--ff7-menu-gap, 34px);
+}
+
+.ff7-menu-row > .ff7-text {
+  display: block;
+  margin-top: calc(var(--ff7-cap-lead) * -1em);
+  white-space: pre;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Hand cursor                                                                          */
+/* ---------------------------------------------------------------------------------- */
+
+@keyframes ff7-hand-float {
+  0%,
+  49% {
+    transform: translateX(0);
+  }
+  50%,
+  100% {
+    transform: translateX(var(--ff7-hand-shift));
+  }
+}
+
+.ff7-hand-cursor {
+  display: block;
+  image-rendering: pixelated;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ff7-hand-cursor {
+    animation: none;
+  }
+}

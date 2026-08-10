@@ -1,0 +1,449 @@
+/* The panel: StagePanelBar.vue, ExhibitSummary.vue, ReferencePlates.vue,
+   PromptDisclosure.vue, ExhibitNotes.vue and the controls slot. */
+/* --- info panel: a collapsible card on desktop, a bottom sheet on a phone --- */
+
+.demo-panel {
+  position: absolute;
+  top: max(1rem, env(safe-area-inset-top));
+  left: max(1rem, env(safe-area-inset-left));
+  z-index: 4;
+  width: min(320px, calc(100vw - 2rem));
+  display: flex;
+  flex-direction: column;
+  background: rgba(16, 17, 22, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  isolation: isolate;
+  transform-origin: top left;
+  animation: panel-open 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.demo-panel.is-closing {
+  animation: panel-close 0.22s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes panel-open {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes panel-close {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+.demo-panel-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  flex: 0 0 auto;
+}
+
+/* Compact section switcher: icons keep the sidebar quiet while the labels remain available
+ * as hover/focus tooltips. The content beside it shows one section at a time. */
+.panel-dock-layout {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.panel-dock {
+  display: flex;
+  flex: 0 0 3.25rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25rem;
+  padding: 0.45rem 0.35rem;
+  border-right: 1px solid var(--border);
+  background: rgba(0, 0, 24, 0.28);
+}
+
+.panel-dock-link {
+  text-decoration: none;
+}
+
+.panel-dock-link:hover {
+  text-decoration: none;
+}
+
+.panel-dock-divider {
+  flex: 0 0 auto;
+  width: 1.2rem;
+  height: 1px;
+  margin: 0.2rem 0;
+  background: var(--border);
+}
+
+.panel-dock-spacer {
+  flex: 1 1 auto;
+  min-height: 0.25rem;
+}
+
+.panel-dock-item {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 2.15rem;
+  width: 2.15rem;
+  height: 2.15rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.panel-dock-item svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.panel-dock-item:hover,
+.panel-dock-item:focus-visible,
+.panel-dock-item.is-active {
+  color: var(--accent-strong);
+  background: var(--bg-glass);
+}
+
+.panel-dock-item:active {
+  transform: translateY(1px) scale(0.96);
+}
+
+.demo-panel-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  flex: 0 0 auto;
+}
+
+.demo-panel-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-height: calc(100dvh - 6rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.demo-panel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0.9rem 0.85rem 1rem;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Stretch the visible section to the dock's stretched height instead of hugging
+   its own content — otherwise the two side-by-side boxes end up different heights. */
+.panel-dock-section {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+}
+
+/* Brief is the only tab that wraps PanelSectionTitle.vue in a header; the other four render it
+   bare. `display: contents` takes the wrapper out of the layout entirely, so the title and
+   subtitle are laid out by the same rules everywhere and cannot drift apart — the alignment
+   is a property of the two rules below, not of anyone's box model. */
+.demo-panel-head {
+  display: contents;
+}
+
+.demo-kicker {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.demo-panel h2 {
+  margin: 0.15rem 0 0;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* PanelSectionTitle.vue's subtitle names the active dock tab (Brief, Components, …).
+   It carries the bottom margin before the section's content since it's always the
+   last thing before it, on every tab. */
+.panel-section-subtitle {
+  margin: 0.2rem 0 0.6rem;
+}
+
+.demo-ref {
+  margin: 0;
+}
+
+.demo-ref-thumb {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  display: block;
+  margin: 0 auto;
+}
+
+.demo-ref figcaption {
+  margin-top: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.demo-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+
+.demo-meta p {
+  margin: 0;
+}
+
+.demo-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.1rem;
+}
+
+.demo-links .btn {
+  justify-content: center;
+  font-size: 0.82rem;
+  padding: 0.65rem 0.9rem;
+}
+
+/* Explode toggle: a <button> in a list of <a class="btn">, so it needs the resets an
+   anchor does not (buttons do not inherit font/colour, and default to auto width). */
+.btn-explode {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.btn-explode .explode-glyph {
+  color: var(--accent-strong);
+  transition: transform 0.35s ease;
+  display: inline-block;
+}
+
+.btn-explode.is-active {
+  border-color: var(--accent);
+  background: var(--bg-glass);
+}
+
+.btn-explode.is-active .explode-glyph {
+  transform: rotate(45deg) scale(1.15);
+}
+
+/* The exhibits here keep the review controls the showcase never had: camera
+   presets, lighting mode, wireframe, landmark overlay, group visibility. */
+.panel-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.ff7-settings-body {
+  display: contents;
+}
+
+/* Hanging-indent list: "label: item1 / item2 / item3". .panel-row-options is
+   unwrapped via display:contents so its chips become direct grid siblings of
+   the label — that's what makes the label and the first chip share row 1
+   exactly, baseline-aligned, instead of guessing at matching padding between
+   a label span and a flex-column stack. */
+.panel-row {
+  display: grid;
+  grid-template-columns: 3.4rem 1fr;
+  column-gap: 0.3rem;
+  row-gap: 0.3rem;
+  align-items: baseline;
+}
+
+.panel-row-label {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.panel-row-options {
+  display: contents;
+}
+
+.panel-row-options > *:first-child {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.panel-row-options > *:not(:first-child) {
+  grid-column: 2;
+}
+
+.panel-slider {
+  flex: 1 1 auto;
+  min-width: 80px;
+  height: 4px;
+  appearance: none;
+  background: var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.panel-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  border: 0;
+  cursor: pointer;
+}
+
+.panel-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  border: 0;
+  cursor: pointer;
+}
+
+/* The prompt is the whole spec: verbatim, ~90 columns, folded away by default so
+   it cannot swallow the panel. Scrolls rather than wraps — wrapping loses shape. */
+.demo-prompt {
+  padding-top: 0.5rem;
+}
+
+.prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.prompt-pre {
+  margin: 0.55rem 0 0;
+  max-height: 16rem;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem;
+  background: rgba(0, 0, 0, 0.3);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  line-height: 1.6;
+  white-space: pre;
+  tab-size: 2;
+}
+
+.prompt-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.prompt-copy:hover {
+  color: var(--accent-strong);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Reference plates: the showcase shows one, these exhibits ship several. */
+.demo-ref + .demo-ref {
+  margin-top: 0.6rem;
+}
+
+.demo-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 0.5rem;
+  margin: 0;
+  list-style: none;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+
+.demo-notes li {
+  border-left: 2px solid var(--accent);
+  padding-left: 0.6rem;
+}
+
+.demo-notes-title {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+/* The heading rides in the same <ul> as the notes, so it has to opt out of the
+   rule stripe every sibling wears. */
+.demo-notes li.demo-notes-title {
+  border-left: 0;
+  padding-left: 0;
+}
+/* Upstream's reference plates are landscape. These exhibits ship portrait ones — a 146x292
+   sprite at full panel width is taller than the viewport and pushes the part list off the
+   first screen. Cap the height; `contain`, not `cover`, because cropping a reference plate
+   is exactly the thing a reference plate must not do. */
+.demo-ref-thumb {
+  max-height: 34dvh;
+  object-fit: contain;
+}

@@ -1,0 +1,778 @@
+@import "./ff7-ui.css";
+@import "./ff7-controls.css";
+
+/* The whole document wearing the FF7 menu chrome, not a picture of it.
+ *
+ * Scope: every rule is under `.ff7-page`, which RootApp.vue puts on the app shell only for
+ * the routes in FF7_ROUTES. Nothing here may reach another route, so there is not one bare
+ * element selector in this file.
+ *
+ * Division of labour:
+ *   ff7-ui.css       the sampled tokens and the 950x598 replica's own parts. Not edited here.
+ *   ff7-controls.css the live-model viewer's controls. Not edited here either.
+ *   this file        the document around them: shell, sections, prose, links, prompt well.
+ *
+ * Two things carry the identity, and neither one is the letterform: the panels (sampled blue
+ * ramp + five-layer metallic frame + 5px chamfer) and the hand cursor. See the CJK note below
+ * for why the type could not carry it.
+ */
+
+/* ---------------------------------------------------------------------------------- */
+/* Ground                                                                              */
+/* ---------------------------------------------------------------------------------- */
+
+/* main.css paints the canvas from `html`, which is outside `.ff7-page` — a rule scoped under
+ * the class can never reach it, and the navy would show through overscroll and under a short
+ * page. `:has()` keeps the scoping promise: it only matches while the class is in the tree. */
+html:has(.ff7-page) {
+  background: #000;
+}
+
+/* Re-point the site's own theme tokens at the FF7 palette. This is the whole navy purge: every
+ * Tailwind utility built on them — bg-ground, bg-panel, border-line, text-ink-soft, text-accent
+ * — resolves in-palette from here down without a single utility being overridden by hand, and
+ * it reaches markup this file never names (the viewer's chrome, future sections). Declared on
+ * `.ff7-page`, so the values are inherited and stop at the route boundary. */
+.ff7-page {
+  --color-ground: #000;
+  --color-ink: var(--ff7-text-white);
+  --color-ink-soft: var(--ff7-text-dim);
+  --color-panel: var(--ff7-progress-track);
+  --color-line: var(--ff7-border-middle);
+  --color-accent: var(--ff7-text-cyan);
+
+  /* The gutter every menu row reserves for the hand cursor: sprite width plus a gap. Reserved
+   * rather than conjured on hover, so a pointer crossing a link never reflows the page. */
+  --ff7-page-hand-width: 24px;
+  --ff7-page-hand-height: 15px;
+  --ff7-page-hand-gutter: 30px;
+  /* The same sprite is half-size on the document, so its travel must also be half-size.
+     Otherwise it jumps twice as far relative to its own width as the 1:1 menu cursor. */
+  --ff7-hand-shift: -2px;
+
+  background: #000;
+  color: var(--ff7-text-white);
+  /* Stamped, not blurred, like the bitmap face. 1px on the page where ff7-ui.css uses 2px on
+   * the replica: at 16px body copy a 2px offset closes the counters of a CJK glyph. */
+  text-shadow: var(--ff7-text-shadow-page);
+}
+
+/* FF7 has no rounded corner and no blur anywhere in it. Utilities lose to this because they
+ * are emitted inside a cascade layer and this file is unlayered; `:where()` drops the whole
+ * selector to (0,1,0) so a component's own scoped rule can still win where it means to. */
+.ff7-page :where(:not(.ff7-screen, .ff7-screen *)) {
+  border-radius: 0;
+  backdrop-filter: none;
+}
+
+.ff7-page ::selection {
+  background: var(--ff7-text-cyan);
+  color: #05050c;
+  text-shadow: none;
+}
+
+/* Square, in palette, and never removed. `:where()` again: a component that draws its own ring
+ * outranks this one instead of fighting it. */
+.ff7-page :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ff7-text-cyan);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Guard — the 950x598 replica                                                          */
+/* ---------------------------------------------------------------------------------- */
+
+/* `.ff7-screen` is measured against a pixel grid: an inherited font-size, line-height, colour,
+ * letter-spacing or text-shadow from the page around it is a regression, not a restyle. Every
+ * inherited property this file sets is re-asserted here at the replica's own values (the same
+ * ones ff7-ui.css gives it), so the page cannot reach inside. Nothing below this block may
+ * name a descendant of `.ff7-screen`. */
+.ff7-page .ff7-screen {
+  font-family: var(--ff7-font-family);
+  font-size: var(--ff7-font-size);
+  font-size-adjust: none;
+  font-weight: var(--ff7-font-weight);
+  font-style: var(--ff7-font-style);
+  line-height: 1;
+  letter-spacing: var(--ff7-letter-spacing);
+  word-spacing: var(--ff7-word-spacing);
+  text-align: left;
+  text-shadow: none;
+  color: var(--ff7-text-white);
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Measure                                                                              */
+/* ---------------------------------------------------------------------------------- */
+
+/* max-w-5xl (64rem) minus the page's px-6 leaves 976px, and a section that is now a panel
+ * spends 64 of that on its own padding — which would drop FF7MenuDemo's stage below 950 and
+ * make it render the replica at scale 0.96, i.e. resampled. 68rem buys the padding back and
+ * keeps the pixel grid 1:1 at desktop widths. The three containers move together or the nav,
+ * the content and the footer stop lining up.
+ *
+ * `.demo-page` opts out: the exhibit stage is a full-viewport viewer, and a measure would
+ * leave the page's own black showing down the right-hand side of the canvas. */
+.ff7-page > header nav,
+.ff7-page main > div:not(.demo-page),
+.ff7-page > footer > p {
+  max-width: 68rem;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Panel                                                                                */
+/* ---------------------------------------------------------------------------------- */
+
+/* The same recipe as `.ff7-panel` in ff7-ui.css, composed from the same tokens: the sampled
+ * ramp arrives as --ff7-panel-stops, every ring colour as --ff7-border-*, the corner cut as
+ * --ff7-chamfer. Nothing sampled is retyped. The composition is repeated because plain CSS
+ * cannot lend one rule's declarations to another selector, and neither the markup nor
+ * ff7-ui.css is mine to add a class to. Change a colour in ff7-ui.css and this follows.
+ *
+ * Everything inside `.demo-page` is excluded: the stage is one floating panel over a viewer,
+ * and its inner <section>s are rows in that panel, not boxes of their own. The panel gets the
+ * same recipe by name at the bottom of this file. */
+.ff7-page main section:not(.demo-page *),
+.ff7-page a[href="#content"]:focus {
+  box-sizing: border-box;
+  background-image:
+    var(--ff7-panel-overlay), linear-gradient(to bottom right, var(--ff7-panel-stops));
+  background-blend-mode: multiply, normal;
+  box-shadow:
+    inset 0 0 0 1px var(--ff7-border-shadow),
+    inset 0 0 0 3px var(--ff7-border-middle),
+    inset 0 0 0 5px var(--ff7-border-highlight),
+    inset 0 0 0 6px var(--ff7-border-light),
+    inset 0 0 0 7px var(--ff7-border-dark);
+  clip-path: polygon(
+    var(--ff7-chamfer) 0,
+    calc(100% - var(--ff7-chamfer)) 0,
+    100% var(--ff7-chamfer),
+    100% calc(100% - var(--ff7-chamfer)),
+    calc(100% - var(--ff7-chamfer)) 100%,
+    var(--ff7-chamfer) 100%,
+    0 calc(100% - var(--ff7-chamfer)),
+    0 var(--ff7-chamfer)
+  );
+}
+
+/* Clear of the 7px frame by a wide margin — an FF7 box never crowds its border. */
+.ff7-page main section:not(.demo-page *) {
+  padding: 1.75rem 2rem 2rem;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Shell                                                                                */
+/* ---------------------------------------------------------------------------------- */
+
+/* Flat black and a bevel, not a translucent bar: FF7 has no backdrop-filter in it. The four
+ * shadows are one metallic rule read from the inside out — 1px dark, 2px highlight, 1px
+ * middle, 1px shadow — because each later shadow paints behind the ones before it. */
+.ff7-page > header {
+  background: #000;
+  border-bottom: 0;
+  box-shadow:
+    0 1px 0 var(--ff7-border-dark),
+    0 3px 0 var(--ff7-border-highlight),
+    0 4px 0 var(--ff7-border-middle),
+    0 5px 0 var(--ff7-border-shadow);
+}
+
+.ff7-page > footer {
+  background: #000;
+  border-top: 0;
+  margin-top: 4rem;
+  /* Same rule, quieter and pointing the other way. */
+  box-shadow:
+    0 -1px 0 var(--ff7-border-dark),
+    0 -2px 0 var(--ff7-border-light),
+    0 -3px 0 var(--ff7-border-shadow);
+}
+
+.ff7-page > footer > p {
+  color: var(--ff7-text-dim);
+  font-size: 0.875rem;
+  line-height: 1.9;
+}
+
+/* The skip link keeps working and lands as a panel when it is focused. `focus:absolute` is a
+ * layered utility, so it loses to the unlayered `position: relative` the menu-row rule below
+ * gives every anchor — which would drop the link into the flow and shove the whole header
+ * down the moment it took focus. It is out of flow in both of its states anyway, so pinning
+ * it absolute here costs nothing and still gives the hand sprite its containing block. */
+.ff7-page a[href="#content"] {
+  position: absolute;
+}
+
+.ff7-page a[href="#content"]:focus {
+  z-index: 60;
+  /* The left side keeps the hand gutter; the shorthand alone would put the sprite on top of
+   * the first word. */
+  padding: 0.6rem 1.1rem 0.6rem calc(var(--ff7-page-hand-gutter) + 1.1rem);
+  color: var(--ff7-text-white);
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Type                                                                                 */
+/* ---------------------------------------------------------------------------------- */
+
+/* Jersey 10 has no CJK glyphs and this page is mostly 繁體中文, so the pixel face can only
+ * ever set the Latin headings; every Chinese string falls through to the system face behind
+ * it. Shipping a pixel CJK webfont is out — main.css records a standing no-webfonts decision
+ * and the smallest usable one is a megabyte — so the identity is carried by the panels, the
+ * frames and the hand cursor, and the prose just has to be readable: 16-17px, line-height
+ * 1.8, FF7 colour, hard 1px shadow. The headings below are sized against Jersey 10's cap
+ * height (0.5357em), which is why h1's number looks so much larger than an h2's: at 64px it
+ * inks a 34px capital, only a third taller than a 24px CJK h2 sitting beside it. */
+.ff7-page h1,
+.ff7-page h2,
+.ff7-page h3 {
+  font-family: var(--ff7-font-family), var(--ff7-font-family-cjk);
+  font-weight: var(--ff7-font-weight);
+  font-style: var(--ff7-font-style);
+  letter-spacing: var(--ff7-letter-spacing);
+  word-spacing: var(--ff7-word-spacing);
+  font-synthesis: none;
+  font-kerning: normal;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 0,
+    "clig" 0;
+  font-variant-ligatures: none;
+  font-variant-numeric: lining-nums proportional-nums;
+  text-rendering: optimizeLegibility;
+  /* The headings here are mixed script — "FF7 選單介面" is one string in two faces — and
+   * Jersey 10's cap height is 0.5357em against a Han glyph's ~0.88em, so at one font-size the
+   * Latin run comes out looking like a footnote inside its own heading. font-size-adjust
+   * normalises on cap height instead of em box: it scales Jersey 10 up ~1.23x and the CJK
+   * fallback down ~0.92x, and the two runs finally sit on the same optical size. Every number
+   * below is chosen after this correction, not before it. */
+  font-size-adjust: cap-height 0.66;
+  text-shadow: var(--ff7-text-shadow-ui);
+}
+
+.ff7-page h1 {
+  margin-top: 1.5rem;
+  font-size: clamp(2.25rem, 5.5vw, 3.25rem);
+  line-height: 1.15;
+  color: var(--ff7-text-white);
+}
+
+/* Cyan, like every label in the reference screen. */
+.ff7-page main section h2 {
+  font-size: 1.5rem;
+  line-height: 1.35;
+  color: var(--ff7-text-cyan);
+}
+
+/* Standfirst under the title, then the quieter source line. */
+.ff7-page main > div > p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.ff7-page main > div > p + p {
+  font-size: 0.9375rem;
+}
+
+.ff7-page main section > p,
+.ff7-page main section > ul > li {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.ff7-page main section > div > span {
+  font-size: 0.9375rem;
+}
+
+.ff7-page figcaption {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Menu rows — every link and button on the page                                        */
+/* ---------------------------------------------------------------------------------- */
+
+/* `.chip` is the live-model viewer's control class and belongs to ff7-controls.css; excluded
+ * so the two files cannot both dress the same button. `.icon-btn` is an icon-only inspector
+ * control and must keep its compact hit target instead of receiving the text-row gutter. The
+ * panel dock's icon-only buttons and back link use the same compact treatment.
+ *
+ * The gutter is permanent. Reserving it is what makes the cursor free: it can appear and
+ * disappear without a single box moving, and it doubles as the indent a real FF7 menu row
+ * has. */
+.ff7-page a:not(.panel-dock-link):not(.yt-audio-bar *),
+.ff7-page button:not(.chip):not(.icon-btn):not(.panel-dock-item):not(.yt-audio-bar *) {
+  position: relative;
+  padding-left: var(--ff7-page-hand-gutter);
+  color: var(--ff7-text-white);
+  text-decoration: none;
+  /* FF7 does not ease. */
+  transition: none;
+}
+
+.ff7-page a:not(.panel-dock-link):not(.yt-audio-bar *):hover,
+.ff7-page a:not(.panel-dock-link):not(.yt-audio-bar *):focus-visible,
+.ff7-page button:not(.chip):not(.icon-btn):not(.panel-dock-item):not(.yt-audio-bar *):hover,
+.ff7-page
+  button:not(.chip):not(.icon-btn):not(.panel-dock-item):not(.yt-audio-bar *):focus-visible {
+  /* The reference menu keeps command text white; cyan belongs to labels such as LV/HP/MP. */
+  color: var(--ff7-text-white);
+  text-decoration: none;
+}
+
+/* The sprite lives in the reserved gutter and is absolutely positioned, so it is out of flow
+ * twice over. Half size (the file is 48x29 for the 1:1 replica), nearest-neighbour. The base
+ * path is hard-coded because CSS in src/ is rewritten by Vite only for relative URLs, and the
+ * site is served from /img2three-art-exhibition/. */
+.ff7-page a:not(.panel-dock-link):not(.yt-audio-bar *)::before,
+.ff7-page button:not(.chip):not(.icon-btn):not(.panel-dock-item):not(.yt-audio-bar *)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: calc(var(--ff7-page-hand-height) / -2);
+  width: var(--ff7-page-hand-width);
+  height: var(--ff7-page-hand-height);
+  background-image: url("/img2three-art-exhibition/assets/ff7-hand-cursor.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ff7-page a:not(.panel-dock-link):not(.yt-audio-bar *):hover::before,
+.ff7-page a:not(.panel-dock-link):not(.yt-audio-bar *):focus-visible::before,
+.ff7-page button:not(.chip):not(.icon-btn):not(.panel-dock-item):not(.yt-audio-bar *):hover::before,
+.ff7-page
+  button:not(.chip):not(.icon-btn):not(.panel-dock-item):not(
+    .yt-audio-bar *
+  ):focus-visible::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Still shown — it is the only thing marking the active row — just not twitching. */
+  .ff7-page a:not(.panel-dock-link):not(.yt-audio-bar *):hover::before,
+  .ff7-page a:not(.panel-dock-link):not(.yt-audio-bar *):focus-visible::before,
+  .ff7-page button:not(.chip):not(.icon-btn):not(.panel-dock-item):hover::before,
+  .ff7-page button:not(.chip):not(.icon-btn):not(.panel-dock-item):focus-visible::before {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Reference images                                                                     */
+/* ---------------------------------------------------------------------------------- */
+
+/* The same five rings as a panel frame, turned inside out: an inset shadow on a replaced
+ * element paints under the image and would never be seen. Read from the picture outwards the
+ * order is the mirror of the inset stack — 1px dark, 1px light, 2px highlight, 2px middle,
+ * 1px shadow — because a later shadow again paints behind the ones before it. Spread only:
+ * no offset, no blur, so it is a frame and not a drop shadow. */
+.ff7-page figure img {
+  display: block;
+  border: 0;
+  box-shadow:
+    0 0 0 1px var(--ff7-border-dark),
+    0 0 0 2px var(--ff7-border-light),
+    0 0 0 4px var(--ff7-border-highlight),
+    0 0 0 6px var(--ff7-border-middle),
+    0 0 0 7px var(--ff7-border-shadow);
+}
+
+.ff7-page figure {
+  margin-top: 2rem;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Decisions list                                                                       */
+/* ---------------------------------------------------------------------------------- */
+
+/* `border-accent` only ever appears on these. The accent bar becomes a two-tone metallic edge
+ * — the same lit-over-dark reading as a panel border — plus a cyan lozenge to keep the list
+ * scannable at a glance. */
+.ff7-page li.border-accent {
+  position: relative;
+  border-left: 0;
+  padding-left: 1.75rem;
+  box-shadow:
+    inset 1px 0 0 var(--ff7-border-highlight),
+    inset 2px 0 0 var(--ff7-border-shadow);
+}
+
+.ff7-page li.border-accent::before {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  background: var(--ff7-text-cyan);
+  rotate: 45deg;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Prompt well                                                                          */
+/* ---------------------------------------------------------------------------------- */
+
+/* main.css owns the monospace face, the 90-column `white-space: pre` and the horizontal
+ * scroll; none of that is touched. What changes is the container: a dark inset well with the
+ * metallic frame, sunk into the panel rather than floating on it. --ff7-progress-track is the
+ * darkest sampled surface in the theme, which is exactly what a recessed box wants. */
+.ff7-page pre.prompt-block {
+  border: 0;
+  padding: 1.5rem 1.75rem;
+  background: var(--ff7-progress-track);
+  color: var(--ff7-text-white);
+  /* Monospace at 13px is where the stamped shadow stops reading as a shadow and starts
+   * reading as a rendering fault. */
+  text-shadow: none;
+  box-shadow:
+    inset 0 0 0 1px var(--ff7-border-shadow),
+    inset 0 0 0 3px var(--ff7-border-middle),
+    inset 0 0 0 5px var(--ff7-border-highlight),
+    inset 0 0 0 6px var(--ff7-border-light),
+    inset 0 0 0 7px var(--ff7-border-dark);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ff7-border-middle) #05050c;
+}
+
+/* Both scrollbar dialects are here on purpose, and they do not both run: Chromium honours the
+ * standard `scrollbar-width`/`scrollbar-color` above and then ignores these pseudo-elements
+ * entirely, so this block is what dresses the bar in WebKit builds too old for the standard
+ * properties. The colours are the same either way. */
+.ff7-page pre.prompt-block::-webkit-scrollbar {
+  height: 14px;
+}
+
+.ff7-page pre.prompt-block::-webkit-scrollbar-track {
+  background: #05050c;
+  box-shadow: inset 0 1px 0 var(--ff7-border-shadow);
+}
+
+.ff7-page pre.prompt-block::-webkit-scrollbar-thumb {
+  background: var(--ff7-border-middle);
+  box-shadow:
+    inset 0 0 0 1px var(--ff7-border-shadow),
+    inset 0 1px 0 2px var(--ff7-border-highlight);
+}
+
+.ff7-page pre.prompt-block::-webkit-scrollbar-thumb:hover {
+  background: var(--ff7-border-light);
+}
+
+.ff7-page pre.prompt-block::-webkit-scrollbar-corner {
+  background: #05050c;
+}
+
+/* Inline code in the docs blurb: the same well, one line high. Scoped to a direct child of a
+ * section's own paragraph so the viewer's `<code>` — ff7-controls.css's business — is left
+ * where it is. */
+.ff7-page main section > p > code {
+  padding: 0.1em 0.4em;
+  background: var(--ff7-progress-track);
+  color: var(--ff7-text-cyan);
+  box-shadow:
+    inset 0 0 0 1px var(--ff7-border-shadow),
+    inset 0 0 0 2px var(--ff7-border-middle);
+  text-shadow: none;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* Exhibit stage — the img2threejs showcase layout, wearing FF7                          */
+/* ---------------------------------------------------------------------------------- */
+
+/* The stage (src/components/ExhibitStage.vue) is a port of the img2threejs showcase demo
+ * page: full-viewport viewer under a collapsible panel. Every colour in showcase.css comes
+ * from one of eight variables, so retheming it is a token swap plus the panel treatment —
+ * not a second copy of the layout. Same division of labour as the block above: the layout
+ * is the showcase's, the identity is FF7's. */
+.ff7-page {
+  --bg: #000;
+  --bg-raised: #00002e;
+  --bg-glass: rgba(0, 4, 88, 0.55);
+  --border: var(--ff7-border-middle);
+  --text: var(--ff7-text-white);
+  --text-dim: var(--ff7-text-dim);
+  --accent: var(--ff7-text-cyan);
+  --accent-strong: var(--ff7-text-cyan);
+  --cyan: var(--ff7-text-cyan);
+  --gold: var(--ff7-text-cyan);
+  /* The showcase's brand gradient is a purple→cyan→gold ramp that reads as another product.
+     FF7's own blue ramp, run sideways, is the equivalent here. */
+  --brand-grad: linear-gradient(120deg, #075db5 0%, #16dee3 55%, #ffbdff 100%);
+}
+
+/* FF7 menu windows are isolated surfaces, not one translucent card: the dock and active content
+ * each get their own blue surface and metallic ring. The outer layout stays transparent so the
+ * frames read as separate pop-up windows. */
+.ff7-page .demo-panel {
+  width: min(390px, calc(100vw - 2rem));
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+  clip-path: none;
+  overflow: visible;
+}
+
+.ff7-page .panel-dock-layout {
+  gap: 3px;
+  padding: 0 3px 3px;
+}
+
+.ff7-page .panel-dock,
+.ff7-page .panel-dock-section {
+  box-sizing: border-box;
+  background-image:
+    var(--ff7-panel-overlay), linear-gradient(to bottom right, var(--ff7-panel-stops));
+  background-color: transparent;
+  background-blend-mode: multiply, normal;
+  border: 0;
+  box-shadow:
+    inset 0 0 0 1px var(--ff7-border-shadow),
+    inset 0 0 0 3px var(--ff7-border-middle),
+    inset 0 0 0 5px var(--ff7-border-highlight),
+    inset 0 0 0 6px var(--ff7-border-light),
+    inset 0 0 0 7px var(--ff7-border-dark);
+  clip-path: polygon(
+    var(--ff7-chamfer) 0,
+    calc(100% - var(--ff7-chamfer)) 0,
+    100% var(--ff7-chamfer),
+    100% calc(100% - var(--ff7-chamfer)),
+    calc(100% - var(--ff7-chamfer)) 100%,
+    var(--ff7-chamfer) 100%,
+    0 calc(100% - var(--ff7-chamfer)),
+    0 var(--ff7-chamfer)
+  );
+}
+
+.ff7-page .panel-dock {
+  flex-basis: 3.65rem;
+  padding: 0.45rem 0.35rem;
+  border: 0;
+}
+
+.ff7-page .demo-panel-body {
+  margin: 0;
+  max-height: none;
+  overflow: visible;
+  background: transparent;
+  background-image: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.ff7-page .demo-panel-inner {
+  height: auto;
+  padding: 0;
+}
+
+.ff7-page .panel-dock-section {
+  display: flex;
+  min-height: 0;
+  max-height: calc(100dvh - 6rem);
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.ff7-page .panel-dock-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.ff7-page #controls .ff7-settings-config {
+  flex: 0 0 auto;
+  padding: 0.25rem 0.45rem;
+  border-left: 1px solid var(--ff7-border-highlight);
+  color: var(--ff7-text-white);
+  font-size: 0.74rem;
+}
+
+.ff7-page #controls .ff7-settings-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ff7-page #controls .demo-links {
+  margin: 0;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--ff7-border-middle);
+}
+
+.ff7-page #controls .panel-controls {
+  gap: 0.2rem;
+  border-top: 0;
+  padding-top: 0;
+}
+
+.ff7-page #controls .panel-row {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  column-gap: 0.5rem;
+  row-gap: 0.2rem;
+  align-items: baseline;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--ff7-border-shadow);
+}
+
+.ff7-page #controls .panel-row:last-child {
+  border-bottom: 0;
+}
+
+.ff7-page #controls .panel-row-label {
+  grid-column: 1;
+  grid-row: 1;
+  color: var(--ff7-text-cyan);
+  font-family: var(--ff7-font-family);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.ff7-page #controls .panel-row-options {
+  display: contents;
+}
+
+.ff7-page #controls .panel-row-options > *:first-child {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.ff7-page #controls .panel-row-options > *:not(:first-child) {
+  grid-column: 2;
+}
+
+.ff7-page #controls .panel-row-options .chip {
+  min-width: 0;
+}
+
+.ff7-page #controls .panel-row-options .panel-slider {
+  width: 100%;
+  min-width: 0;
+}
+
+.ff7-page #controls .panel-slider {
+  appearance: none;
+  height: 17px;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(
+      180deg,
+      #28283b 0 2px,
+      var(--ff7-progress-empty) 2px 15px,
+      #77777c 15px 17px
+    )
+    0 0 / 100% 17px no-repeat;
+  box-shadow:
+    inset 0 0 0 1px var(--ff7-progress-track),
+    0 2px 0 var(--ff7-progress-track);
+  cursor: pointer;
+}
+
+.ff7-page #controls .panel-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 17px;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(90deg, #b7b9c8, #dedbdc 45%, #b2b2b4);
+  box-shadow: inset 0 0 0 1px #44444b;
+}
+
+.ff7-page #controls .panel-slider::-moz-range-thumb {
+  width: 10px;
+  height: 17px;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(90deg, #b7b9c8, #dedbdc 45%, #b2b2b4);
+  box-shadow: inset 0 0 0 1px #44444b;
+}
+
+.ff7-page .panel-dock-item {
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.ff7-page .panel-dock-item:focus-visible,
+.ff7-page .panel-dock-item.is-active {
+  background: linear-gradient(to bottom right, #0057ae, #000051);
+}
+
+.ff7-page .panel-dock-item:hover {
+  background: transparent;
+}
+
+.ff7-page .panel-dock-divider {
+  background: var(--ff7-border-highlight);
+  box-shadow: 0 1px 0 var(--ff7-border-shadow);
+}
+
+/* The transparent body only positions the active framed section. */
+.ff7-page .demo-panel-body {
+  margin: 0;
+}
+
+/* Applies to every tab's subtitle now, not just Brief's — each dock section names
+   itself (Brief, Components, Controls, Spec, Docs) under the shared exhibit title. It is the
+   only thing between the title and the section's content, so it owns that whole gap. */
+.ff7-page .panel-section-subtitle {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  margin: 0.2rem 0 0.75rem;
+}
+
+.ff7-page .panel-dock-section h2,
+.ff7-page .demo-panel-head h2 {
+  margin: 0.25rem 0 0;
+  font-size: 1.35rem;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.ff7-page #brief .demo-meta {
+  gap: 0.75rem;
+  margin-top: 0.1rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.ff7-page #brief .demo-meta p {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 860px) {
+  .ff7-page .demo-panel {
+    width: 100%;
+  }
+}
+
+@media (max-height: 520px) and (min-width: 861px) {
+  .ff7-page .demo-panel {
+    width: min(320px, 54vw);
+  }
+}
+
+/* The showcase's kicker/eyebrow accents are cyan here, and cyan on this blue needs the
+ * stamped shadow to stay legible — the same one the rest of the page wears. */
+.ff7-page .demo-kicker,
+.ff7-page .parts-count,
+.ff7-page .part-item.is-active {
+  text-shadow: var(--ff7-text-shadow-page);
+}
+
+/* The aurora belongs to the other theme. */
+.ff7-page .aurora {
+  display: none;
+}

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.vite/
+.DS_Store
+typed-router.d.ts
+.vite-hooks/
+.velite/
+.pnpm-store
+__pycache__/
+
+# 161 MB working archive, and the lean-ctx tool cache
+Archive.zip
+.lean-ctx/

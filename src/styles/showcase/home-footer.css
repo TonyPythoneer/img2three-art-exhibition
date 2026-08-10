@@ -1,0 +1,10 @@
+/* HomeFooter.vue */
+.footer {
+  max-width: 1160px;
+  margin: 3.5rem auto 0;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  font-family: var(--mono);
+}
