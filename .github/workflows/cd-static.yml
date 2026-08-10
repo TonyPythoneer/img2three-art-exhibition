@@ -1,9 +1,9 @@
-# Builds the site and deploys dist/ to GitHub Pages on every push to master.
+# Builds the site and deploys dist/ to GitHub Pages on every push to main.
 name: 🚀 Deploy · GitHub Pages
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:

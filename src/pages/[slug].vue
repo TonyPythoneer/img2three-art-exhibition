@@ -69,8 +69,8 @@ import { useSeoMeta } from "@unhead/vue";
 import { exhibitBySlug } from "~/exhibits/index.js";
 import UltimaV2Stage from "~/exhibits/cloud-ultima-weapon-v2/UltimaV2Stage.vue";
 
-const REPO = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/master/src/exhibits";
-const REPO_ROOT = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/master";
+const REPO = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/main/src/exhibits";
+const REPO_ROOT = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/main";
 
 const imageUrls = import.meta.glob("../exhibits/*/*.png", {
   eager: true,
