@@ -99,16 +99,17 @@ const route = useRoute("/[slug]");
 const slug = computed(() => String(route.params.slug ?? ""));
 const exhibit = computed(() => exhibitBySlug(slug.value));
 
-const imageUrl = (file: string) => imageUrls[`../exhibits/${slug.value}/${file}`] ?? "";
+const assetDir = computed(() => exhibit.value?.assetDir ?? slug.value);
+const imageUrl = (file: string) => imageUrls[`../exhibits/${assetDir.value}/${file}`] ?? "";
 const docHref = (file: string) =>
-  file.startsWith("/") ? `${REPO_ROOT}${file}` : `${REPO}/${slug.value}/${file}`;
+  file.startsWith("/") ? `${REPO_ROOT}${file}` : `${REPO}/${assetDir.value}/${file}`;
 const prompt = computed(() => {
   const found = exhibit.value;
   if (!found) return "";
   if (found.promptFile.startsWith("/")) {
     return rootTexts[`../../${found.promptFile.slice(1)}`] ?? "";
   }
-  return promptTexts[`../exhibits/${found.slug}/${found.promptFile}`] ?? "";
+  return promptTexts[`../exhibits/${found.assetDir ?? found.slug}/${found.promptFile}`] ?? "";
 });
 
 const MODEL_NOTES: Record<string, string> = {
@@ -124,7 +125,7 @@ const modelNote = computed(() => MODEL_NOTES[slug.value] ?? "");
 // absent from this map falls through to the plain document page below.
 const STAGES = {
   "balamb-garden": BalambStage,
-  "cloud-ultima-weapon-v2": UltimaV2Stage,
+  "ff7-cloud-ultima-weapon": UltimaV2Stage,
 } as Record<string, typeof BalambStage | typeof UltimaV2Stage | undefined>;
 
 const stage = computed(() => STAGES[slug.value]);

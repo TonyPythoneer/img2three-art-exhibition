@@ -18,11 +18,14 @@ export type Exhibit = {
   status: ExhibitStatus;
   /** Where the reference art came from. */
   source: string;
-  /** Filenames inside src/exhibits/<slug>/. */
+  /** Filenames inside src/exhibits/<assetDir ?? slug>/. */
   images: { file: string; caption: string }[];
-  /** Plain-text prompt inside src/exhibits/<slug>/, rendered verbatim on the page.
+  /** Plain-text prompt inside src/exhibits/<assetDir ?? slug>/, rendered verbatim on the page.
    *  A leading "/" resolves relative to the repo root instead (e.g. "/SPEC.md"). */
   promptFile: string;
+  /** Folder under src/exhibits/ holding images/promptFile, when it differs from the public
+   *  route `slug` (e.g. the route was renamed but the exhibit folder/gate scripts were not). */
+  assetDir?: string;
   /** Markdown living beside the prompt, linked rather than rendered. A leading "/"
    *  links to that path from the repo root instead of src/exhibits/<slug>/. */
   docs?: { file: string; label: string }[];
@@ -92,7 +95,8 @@ export const exhibits: Exhibit[] = [
     ],
   },
   {
-    slug: "cloud-ultima-weapon-v2",
+    slug: "ff7-cloud-ultima-weapon",
+    assetDir: "cloud-ultima-weapon-v2",
     status: "done",
     liveModel: true,
     promptFile: "prompt.txt",

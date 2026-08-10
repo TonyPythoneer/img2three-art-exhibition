@@ -294,8 +294,8 @@ export function heroEntries(): HeroEntry[] {
       build: () => createBalambGardenCenter({ detail: "full" }),
     },
     {
-      slug: "cloud-ultima-weapon-v2",
-      title: "Ultima Weapon V2",
+      slug: "ff7-cloud-ultima-weapon",
+      title: "Ultima Weapon",
       build: () => createUltimaWeaponV2Model({ detail: "full" }),
     },
   ];
