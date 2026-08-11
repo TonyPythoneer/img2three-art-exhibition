@@ -68,11 +68,16 @@ import { RouterLink, useRoute } from "vue-router";
 import { useSeoMeta } from "@unhead/vue";
 import { exhibitBySlug } from "~/exhibits/index.js";
 import UltimaV2Stage from "~/exhibits/cloud-ultima-weapon-v2/UltimaV2Stage.vue";
+import CloudStrifeStage from "~/exhibits/cloud-strife-polygon-figure/CloudStrifeStage.vue";
 
 const REPO = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/main/src/exhibits";
 const REPO_ROOT = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/main";
 
-const imageUrls = import.meta.glob("../exhibits/*/*.png", {
+// Two patterns, both deliberately shallow. `*/references/*.webp` exists because newer
+// exhibits keep their plates in that one subfolder; a `**` here would also eagerly bundle
+// every detail-inventory zone crop and PBR map under spec/, which are gate evidence, not
+// page assets.
+const imageUrls = import.meta.glob(["../exhibits/*/*.png", "../exhibits/*/references/*.webp"], {
   eager: true,
   import: "default",
   query: "?url",
@@ -121,6 +126,7 @@ const modelNote = computed(() => MODEL_NOTES[slug.value] ?? "");
 // absent from this map falls through to the plain document page below.
 const STAGES = {
   "ff7-cloud-ultima-weapon": UltimaV2Stage,
+  "ff7-cloud-strife-figure": CloudStrifeStage,
 } as Record<string, typeof UltimaV2Stage | undefined>;
 
 const stage = computed(() => STAGES[slug.value]);

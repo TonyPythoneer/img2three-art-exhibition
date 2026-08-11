@@ -17,3 +17,15 @@
   /* the canvas owns all gestures — no page pan/zoom fighting the orbit controls */
   touch-action: none;
 }
+
+/* An exhibit wired up before its model exists says so in the viewport, rather than
+ * leaving a blank rectangle that reads as a failed WebGL context. */
+.stage-placeholder {
+  display: grid;
+  place-content: center;
+  height: 100%;
+  padding: 2rem;
+  color: var(--color-ink-soft);
+  font-size: 0.9rem;
+  text-align: center;
+}

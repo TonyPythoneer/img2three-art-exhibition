@@ -74,6 +74,16 @@ export const exhibits: Exhibit[] = [
     promptFile: "prompt.txt",
     ...veliteFields("cloud-ultima-weapon-v2"),
   },
+  {
+    slug: "ff7-cloud-strife-figure",
+    assetDir: "cloud-strife-polygon-figure",
+    status: "planning",
+    // No model yet: the ten Stage 1 parts are gated behind spec review. The stage
+    // still mounts, carrying the brief, the reference plates and the prompt.
+    liveModel: false,
+    promptFile: "prompt.txt",
+    ...veliteFields("cloud-strife-polygon-figure"),
+  },
 ];
 
 export const exhibitBySlug = (slug: string): Exhibit | undefined =>

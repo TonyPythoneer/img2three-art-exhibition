@@ -55,11 +55,10 @@ const emit = defineEmits<{ focus: [slug: string] }>();
 
 // Eager and hashed by Vite, so `base` is applied for free. public/ would need
 // import.meta.env.BASE_URL stitched on by hand at every use site.
-const imageUrls = import.meta.glob("../../exhibits/*/*.png", {
-  eager: true,
-  import: "default",
-  query: "?url",
-}) as Record<string, string>;
+const imageUrls = import.meta.glob(
+  ["../../exhibits/*/*.png", "../../exhibits/*/references/*.webp"],
+  { eager: true, import: "default", query: "?url" },
+) as Record<string, string>;
 
 const cover = (exhibit: Exhibit): string | undefined => {
   const first = exhibit.images[0];

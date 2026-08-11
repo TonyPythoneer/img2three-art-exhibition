@@ -27,11 +27,11 @@ import "~/styles/ff7-page.css";
 
 /** Routes that wear the FF7 menu chrome instead of the gallery's own. Add a path to skin it;
  *  every rule in ff7-page.css is scoped under .ff7-page, so nothing else moves. */
-const FF7_ROUTES = ["/ff7-cloud-ultima-weapon"];
+const FF7_ROUTES = ["/ff7-cloud-ultima-weapon", "/ff7-cloud-strife-figure"];
 
 /** Routes that bring their own chrome: the landing page has its own nav and footer, and the
  *  exhibit stages are full-viewport viewers a sticky header would cover. */
-const SHOWCASE_ROUTES = ["", "/ff7-cloud-ultima-weapon", "/ff7-menu"];
+const SHOWCASE_ROUTES = ["", "/ff7-cloud-ultima-weapon", "/ff7-cloud-strife-figure", "/ff7-menu"];
 
 // The class sits on the app shell, not on the page component, because the header and footer
 // have to change with it — a page in FF7 blue under an unstyled nav bar reads as a bug.
