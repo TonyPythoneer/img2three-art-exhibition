@@ -26,9 +26,9 @@ import {
 } from "~/exhibits/cloud-ultima-weapon-v2/createUltimaWeaponV2LookDev";
 
 /**
- * Headless review harness for the v2 rebuild. Same contract as ultima-harness.vue and
- * ultima-fable-harness.vue — only the imports differ — so tools/capture_ultima.mjs drives it
- * with `--route ultima-v2-harness`. Deliberately absent from ssgOptions.includedRoutes:
+ * Headless review harness for the v2 rebuild, driven by tools/capture_ultima.mjs with
+ * `--route ultima-v2-harness`. The fable and codex-sol rebuilds had their own copies of this
+ * contract; both were retired with their exhibits. Deliberately absent from ssgOptions.includedRoutes:
  * Three.js must never run in node during static generation.
  */
 
