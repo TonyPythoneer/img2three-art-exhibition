@@ -8,6 +8,7 @@
     "preview": "vp preview",
     "prepare": "vp config",
     "typecheck": "vue-tsc --noEmit",
+    "test": "node --test \"tests/**/*.test.mjs\"",
     "serve:dist": "python3 -m http.server 4173 --directory dist",
     "capture": "node tools/capture.mjs",
     "ff7:compare": "node tools/ff7-compare.mjs"
