@@ -1,0 +1,72 @@
+[
+  {
+    "admitted": true,
+    "reasons": [],
+    "provenance": {
+      "viewpoint": "front",
+      "sourcePath": "references/front.webp",
+      "width": 384,
+      "height": 827,
+      "foregroundCoverage": 0.4912,
+      "largestComponentFraction": 1.0,
+      "pHash": 13514997069343003306,
+      "duplicateOfHash": null
+    }
+  },
+  {
+    "admitted": true,
+    "reasons": [],
+    "provenance": {
+      "viewpoint": "back",
+      "sourcePath": "references/back.webp",
+      "width": 391,
+      "height": 829,
+      "foregroundCoverage": 0.5257,
+      "largestComponentFraction": 1.0,
+      "pHash": 18135923168876079392,
+      "duplicateOfHash": null
+    }
+  },
+  {
+    "admitted": true,
+    "reasons": [],
+    "provenance": {
+      "viewpoint": "left",
+      "sourcePath": "references/left.webp",
+      "width": 214,
+      "height": 847,
+      "foregroundCoverage": 0.5002,
+      "largestComponentFraction": 1.0,
+      "pHash": 18155407312981853344,
+      "duplicateOfHash": null
+    }
+  },
+  {
+    "admitted": true,
+    "reasons": [],
+    "provenance": {
+      "viewpoint": "right",
+      "sourcePath": "references/right.webp",
+      "width": 206,
+      "height": 831,
+      "foregroundCoverage": 0.495,
+      "largestComponentFraction": 1.0,
+      "pHash": 17703929209108826672,
+      "duplicateOfHash": null
+    }
+  },
+  {
+    "admitted": true,
+    "reasons": [],
+    "provenance": {
+      "viewpoint": "more-angle",
+      "sourcePath": "references/more-angle.webp",
+      "width": 297,
+      "height": 584,
+      "foregroundCoverage": 0.413,
+      "largestComponentFraction": 1.0,
+      "pHash": 11727015644450409700,
+      "duplicateOfHash": null
+    }
+  }
+]

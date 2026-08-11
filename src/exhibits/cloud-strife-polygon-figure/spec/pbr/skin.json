@@ -1,0 +1,74 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.8,
+  "estimatedFidelity": 0.8,
+  "targetThreshold": 0.7,
+  "materialId": "skin",
+  "sourceImage": "/private/tmp/claude-501/-Users-tonyyang-git-personal-img2three-art-exhibition/1fe0362d-3d2f-4501-aca7-28acc0fa7e9c/scratchpad/mat/skin.png",
+  "outDir": "spec/pbr/skin",
+  "palette": ["#D8B6B0", "#DDBDB6", "#AC928E", "#CAABA7", "#F9F6F3"],
+  "maps": {
+    "albedo": {
+      "path": "spec/pbr/skin/skin_albedo.webp",
+      "url": "skin_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "spec/pbr/skin/skin_roughness.webp",
+      "url": "skin_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "spec/pbr/skin/skin_height.webp",
+      "url": "skin_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "spec/pbr/skin/skin_normal.webp",
+      "url": "skin_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "spec/pbr/skin/skin_ao.webp",
+      "url": "skin_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 34,
+    "sourceHeight": 50,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 34,
+      "height": 50
+    },
+    "mask": {
+      "backgroundColor": "#DAC0B8",
+      "backgroundNoise": 16.673,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.8359
+    },
+    "mapStats": {
+      "valueRange": 0.1674,
+      "heightP90Gradient": 0.03879,
+      "roughnessBase": 0.688,
+      "roughnessVariation": 0.051,
+      "normalStrength": 0.202,
+      "blurRadius": 21
+    },
+    "palette": ["#D8B6B0", "#DDBDB6", "#AC928E", "#CAABA7", "#F9F6F3"]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped",
+    "low value range weakens height/roughness inference"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

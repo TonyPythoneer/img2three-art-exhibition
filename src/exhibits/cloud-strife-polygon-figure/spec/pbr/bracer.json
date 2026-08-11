@@ -1,0 +1,77 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.716,
+  "estimatedFidelity": 0.716,
+  "targetThreshold": 0.7,
+  "materialId": "bracer",
+  "sourceImage": "/private/tmp/claude-501/-Users-tonyyang-git-personal-img2three-art-exhibition/1fe0362d-3d2f-4501-aca7-28acc0fa7e9c/scratchpad/mat/bracer.png",
+  "outDir": "spec/pbr/bracer",
+  "palette": ["#7B8183", "#767C7E", "#7F7D7E", "#888B8D", "#C0B4B1"],
+  "maps": {
+    "albedo": {
+      "path": "spec/pbr/bracer/bracer_albedo.webp",
+      "url": "bracer_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "spec/pbr/bracer/bracer_roughness.webp",
+      "url": "bracer_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "spec/pbr/bracer/bracer_height.webp",
+      "url": "bracer_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "spec/pbr/bracer/bracer_normal.webp",
+      "url": "bracer_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "spec/pbr/bracer/bracer_ao.webp",
+      "url": "bracer_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 62,
+    "sourceHeight": 42,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 62,
+      "height": 42
+    },
+    "mask": {
+      "backgroundColor": "#7C7F82",
+      "backgroundNoise": 33.496,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 1.0
+    },
+    "mapStats": {
+      "valueRange": 0.08,
+      "heightP90Gradient": 0.02943,
+      "roughnessBase": 0.688,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.191,
+      "blurRadius": 21
+    },
+    "palette": ["#7B8183", "#767C7E", "#7F7D7E", "#888B8D", "#C0B4B1"]
+  },
+  "warnings": [
+    "foreground mask is tiny; material extraction is likely unreliable",
+    "image is not clearly isolated from background; using most pixels as material evidence",
+    "object/background separation is weak",
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped",
+    "low value range weakens height/roughness inference"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

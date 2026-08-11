@@ -1,0 +1,192 @@
+{
+  "sourceImage": "references/left.webp",
+  "zonesDir": "spec/detail-inventory/left",
+  "detailInventory": {
+    "scanMethod": "grid-3x3",
+    "targetMinDetails": 10,
+    "details": [
+      {
+        "id": "zone-r0c0",
+        "kind": "ridge",
+        "description": "Forward-leaning spike group seen edge-on; the spikes are flat-sided wedges, not cones.",
+        "region": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "spike-fan"
+        },
+        "evidenceRef": "spec/detail-inventory/left/zone-r0c0.webp",
+        "confidence": 0.75
+      },
+      {
+        "id": "zone-r0c1",
+        "kind": "seam",
+        "description": "Cap profile flattened front-to-back; the fringe lock hangs clear of the face plane.",
+        "region": {
+          "x": 0.3333,
+          "y": 0.0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "fringe-lock"
+        },
+        "evidenceRef": "spec/detail-inventory/left/zone-r0c1.webp",
+        "confidence": 0.78
+      },
+      {
+        "id": "zone-r0c2",
+        "kind": "ridge",
+        "description": "Rear spike tips projecting back past the occiput.",
+        "region": {
+          "x": 0.6667,
+          "y": 0.0,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "spike-fan"
+        },
+        "evidenceRef": "spec/detail-inventory/left/zone-r0c2.webp",
+        "confidence": 0.7
+      },
+      {
+        "id": "zone-r1c0",
+        "kind": "seam",
+        "description": "Grey bracer and black fist sitting well forward of the body at Z=+0.055 -- the forward elbow break.",
+        "region": {
+          "x": 0.0,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "elbow-break-l"
+        },
+        "evidenceRef": "spec/detail-inventory/left/zone-r1c0.webp",
+        "confidence": 0.85
+      },
+      {
+        "id": "zone-r1c1",
+        "kind": "seam",
+        "description": "Deltoid reads as a pentagon in profile; upper arm is markedly thinner than both neighbours.",
+        "region": {
+          "x": 0.3333,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "deltoid-proud-l"
+        },
+        "evidenceRef": "spec/detail-inventory/left/zone-r1c1.webp",
+        "confidence": 0.82
+      },
+      {
+        "id": "zone-r1c2",
+        "kind": "seam",
+        "description": "Torso slab depth 0.092 against width 0.200 -- the flat slab gate, measured here.",
+        "region": {
+          "x": 0.6667,
+          "y": 0.3333,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "torso-taper"
+        },
+        "evidenceRef": "spec/detail-inventory/left/zone-r1c2.webp",
+        "confidence": 0.85
+      },
+      {
+        "id": "zone-r2c0",
+        "kind": "seam",
+        "description": "Hip profile is a kite: sharp point front and back, max depth 0.142 at Y=0.335.",
+        "region": {
+          "x": 0.0,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "hip-kite"
+        },
+        "evidenceRef": "spec/detail-inventory/left/zone-r2c0.webp",
+        "confidence": 0.88
+      },
+      {
+        "id": "zone-r2c1",
+        "kind": "ridge",
+        "description": "Sole slab steps out from under the cuff at Y=0.085 and runs forward about two thirds of its length.",
+        "region": {
+          "x": 0.3333,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "sole-ledge-l"
+        },
+        "evidenceRef": "spec/detail-inventory/left/zone-r2c1.webp",
+        "confidence": 0.85
+      },
+      {
+        "id": "zone-r2c2",
+        "kind": "seam",
+        "description": "Both feet overlap in this view; the far sole is staggered behind the near one, which is why the side view overstates a single foot length.",
+        "region": {
+          "x": 0.6667,
+          "y": 0.6667,
+          "width": 0.3333,
+          "height": 0.3333,
+          "units": "normalized"
+        },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "sole-wedge-l"
+        },
+        "evidenceRef": "spec/detail-inventory/left/zone-r2c2.webp",
+        "confidence": 0.7
+      }
+    ],
+    "note": "grid-3x3 scan of references/left.webp. Every zone is classified and linked to a component localFeatures id or a material id in object-sculpt-spec.json."
+  },
+  "authoringInstruction": "Open each zone crop under zonesDir and replace every detail stub's kind, description, scale, affects, mapsTo, and confidence with what is actually observed. Add more detail entries per zone if a single zone contains multiple distinct marks; do not leave stubs unfilled or unlinked (mapsTo must reference a real component.localFeatures or material.localOverrides entry)."
+}
