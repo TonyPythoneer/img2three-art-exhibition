@@ -8,17 +8,20 @@ simultaneously) before this script was written.
 
 So: every figure comes from an artifact or from the factory source, never from another document.
 
-    python3 src/exhibits/cloud-ultima-weapon-v2/spec/audit_records.py
+    python3 artifacts/exhibits/cloud-ultima-weapon-v2/spec/audit_records.py
 
 Exit 1 with the offending file, line and text if any document quotes a retired figure.
 """
 import json, math, re, sys
 from pathlib import Path
 
+# V is this exhibit's evidence dir under artifacts/; the code it audits lives under src/.
+# The two were one directory until the 2026-08-12 split, which is why every V-relative path
+# below points at spec output and every ROOT-relative one points at source.
 V = Path(__file__).resolve().parent.parent
 ROOT = V.parent.parent.parent
 A = ROOT / "artifacts/ultima-v2"
-FACTORY = V / "createUltimaWeaponV2Model.ts"
+FACTORY = ROOT / "src/utils/ultimaWeaponV2/createUltimaWeaponV2Model.ts"
 fail: list[str] = []
 
 
@@ -1094,11 +1097,13 @@ for gone in ("centralGripSocket", "driverSocket"):
         fail.append(f"{gone} was rebuilt — correction pass 2 forbids it as a component")
 
 # Every doc link on the exhibit card must resolve, or the page renders a dead entry.
-index = (ROOT / "src/exhibits/index.ts").read_text()
-block = index[index.index('slug: "cloud-ultima-weapon-v2"'):]
+# Keyed on assetDir, not slug: the route was renamed to ff7-cloud-ultima-weapon while the
+# asset and evidence folders kept the v2 name.
+index = (ROOT / "src/utils/exhibits.ts").read_text()
+block = index[index.index('assetDir: "cloud-ultima-weapon-v2"'):]
 for f in re.findall(r'file: "([^"]+)"', block[: block.index("\n  },")]):
     if not (V / f).exists():
-        fail.append(f"index.ts links {f} — missing on disk")
+        fail.append(f"exhibits.ts links {f} — missing on disk")
 
 # Nothing may build that the spec does not declare.
 SPEC_JSON = V / "spec" / "object-sculpt-spec.json"

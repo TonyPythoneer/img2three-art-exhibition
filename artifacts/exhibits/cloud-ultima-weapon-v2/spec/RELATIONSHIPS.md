@@ -11,25 +11,29 @@ Read this before changing anything outside the model factory.
 ## 1. The exhibit's place in the repo
 
 ```
-src/exhibits/index.ts            ← the ONLY registry. Adding an exhibit here is what creates:
-   │                                 · the SSG route (vite.config.ts reads this file)
-   │                                 · the entry-site gallery card (ExhibitGrid.vue)
-   │                                 · the doc links on the exhibit page
-   ├─→ vite.config.ts  ssgOptions.includedRoutes  →  dist/cloud-ultima-weapon-v2/index.html
-   ├─→ src/components/home/ExhibitGrid.vue        →  the gallery card + its cover image
-   └─→ src/pages/[slug].vue  STAGES map           →  UltimaV2Stage.vue
+src/pages/ff7-cloud-ultima-weapon/index.vue   ← the page IS the route. Where the file sits
+   │                                              is the URL; there is no map to register in.
+   └─→ useExhibit("ff7-cloud-ultima-weapon")  →  the entry, its plates, its prompt
 
-src/components/home/heroStage.ts  heroEntries()   →  the landing-page turntable
+src/utils/exhibits.ts             ← the registry the page reads through useExhibit
+src/utils/exhibitSlugs.ts         → vite.config.ts ssgOptions.includedRoutes
+   │                                 →  dist/ff7-cloud-ultima-weapon/index.html
+   └─ an allowlist, not a filter: an unlisted page is simply never prerendered
+
+src/components/home/ExhibitGrid.vue           →  the gallery card + its cover image
+src/components/home/heroStage.ts  heroEntries() →  the landing-page turntable
+src/utils/exhibitAssets.ts        ← the only glob over exhibit assets; all three read it
 ```
 
-**Four connection points, and missing any one leaves the exhibit invisible or broken:**
+**Five connection points, and missing any one leaves the exhibit invisible or broken:**
 
-| Point                                                       | Miss it and…                                                                                                                                                                  |
-| ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `exhibits/index.ts` entry                                   | no route, no card, nothing                                                                                                                                                    |
-| `[slug].vue` `STAGES` map                                   | the route renders a plain document page with no viewer                                                                                                                        |
-| `heroStage.ts` `heroEntries()`                              | the landing turntable skips it and hovering its card does nothing                                                                                                             |
-| root-level `*.png` + `prompt.txt` **in the exhibit folder** | no cover image, no prompt text — the globs are `exhibits/*/*.png` and `exhibits/*/*.txt`, **direct children only**. Images in `assets/` or `references/` are never picked up. |
+| Point                                                | Miss it and…                                                                                                                          |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/pages/<slug>/index.vue`                         | no route at all — the URL 404s                                                                                                        |
+| `src/utils/exhibits.ts` entry                        | `useExhibit` throws and the prerender fails loudly                                                                                    |
+| `src/utils/exhibitSlugs.ts` slug                     | the page exists in dev and is never prerendered into `dist/`                                                                          |
+| `heroStage.ts` `heroEntries()`                       | the landing turntable skips it and hovering its card does nothing                                                                     |
+| `src/assets/exhibits/<assetDir>/` images + prompt.txt | no cover image, no prompt text — the globs in `exhibitAssets.ts` are shallow, **direct children only**, no subfolders                  |
 
 ## 2. The four Ultima Weapon reconstructions
 
@@ -261,7 +265,7 @@ re-running those two rebuilds the whole folder against the model as it stands.
 ```bash
 # author_spec.py reads full/parts.json, so on a GEOMETRY change capture once before this line as
 # well — §3. On a documentation change the existing manifest is already the right one.
-python3 src/exhibits/cloud-ultima-weapon-v2/spec/author_spec.py
+python3 artifacts/exhibits/cloud-ultima-weapon-v2/spec/author_spec.py
 for v in front-orthographic back-orthographic left-side-thickness right-side-thickness \
          assembled-three-quarter rear-three-quarter artwork-match exploded-three-quarter \
          closeup-crystal-clamp closeup-clamp-bases closeup-driver-joints \
@@ -271,37 +275,37 @@ done
 node tools/capture_ultima.mjs --route ultima-v2-harness --out artifacts/ultima-v2/flat       --detail full       --views artwork-match --flat
 node tools/capture_ultima.mjs --route ultima-v2-harness --out artifacts/ultima-v2/blockout   --detail blockout   --views artwork-match
 node tools/capture_ultima.mjs --route ultima-v2-harness --out artifacts/ultima-v2/structural --detail structural --views artwork-match
-zsh src/exhibits/cloud-ultima-weapon-v2/spec/capture_visibility.sh   # the relief-visibility set
-zsh src/exhibits/cloud-ultima-weapon-v2/spec/run_gates.sh
+zsh artifacts/exhibits/cloud-ultima-weapon-v2/spec/capture_visibility.sh   # the relief-visibility set
+zsh artifacts/exhibits/cloud-ultima-weapon-v2/spec/run_gates.sh
 # The shell's own level against the artwork's, and whether the crop shows it transmitting
 # anything. Not gates: the first records, `audit_records.py` then holds the documents to it; the
 # second is the evidence behind confidence-report conflict 7.
-python3 src/exhibits/cloud-ultima-weapon-v2/spec/measure_shell_value.py
-python3 src/exhibits/cloud-ultima-weapon-v2/spec/zoom_shell_translucency.py
+python3 artifacts/exhibits/cloud-ultima-weapon-v2/spec/measure_shell_value.py
+python3 artifacts/exhibits/cloud-ultima-weapon-v2/spec/zoom_shell_translucency.py
 # Diagnosis, not a gate: the four frames that split a front/rear colour difference into the part
 # the model baked and the part the rig added. The assertion with teeth is in check_centerline.py.
-zsh src/exhibits/cloud-ultima-weapon-v2/spec/capture_skin_faces.sh
-python3 src/exhibits/cloud-ultima-weapon-v2/spec/zoom_stack_edges.py  # artwork | render, 8× NEAREST
+zsh artifacts/exhibits/cloud-ultima-weapon-v2/spec/capture_skin_faces.sh
+python3 artifacts/exhibits/cloud-ultima-weapon-v2/spec/zoom_stack_edges.py  # artwork | render, 8× NEAREST
 # The stone's own shape, and neither is a gate. The first reads the BUILT mesh: where the apex
 # sits in its own box, and how flat each of the four flanks is. The second renders it isolated
 # from six angles and crops each frame to the stone — the front view cannot tell a pyramid from a
 # ridge, and the side view can.
-node src/exhibits/cloud-ultima-weapon-v2/spec/measure_gem_facets.mjs
-zsh src/exhibits/cloud-ultima-weapon-v2/spec/capture_gem_pyramid.sh
-python3 src/exhibits/cloud-ultima-weapon-v2/spec/zoom_gem_pyramid.py
+node artifacts/exhibits/cloud-ultima-weapon-v2/spec/measure_gem_facets.mjs
+zsh artifacts/exhibits/cloud-ultima-weapon-v2/spec/capture_gem_pyramid.sh
+python3 artifacts/exhibits/cloud-ultima-weapon-v2/spec/zoom_gem_pyramid.py
 # The HILT's two readings, both after a capture and neither a gate. The first measures the
 # shell's lower slanted edge and each arm's section against the CROP; the second reads the
 # user's SKETCH, which outranks the crop for the guard and is where #15/#16/#17 come from.
-python3 src/exhibits/cloud-ultima-weapon-v2/spec/measure_guard_joints.py
-python3 src/exhibits/cloud-ultima-weapon-v2/spec/zoom_sketch_guard.py
+python3 artifacts/exhibits/cloud-ultima-weapon-v2/spec/measure_guard_joints.py
+python3 artifacts/exhibits/cloud-ultima-weapon-v2/spec/zoom_sketch_guard.py
 # The spinner caps' taper is NOT in this list — `run_gates.sh` runs it, for the same reason it
 # runs measure_shell_value.py: the factory's own comment quotes its numbers, so a stale copy
 # would be a record of the previous geometry describing the current one.
-zsh src/exhibits/cloud-ultima-weapon-v2/spec/record_reviews.sh   # ×3
+zsh artifacts/exhibits/cloud-ultima-weapon-v2/spec/record_reviews.sh   # ×3
 # Closed solids, the shared unit rod, and the grip↔pommel ring. Runs off the factory, not off a
 # render, because every failure it catches is invisible to a camera.
 node --test tests/ultima-v2-solid.test.mjs
-python3 src/exhibits/cloud-ultima-weapon-v2/spec/zoom_pommel_junction.py  # the leather↔gold seam, 8× NEAREST
+python3 artifacts/exhibits/cloud-ultima-weapon-v2/spec/zoom_pommel_junction.py  # the leather↔gold seam, 8× NEAREST
 npx vue-tsc --noEmit && npx vite-ssg build
 node tools/verify_v2_route.mjs
 ```

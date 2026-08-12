@@ -8,7 +8,7 @@
 - 路徑約定：以下都以 repo 根目錄為 cwd
 
 ```bash
-EXHIBIT=src/exhibits/cloud-strife-polygon-figure
+EXHIBIT=artifacts/exhibits/cloud-strife-polygon-figure
 SKILL=~/.claude/skills/img2threejs           # forge 腳本必須從這裡執行
 ```
 
@@ -18,8 +18,8 @@ SKILL=~/.claude/skills/img2threejs           # forge 腳本必須從這裡執行
 
 ```bash
 cd $SKILL && python3 forge/next.py \
-  --state ~/git/personal/img2three-art-exhibition/src/exhibits/cloud-strife-polygon-figure/.img2threejs/state.json \
-  ~/git/personal/img2three-art-exhibition/src/exhibits/cloud-strife-polygon-figure/spec/object-sculpt-spec.json
+  --state ~/git/personal/img2three-art-exhibition/artifacts/exhibits/cloud-strife-polygon-figure/.img2threejs/state.json \
+  ~/git/personal/img2three-art-exhibition/artifacts/exhibits/cloud-strife-polygon-figure/spec/object-sculpt-spec.json
 ```
 
 exit code `3` 或 `status=stopped` 是硬停：回報原因，不要繞過、不要從記憶重建進度。
@@ -51,7 +51,7 @@ exit code `3` 或 `status=stopped` 是硬停：回報原因，不要繞過、不
 ### #4 head
 
 ```
-/img2threejs src/exhibits/cloud-strife-polygon-figure/references/front.webp
+/img2threejs artifacts/exhibits/cloud-strife-polygon-figure/references/front.webp
 
 依 prompt.txt §3 Part 1 與 spec/object-sculpt-spec.json 的 head / hair-cap / hair-spikes /
 hair-fringe / face-print / ear-l / ear-r / neck / choker 建 head，只做這個 part，不整合、不碰
@@ -62,7 +62,7 @@ socket 原點 (0, 0.673, 0)。交付 parts/createHead.ts。
 ### #5 left shoulder
 
 ```
-/img2threejs src/exhibits/cloud-strife-polygon-figure/references/left.webp
+/img2threejs artifacts/exhibits/cloud-strife-polygon-figure/references/left.webp
 
 依 prompt.txt §3 Part 2 建 deltoid-l + pauldron-l，只做這個 part。護肩是浮貼獨立殼，沿整條
 三角肌邊界有可見縫隙線；背面接一片深橄欖三角形背帶斜跨肩胛。與右肩各自獨立，**不做鏡射**。
@@ -72,7 +72,7 @@ socket (+0.100, 0.660, 0)，出口 upperArm。交付 parts/createShoulderLeft.ts
 ### #6 right shoulder
 
 ```
-/img2threejs src/exhibits/cloud-strife-polygon-figure/references/right.webp
+/img2threejs artifacts/exhibits/cloud-strife-polygon-figure/references/right.webp
 
 依 prompt.txt §3 Part 3 建 deltoid-r，只做這個 part。純皮膚三角肌板，側視五邊形，無袖無罩，
 突出於軀幹且寬於下方上臂。socket (-0.100, 0.660, 0)，出口 upperArm。
@@ -82,7 +82,7 @@ socket (+0.100, 0.660, 0)，出口 upperArm。交付 parts/createShoulderLeft.ts
 ### #7 上臂（左右同形，唯一可鏡射的一對）
 
 ```
-/img2threejs src/exhibits/cloud-strife-polygon-figure/references/left.webp
+/img2threejs artifacts/exhibits/cloud-strife-polygon-figure/references/left.webp
 
 依 prompt.txt §3 Part 4/5 建 upper-arm，只做這個 part。窄皮膚方棒、角倒角，明顯細於上方三角肌
 與下方前臂；側視前傾 10–15°、正視外展 8°，長度 0.115。socket 肩端，出口 elbow。
@@ -92,7 +92,7 @@ socket (+0.100, 0.660, 0)，出口 upperArm。交付 parts/createShoulderLeft.ts
 ### #8 left front arm
 
 ```
-/img2threejs src/exhibits/cloud-strife-polygon-figure/references/left.webp
+/img2threejs artifacts/exhibits/cloud-strife-polygon-figure/references/left.webp
 
 依 prompt.txt §3 Part 6 建 forearm-l + bracer-l + fist-l，只做這個 part。前臂是向下加寬的
 錐形板，向前向內折使拳頭落在髖線之前——肘前折是 pose 簽名，垂直手臂即不合格。灰護腕高約 0.045、
@@ -103,7 +103,7 @@ socket (+0.100, 0.660, 0)，出口 upperArm。交付 parts/createShoulderLeft.ts
 ### #9 right front arm
 
 ```
-/img2threejs src/exhibits/cloud-strife-polygon-figure/references/right.webp
+/img2threejs artifacts/exhibits/cloud-strife-polygon-figure/references/right.webp
 
 依 prompt.txt §3 Part 7 建 forearm-r + fist-r，只做這個 part。同左前臂的錐形板與肘前折，但皮膚
 前臂直接以平切硬接縫接黑色拳，**沒有灰護腕段**。socket 肘，出口 fist。
@@ -113,7 +113,7 @@ socket (+0.100, 0.660, 0)，出口 upperArm。交付 parts/createShoulderLeft.ts
 ### #10 body
 
 ```
-/img2threejs src/exhibits/cloud-strife-polygon-figure/references/front.webp
+/img2threejs artifacts/exhibits/cloud-strife-polygon-figure/references/front.webp
 
 依 prompt.txt §3 Part 8 建 torso + strap-l + strap-r + strap-back + belt，只做這個 part。
 扁平多面板 0.673→0.513，寬深比 2.2:1（硬閘門）。背帶是有厚度階差的凸起條不是彩繪，越過肩線
@@ -124,7 +124,7 @@ socket (+0.100, 0.660, 0)，出口 upperArm。交付 parts/createShoulderLeft.ts
 ### #11 legs（最難，決定剪影）
 
 ```
-/img2threejs src/exhibits/cloud-strife-polygon-figure/references/left.webp
+/img2threejs artifacts/exhibits/cloud-strife-polygon-figure/references/left.webp
 
 依 prompt.txt §3 Part 9 建 legs + hip-yoke + leg-l + leg-r，只做這個 part。**單一連續體積，
 不是兩條褲管。** 三件事會被閘門盯著：臀部最寬 0.278 要大於肩寬 0.200；側面必須是前後帶尖的
@@ -136,7 +136,7 @@ socket (+0.100, 0.660, 0)，出口 upperArm。交付 parts/createShoulderLeft.ts
 ### #12 shoes
 
 ```
-/img2threejs src/exhibits/cloud-strife-polygon-figure/references/left.webp
+/img2threejs artifacts/exhibits/cloud-strife-polygon-figure/references/left.webp
 
 依 prompt.txt §3 Part 10 建 boot-cuff + sole，兩腳一起做、鏡射，只做這個 part。鞋底是等厚
 0.055 的平板楔不是曲面鞋底，總長 0.148 其中約 ⅔ 在踝前、後跟很短，頂面自靴筒下方外伸成乾淨檐口，
@@ -203,14 +203,16 @@ cd $SKILL && python3 forge/stage4_review/check_part_coverage.py \
 
 站台已經接好了，這一步只剩兩件事：
 
-1. 把 `CloudStrifeStage.vue` 裡的 placeholder `mount` 換成真的 viewer（`mountCloudStrifeViewer`），
-   並在 `src/exhibits/index.ts` 把 `status` 改 `done`、`liveModel` 改 `true`、補 `modelVersion`。
+1. 把 `src/pages/ff7-cloud-strife-figure/index.vue` 裡的 placeholder `mount` 換成真的 viewer
+   （`mountCloudStrifeViewer`，放 `src/utils/`，因為首頁 hero 也會用），
+   並在 `src/utils/exhibits.ts` 把 `status` 改 `done`、`liveModel` 改 `true`、補 `modelVersion`。
 2. 在 `src/components/home/heroStage.ts` 的 `heroEntries()` 補一筆，首頁轉盤才會轉到它。
 3. 寫 `spec/RELATIONSHIPS.md`：十個 part、socket、管線順序、各 part 擁有哪些常數。
 
 已完成的接線（不用重做）：`content/exhibits/cloud-strife-polygon-figure.yml`、
-`src/exhibits/index.ts` 條目、`src/exhibits/slugs.ts`、`src/pages/[slug].vue` 的 STAGES、
-`src/RootApp.vue` 的 FF7 主題路由、三處 glob 已能吃 `references/*.webp`。
+`src/utils/exhibits.ts` 條目、`src/utils/exhibitSlugs.ts`、
+`src/pages/ff7-cloud-strife-figure/index.vue`（頁面即路由，沒有 map 要註冊）、
+`src/RootApp.vue` 的 FF7 主題路由、圖與 prompt 統一走 `src/utils/exhibitAssets.ts`。
 
 驗證：
 

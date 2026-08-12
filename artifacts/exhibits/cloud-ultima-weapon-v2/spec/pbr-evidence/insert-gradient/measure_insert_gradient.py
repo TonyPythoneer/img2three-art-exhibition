@@ -18,7 +18,7 @@ Method:
 
 Emits `insert-gradient.json` plus NEAREST zooms at 6-8x.
 
-Run:  python3 src/exhibits/cloud-ultima-weapon-v2/spec/pbr-evidence/insert-gradient/measure_insert_gradient.py
+Run:  python3 artifacts/exhibits/cloud-ultima-weapon-v2/spec/pbr-evidence/insert-gradient/measure_insert_gradient.py
 """
 
 from __future__ import annotations
