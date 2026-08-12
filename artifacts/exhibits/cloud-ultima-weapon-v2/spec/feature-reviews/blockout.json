@@ -1,0 +1,20 @@
+[
+  {
+    "id": "blade-layer-stack",
+    "score": 0.82,
+    "visible": true,
+    "notes": "Blockout carries the outer shell only; the three inset layers change no outline and arrive with the structural pass. The shell's own profile matches the measured artwork within 3-5% at every band, and its lower section now converges symmetrically into the guard instead of stopping as a slab."
+  },
+  {
+    "id": "driver-quad-array",
+    "score": 0.88,
+    "visible": true,
+    "notes": "Four rods present, two per side, mirrored. Endpoints land on the measured (+/-126, 54) and (+/-155, 12); all four axes converge at (0, -62) as measured."
+  },
+  {
+    "id": "hilt-proportion-system",
+    "score": 0.88,
+    "visible": true,
+    "notes": "Blade 760, grip 163 of constant width, collar 14, pommel 31 in normalized-1000. Tip and pommel-tip errors stay inside 1% of image height against a 2.5% budget."
+  }
+]

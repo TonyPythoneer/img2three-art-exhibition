@@ -1,0 +1,14 @@
+[
+  {
+    "id": "runtime-part-exposure",
+    "score": 0.9,
+    "visible": true,
+    "notes": "No merging: every part stays its own mesh so the inspector and the explode keep working."
+  },
+  {
+    "id": "lowpoly-facet-language",
+    "score": 0.86,
+    "visible": true,
+    "notes": "580 triangles at full detail. No decimation applied — every authored plane is load-bearing for the PS1 facet reading, and the budget is two orders of magnitude under the real-time target anyway."
+  }
+]

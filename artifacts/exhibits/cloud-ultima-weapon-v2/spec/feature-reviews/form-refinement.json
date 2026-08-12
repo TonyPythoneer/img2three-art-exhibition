@@ -1,0 +1,38 @@
+[
+  {
+    "id": "shell-sharpened-profile",
+    "score": 0.85,
+    "visible": true,
+    "notes": "The shell's eight-point section falls to zero thickness at both side edges and peaks at a centre ridge. Below the measured base it contracts through two mirrored slopes (80 -> 52 -> 26 -> 18 half-width) into a neck seated inside the central socket. The insert's six-point section keeps square sides and takes no bevel."
+  },
+  {
+    "id": "driver-socket-insertion",
+    "score": 0.85,
+    "visible": true,
+    "notes": "Root taper and capped outer end both cut. The shell's new neck is narrow enough that the rods clear it on their own: the upper rod's innermost point is at |X|=40 where the neck is 26 wide, so no rod passes through the crystal."
+  },
+  {
+    "id": "crystal-clamp-mount",
+    "score": 0.8,
+    "visible": true,
+    "notes": "Jaws faceted to four planes, half-depth 9, straddling the gem in Z at +17 against the gem's +19. They cradle without intersecting."
+  },
+  {
+    "id": "guard-compactness",
+    "score": 0.78,
+    "visible": true,
+    "notes": "Connector arms are six-sided wrapped limbs rather than boxes, half-width 15-17. Each spinner end runs radius 5 at the neck, 18 at the bulge, then a point over 50 units."
+  },
+  {
+    "id": "gem-dimensionality",
+    "score": 0.8,
+    "visible": true,
+    "notes": "Four-sided bipyramid, 84 tall by 34 wide, front vertex 11 proud of the waist. Its Z stack was pulled in from +30 to +19 because at the old depth the front vertex reached Z=45 against a 13-deep blade and read as bolted onto the front."
+  },
+  {
+    "id": "grip-collar-pommel-stack",
+    "score": 0.82,
+    "visible": true,
+    "notes": "Grip holds half-width 12 from the guard connection to the collar. All three protruding ring meshes are gone; the wrap is vertex-colour banding on the same shaft. One collar at Y=-166..-180, then an independent pommel with maximum radius 11."
+  }
+]

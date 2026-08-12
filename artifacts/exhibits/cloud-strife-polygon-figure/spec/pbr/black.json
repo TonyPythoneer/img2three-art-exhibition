@@ -1,0 +1,74 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.805,
+  "estimatedFidelity": 0.805,
+  "targetThreshold": 0.7,
+  "materialId": "black",
+  "sourceImage": "/private/tmp/claude-501/-Users-tonyyang-git-personal-img2three-art-exhibition/1fe0362d-3d2f-4501-aca7-28acc0fa7e9c/scratchpad/mat/black.png",
+  "outDir": "spec/pbr/black",
+  "palette": ["#282226", "#1C1519", "#AA9D9E", "#786D6F", "#4B4143"],
+  "maps": {
+    "albedo": {
+      "path": "spec/pbr/black/black_albedo.webp",
+      "url": "black_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "spec/pbr/black/black_roughness.webp",
+      "url": "black_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "spec/pbr/black/black_height.webp",
+      "url": "black_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "spec/pbr/black/black_normal.webp",
+      "url": "black_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "spec/pbr/black/black_ao.webp",
+      "url": "black_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 38,
+    "sourceHeight": 26,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 3,
+      "y": 0,
+      "width": 35,
+      "height": 26
+    },
+    "mask": {
+      "backgroundColor": "#212227",
+      "backgroundNoise": 15.588,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.1083
+    },
+    "mapStats": {
+      "valueRange": 0.6058,
+      "heightP90Gradient": 0.00553,
+      "roughnessBase": 0.68,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.163,
+      "blurRadius": 21
+    },
+    "palette": ["#282226", "#1C1519", "#AA9D9E", "#786D6F", "#4B4143"]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped",
+    "low high-frequency detail weakens normal/roughness inference"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}
