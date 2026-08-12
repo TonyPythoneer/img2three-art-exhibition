@@ -37,7 +37,11 @@
   `ultima-v2-harness` 也在用，放進 page 目錄會變成 component 反向 import page。
 - **頁面資源**（`images[]` 列的圖、`prompt.txt`）→ `src/assets/exhibits/<assetDir>/`，
   平放不要開子資料夾。Vite 會 hash 並自動套 `base`。
-- **閘門證據**（`spec/`、`brief/`、`.img2threejs/`、PBR map、detail-inventory crop）
-  → `artifacts/exhibits/<assetDir>/`。這些永遠不進 bundle。
+- **閘門證據**（`spec/`、`brief/`、`.img2threejs/`）→ `artifacts/exhibits/<assetDir>/`，
+  永遠不進 bundle。只留**量測記錄與產生它的腳本**：JSON、`.py`/`.sh`/`.mjs`、`.md`。
+- **render、zoom 比對圖、PBR map、detail-inventory crop 不留**。它們都能用旁邊的
+  `capture_*.sh`／`tools/capture_*.mjs` 從程式重跑出來，數字本身在 JSON 裡。要比對就當場產、
+  看完就丟。`artifacts/` 唯一保留的圖是**不可再生的來源圖**：`references/` 的藍本與
+  `assets/` 的藝術圖 crop。
 - 圖與 prompt 一律走 `src/utils/exhibitAssets.ts`，不要在元件裡自己開 `import.meta.glob`。
   glob 一律用 `*/` 不要用 `**/`：`**` 會把整包閘門證據 eager 打包進 client bundle。
