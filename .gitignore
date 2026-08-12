@@ -11,3 +11,6 @@ __pycache__/
 # 161 MB working archive, and the lean-ctx tool cache
 Archive.zip
 .lean-ctx/
+
+# per-developer model choice, not a project setting
+opencode.json
