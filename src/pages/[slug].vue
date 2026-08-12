@@ -67,23 +67,18 @@ import { computed, ref } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import { useSeoMeta } from "@unhead/vue";
 import { exhibitBySlug } from "~/exhibits/index.js";
+import { exhibitAssetUrl } from "~/exhibits/assetUrl.js";
 import UltimaV2Stage from "~/exhibits/cloud-ultima-weapon-v2/UltimaV2Stage.vue";
 import CloudStrifeStage from "~/exhibits/cloud-strife-polygon-figure/CloudStrifeStage.vue";
 
 const REPO = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/main/src/exhibits";
 const REPO_ROOT = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/main";
 
-// Two patterns, both deliberately shallow. `*/references/*.webp` exists because newer
-// exhibits keep their plates in that one subfolder; a `**` here would also eagerly bundle
-// every detail-inventory zone crop and PBR map under spec/, which are gate evidence, not
-// page assets.
-const imageUrls = import.meta.glob(["../exhibits/*/*.png", "../exhibits/*/references/*.webp"], {
-  eager: true,
-  import: "default",
-  query: "?url",
-}) as Record<string, string>;
-
-const promptTexts = import.meta.glob("../exhibits/*/*.txt", {
+// Reference images are served from public/exhibits/<assetDir>/ and addressed by URL, not by
+// glob — see exhibitAssetUrl. The prompt is different: it is read at BUILD time and inlined
+// into the prerendered HTML, so it stays importable under src/. Moving it to public/ would
+// turn a `<pre>` that ships in the static page into a runtime fetch.
+const promptTexts = import.meta.glob("../assets/exhibits/*/*.txt", {
   eager: true,
   import: "default",
   query: "?raw",
@@ -104,7 +99,7 @@ const slug = computed(() => String(route.params.slug ?? ""));
 const exhibit = computed(() => exhibitBySlug(slug.value));
 
 const assetDir = computed(() => exhibit.value?.assetDir ?? slug.value);
-const imageUrl = (file: string) => imageUrls[`../exhibits/${assetDir.value}/${file}`] ?? "";
+const imageUrl = (file: string) => (exhibit.value ? exhibitAssetUrl(exhibit.value, file) : "");
 const docHref = (file: string) =>
   file.startsWith("/") ? `${REPO_ROOT}${file}` : `${REPO}/${assetDir.value}/${file}`;
 const prompt = computed(() => {
@@ -113,7 +108,9 @@ const prompt = computed(() => {
   if (found.promptFile.startsWith("/")) {
     return rootTexts[`../../${found.promptFile.slice(1)}`] ?? "";
   }
-  return promptTexts[`../exhibits/${found.assetDir ?? found.slug}/${found.promptFile}`] ?? "";
+  return (
+    promptTexts[`../assets/exhibits/${found.assetDir ?? found.slug}/${found.promptFile}`] ?? ""
+  );
 });
 
 const MODEL_NOTES: Record<string, string> = {};

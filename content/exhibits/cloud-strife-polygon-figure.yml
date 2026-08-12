@@ -7,23 +7,23 @@ source: >-
   Five product photographs of the VII Polygon Soft Vinyl Figure (front, back,
   both sides, one 3/4 studio shot), white background trimmed off
 images:
-  - file: references/front.webp
+  - file: front.webp
     caption: >-
       The proportion authority. Every normalized landmark in the spec — sole
       plane at 0.000 up to the tallest hair spike at 1.000 — is measured here
-  - file: references/back.webp
+  - file: back.webp
     caption: >-
       The hair cap's radial facet fan and the diagonal strap panel crossing the
       shoulder blades, neither of which the front view shows
-  - file: references/left.webp
+  - file: left.webp
     caption: >-
       The figure's LEFT: black pauldron, grey forearm bracer, black fist. Also
       the only clean read on the kite-shaped hip profile
-  - file: references/right.webp
+  - file: right.webp
     caption: >-
       The figure's RIGHT: bare deltoid, no bracer. The asymmetry is the single
       easiest thing to build backwards
-  - file: references/more-angle.webp
+  - file: more-angle.webp
     caption: >-
       Warm studio light. Disagrees with the four product shots on white balance,
       and is the only one that separates the brown straps from the olive belt
