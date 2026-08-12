@@ -1,6 +1,6 @@
 import { defineConfig, s } from "velite";
 
-// Only cloud-ultima-weapon-v2 has its copy managed here so far; src/exhibits/index.ts
+// Only ff7-cloud-strife-ultima-weapon has its copy managed here so far; src/exhibits/index.ts
 // merges this collection's fields onto the matching entry by `slug`.
 export default defineConfig({
   root: "content",

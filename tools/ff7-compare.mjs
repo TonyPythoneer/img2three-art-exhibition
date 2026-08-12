@@ -3,7 +3,7 @@
  * Screenshot the recreated FF7 menu UI and diff it against the reference crop.
  *
  *   node tools/ff7-compare.mjs
- *   node tools/ff7-compare.mjs --url http://localhost:3000/img2three-art-exhibition/cloud-ultima-weapon-v2
+ *   node tools/ff7-compare.mjs --url http://localhost:3000/img2three-art-exhibition/ff7-cloud-strife-ultima-weapon
  *
  * It drives the dev server rather than a build: the FF7 UI is plain CSS with no
  * WebGL in it, so there is nothing here that prerendering would change, and the
@@ -24,7 +24,7 @@ import { chromium } from "playwright";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PORT = 3000;
-const DEFAULT_URL = `http://localhost:${PORT}/img2three-art-exhibition/cloud-ultima-weapon-v2`;
+const DEFAULT_URL = `http://localhost:${PORT}/img2three-art-exhibition/ff7-cloud-strife-ultima-weapon`;
 
 function parseArgs(argv) {
   const args = {

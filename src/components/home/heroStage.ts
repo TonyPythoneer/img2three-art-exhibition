@@ -288,7 +288,7 @@ export class HeroStage {
 export function heroEntries(): HeroEntry[] {
   return [
     {
-      slug: "ff7-cloud-ultima-weapon",
+      slug: "ff7-cloud-strife-ultima-weapon",
       title: "Ultima Weapon",
       build: () => createUltimaWeaponV2Model({ detail: "full" }),
     },

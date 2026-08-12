@@ -7,7 +7,7 @@ import { chromium } from "playwright";
 
 const ROOT = "/Users/tonyyang/git/personal/img2three-art-exhibition";
 const BASE = "/img2three-art-exhibition";
-const SLUG = "cloud-ultima-weapon-v2";
+const SLUG = "ff7-cloud-strife-ultima-weapon";
 const PORT = 3178;
 const origin = `http://localhost:${PORT}`;
 const OUT = `${ROOT}/artifacts/ultima-v2/final`;

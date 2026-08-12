@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 FACTORY = ROOT / "src/utils/ultimaWeaponV2/createUltimaWeaponV2Model.ts"
 DIAG = ROOT / "artifacts/ultima-v2/diag"
-CHECK = ROOT / "artifacts/exhibits/cloud-ultima-weapon-v2/spec/check_centerline.py"
+CHECK = ROOT / "artifacts/exhibits/ff7-cloud-strife-ultima-weapon/spec/check_centerline.py"
 
 APEX_EDGE = "    const apex = skinSection(apexY, 0, (x) => seatUnder(x, apexY), SKIN_STEP, sign);"
 APEX_POINT = (

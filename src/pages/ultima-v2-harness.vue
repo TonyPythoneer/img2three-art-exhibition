@@ -884,7 +884,7 @@ const start = async () => {
   });
 
   (window as HarnessWindow).__partManifest = {
-    model: "cloud-ultima-weapon-v2",
+    model: "ff7-cloud-strife-ultima-weapon",
     parts,
     unnamedMeshes,
     integralMeshes: parts.filter((p) => p.kind === "part").length,

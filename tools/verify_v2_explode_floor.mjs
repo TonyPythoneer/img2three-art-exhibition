@@ -56,7 +56,7 @@ let failed = false;
 try {
   await waitForServer(`${origin}${BASE}/`);
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
-  await page.goto(`${origin}${BASE}/ff7-cloud-ultima-weapon`, { waitUntil: "load" });
+  await page.goto(`${origin}${BASE}/ff7-cloud-strife-ultima-weapon`, { waitUntil: "load" });
   await page.waitForFunction(() => Boolean(window.__v2Viewer), null, { timeout: 30_000 });
 
   await page.getByRole("button", { name: "Controls", exact: true }).click();

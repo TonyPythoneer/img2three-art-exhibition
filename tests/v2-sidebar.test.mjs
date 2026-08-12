@@ -46,7 +46,7 @@ test("the section title sits at the same offset on every dock tab", async () => 
 
 test("v2 controls use an FF7 settings window layout", async () => {
   const source = await readFile(
-    path.join(ROOT, "src/pages/ff7-cloud-ultima-weapon/index.vue"),
+    path.join(ROOT, "src/pages/ff7-cloud-strife-ultima-weapon/index.vue"),
     "utf8",
   );
   const shell = await readFile(path.join(ROOT, "src/components/stage/ExhibitStage.vue"), "utf8");

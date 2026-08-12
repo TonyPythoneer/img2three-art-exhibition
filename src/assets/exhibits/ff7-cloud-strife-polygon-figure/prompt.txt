@@ -122,7 +122,7 @@ reference. The **only** textured surface in the whole model is the printed face 
 Dispatch one agent per part. Each agent owns exactly one part and must not touch another's file.
 
 Every part agent delivers:
-- `src/exhibits/cloud-strife-polygon-figure/parts/create<Part>.ts`, exporting
+- `src/exhibits/ff7-cloud-strife-polygon-figure/parts/create<Part>.ts`, exporting
   `create<Part>(options): THREE.Group`, built at the true normalized scale from §1;
 - the part's own origin at its **socket point** (the joint where Stage 2 will attach it), listed
   below per part, so Stage 2 is pure placement with no re-centering;

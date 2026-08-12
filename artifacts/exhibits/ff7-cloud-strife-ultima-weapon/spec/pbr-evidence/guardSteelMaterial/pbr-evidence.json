@@ -1,0 +1,74 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.82,
+  "estimatedFidelity": 0.82,
+  "targetThreshold": 0.7,
+  "materialId": "guardSteelMaterial",
+  "sourceImage": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/crops/crop-guardSteelMaterial.png",
+  "outDir": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/guardSteelMaterial",
+  "palette": ["#23242B", "#2E2931", "#2C3437", "#34323C", "#2E1F22"],
+  "maps": {
+    "albedo": {
+      "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/guardSteelMaterial/guardsteelmaterial_albedo.png",
+      "url": "guardsteelmaterial_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/guardSteelMaterial/guardsteelmaterial_roughness.png",
+      "url": "guardsteelmaterial_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/guardSteelMaterial/guardsteelmaterial_height.png",
+      "url": "guardsteelmaterial_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/guardSteelMaterial/guardsteelmaterial_normal.png",
+      "url": "guardsteelmaterial_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/guardSteelMaterial/guardsteelmaterial_ao.png",
+      "url": "guardsteelmaterial_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 88,
+    "sourceHeight": 64,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 88,
+      "height": 50
+    },
+    "mask": {
+      "backgroundColor": "#363138",
+      "backgroundNoise": 36.483,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.2386
+    },
+    "mapStats": {
+      "valueRange": 0.08,
+      "heightP90Gradient": 0.0179,
+      "roughnessBase": 0.68,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.177,
+      "blurRadius": 21
+    },
+    "palette": ["#23242B", "#2E2931", "#2C3437", "#34323C", "#2E1F22"]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped",
+    "low value range weakens height/roughness inference"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

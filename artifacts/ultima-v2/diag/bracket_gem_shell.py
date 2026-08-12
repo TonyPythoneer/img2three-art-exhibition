@@ -31,7 +31,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[3]
 VIS = ROOT / "artifacts/ultima-v2/vis"
 HERE = Path(__file__).resolve().parent
-SCRIPT = ROOT / "artifacts/exhibits/cloud-ultima-weapon-v2/spec/measure_relief_visibility.py"
+SCRIPT = ROOT / "artifacts/exhibits/ff7-cloud-strife-ultima-weapon/spec/measure_relief_visibility.py"
 OWN = 14
 VIEWS = ("front-orthographic", "back-orthographic")
 

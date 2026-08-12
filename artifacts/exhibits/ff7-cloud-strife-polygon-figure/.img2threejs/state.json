@@ -189,8 +189,8 @@
     "maxTotal": 6
   },
   "artifacts": {
-    "reference": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-strife-polygon-figure/references/front.webp",
-    "spec": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-strife-polygon-figure/spec/object-sculpt-spec.json"
+    "reference": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-polygon-figure/references/front.webp",
+    "spec": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-polygon-figure/spec/object-sculpt-spec.json"
   },
   "passHistory": [],
   "reviewCursor": 0,

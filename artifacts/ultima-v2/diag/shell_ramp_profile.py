@@ -17,7 +17,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[3]
-CROP = ROOT / "artifacts/exhibits/cloud-ultima-weapon-v2/assets/artwork-sword-crop.png"
+CROP = ROOT / "artifacts/exhibits/ff7-cloud-strife-ultima-weapon/assets/artwork-sword-crop.png"
 TIP_Y = 760.0
 POMMEL_Y = -210.7
 

@@ -23,7 +23,7 @@ import type { StageViewer } from "~/utils/partInspector";
  * has to move, and the panel picks up the part list on its own.
  */
 
-const { exhibit, images, prompt, docHref } = useExhibit("ff7-cloud-strife-figure");
+const { exhibit, images, prompt, docHref } = useExhibit("ff7-cloud-strife-polygon-figure");
 
 const mount = async (host: HTMLElement): Promise<StageViewer> => {
   const note = document.createElement("p");

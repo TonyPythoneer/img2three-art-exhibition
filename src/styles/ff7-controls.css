@@ -1,4 +1,4 @@
-/* FF7 chrome for the live 3D viewer on /cloud-ultima-weapon: its container, its buttons,
+/* FF7 chrome for the live 3D viewer on /ff7-cloud-strife-ultima-weapon: its container, its buttons,
    its slider, its stats line. Imported by ff7-page.css. Everything here is scoped under
    `.ff7-page`, the class RootApp.vue puts on the app shell for that one route — so the
    identical `.chip` markup on /balamb-garden is not touched.

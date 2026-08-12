@@ -23,7 +23,7 @@ import { chromium } from "playwright";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PORT = 3000;
 const BASE = `http://localhost:${PORT}/img2three-art-exhibition`;
-const SKINNED = "/cloud-ultima-weapon-v2";
+const SKINNED = "/ff7-cloud-strife-ultima-weapon";
 const UNSKINNED = ["/", "/balamb-garden"];
 const WIDTHS = [1400, 1024, 700, 480, 375];
 

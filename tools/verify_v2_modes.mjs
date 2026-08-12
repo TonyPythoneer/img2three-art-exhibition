@@ -125,7 +125,7 @@ async function main() {
     page.on("pageerror", (e) => consoleErrors.push(String(e)));
     page.on("console", (m) => m.type() === "error" && consoleErrors.push(m.text()));
 
-    await page.goto(`${origin}${BASE}/cloud-ultima-weapon-v2`, { waitUntil: "load" });
+    await page.goto(`${origin}${BASE}/ff7-cloud-strife-ultima-weapon`, { waitUntil: "load" });
     await page.waitForFunction(() => Boolean(window.__v2Viewer), null, { timeout: 30_000 });
 
     const click = async (label) => {

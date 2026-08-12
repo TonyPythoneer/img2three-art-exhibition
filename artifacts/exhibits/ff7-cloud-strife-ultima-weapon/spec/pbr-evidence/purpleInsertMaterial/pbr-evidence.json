@@ -1,0 +1,76 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.76,
+  "estimatedFidelity": 0.76,
+  "targetThreshold": 0.7,
+  "materialId": "purpleInsertMaterial",
+  "sourceImage": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/crops/crop-purpleInsertMaterial.png",
+  "outDir": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/purpleInsertMaterial",
+  "palette": ["#512EAA", "#5C37B3", "#6334CC", "#462A97", "#2D1052"],
+  "maps": {
+    "albedo": {
+      "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/purpleInsertMaterial/purpleinsertmaterial_albedo.png",
+      "url": "purpleinsertmaterial_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/purpleInsertMaterial/purpleinsertmaterial_roughness.png",
+      "url": "purpleinsertmaterial_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/purpleInsertMaterial/purpleinsertmaterial_height.png",
+      "url": "purpleinsertmaterial_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/purpleInsertMaterial/purpleinsertmaterial_normal.png",
+      "url": "purpleinsertmaterial_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/purpleInsertMaterial/purpleinsertmaterial_ao.png",
+      "url": "purpleinsertmaterial_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 64,
+    "sourceHeight": 236,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 64,
+      "height": 236
+    },
+    "mask": {
+      "backgroundColor": "#4B3D95",
+      "backgroundNoise": 54.083,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 1.0
+    },
+    "mapStats": {
+      "valueRange": 0.2015,
+      "heightP90Gradient": 0.02362,
+      "roughnessBase": 0.687,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.184,
+      "blurRadius": 21
+    },
+    "palette": ["#512EAA", "#5C37B3", "#6334CC", "#462A97", "#2D1052"]
+  },
+  "warnings": [
+    "image is not clearly isolated from background; using most pixels as material evidence",
+    "object/background separation is weak",
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped",
+    "low value range weakens height/roughness inference"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

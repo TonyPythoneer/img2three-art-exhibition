@@ -23,7 +23,7 @@ import { exhibitImageUrl } from "~/utils/exhibitAssets.js";
 const emit = defineEmits<{ active: [slug: string] }>();
 
 // Keyed by assetDir, not slug: an exhibit's route slug and its asset folder differ
-// (ff7-cloud-ultima-weapon lives in cloud-ultima-weapon-v2/). Keying by slug silently
+// (ff7-cloud-strife-ultima-weapon lives in ff7-cloud-strife-ultima-weapon/). Keying by slug silently
 // returned "" and left the turntable's reference photo blank.
 const coverOf = (slug: string): string => {
   const exhibit = exhibits.find((e) => e.slug === slug);

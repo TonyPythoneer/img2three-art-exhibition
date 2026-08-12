@@ -10,7 +10,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/image-analysis.md"
+        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/image-analysis.md"
       ],
       "reason": "",
       "command": "Read grimoire/intake/image_analysis.md and analyze {reference}"
@@ -20,7 +20,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/image-analysis.md"
+        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/image-analysis.md"
       ],
       "reason": "",
       "command": "Read grimoire/intake/validation_rubric.md and record a pass, conditional, or reject verdict for {reference}"
@@ -30,7 +30,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/reference-admission.json"
+        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/reference-admission.json"
       ],
       "reason": "",
       "command": "python3 forge/stage1_intake/check_reference_admission.py {reference}"
@@ -40,7 +40,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/assessment.json"
+        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/assessment.json"
       ],
       "reason": "",
       "command": "Run the local evidence search before authoring the assessment"
@@ -50,7 +50,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/assessment.json"
+        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/assessment.json"
       ],
       "reason": "",
       "command": "python3 forge/stage2_spec/new_pre_spec_assessment.py \"<name>\" --image {reference} --out assessment.json"
@@ -60,7 +60,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/assessment.json"
+        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/assessment.json"
       ],
       "reason": "",
       "command": "python3 forge/stage1_intake/build_detail_inventory.py {reference} --mode grid-3x3 --out-dir detail-inventory --out di.json"
@@ -78,7 +78,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/object-sculpt-spec.json"
+        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/object-sculpt-spec.json"
       ],
       "reason": "",
       "command": "python3 forge/stage2_spec/new_sculpt_spec.py \"<name>\" --image {reference} --assessment assessment.json --out object-sculpt-spec.json"
@@ -88,7 +88,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/pbr-evidence/README.md"
+        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/pbr-evidence/README.md"
       ],
       "reason": "",
       "command": "When material fidelity matters, run analyze_texture.py and extract_pbr_evidence.py per verified crop; otherwise skip with a reason"
@@ -98,7 +98,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/object-sculpt-spec.json"
+        "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/object-sculpt-spec.json"
       ],
       "reason": "",
       "command": "python3 forge/stage2_spec/validate_sculpt_spec.py {spec} --strict-quality"
@@ -195,8 +195,8 @@
     "maxTotal": 6
   },
   "artifacts": {
-    "reference": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/reference-ultima-weapon.png",
-    "spec": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/object-sculpt-spec.json"
+    "reference": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/reference-ultima-weapon.png",
+    "spec": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/object-sculpt-spec.json"
   },
   "passHistory": [
     {
@@ -207,7 +207,7 @@
           "scope": "pass",
           "status": "done",
           "evidence": [
-            "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/createCloudUltimaWeaponModel.ts"
+            "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/createCloudUltimaWeaponModel.ts"
           ],
           "reason": "",
           "command": "python3 forge/stage3_build/generate_threejs_factory.py {spec} --out src/createObjectModel.ts --pass-id {pass_id}"
@@ -235,7 +235,7 @@
           "scope": "pass",
           "status": "done",
           "evidence": [
-            "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/object-sculpt-spec.json"
+            "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/object-sculpt-spec.json"
           ],
           "reason": "",
           "command": "python3 forge/stage4_review/diagnose_render.py --reference {reference} --render <shot> --spec {spec} --pass-id {pass_id} --in-place"
@@ -255,7 +255,7 @@
           "scope": "pass",
           "status": "done",
           "evidence": [
-            "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/object-sculpt-spec.json"
+            "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/object-sculpt-spec.json"
           ],
           "reason": "",
           "command": "python3 forge/stage3_build/orchestrate_passes.py check {spec} --pass-id {pass_id}"
@@ -275,7 +275,7 @@
           "scope": "pass",
           "status": "done",
           "evidence": [
-            "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/cloud-ultima-weapon/spec/object-sculpt-spec.json"
+            "/Users/tonyyang/git/personal/img2three-art-exhibition/src/exhibits/ff7-cloud-strife-ultima-weapon/spec/object-sculpt-spec.json"
           ],
           "reason": "",
           "command": "python3 forge/stage3_build/orchestrate_passes.py sync {spec} --in-place"

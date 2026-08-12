@@ -84,7 +84,7 @@
     }
   ],
   "parts": {
-    "model": "cloud-ultima-weapon-v2",
+    "model": "ff7-cloud-strife-ultima-weapon",
     "parts": [
       {
         "name": "bladeGroup",

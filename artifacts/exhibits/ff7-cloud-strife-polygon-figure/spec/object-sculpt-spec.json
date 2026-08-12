@@ -1,6 +1,6 @@
 {
   "targetName": "Cloud Strife Polygon Figure",
-  "targetId": "cloud-strife-polygon-figure",
+  "targetId": "ff7-cloud-strife-polygon-figure",
   "schemaVersion": "2.1",
   "terminologyProfile": {
     "domain": "real-time procedural Three.js asset",

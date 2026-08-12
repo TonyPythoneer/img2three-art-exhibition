@@ -2,7 +2,7 @@
 // src/utils/exhibitAssets.ts resolves `images` / `promptFile` to real URLs.
 //
 // This file DOES import `.velite/index.js` below to merge velite-managed copy onto the
-// cloud-ultima-weapon-v2 entry. That is safe for this file's importers (page components) but
+// ff7-cloud-strife-ultima-weapon entry. That is safe for this file's importers (page components) but
 // it means this file must NOT be imported by vite.config.ts: vite.config.ts's import graph is
 // watched by vite-plus, and a change to a file it transitively touches (here, the
 // velite-generated `.velite/index.js`, rewritten on every content edit) forces a full config
@@ -67,23 +67,21 @@ function veliteFields(
 
 export const exhibits: Exhibit[] = [
   {
-    slug: "ff7-cloud-ultima-weapon",
-    assetDir: "cloud-ultima-weapon-v2",
+    slug: "ff7-cloud-strife-ultima-weapon",
     status: "done",
     liveModel: true,
     modelVersion: "img2three.js v1.4",
     promptFile: "prompt.txt",
-    ...veliteFields("cloud-ultima-weapon-v2"),
+    ...veliteFields("ff7-cloud-strife-ultima-weapon"),
   },
   {
-    slug: "ff7-cloud-strife-figure",
-    assetDir: "cloud-strife-polygon-figure",
+    slug: "ff7-cloud-strife-polygon-figure",
     status: "planning",
     // No model yet: the ten Stage 1 parts are gated behind spec review. The stage
     // still mounts, carrying the brief, the reference plates and the prompt.
     liveModel: false,
     promptFile: "prompt.txt",
-    ...veliteFields("cloud-strife-polygon-figure"),
+    ...veliteFields("ff7-cloud-strife-polygon-figure"),
   },
 ];
 
