@@ -33,7 +33,10 @@ export default defineConfig({
     "*": "vp check --fix",
   },
   fmt: {
-    ignorePatterns: ["dist/**", "src/exhibits/**/*.md"],
+    // Gate evidence is pipeline output, not source. The formatter used to be held off it by
+    // `src/exhibits/**/*.md`, back when the specs lived next to the code; the files moved to
+    // artifacts/ and the exclusion has to move with them or `vp check --fix` rewrites them.
+    ignorePatterns: ["dist/**", "artifacts/**"],
   },
   ssgOptions: {
     // "nested" emits dist/balamb-garden/index.html. The default "flat" emits

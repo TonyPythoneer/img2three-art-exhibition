@@ -21,15 +21,19 @@ import { exhibits } from "~/exhibits/index.js";
 
 const emit = defineEmits<{ active: [slug: string] }>();
 
-const imageUrls = import.meta.glob("../../exhibits/*/*.png", {
-  eager: true,
-  import: "default",
-  query: "?url",
-}) as Record<string, string>;
+const imageUrls = import.meta.glob(
+  ["../../assets/exhibits/*/*.png", "../../assets/exhibits/*/*.webp"],
+  { eager: true, import: "default", query: "?url" },
+) as Record<string, string>;
 
+// Keyed by assetDir, not slug: an exhibit's route slug and its asset folder differ
+// (ff7-cloud-ultima-weapon lives in cloud-ultima-weapon-v2/). Keying by slug silently
+// returned "" and left the turntable's reference photo blank.
 const coverOf = (slug: string): string => {
-  const file = exhibits.find((e) => e.slug === slug)?.images[0]?.file;
-  return file ? (imageUrls[`../../exhibits/${slug}/${file}`] ?? "") : "";
+  const exhibit = exhibits.find((e) => e.slug === slug);
+  const file = exhibit?.images[0]?.file;
+  const dir = exhibit?.assetDir ?? slug;
+  return file ? (imageUrls[`../../assets/exhibits/${dir}/${file}`] ?? "") : "";
 };
 
 const host = ref<HTMLDivElement | null>(null);

@@ -67,17 +67,21 @@ import { computed, ref } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import { useSeoMeta } from "@unhead/vue";
 import { exhibitBySlug } from "~/exhibits/index.js";
-import { exhibitAssetUrl } from "~/exhibits/assetUrl.js";
 import UltimaV2Stage from "~/exhibits/cloud-ultima-weapon-v2/UltimaV2Stage.vue";
 import CloudStrifeStage from "~/exhibits/cloud-strife-polygon-figure/CloudStrifeStage.vue";
 
 const REPO = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/main/src/exhibits";
 const REPO_ROOT = "https://github.com/TonyPythoneer/img2three-art-exhibition/blob/main";
 
-// Reference images are served from public/exhibits/<assetDir>/ and addressed by URL, not by
-// glob — see exhibitAssetUrl. The prompt is different: it is read at BUILD time and inlined
-// into the prerendered HTML, so it stays importable under src/. Moving it to public/ would
-// turn a `<pre>` that ships in the static page into a runtime fetch.
+// Shallow on purpose. A `**` here would eagerly bundle every detail-inventory zone
+// crop and PBR map — those live under artifacts/, not src/, precisely so they can
+// never reach the client bundle.
+const imageUrls = import.meta.glob(["../assets/exhibits/*/*.png", "../assets/exhibits/*/*.webp"], {
+  eager: true,
+  import: "default",
+  query: "?url",
+}) as Record<string, string>;
+
 const promptTexts = import.meta.glob("../assets/exhibits/*/*.txt", {
   eager: true,
   import: "default",
@@ -99,7 +103,8 @@ const slug = computed(() => String(route.params.slug ?? ""));
 const exhibit = computed(() => exhibitBySlug(slug.value));
 
 const assetDir = computed(() => exhibit.value?.assetDir ?? slug.value);
-const imageUrl = (file: string) => (exhibit.value ? exhibitAssetUrl(exhibit.value, file) : "");
+const imageUrl = (file: string) =>
+  exhibit.value ? (imageUrls[`../assets/exhibits/${assetDir.value}/${file}`] ?? "") : "";
 const docHref = (file: string) =>
   file.startsWith("/") ? `${REPO_ROOT}${file}` : `${REPO}/${assetDir.value}/${file}`;
 const prompt = computed(() => {

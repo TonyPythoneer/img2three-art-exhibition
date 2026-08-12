@@ -14,9 +14,22 @@
 - 驗收 = 機械閘門（斷言、silhouette IoU、part coverage）+ 放大後的原圖比對。
 - 每個數字只追溯到 `artifacts/` 產物，不抄自己的摘要或另一份文件（`spec/audit_records.py` 擋）。
 
-## 新增展品要接四個地方
+## 新增展品要接五個地方
 
-少接一個首頁就看不到：`src/exhibits/index.ts` 條目（route 由 `vite.config.ts` 的
-`includedRoutes` 從這裡生）、`src/pages/[slug].vue` 的 `STAGES` map、
-`src/components/home/heroStage.ts` 的 `heroEntries()`、以及 **exhibit 根目錄**的
-`*.png` 與 `prompt.txt`（glob 只掃直接子檔，放在子資料夾的圖不會被撿到）。
+少接一個首頁就看不到：
+
+1. `src/exhibits/index.ts` 條目（route 由 `vite.config.ts` 的 `includedRoutes` 從
+   `src/exhibits/slugs.ts` 生，所以那邊也要補 slug）
+2. `src/pages/[slug].vue` 的 `STAGES` map
+3. `src/components/home/heroStage.ts` 的 `heroEntries()`
+4. `content/exhibits/<assetDir>.yml`（velite 管的文案與 `images[]`）
+5. `src/assets/exhibits/<assetDir>/` 底下的圖與 `prompt.txt`
+
+檔案分流規則：
+
+- **頁面資源**（`images[]` 列的圖、`prompt.txt`）→ `src/assets/exhibits/<assetDir>/`，
+  平放不要開子資料夾。Vite 會 hash 並自動套 `base`。
+- **閘門證據**（`spec/`、`brief/`、`.img2threejs/`、PBR map、detail-inventory crop）
+  → `artifacts/exhibits/<assetDir>/`。這些永遠不進 bundle。
+- `src/exhibits/<slug>/` 只放 `.ts` 與 `.vue`。
+- glob 一律用 `*/`，不要用 `**/`：`**` 會把整包閘門證據 eager 打包進 client bundle。
