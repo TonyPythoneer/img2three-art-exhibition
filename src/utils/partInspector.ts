@@ -9,7 +9,7 @@ export type InspectorControls = {
   target: THREE.Vector3;
   update: () => unknown;
 };
-import type { Exhibit } from "./index.js";
+import type { Exhibit } from "./exhibits.js";
 
 /**
  * Click-to-inspect part tree, ported from img2threejs-showcase's scene.ts.

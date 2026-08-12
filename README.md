@@ -24,18 +24,24 @@ pnpm build    # emits dist/
 
 ## Adding an exhibit
 
-Four places, and missing one means it never shows up on the home page:
+One exhibit is one route is one page directory. Five places, and missing one
+means it never shows up on the home page:
 
-1. `src/exhibits/<slug>/` for reference images (`*.png`) and `prompt.txt`. They
-   must sit directly in the exhibit root; the glob only scans direct children.
-2. `src/exhibits/index.ts` for the entry (`slug`, `title`, `images`,
-   `promptFile`, `decisions`, and so on). SSG routes are generated from this file.
-3. `src/pages/[slug].vue` to register the stage component in the `STAGES` map.
+1. `src/pages/<slug>/index.vue` — the page itself. Its first line is
+   `useExhibit("<slug>")`; the route comes from where the file sits, so there is
+   no map to register it in.
+2. `src/utils/exhibits.ts` for the entry (`slug`, `assetDir`, `status`,
+   `promptFile`, and so on).
+3. `src/utils/exhibitSlugs.ts` for the slug. `vite.config.ts` reads this to build
+   the prerender list — an allowlist, not a filter, so an unlisted page is simply
+   never prerendered.
 4. `src/components/home/heroStage.ts` to add it to `heroEntries()`.
+5. `content/exhibits/<assetDir>.yml` for the copy velite manages, and
+   `src/assets/exhibits/<assetDir>/` for the reference images and `prompt.txt`.
 
-`src/exhibits/index.ts` is pure data: `vite.config.ts` imports it directly to
-generate routes, so keep asset imports and `import.meta.glob` out of it. Pages
-resolve image and prompt URLs via glob instead.
+`src/utils/exhibits.ts` is pure data. `src/utils/exhibitAssets.ts` owns the only
+`import.meta.glob` over exhibit assets, so the gallery card, the hero turntable
+and the exhibit page all resolve URLs the same way.
 
 ## Copyright
 

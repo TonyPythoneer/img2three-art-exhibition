@@ -138,10 +138,10 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import type { PartInfo } from "~/exhibits/partInspector";
+import type { PartInfo } from "~/utils/partInspector";
 
 // Styles: src/styles/showcase/stage-parts.css
-// Behaviour (picking, highlight, isolate, explode): src/exhibits/partInspector.ts
+// Behaviour (picking, highlight, isolate, explode): src/utils/partInspector.ts
 
 const props = defineProps<{
   parts: PartInfo[];

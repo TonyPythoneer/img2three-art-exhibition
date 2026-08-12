@@ -1,4 +1,4 @@
-import type { Exhibit, ExhibitStatus } from "./index.js";
+import type { Exhibit, ExhibitStatus } from "./exhibits.js";
 
 /** The status pill's label, shared by the gallery card and the exhibit summary
  *  so the same exhibit never reads "Building" in one place and "building" in the other. */

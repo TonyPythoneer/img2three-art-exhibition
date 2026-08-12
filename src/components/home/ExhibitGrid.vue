@@ -45,24 +45,17 @@
 
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-import { exhibits, type Exhibit } from "~/exhibits/index.js";
-import { exhibitBadges, STATUS_LABELS } from "~/exhibits/status";
+import { exhibits, type Exhibit } from "~/utils/exhibits.js";
+import { exhibitBadges, STATUS_LABELS } from "~/utils/exhibitStatus";
+import { exhibitImageUrl } from "~/utils/exhibitAssets.js";
 
 // Styles: src/styles/showcase/home-gallery.css
 
 defineProps<{ activeSlug: string }>();
 const emit = defineEmits<{ focus: [slug: string] }>();
 
-// Eager and hashed by Vite, so `base` is applied for free. public/ would need
-// import.meta.env.BASE_URL stitched on by hand at every use site.
-const imageUrls = import.meta.glob(
-  ["../../assets/exhibits/*/*.png", "../../assets/exhibits/*/*.webp"],
-  { eager: true, import: "default", query: "?url" },
-) as Record<string, string>;
-
-const cover = (exhibit: Exhibit): string | undefined => {
+const cover = (exhibit: Exhibit): string => {
   const first = exhibit.images[0];
-  const dir = exhibit.assetDir ?? exhibit.slug;
-  return first ? imageUrls[`../../assets/exhibits/${dir}/${first.file}`] : undefined;
+  return first ? exhibitImageUrl(exhibit.assetDir ?? exhibit.slug, first.file) : "";
 };
 </script>

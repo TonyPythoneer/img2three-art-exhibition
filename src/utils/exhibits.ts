@@ -1,5 +1,5 @@
-// Pure data, deliberately free of asset imports and `import.meta.glob`: the page component
-// resolves `images` / `promptFile` to real URLs via glob.
+// Pure data, deliberately free of asset imports and `import.meta.glob`:
+// src/utils/exhibitAssets.ts resolves `images` / `promptFile` to real URLs.
 //
 // This file DOES import `.velite/index.js` below to merge velite-managed copy onto the
 // cloud-ultima-weapon-v2 entry. That is safe for this file's importers (page components) but
@@ -7,7 +7,7 @@
 // watched by vite-plus, and a change to a file it transitively touches (here, the
 // velite-generated `.velite/index.js`, rewritten on every content edit) forces a full config
 // reload that races velite's delete-then-write into a crash loop. So vite.config.ts reads the
-// route-slug list from src/exhibits/slugs.ts instead, which never touches `.velite`.
+// route-slug list from src/utils/exhibitSlugs.ts instead, which never touches `.velite`.
 
 export type ExhibitStatus = "planning" | "building" | "done";
 
@@ -18,16 +18,17 @@ export type Exhibit = {
   status: ExhibitStatus;
   /** Where the reference art came from. */
   source: string;
-  /** Filenames inside src/exhibits/<assetDir ?? slug>/. */
+  /** Filenames inside src/assets/exhibits/<assetDir ?? slug>/. */
   images: { file: string; caption: string }[];
-  /** Plain-text prompt inside src/exhibits/<assetDir ?? slug>/, rendered verbatim on the page.
-   *  A leading "/" resolves relative to the repo root instead (e.g. "/SPEC.md"). */
+  /** Plain-text prompt inside src/assets/exhibits/<assetDir ?? slug>/, rendered verbatim
+   *  on the page. */
   promptFile: string;
-  /** Folder under src/exhibits/ holding images/promptFile, when it differs from the public
-   *  route `slug` (e.g. the route was renamed but the exhibit folder/gate scripts were not). */
+  /** Folder under src/assets/exhibits/ holding images/promptFile, and under
+   *  artifacts/exhibits/ holding the gate evidence, when it differs from the public route
+   *  `slug` (e.g. the route was renamed but the exhibit folder and gate scripts were not). */
   assetDir?: string;
-  /** Markdown living beside the prompt, linked rather than rendered. A leading "/"
-   *  links to that path from the repo root instead of src/exhibits/<slug>/. */
+  /** Gate evidence linked rather than rendered — it lives in artifacts/exhibits/<assetDir>/,
+   *  outside the bundle. A leading "/" links from the repo root instead. */
   docs?: { file: string; label: string }[];
   /** Set when the exhibit ships a live procedural model. The page mounts the
    *  viewer client side only; three.js must never run during static generation. */

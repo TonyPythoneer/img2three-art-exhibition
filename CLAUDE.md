@@ -1,7 +1,8 @@
 # img2three 展覽站
 
-用 img2threejs skill 把參考圖重建成純程式 Three.js 模型的展覽站。每個展品是
-`src/exhibits/<slug>/`，接線方式與管線順序見各展品 `spec/RELATIONSHIPS.md`。
+用 img2threejs skill 把參考圖重建成純程式 Three.js 模型的展覽站。**一個展品 = 一條 route =
+一個 `src/pages/<slug>/index.vue`**，接線方式與管線順序見各展品
+`artifacts/exhibits/<assetDir>/spec/RELATIONSHIPS.md`。
 
 ## 建模
 
@@ -18,18 +19,25 @@
 
 少接一個首頁就看不到：
 
-1. `src/exhibits/index.ts` 條目（route 由 `vite.config.ts` 的 `includedRoutes` 從
-   `src/exhibits/slugs.ts` 生，所以那邊也要補 slug）
-2. `src/pages/[slug].vue` 的 `STAGES` map
-3. `src/components/home/heroStage.ts` 的 `heroEntries()`
-4. `content/exhibits/<assetDir>.yml`（velite 管的文案與 `images[]`）
-5. `src/assets/exhibits/<assetDir>/` 底下的圖與 `prompt.txt`
+1. `src/pages/<slug>/index.vue` — 展品頁本身，第一行呼叫 `useExhibit("<slug>")`。
+   route 是檔案位置生的，沒有 map 要註冊。
+2. `src/utils/exhibits.ts` 條目
+3. `src/utils/exhibitSlugs.ts` 補 slug（`vite.config.ts` 的 `includedRoutes` 讀這支，
+   是 allowlist 不是 filter，沒補就不會 prerender）
+4. `src/components/home/heroStage.ts` 的 `heroEntries()`
+5. `content/exhibits/<assetDir>.yml`（velite 管的文案與 `images[]`）＋
+   `src/assets/exhibits/<assetDir>/` 底下的圖與 `prompt.txt`
 
-檔案分流規則：
+目錄規則（Nuxt 的 `app/` 分法，`src/` 為根）：
 
+- `src/pages/` **就是 URL 表面**，一個 `.vue` 一條 route。plugin 只掃 `.vue`，但別靠這點
+  往裡塞東西 — 多放一個 `.vue` 就多一條垃圾 route。
+- `src/composables/` 反應式的取用（`useExhibit`）；`src/utils/` 純函式與資料
+  （展品登錄檔、part inspector、幾何工廠）。幾何工廠放這裡是因為首頁 hero 和
+  `ultima-v2-harness` 也在用，放進 page 目錄會變成 component 反向 import page。
 - **頁面資源**（`images[]` 列的圖、`prompt.txt`）→ `src/assets/exhibits/<assetDir>/`，
   平放不要開子資料夾。Vite 會 hash 並自動套 `base`。
 - **閘門證據**（`spec/`、`brief/`、`.img2threejs/`、PBR map、detail-inventory crop）
   → `artifacts/exhibits/<assetDir>/`。這些永遠不進 bundle。
-- `src/exhibits/<slug>/` 只放 `.ts` 與 `.vue`。
-- glob 一律用 `*/`，不要用 `**/`：`**` 會把整包閘門證據 eager 打包進 client bundle。
+- 圖與 prompt 一律走 `src/utils/exhibitAssets.ts`，不要在元件裡自己開 `import.meta.glob`。
+  glob 一律用 `*/` 不要用 `**/`：`**` 會把整包閘門證據 eager 打包進 client bundle。

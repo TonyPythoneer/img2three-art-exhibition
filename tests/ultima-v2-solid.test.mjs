@@ -21,7 +21,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import * as THREE from "three";
 
-import { createUltimaWeaponV2Model } from "../src/exhibits/cloud-ultima-weapon-v2/createUltimaWeaponV2Model.ts";
+import { createUltimaWeaponV2Model } from "../src/utils/ultimaWeaponV2/createUltimaWeaponV2Model.ts";
 
 const QUANTUM = 1e4; // positions are ~1e-2, so 1e-4 of a unit is far below any real gap
 const key = (x, y, z) =>

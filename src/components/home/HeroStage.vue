@@ -14,17 +14,13 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, shallowRef } from "vue";
-import { exhibits } from "~/exhibits/index.js";
+import { exhibits } from "~/utils/exhibits.js";
+import { exhibitImageUrl } from "~/utils/exhibitAssets.js";
 
 // Three.js — and every model factory it pulls in — is loaded inside onMounted.
 // vite-ssg prerenders this component in node, where there is no WebGL context.
 
 const emit = defineEmits<{ active: [slug: string] }>();
-
-const imageUrls = import.meta.glob(
-  ["../../assets/exhibits/*/*.png", "../../assets/exhibits/*/*.webp"],
-  { eager: true, import: "default", query: "?url" },
-) as Record<string, string>;
 
 // Keyed by assetDir, not slug: an exhibit's route slug and its asset folder differ
 // (ff7-cloud-ultima-weapon lives in cloud-ultima-weapon-v2/). Keying by slug silently
@@ -32,8 +28,7 @@ const imageUrls = import.meta.glob(
 const coverOf = (slug: string): string => {
   const exhibit = exhibits.find((e) => e.slug === slug);
   const file = exhibit?.images[0]?.file;
-  const dir = exhibit?.assetDir ?? slug;
-  return file ? (imageUrls[`../../assets/exhibits/${dir}/${file}`] ?? "") : "";
+  return file ? exhibitImageUrl(exhibit?.assetDir ?? slug, file) : "";
 };
 
 const host = ref<HTMLDivElement | null>(null);

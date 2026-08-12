@@ -12,7 +12,7 @@ import {
   createUltimaWeaponV2Model,
   type DetailLevel,
   type SculptRuntime,
-} from "~/exhibits/cloud-ultima-weapon-v2/createUltimaWeaponV2Model";
+} from "~/utils/ultimaWeaponV2/createUltimaWeaponV2Model";
 import {
   REVIEW_VIEWS,
   createUltimaWeaponV2LookDevLights,
@@ -23,7 +23,7 @@ import {
   LIGHTING_MODES,
   type LightingMode,
   type ReviewView,
-} from "~/exhibits/cloud-ultima-weapon-v2/createUltimaWeaponV2LookDev";
+} from "~/utils/ultimaWeaponV2/createUltimaWeaponV2LookDev";
 
 /**
  * Headless review harness for the v2 rebuild, driven by tools/capture_ultima.mjs with

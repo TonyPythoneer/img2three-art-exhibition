@@ -4,7 +4,7 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
-import { createUltimaWeaponV2Model } from "~/exhibits/cloud-ultima-weapon-v2/createUltimaWeaponV2Model";
+import { createUltimaWeaponV2Model } from "~/utils/ultimaWeaponV2/createUltimaWeaponV2Model";
 
 /**
  * Cinematic hero turntable, ported from img2threejs-showcase's hero-stage.ts.

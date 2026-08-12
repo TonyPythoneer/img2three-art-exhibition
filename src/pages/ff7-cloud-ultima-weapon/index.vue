@@ -1,6 +1,9 @@
 <template>
   <ExhibitStage
-    v-bind="props"
+    :exhibit="exhibit"
+    :prompt="prompt"
+    :images="images"
+    :doc-href="docHref"
     :mount="mount"
     :isolated-part="isolatedPart"
     :visible-parts="visibleParts"
@@ -107,14 +110,15 @@
 <script setup lang="ts">
 import { ref, shallowRef } from "vue";
 import ExhibitStage from "~/components/stage/ExhibitStage.vue";
-import type { ExhibitStageProps, PartInfo, StageViewer } from "~/exhibits/partInspector";
+import { useExhibit } from "~/composables/useExhibit.js";
+import type { PartInfo, StageViewer } from "~/utils/partInspector";
 // Type-only, so vite-ssg never pulls three.js into the prerender through it.
-import type { LightingMode } from "./createUltimaWeaponV2LookDev";
+import type { LightingMode } from "~/utils/ultimaWeaponV2/createUltimaWeaponV2LookDev";
 
 // Everything WebGL is behind the dynamic import inside `mount`, so vite-ssg can prerender
-// this component in node.
+// this page in node.
 
-const props = defineProps<ExhibitStageProps>();
+const { exhibit, images, prompt, docHref } = useExhibit("ff7-cloud-ultima-weapon");
 
 type Preset = "reference" | "front" | "side" | "three-quarter";
 // Imported rather than restated. This was a second copy of the union, so adding a mode meant
@@ -160,7 +164,7 @@ const mount = async (
   host: HTMLElement,
   onPartChange: (selected: PartInfo | null, isolated: boolean) => void,
 ): Promise<StageViewer> => {
-  const { mountV2Viewer } = await import("./mountV2Viewer");
+  const { mountV2Viewer } = await import("~/utils/ultimaWeaponV2/mountV2Viewer");
   const viewer = mountV2Viewer(host, { onPartChange }) as V2Api;
   api.value = viewer;
   visibleParts.value = new Set(viewer.toggleableParts);

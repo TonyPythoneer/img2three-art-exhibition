@@ -27,7 +27,7 @@ import HeroStage from "~/components/home/HeroStage.vue";
 import ExhibitGrid from "~/components/home/ExhibitGrid.vue";
 import HomeFooter from "~/components/home/HomeFooter.vue";
 import DevTooling from "~/components/home/DevTooling.vue";
-import { exhibits } from "~/exhibits/index.js";
+import { exhibits } from "~/utils/exhibits.js";
 
 // Styles: src/styles/showcase/home.css (shell + aurora); each block above owns its own.
 

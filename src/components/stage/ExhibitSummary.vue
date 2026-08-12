@@ -19,8 +19,8 @@
 
 <script setup lang="ts">
 import PanelSectionTitle from "./PanelSectionTitle.vue";
-import type { Exhibit } from "~/exhibits/index.js";
-import { exhibitBadges } from "~/exhibits/status";
+import type { Exhibit } from "~/utils/exhibits.js";
+import { exhibitBadges } from "~/utils/exhibitStatus";
 
 // Styles: src/styles/showcase/stage-panel.css
 

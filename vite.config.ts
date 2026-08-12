@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import VueRouter from "vue-router/vite";
 import velite from "@velite/plugin-vite";
 import { fileURLToPath } from "node:url";
-import { exhibitSlugs } from "./src/exhibits/slugs.js";
+import { exhibitSlugs } from "./src/utils/exhibitSlugs.js";
 
 // `ssgOptions` is read by vite-ssg at build time, but vite-plus's defineConfig type does
 // not model it, so the argument is asserted. Every other key is still structurally checked.

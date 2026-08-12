@@ -159,7 +159,7 @@ import PromptDisclosure from "./PromptDisclosure.vue";
 import ExhibitNotes from "./ExhibitNotes.vue";
 import YoutubeAudioBar from "./YoutubeAudioBar.vue";
 import { RouterLink, useRoute, useRouter } from "vue-router";
-import type { ExhibitStageProps, PartInfo, StageViewer } from "~/exhibits/partInspector";
+import type { ExhibitStageProps, PartInfo, StageViewer } from "~/utils/partInspector";
 
 /**
  * The gallery's exhibit page: a full-viewport viewer under a collapsible panel

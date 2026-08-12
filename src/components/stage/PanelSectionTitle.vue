@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Exhibit } from "~/exhibits/index.js";
+import type { Exhibit } from "~/utils/exhibits.js";
 
 // Every panel-dock section repeats this so the exhibit's name stays on screen no matter
 // which tab is open, not just Brief. `subtitle` names the current dock tab (Brief,

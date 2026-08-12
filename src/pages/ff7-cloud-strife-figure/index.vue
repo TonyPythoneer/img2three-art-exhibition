@@ -1,10 +1,17 @@
 <template>
-  <ExhibitStage v-bind="props" :mount="mount" />
+  <ExhibitStage
+    :exhibit="exhibit"
+    :prompt="prompt"
+    :images="images"
+    :doc-href="docHref"
+    :mount="mount"
+  />
 </template>
 
 <script setup lang="ts">
 import ExhibitStage from "~/components/stage/ExhibitStage.vue";
-import type { ExhibitStageProps, StageViewer } from "~/exhibits/partInspector";
+import { useExhibit } from "~/composables/useExhibit.js";
+import type { StageViewer } from "~/utils/partInspector";
 
 /**
  * The exhibit stage before the model exists.
@@ -16,7 +23,7 @@ import type { ExhibitStageProps, StageViewer } from "~/exhibits/partInspector";
  * has to move, and the panel picks up the part list on its own.
  */
 
-const props = defineProps<ExhibitStageProps>();
+const { exhibit, images, prompt, docHref } = useExhibit("ff7-cloud-strife-figure");
 
 const mount = async (host: HTMLElement): Promise<StageViewer> => {
   const note = document.createElement("p");
