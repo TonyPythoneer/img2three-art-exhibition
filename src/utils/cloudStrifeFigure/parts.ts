@@ -1,6 +1,11 @@
 import * as THREE from "three";
 import { createSole } from "./createSole";
 import { createAnkle } from "./createAnkle";
+import { createNeck } from "./createNeck";
+import { createWaist } from "./createWaist";
+import { createThigh } from "./createThigh";
+import { createKnee } from "./createKnee";
+import { createCalf } from "./createCalf";
 
 /**
  * The Stage 1 part registry, and the one material every Stage 1 part shares.
@@ -57,4 +62,12 @@ export const STAGE1_PARTS: PartEntry[] = [
   { name: "soleR", module: "legRight", origin: "soleTop", build: () => createSole("R") },
   { name: "ankleL", module: "legLeft", origin: "ankleTop", build: () => createAnkle("L") },
   { name: "ankleR", module: "legRight", origin: "ankleTop", build: () => createAnkle("R") },
+  { name: "thighL", module: "legLeft", origin: "hip", build: () => createThigh("L") },
+  { name: "thighR", module: "legRight", origin: "hip", build: () => createThigh("R") },
+  { name: "kneeL", module: "legLeft", origin: "kneeTop", build: () => createKnee("L") },
+  { name: "kneeR", module: "legRight", origin: "kneeTop", build: () => createKnee("R") },
+  { name: "calfL", module: "legLeft", origin: "calfTop", build: () => createCalf("L") },
+  { name: "calfR", module: "legRight", origin: "calfTop", build: () => createCalf("R") },
+  { name: "waist", module: "torso", origin: "waistTop", build: () => createWaist() },
+  { name: "neck", module: "head", origin: "neckTop", build: () => createNeck() },
 ];

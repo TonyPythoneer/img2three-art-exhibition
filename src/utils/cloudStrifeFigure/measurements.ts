@@ -35,10 +35,10 @@ export const SOLE = {
 export const SOCKET_Y = {
   ground: 0.0,
   soleTop: 0.055562,
-  ankleTop: 0.16258,
-  calfTop: 0.273084,
-  kneeTop: 0.286825,
-  hip: 0.271814,
+  ankleTop: 0.16258019,
+  calfTop: 0.19520874,
+  kneeTop: 0.22783729,
+  hip: 0.26046584,
   pelvisTop: 0.523305,
   waistTop: 0.56649,
   chestTop: 0.706208,
@@ -60,5 +60,40 @@ export const ANKLE = {
   pantTubeWidthX: 0.06096757,
   pantTubeDepthZ: 0.0772598,
   foreAftOffset: -0.0606725,
-  height: 0.107018,
+  height: 0.10701819,
+} as const;
+
+/**
+ * S-03/S-04/S-05 collapsed. thigh, knee and calf are three stacked segments of ONE
+ * near-square chamfered tube — §2 assigns shape codes from measured dimensions, not
+ * from names, and below the crotch this leg's width varies by less than the
+ * uncertainty over its whole length with no corner anywhere in it. The corner §4
+ * describes IS the crotch: the outer slope is 0.53 dx/dy above it and 0.073 below.
+ *
+ * So the three factories share this one section and C0 continuity holds by
+ * construction. Where the three segments MEET is not measurable — there is no
+ * landmark between the crotch and the boot cuff and no width breakpoint — so the two
+ * split heights are equal thirds and are a guess-list item.
+ */
+export const PANT_LEG = {
+  widthX: 0.05643412,
+  depthZ: 0.05526363,
+  crotchY: 0.26046584,
+  thighHeight: 0.03262855,
+  kneeHeight: 0.03262855,
+  calfHeight: 0.03262855,
+} as const;
+
+/** S-14 neckColumn. CylinderGeometry(r, r, h, radialSegments=8) with flatShading. */
+export const NECK = {
+  radius: 0.01975886,
+  height: 0.01016126,
+  radialSegments: 8,
+} as const;
+
+/** S-07 belt. A flat band standing proud of chest and pelvis. */
+export const WAIST = {
+  widthX: 0.39247874,
+  depthZ: 0.09646136,
+  height: 0.04318536,
 } as const;

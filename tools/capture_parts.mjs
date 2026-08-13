@@ -39,6 +39,7 @@ function parseArgs(argv) {
   const args = {
     part: null,
     gallery: false,
+    assembled: false,
     views: ["front", "back", "left", "right", "orbit", "orbit2"],
     out: null,
   };
@@ -53,9 +54,14 @@ function parseArgs(argv) {
         .filter(Boolean)),
         (i += 1));
     else if (flag === "--gallery") args.gallery = true;
+    else if (flag === "--assembled") args.assembled = true;
   }
-  if (!args.part && !args.gallery) throw new Error("pass --part <name> or --gallery");
-  args.out ??= path.join(os.tmpdir(), `cloud-${args.part ?? "gallery"}`);
+  if (!args.part && !args.gallery && !args.assembled)
+    throw new Error("pass --part <name>, --gallery, or --assembled");
+  args.out ??= path.join(
+    os.tmpdir(),
+    `cloud-${args.part ?? (args.assembled ? "assembled" : "gallery")}`,
+  );
   return args;
 }
 
@@ -103,6 +109,7 @@ async function main() {
       const query = new URLSearchParams({ view });
       if (args.part) query.set("part", args.part);
       if (args.gallery) query.set("mode", "gallery");
+      if (args.assembled) query.set("mode", "assembled");
 
       const errors = [];
       page.on("pageerror", (e) => errors.push(e.message));

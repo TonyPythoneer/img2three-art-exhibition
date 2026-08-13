@@ -3638,6 +3638,940 @@
           "offsetZ": -0.052869
         }
       }
+    },
+    "neck": {
+      "generatedBy": "spec/measure_neck.py",
+      "widthX": {
+        "normalized": 0.03951773,
+        "perView": {
+          "front": 0.03937489,
+          "back": 0.03966057
+        }
+      },
+      "depthZ": {
+        "normalized": 0.03951773,
+        "note": "cylinder symmetry: depth = width"
+      },
+      "heightY": {
+        "normalized": 0.01016126,
+        "socketChainGap": 0.01016126,
+        "gapDifference": 0.0
+      },
+      "cylinderRadius": 0.01975886,
+      "crossViewSpread": {
+        "width": 0.00028568,
+        "depth": 0.00028568
+      }
+    },
+    "waist": {
+      "generatedBy": "spec/measure_waist.py",
+      "widthX": {
+        "normalized": 0.39247874,
+        "perView": {
+          "front": 0.39247874
+        },
+        "frontTop": 0.35818449,
+        "frontBottom": 0.43058348
+      },
+      "depthZ": {
+        "normalized": 0.09646136,
+        "perView": {
+          "left": 0.09247247,
+          "right": 0.10045026
+        }
+      },
+      "heightY": -0.04318536,
+      "proudMargins": {
+        "perView": {
+          "front": {
+            "chestWidth": 0.35818449,
+            "pelvisWidth": 0.43185363,
+            "beltWidth": 0.39247874,
+            "proudOfChest": 0.03429426,
+            "proudOfPelvis": -0.03937489
+          },
+          "back": {
+            "chestWidth": 0.37429659,
+            "pelvisWidth": 0.43502683,
+            "beltWidth": 0.39164809,
+            "proudOfChest": 0.0173515,
+            "proudOfPelvis": -0.04337874
+          }
+        },
+        "avgProudOfChest": 0.02582288,
+        "avgProudOfPelvis": -0.04137681
+      },
+      "crossViewSpread": {
+        "width": 0.0,
+        "depth": 0.0079778
+      }
+    },
+    "pantLeg": {
+      "generatedBy": "spec/measure_pant_leg.py",
+      "outerLine": {
+        "front": {
+          "lo": {
+            "rowsFitted": [
+              613,
+              687
+            ],
+            "samples": 75,
+            "breakRow": 669.0,
+            "twoSegmentMaxResidualPx": 4.34210526315789,
+            "threeSegmentMaxResidualPx": 1.9642857142857224,
+            "threeSegmentHelps": true,
+            "taperSlopeDxDy": -0.034936479128856626,
+            "tubeSlopeDxDy": 0.06140350877192982,
+            "kneeZoneRows": [
+              669.0,
+              669.0
+            ]
+          },
+          "hi": {
+            "rowsFitted": [
+              613,
+              687
+            ],
+            "samples": 75,
+            "breakRow": 678.0,
+            "twoSegmentMaxResidualPx": 4.5030303030303,
+            "threeSegmentMaxResidualPx": 3.2142857142857792,
+            "threeSegmentHelps": false,
+            "taperSlopeDxDy": 0.04177017012837908,
+            "tubeSlopeDxDy": -0.806060606060606,
+            "kneeZoneRows": [
+              678.0,
+              678.0
+            ]
+          }
+        },
+        "back": {
+          "lo": {
+            "rowsFitted": [
+              611,
+              709
+            ],
+            "samples": 99,
+            "breakRow": 635.0,
+            "twoSegmentMaxResidualPx": 2.4003508771930058,
+            "threeSegmentMaxResidualPx": 0.8571428571428896,
+            "threeSegmentHelps": true,
+            "taperSlopeDxDy": 0.5015384615384615,
+            "tubeSlopeDxDy": -0.049018492176386916,
+            "kneeZoneRows": [
+              635.0,
+              635.0
+            ]
+          },
+          "hi": {
+            "rowsFitted": [
+              611,
+              709
+            ],
+            "samples": 99,
+            "breakRow": 636.0,
+            "twoSegmentMaxResidualPx": 2.3550092558311917,
+            "threeSegmentMaxResidualPx": 1.3214285714285552,
+            "threeSegmentHelps": false,
+            "taperSlopeDxDy": -0.5264957264957265,
+            "tubeSlopeDxDy": 0.057963717141799334,
+            "kneeZoneRows": [
+              636.0,
+              636.0
+            ]
+          }
+        },
+        "left": {
+          "lo": {
+            "rowsFitted": [
+              622,
+              702
+            ],
+            "samples": 81,
+            "breakRow": 687.0,
+            "twoSegmentMaxResidualPx": 35.15147058823527,
+            "threeSegmentMaxResidualPx": 31.42857142857156,
+            "threeSegmentHelps": false,
+            "taperSlopeDxDy": 0.0499739066903246,
+            "tubeSlopeDxDy": 1.063235294117647,
+            "kneeZoneRows": [
+              687.0,
+              687.0
+            ]
+          },
+          "hi": {
+            "rowsFitted": [
+              622,
+              702
+            ],
+            "samples": 81,
+            "breakRow": 687.0,
+            "twoSegmentMaxResidualPx": 4.871551334237893,
+            "threeSegmentMaxResidualPx": 1.9023864634048948,
+            "threeSegmentHelps": true,
+            "taperSlopeDxDy": 0.00910134641477925,
+            "tubeSlopeDxDy": -0.3411764705882353,
+            "kneeZoneRows": [
+              687.0,
+              687.0
+            ]
+          }
+        },
+        "right": {
+          "lo": {
+            "rowsFitted": [
+              630,
+              690
+            ],
+            "samples": 61,
+            "breakRow": 683.0,
+            "twoSegmentMaxResidualPx": 3.047619047619037,
+            "threeSegmentMaxResidualPx": 2.7142857142857792,
+            "threeSegmentHelps": false,
+            "taperSlopeDxDy": -0.02123117972174576,
+            "tubeSlopeDxDy": 1.3452380952380953,
+            "kneeZoneRows": [
+              683.0,
+              683.0
+            ]
+          },
+          "hi": {
+            "rowsFitted": [
+              630,
+              690
+            ],
+            "samples": 61,
+            "breakRow": 672.0,
+            "twoSegmentMaxResidualPx": 38.221052631578914,
+            "threeSegmentMaxResidualPx": 32.470588235294144,
+            "threeSegmentHelps": false,
+            "taperSlopeDxDy": -0.2151917849592268,
+            "tubeSlopeDxDy": -2.110526315789474,
+            "kneeZoneRows": [
+              672.0,
+              672.0
+            ]
+          }
+        }
+      },
+      "corner": {
+        "adopted": 0.207977343869231,
+        "adoptedFrom": [
+          "front",
+          "back"
+        ],
+        "perView": {
+          "front": 0.18480795247440057,
+          "back": 0.2311467352640614,
+          "left": 0.18494493027085757,
+          "right": 0.19891795211742266
+        },
+        "crossViewSpreadFrontal": 0.04633878278966083,
+        "verdict": "PASS",
+        "profileNote": "the profiles are fitted from the crotch down and reported, but they do not vote on the adopted height: their taper segment is short and the break is far less constrained there. Read their residuals, not their break."
+      },
+      "singleCorner_5_7a": {
+        "pin": {
+          "assertion": "res3/res2 must be >= threshold \u2014 a second corner must NOT buy much",
+          "frames": {
+            "one-corner": {
+              "two": 0.6571428571428584,
+              "three": 0.6557377049180335,
+              "ratio": 0.9978617248752666
+            },
+            "arc": {
+              "two": 1.497129735935708,
+              "three": 0.9610496526884482,
+              "ratio": 0.6419281039046298
+            },
+            "two-corner": {
+              "two": 4.361295822676901,
+              "three": 0.6521739130434785,
+              "ratio": 0.14953672934829343
+            }
+          },
+          "threshold": 0.57369922711178,
+          "separation": 0.8483249955269732,
+          "pinned": true,
+          "hardStop": null
+        },
+        "measured": {
+          "front": {
+            "lo": {
+              "two": 4.34210526315789,
+              "three": 1.9642857142857224,
+              "ratio": 0.4523809523809547
+            },
+            "hi": {
+              "two": 4.5030303030303,
+              "three": 3.2142857142857792,
+              "ratio": 0.7138050374928047
+            }
+          },
+          "back": {
+            "lo": {
+              "two": 2.4003508771930058,
+              "three": 0.8571428571428896,
+              "ratio": 0.3570906509073544
+            },
+            "hi": {
+              "two": 2.3550092558311917,
+              "three": 1.3214285714285552,
+              "ratio": 0.5611139608715304
+            }
+          },
+          "left": {
+            "lo": {
+              "two": 35.15147058823527,
+              "three": 31.42857142857156,
+              "ratio": 0.8940898034317314
+            },
+            "hi": {
+              "two": 4.871551334237893,
+              "three": 1.9023864634048948,
+              "ratio": 0.39050937430027205
+            }
+          },
+          "right": {
+            "lo": {
+              "two": 3.047619047619037,
+              "three": 2.7142857142857792,
+              "ratio": 0.8906250000000245
+            },
+            "hi": {
+              "two": 38.221052631578914,
+              "three": 32.470588235294144,
+              "ratio": 0.8495471997667162
+            }
+          }
+        },
+        "verdict": "FAIL \u2014 worst ratio 0.357 < 0.574: a second corner buys enough to be real in at least one view",
+        "note": "the literal \u00a75.7 (a) test is vacuous here: it compares residuals of 2.4-6.8 px against measurementUncertainty, which is 43 px of front.webp. The ratio res3/res2 is the quantity with signal, and its threshold is pinned against fake frames rather than guessed."
+      },
+      "tubeBelowCrotch": {
+        "topHeight": 0.26046584371854303,
+        "bottomHeight": 0.1625801918675139,
+        "totalHeight": 0.09788565185102913,
+        "perView": {
+          "front": {
+            "samples": [
+              [
+                0.260382,
+                0.08383,
+                2
+              ],
+              [
+                0.252761,
+                0.067318,
+                2
+              ],
+              [
+                0.24514,
+                0.055887,
+                2
+              ],
+              [
+                0.237519,
+                0.054617,
+                2
+              ],
+              [
+                0.229899,
+                0.055887,
+                2
+              ],
+              [
+                0.222278,
+                0.055887,
+                2
+              ],
+              [
+                0.214657,
+                0.054617,
+                2
+              ],
+              [
+                0.207036,
+                0.054617,
+                2
+              ],
+              [
+                0.199415,
+                0.055887,
+                2
+              ],
+              [
+                0.191794,
+                0.055887,
+                2
+              ],
+              [
+                0.184173,
+                0.054617,
+                2
+              ],
+              [
+                0.176552,
+                0.055887,
+                2
+              ],
+              [
+                0.168931,
+                0.050806,
+                2
+              ]
+            ],
+            "min": 0.050806,
+            "max": 0.08383,
+            "range": 0.033024000000000005
+          },
+          "back": {
+            "samples": [
+              [
+                0.260272,
+                0.251597,
+                1
+              ],
+              [
+                0.252836,
+                0.242921,
+                1
+              ],
+              [
+                0.2454,
+                0.106588,
+                2
+              ],
+              [
+                0.237963,
+                0.091715,
+                2
+              ],
+              [
+                0.230527,
+                0.075603,
+                2
+              ],
+              [
+                0.223091,
+                0.06197,
+                2
+              ],
+              [
+                0.215654,
+                0.058251,
+                2
+              ],
+              [
+                0.208218,
+                0.058251,
+                2
+              ],
+              [
+                0.200782,
+                0.059491,
+                2
+              ],
+              [
+                0.193345,
+                0.058251,
+                2
+              ],
+              [
+                0.185909,
+                0.059491,
+                2
+              ],
+              [
+                0.178473,
+                0.058251,
+                2
+              ],
+              [
+                0.171036,
+                0.058251,
+                2
+              ],
+              [
+                0.1636,
+                0.058251,
+                2
+              ]
+            ],
+            "min": 0.058251,
+            "max": 0.106588,
+            "range": 0.048337000000000005
+          },
+          "left": {
+            "samples": [
+              [
+                0.26103,
+                0.06555,
+                1
+              ],
+              [
+                0.252836,
+                0.055015,
+                1
+              ],
+              [
+                0.244642,
+                0.051504,
+                1
+              ],
+              [
+                0.236449,
+                0.051504,
+                1
+              ],
+              [
+                0.228255,
+                0.051504,
+                1
+              ],
+              [
+                0.220061,
+                0.050333,
+                1
+              ],
+              [
+                0.211867,
+                0.055015,
+                1
+              ],
+              [
+                0.203674,
+                0.053845,
+                1
+              ],
+              [
+                0.19548,
+                0.053845,
+                1
+              ],
+              [
+                0.187286,
+                0.052674,
+                1
+              ],
+              [
+                0.179092,
+                0.053845,
+                1
+              ],
+              [
+                0.170898,
+                0.050333,
+                1
+              ],
+              [
+                0.162705,
+                0.011705,
+                1
+              ]
+            ],
+            "min": 0.011705,
+            "max": 0.06555,
+            "range": 0.053845
+          },
+          "right": {
+            "samples": [
+              [
+                0.260378,
+                0.066086,
+                1
+              ],
+              [
+                0.252447,
+                0.066086,
+                1
+              ],
+              [
+                0.244517,
+                0.070051,
+                1
+              ],
+              [
+                0.236587,
+                0.058155,
+                1
+              ],
+              [
+                0.228657,
+                0.056834,
+                1
+              ],
+              [
+                0.220726,
+                0.056834,
+                1
+              ],
+              [
+                0.212796,
+                0.056834,
+                1
+              ],
+              [
+                0.204866,
+                0.055512,
+                2
+              ],
+              [
+                0.196935,
+                0.055512,
+                1
+              ],
+              [
+                0.189005,
+                0.055512,
+                1
+              ],
+              [
+                0.181075,
+                0.026434,
+                1
+              ]
+            ],
+            "min": 0.055512,
+            "max": 0.055512,
+            "range": 0.0
+          }
+        },
+        "widestSpreadAnyView": 0.053845,
+        "measurementUncertainty": 0.05447382376324872,
+        "referenceOwnResidual": 0.0030517,
+        "collapse": {
+          "verdict": "COLLAPSE",
+          "what": "\u00a72 assigns shape codes from measured dimensions, not from names. Below the crotch the leg's per-leg width varies by 0.05384 over its whole length, against an uncertainty of 0.05447. There is no corner down here either (\u00a75.7 a FAILS on the ratio test, and the outer slope is 0.53 dx/dy above the crotch versus 0.073 below it \u2014 the corner IS the crotch). So S-03 pantTube, S-04 pantGather and S-05 pantTaper measure as ONE shape.",
+          "consequence": "thighL/R, kneeL/R and calfL/R remain six PARTS \u2014 partInspector reads the object tree and \u00a72's table stands \u2014 but they are three stacked segments of one section, which is \u00a74[4]'s 'the three parts must share ONE set of section constants' taken to its limit. C0 continuity then holds by construction instead of by assertion.",
+          "unmeasurable": "where the three segments meet. There is no landmark between the crotch and the boot cuff and no width breakpoint to find, so the two split heights are a GUESS-LIST item, defaulted to equal thirds."
+        }
+      },
+      "sharedSection": {
+        "atHeight": 0.21152301779302846,
+        "widthX": 0.0564341196387006,
+        "depthZ": 0.05526362535266681,
+        "widthPerView": {
+          "front": 0.05461678320549295,
+          "back": 0.058251456071908236
+        },
+        "depthPerView": {
+          "left": 0.05501526406791333,
+          "right": 0.05551198663742028
+        },
+        "widthSpread": 0.0036346728664152853,
+        "depthSpread": 0.0004967225695069535,
+        "crossCheck": {
+          "landmarks.dimensions.straightPantTubeWidth": [
+            0.06096757195031771,
+            0.05842725645238781
+          ],
+          "why": "measured by a different script at a different row. Two independent readings of one leg's width; if they disagree, one is spanning both legs."
+        }
+      },
+      "segmentHeights": {
+        "note": "equal thirds of the tube \u2014 see tubeBelowCrotch.collapse.unmeasurable",
+        "chainY": {
+          "hip": 0.26046584371854303,
+          "kneeTop": 0.22783729310153333,
+          "calfTop": 0.19520874248452363,
+          "ankleTop": 0.1625801918675139
+        },
+        "thigh": 0.032628550617009706,
+        "knee": 0.032628550617009706,
+        "calf": 0.032628550617009706,
+        "fittedZoneForReference": {
+          "thigh": 0.028699412113291134,
+          "knee": 0.05267418900119361,
+          "calf": 0.01651205073654438
+        }
+      },
+      "boundarySections": {
+        "hipTop": {
+          "height": 0.26046584371854303,
+          "widthPerView": {
+            "front": 0.08383041143168686,
+            "back": 0.2515967145233483
+          },
+          "depthPerView": {
+            "left": 0.06555010186815205,
+            "right": 0.06608569837788128
+          },
+          "width": 0.16771356297751758,
+          "depth": 0.06581790012301666,
+          "widthSpread": 0.16776630309166146,
+          "depthSpread": 0.0005355965097292303,
+          "raw": {
+            "front": {
+              "runs": 2,
+              "perRun": [
+                66.0,
+                63.0
+              ],
+              "widest": 66.0,
+              "span": 167.0,
+              "row": 614,
+              "perRunNormalized": [
+                0.08383041143168686,
+                0.080019938184792
+              ]
+            },
+            "back": {
+              "runs": 1,
+              "perRun": [
+                203.0
+              ],
+              "widest": 203.0,
+              "span": 203.0,
+              "row": 612,
+              "perRunNormalized": [
+                0.2515967145233483
+              ]
+            },
+            "left": {
+              "runs": 1,
+              "perRun": [
+                56.0
+              ],
+              "widest": 56.0,
+              "span": 56.0,
+              "row": 622,
+              "perRunNormalized": [
+                0.06555010186815205
+              ]
+            },
+            "right": {
+              "runs": 1,
+              "perRun": [
+                50.0
+              ],
+              "widest": 50.0,
+              "span": 50.0,
+              "row": 631,
+              "perRunNormalized": [
+                0.06608569837788128
+              ]
+            }
+          }
+        },
+        "kneeTop": {
+          "height": 0.2317664316052519,
+          "widthPerView": {
+            "front": 0.055886940954457905,
+            "back": 0.07932113167238568
+          },
+          "depthPerView": {
+            "left": 0.051503651467833755,
+            "right": 0.05683370060497791
+          },
+          "width": 0.0676040363134218,
+          "depth": 0.054168676036405836,
+          "widthSpread": 0.023434190717927773,
+          "depthSpread": 0.005330049137144154,
+          "raw": {
+            "front": {
+              "runs": 2,
+              "perRun": [
+                44.0,
+                43.0
+              ],
+              "widest": 44.0,
+              "span": 163.0,
+              "row": 637,
+              "perRunNormalized": [
+                0.055886940954457905,
+                0.05461678320549295
+              ]
+            },
+            "back": {
+              "runs": 2,
+              "perRun": [
+                63.0,
+                64.0
+              ],
+              "widest": 64.0,
+              "span": 179.0,
+              "row": 635,
+              "perRunNormalized": [
+                0.07808173899000466,
+                0.07932113167238568
+              ]
+            },
+            "left": {
+              "runs": 1,
+              "perRun": [
+                44.0
+              ],
+              "widest": 44.0,
+              "span": 44.0,
+              "row": 647,
+              "perRunNormalized": [
+                0.051503651467833755
+              ]
+            },
+            "right": {
+              "runs": 1,
+              "perRun": [
+                43.0
+              ],
+              "widest": 43.0,
+              "span": 43.0,
+              "row": 653,
+              "perRunNormalized": [
+                0.05683370060497791
+              ]
+            }
+          }
+        },
+        "calfTop": {
+          "height": 0.1790922426040583,
+          "widthPerView": {
+            "front": 0.055886940954457905,
+            "back": 0.058251456071908236
+          },
+          "depthPerView": {
+            "left": 0.05384472653455347,
+            "right": 0.019825709513364386
+          },
+          "width": 0.05706919851318307,
+          "depth": 0.03683521802395893,
+          "widthSpread": 0.0023645151174503318,
+          "depthSpread": 0.03401901702118909,
+          "raw": {
+            "front": {
+              "runs": 2,
+              "perRun": [
+                44.0,
+                43.0
+              ],
+              "widest": 44.0,
+              "span": 169.0,
+              "row": 678,
+              "perRunNormalized": [
+                0.055886940954457905,
+                0.05461678320549295
+              ]
+            },
+            "back": {
+              "runs": 2,
+              "perRun": [
+                47.0,
+                47.0
+              ],
+              "widest": 47.0,
+              "span": 179.0,
+              "row": 678,
+              "perRunNormalized": [
+                0.058251456071908236,
+                0.058251456071908236
+              ]
+            },
+            "left": {
+              "runs": 1,
+              "perRun": [
+                46.0
+              ],
+              "widest": 46.0,
+              "span": 46.0,
+              "row": 692,
+              "perRunNormalized": [
+                0.05384472653455347
+              ]
+            },
+            "right": {
+              "runs": 1,
+              "perRun": [
+                15.0
+              ],
+              "widest": 15.0,
+              "span": 15.0,
+              "row": 692,
+              "perRunNormalized": [
+                0.019825709513364386
+              ]
+            }
+          }
+        },
+        "ankleTop": {
+          "height": 0.1625801918675139,
+          "widthPerView": {
+            "front": 0.006350788744824762,
+            "back": 0.058251456071908236
+          },
+          "depthPerView": {
+            "left": 0.011705375333598582
+          },
+          "width": 0.0323011224083665,
+          "depth": 0.011705375333598582,
+          "widthSpread": 0.051900667327083476,
+          "depthSpread": 0.0,
+          "raw": {
+            "front": {
+              "runs": 1,
+              "perRun": [
+                5.0
+              ],
+              "widest": 5.0,
+              "span": 5.0,
+              "row": 691,
+              "perRunNormalized": [
+                0.006350788744824762
+              ]
+            },
+            "back": {
+              "runs": 2,
+              "perRun": [
+                47.0,
+                47.0
+              ],
+              "widest": 47.0,
+              "span": 181.0,
+              "row": 691,
+              "perRunNormalized": [
+                0.058251456071908236,
+                0.058251456071908236
+              ]
+            },
+            "left": {
+              "runs": 1,
+              "perRun": [
+                10.0
+              ],
+              "widest": 10.0,
+              "span": 10.0,
+              "row": 706,
+              "perRunNormalized": [
+                0.011705375333598582
+              ]
+            }
+          }
+        }
+      },
+      "calfNearConstantWidth_5_7d": {
+        "topWidth": 0.05706919851318307,
+        "bottomWidth": 0.0323011224083665,
+        "difference": 0.024768076104816565,
+        "measurementUncertainty": 0.05447382376324872,
+        "verdict": "PASS",
+        "crossCheckStraightPantTubeWidth": {
+          "landmarks.dimensions": [
+            0.06096757195031771,
+            0.05842725645238781
+          ],
+          "thisScriptCalfTop": 0.05706919851318307,
+          "agree": true,
+          "why": "an independent measurement of the same thing, taken at a different row by a different script. If these two disagree, one of them is measuring the span across both legs instead of one leg."
+        }
+      },
+      "ledgerDisagreement": {
+        "measurements.SOCKET_Y.hip": 0.2718137582784998,
+        "measuredTaperTop(widestHip)": 0.26046584371854303,
+        "difference": -0.011347914559956762,
+        "what": "the ledger puts the thigh's origin `hip` at crotchNotchApex, which is BELOW the corner this fit finds. Taken literally the taper \u2014 the thing \u00a74[5] says the thigh IS \u2014 sits entirely above the thigh, and thigh+knee would have no height left. The taper runs from the widest hip DOWN TO the crotch.",
+        "readingA": "`hip` moves to the widest hip; the thigh is the taper; the pelvis is the widening kite above it. Consistent with \u00a74[5]'s 'continuous inward taper, wide at top, narrow at bottom' and with \u00a74[6]'s pelvis being the widest volume.",
+        "readingB": "`hip` stays at the crotch; the taper belongs to the pelvis and thigh/knee/calf all live below the crotch, where the outer line is already vertical and \u00a75.7's corner has nothing to find.",
+        "chosen": "B, refined. \u00a74[6] describes the PELVIS's own outline as flaring to the widest point and THEN PULLING IN to the crotch notch, so the inward taper above the crotch is the pelvis's, not the thigh's. The thigh/knee/calf chain is fitted from the crotch DOWN, where the two legs are separate runs and a per-leg section exists at all. `hip` stays at crotchNotchApex; what changes is this script's fit range, which was the thing that was wrong."
+      }
     }
   }
 }
