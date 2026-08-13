@@ -61,11 +61,18 @@ export function createHead(): THREE.Group {
       c.y += pos.getY(i) / 3;
       c.z += pos.getZ(i) / 3;
     }
+    // The bands are relative to the CHEEKBONE RING, not to the whole head. Cutting at
+    // -cheekDrop put 84% of the skull in scalp/nape and left `face` and `ear` EMPTY: the
+    // cheekbones sit at 0.76209 against a chin at 0.71637 and a skullTop of 1.0, so the
+    // exposed face is only the bottom sixth of the part and everything above it is
+    // cranium. An empty `face` array is a partition that satisfies the arithmetic and
+    // gives Stage 2's faceDecal nothing to map onto.
     const front = c.z > 0;
-    if (c.y > -cheekDrop) groups[front ? "scalp" : "nape"]!.push(t);
-    else if (c.y < -height * 0.78) groups.jaw!.push(t);
-    else if (front) groups.face!.push(t);
-    else if (Math.abs(c.x) > cheekboneWidth * 0.3) groups.ear!.push(t);
+    const side = Math.abs(c.x) > cheekboneWidth * 0.28;
+    if (c.y > -cheekDrop * 0.75) groups[front ? "scalp" : "nape"]!.push(t);
+    else if (c.y < -(cheekDrop + (height - cheekDrop) * 0.55)) groups.jaw!.push(t);
+    else if (front && !side) groups.face!.push(t);
+    else if (side) groups.ear!.push(t);
     else groups.nape!.push(t);
   }
   const total = Object.values(groups).reduce((n, g) => n + g.length, 0);

@@ -472,7 +472,16 @@ export function mountCloudStrifeViewer(
       }
       sockets[object.name] = described;
     });
-    win.__partMeshes = { meshes, sockets };
+    // §4[14]'s faceGroups, exported for the same reason sockets are: the head factory
+    // throws unless its five arrays partition the geometry, but a gate that cannot SEE the
+    // partition is only trusting the factory. Stage 2's hairCap, faceDecal and ears attach
+    // to these arrays, so a capture that drops them hides the one contract they depend on.
+    const faceGroups: Record<string, unknown> = {};
+    model.traverse((object) => {
+      const g = (object.userData as { faceGroups?: unknown }).faceGroups;
+      if (g && object.name) faceGroups[object.name] = g;
+    });
+    win.__partMeshes = { meshes, sockets, faceGroups };
     win.__partInfo = {
       mode: options.mode ?? "assembled",
       part: options.part ?? null,
