@@ -4755,6 +4755,12 @@
     },
     "arm": {
       "generatedBy": "spec/measure_arm.py",
+      "glove": {
+        "atHeight": 0.43947458114187354,
+        "width": 0.08764088467858172,
+        "fistLandmarkHeight": 0.331511,
+        "note": "measured at the glove's widest black row, not at the `fist` socket height \u2014 that socket is the BOTTOM of the part and the band is empty there."
+      },
       "mirror_1_4_vs_1_5": {
         "forwardLeanDifferenceDeg": 8.79755931339435,
         "elbowBreakDifferenceDeg": 10.674000265309168,
@@ -4782,56 +4788,58 @@
         "shoulder": {
           "height": 0.706208,
           "widthPerView": {
-            "front": 0.06096757195031771
+            "front": 0.03937489021791352,
+            "back": 0.03346360242428771
           },
           "depthPerView": {
             "left": 0.004682150133439433,
             "right": 0.08987654979391854
           },
-          "width": 0.06096757195031771,
+          "width": 0.03641924632110062,
           "depth": 0.04727934996367899,
-          "widthSpread": 0.0
+          "widthSpread": 0.005911287793625812
         },
         "deltoidWaist": {
           "height": 0.674454,
           "widthPerView": {
-            "front": 0.03937489021791352
+            "front": 0.09399167342340647,
+            "back": 0.09791202190810107
           },
           "depthPerView": {
             "left": 0.0023410750667197163,
             "right": 0.07137255424811179
           },
-          "width": 0.03937489021791352,
+          "width": 0.09595184766575376,
           "depth": 0.03685681465741575,
-          "widthSpread": 0.0
+          "widthSpread": 0.003920348484694594
         },
         "backArmTop": {
           "height": 0.593164,
           "widthPerView": {
-            "front": 0.04445552121377333,
-            "back": 0.045857529248097974
+            "front": 0.04064504796687848,
+            "back": 0.04461813656571695
           },
           "depthPerView": {
             "left": 0.038627738600875317,
             "right": 0.0409731329942864
           },
-          "width": 0.04515652523093565,
+          "width": 0.042631592266297716,
           "depth": 0.03980043579758086,
-          "widthSpread": 0.0014020080343246435
+          "widthSpread": 0.0039730885988384715
         },
         "elbow": {
           "height": 0.529656,
           "widthPerView": {
-            "front": 0.08510056918065181,
-            "back": 0.0756029536252426
+            "front": 0.07874978043582705,
+            "back": 0.07808173899000466
           },
           "depthPerView": {
             "left": 0.06789117693487177,
             "right": 0.09384169169659143
           },
-          "width": 0.0803517614029472,
+          "width": 0.07841575971291585,
           "depth": 0.0808664343157316,
-          "widthSpread": 0.00949761555540922
+          "widthSpread": 0.0006680414458223871
         },
         "fist": {
           "height": 0.331511,
@@ -4843,24 +4851,67 @@
         }
       },
       "upperArmIsThinnest_5_8": {
-        "deltoidWaist": 0.03937489021791352,
-        "backArmTop": 0.04515652523093565,
-        "elbow": 0.0803517614029472,
+        "deltoidWaist": 0.09595184766575376,
+        "backArmTop": 0.042631592266297716,
+        "elbow": 0.07841575971291585,
         "upperArmNarrowestLandmark": 0.5931636687666327,
-        "verdict": "REVIEW",
+        "verdict": "PASS",
         "note": "\u00a75.8 lists 'the upper arm being thinner than both its neighbours' as an identity feature whose failure blocks continue even when the global score passes."
       },
       "bracer": {
         "atHeight": 0.5106034150839108,
         "bracerWidth": 0.09018120017651161,
-        "plainWristWidth": 0.0,
-        "widthFactor": null,
+        "plainWristWidth": 0.09653198892133638,
+        "widthFactor": 0.9342105263157894,
         "promptClaim": 1.05,
         "note": "\u00a74[12] says the LEFT wrist segment has width factor ~1.05 and \u00a71.5 makes frontArm the one pair that is not a pure mirror. Measured here so the factor is a reading rather than a quotation."
       },
       "tolerances": {
         "measurementUncertainty": 0.05447382376324872,
         "rms": 0.01374117256657524
+      }
+    },
+    "head": {
+      "generatedBy": "spec/measure_head.py",
+      "band": "skin (the bare face)",
+      "facePerView": {
+        "front": {
+          "chinHeight": 0.7163689704162332,
+          "chinWidth": 0.03556441697101867,
+          "cheekboneHeight": 0.7620946493789714,
+          "cheekboneWidth": 0.13971735238614477,
+          "exposedHeight": 0.13082624814339006,
+          "rowsScanned": 104
+        }
+      },
+      "exposedDepthPerView": {
+        "left": 0.2294253565385322,
+        "right": 0.11234568724239818
+      },
+      "adopted": {
+        "chinHeight": 0.7163689704162332,
+        "chinWidth": 0.03556441697101867,
+        "cheekboneHeight": 0.7620946493789714,
+        "cheekboneWidth": 0.13971735238614477,
+        "exposedFaceHeight": 0.13082624814339006,
+        "exposedDepth": 0.1708855218904652,
+        "widthSpread": 0.0,
+        "depthSpread": 0.117079669296134
+      },
+      "pointedChin_4_14": {
+        "chinWidth": 0.03556441697101867,
+        "cheekboneWidth": 0.13971735238614477,
+        "ratio": 0.2545454545454546,
+        "verdict": "PASS (the chin is narrower than the cheekbones)",
+        "note": "\u00a74[14]: 'widest at the cheekbones, tapering to a small pointed chin'."
+      },
+      "craniumBehindFace": {
+        "value": null,
+        "why": "UNMEASURABLE. \u00a74[14] offers 'back.webp's silhouette inset by one hair thickness', but landmarks.json's hairThickness is a FRINGE DEPTH measured forward from the face plane \u2014 0.03863 left against 0.07137 right, a 1.85x disagreement between two views of one quantity \u2014 not the cap's shell thickness. Insetting by it overshoots, which is how the previous attempt at this part came out all-green and egg-shaped.",
+        "adoptedRule": "the skull's total depth is the exposed face depth plus the same again behind it, i.e. the cranium is as deep behind the face plane as the face is in front of the ear line. A GUESS-LIST item, falsifiable only by the profile silhouette once the hair cap exists at Stage 2 (\u00a77.6 already requires skull + hairCap to reproduce back.webp's outer silhouette)."
+      },
+      "tolerances": {
+        "measurementUncertainty": 0.05447382376324872
       }
     }
   }

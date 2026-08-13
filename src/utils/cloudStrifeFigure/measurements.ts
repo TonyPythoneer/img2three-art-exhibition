@@ -126,6 +126,48 @@ export const CHEST = {
   shoulderOffsetX: 0.08913739,
 } as const;
 
+/**
+ * S-09..S-13, the whole arm chain. ONE record because §4[10] makes upperDeltoid's
+ * bottom hexagon IDENTICAL to lowerDeltoid's top, and §4[9] makes lowerDeltoid's quad
+ * bottom identical to backArm's section — two shared sections that cannot be measured
+ * from inside either part.
+ *
+ * The pose angles are the MEAN of the two sides. §1.4 bakes the pose in and §1.5 calls
+ * these pure mirror pairs; the measured 8.8 deg forward-lean gap between the sides is
+ * SMALLER than the 29.23 px residual of the fit that produced it, so the asymmetry is
+ * not established and the mirror stands (parts.arm.mirror_1_4_vs_1_5).
+ */
+export const ARM = {
+  shoulderWidth: 0.03641925,
+  shoulderDepth: 0.04727935,
+  deltoidWaistWidth: 0.09595185,
+  deltoidWaistDepth: 0.03685681,
+  backArmWidth: 0.04263159,
+  backArmDepth: 0.03980044,
+  elbowWidth: 0.07841576,
+  elbowDepth: 0.08086643,
+  gloveWidth: 0.08764088,
+  /** The figure's LEFT wrist is the grey bracer. Measured 0.934, not §4[12]'s 1.05;
+   * the two wrists differ by 0.0063, far inside the uncertainty. */
+  bracerWidthFactor: 0.93421053,
+  upperDeltoidHeight: 0.031754,
+  lowerDeltoidHeight: 0.08129,
+  backArmHeight: 0.063508,
+  frontArmHeight: 0.198145,
+  abductionDeg: 17.38628285,
+  forwardLeanDeg: 6.02733273,
+  elbowBreakDeg: 16.43405722,
+} as const;
+
+/** S-15 skull. Measured on the FACE (bare skin), never by insetting back.webp:
+ * hairThickness is a fringe depth, 0.03863 left vs 0.07137 right. */
+export const HEAD = {
+  cheekboneWidth: 0.13971735,
+  cheekboneHeight: 0.76209465,
+  chinWidth: 0.03556442,
+  exposedDepth: 0.17088552,
+} as const;
+
 /** S-14 neckColumn. CylinderGeometry(r, r, h, radialSegments=8) with flatShading. */
 export const NECK = {
   radius: 0.01975886,

@@ -8,6 +8,11 @@ import { createKnee } from "./createKnee";
 import { createCalf } from "./createCalf";
 import { createPelvis } from "./createPelvis";
 import { createChest } from "./createChest";
+import { createUpperDeltoid } from "./createUpperDeltoid";
+import { createLowerDeltoid } from "./createLowerDeltoid";
+import { createBackArm } from "./createBackArm";
+import { createFrontArm } from "./createFrontArm";
+import { createHead } from "./createHead";
 
 /**
  * The Stage 1 part registry, and the one material every Stage 1 part shares.
@@ -73,5 +78,34 @@ export const STAGE1_PARTS: PartEntry[] = [
   { name: "chest", module: "torso", origin: "chestTop", build: () => createChest() },
   { name: "pelvis", module: "torso", origin: "pelvisTop", build: () => createPelvis() },
   { name: "waist", module: "torso", origin: "waistTop", build: () => createWaist() },
+  {
+    name: "upperDeltoidL",
+    module: "armLeft",
+    origin: "shoulder",
+    build: () => createUpperDeltoid("L"),
+  },
+  {
+    name: "upperDeltoidR",
+    module: "armRight",
+    origin: "shoulder",
+    build: () => createUpperDeltoid("R"),
+  },
+  {
+    name: "lowerDeltoidL",
+    module: "armLeft",
+    origin: "deltoidWaist",
+    build: () => createLowerDeltoid("L"),
+  },
+  {
+    name: "lowerDeltoidR",
+    module: "armRight",
+    origin: "deltoidWaist",
+    build: () => createLowerDeltoid("R"),
+  },
+  { name: "backArmL", module: "armLeft", origin: "backArmTop", build: () => createBackArm("L") },
+  { name: "backArmR", module: "armRight", origin: "backArmTop", build: () => createBackArm("R") },
+  { name: "frontArmL", module: "armLeft", origin: "elbow", build: () => createFrontArm("L") },
+  { name: "frontArmR", module: "armRight", origin: "elbow", build: () => createFrontArm("R") },
   { name: "neck", module: "head", origin: "neckTop", build: () => createNeck() },
+  { name: "head", module: "head", origin: "skullTop", build: () => createHead() },
 ];

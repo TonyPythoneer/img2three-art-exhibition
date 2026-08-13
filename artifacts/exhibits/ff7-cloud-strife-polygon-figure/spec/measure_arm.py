@@ -67,9 +67,15 @@ def arm_runs(v: R.View, row: int, band: str) -> list[tuple[int, int]]:
 
 
 def outer_run(v: R.View, row: int, band: str, side_is_image_right: bool):
-    """The arm's own run: the outermost one on the side the arm is on."""
+    """The arm's own run: the outermost one on the side the arm is on.
+
+    No minimum run count. Requiring two returned None for the fist — where the two gloves
+    ARE two runs but the filter above can drop one when they differ in size — and it
+    returned 0.0 for the plain wrist. A row with one run is not an error here; it is one
+    arm, and which arm it is comes from the side, not from the count.
+    """
     runs = arm_runs(v, row, band)
-    if len(runs) < 2:
+    if not runs:
         return None
     return runs[-1] if side_is_image_right else runs[0]
 
@@ -155,8 +161,15 @@ def main() -> int:
         band = band_at[label]
         w: dict[str, float] = {}
         for k in FRONTAL:
-            # front: figure's left = image right; back is mirrored.
-            run = outer_run(views[k], row_of(lm, k, h), band, k == "front")
+            # ALWAYS the figure's RIGHT arm, and §4[9] says exactly why: "Authority: the
+            # figure's RIGHT shoulder in front.webp (bare, no pauldron occlusion, the
+            # cleanest read)." §1.3 puts the BLACK PAULDRON and the grey bracer on the
+            # figure's LEFT, so the left deltoid is not skin at all up here. Reading the
+            # image-right run returned 0.03937 for the deltoid waist — identical to
+            # dimensions.neckWidth, which is what a sliver of something else looks like.
+            # §1.2: in front.webp the figure's RIGHT is the IMAGE-LEFT run; back.webp is
+            # mirrored.
+            run = outer_run(views[k], row_of(lm, k, h), band, k == "back")
             if run:
                 w[k] = (run[1] - run[0] + 1) / unit(lm, k)
         d: dict[str, float] = {}
@@ -223,8 +236,26 @@ def main() -> int:
         "reading rather than a quotation.",
     }
 
+    # ---- the glove, found the same way the bracer was ----
+    # `fist` is the socket at the BOTTOM of frontArm, so measuring the black band AT that
+    # height lands below the glove and returns nothing — which it did. The glove's own
+    # section is its widest black row between the elbow and the fist.
+    gbest = (0.0, row_of(lm, "front", chain["fist"]))
+    for row in range(row_of(lm, "front", chain["elbow"]), row_of(lm, "front", chain["fist"])):
+        run = outer_run(fv, row, "black", False)
+        if run and (run[1] - run[0] + 1) > gbest[0]:
+            gbest = (float(run[1] - run[0] + 1), row)
+    glove = {
+        "atHeight": (lm["views"]["front"]["landmarksPx"]["sole"] - gbest[1]) / u,
+        "width": gbest[0] / u,
+        "fistLandmarkHeight": chain["fist"],
+        "note": "measured at the glove's widest black row, not at the `fist` socket height "
+        "— that socket is the BOTTOM of the part and the band is empty there.",
+    }
+
     out = {
         "generatedBy": "spec/measure_arm.py",
+        "glove": glove,
         "mirror_1_4_vs_1_5": mirror,
         "sections": sections,
         "upperArmIsThinnest_5_8": thin,

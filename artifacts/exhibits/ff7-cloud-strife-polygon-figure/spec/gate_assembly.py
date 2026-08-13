@@ -44,6 +44,15 @@ LEDGER = [
     ("thighR", "hip", "pelvis", "hipR"),
     ("pelvis", "pelvisTop", "waist", "pelvisTop"),
     ("waist", "waistTop", "chest", "waistTop"),
+    ("upperDeltoidL", "shoulder", "chest", "shoulderL"),
+    ("upperDeltoidR", "shoulder", "chest", "shoulderR"),
+    ("lowerDeltoidL", "deltoidWaist", "upperDeltoidL", "deltoidWaist"),
+    ("lowerDeltoidR", "deltoidWaist", "upperDeltoidR", "deltoidWaist"),
+    ("backArmL", "backArmTop", "lowerDeltoidL", "backArmTop"),
+    ("backArmR", "backArmTop", "lowerDeltoidR", "backArmTop"),
+    ("frontArmL", "elbow", "backArmL", "elbow"),
+    ("frontArmR", "elbow", "backArmR", "elbow"),
+    ("neck", "neckTop", "head", "neckTop"),
 ]
 
 # §4: "`neckBase` and `neckTop` are the two UPWARD mates: the part above sits on the part
