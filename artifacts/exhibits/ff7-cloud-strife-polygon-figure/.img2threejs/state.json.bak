@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "status": "active",
   "profile": "character",
-  "currentStep": "pass-gate-check",
+  "currentStep": "build-current-pass",
   "currentPass": "blockout",
   "checklist": [
     {
@@ -10,7 +10,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/landmarks.json"
+        "prompt.txt"
       ],
       "reason": "",
       "command": "Read grimoire/intake/image_analysis.md and analyze {reference}"
@@ -20,7 +20,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/landmarks.json"
+        "spec/object-sculpt-spec.json"
       ],
       "reason": "",
       "command": "Read grimoire/intake/validation_rubric.md and record a pass, conditional, or reject verdict for {reference}"
@@ -30,7 +30,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/landmarks.json"
+        "spec/reference-admission.json"
       ],
       "reason": "",
       "command": "python3 forge/stage1_intake/check_reference_admission.py {reference}"
@@ -40,7 +40,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/character-contracts.md"
+        "spec/object-sculpt-spec.json"
       ],
       "reason": "",
       "command": "Read grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md completely"
@@ -50,7 +50,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/landmarks.json"
+        "spec/anatomy.json"
       ],
       "reason": "",
       "command": "python3 forge/stage1_intake/extract_landmarks.py {reference} --out anatomy.json --overlay landmarks.png"
@@ -60,7 +60,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/assessment.json"
+        "spec/assessment.json"
       ],
       "reason": "",
       "command": "Run the local evidence search before authoring the assessment"
@@ -70,7 +70,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/assessment.json"
+        "spec/assessment.json"
       ],
       "reason": "",
       "command": "python3 forge/stage2_spec/new_pre_spec_assessment.py \"<name>\" --image {reference} --out assessment.json"
@@ -80,10 +80,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/detail-inventory/front.json",
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/detail-inventory/back.json",
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/detail-inventory/left.json",
-        "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/detail-inventory/right.json"
+        "spec/detail-inventory/front/detail-inventory.json"
       ],
       "reason": "",
       "command": "python3 forge/stage1_intake/build_detail_inventory.py {reference} --mode grid-3x3 --out-dir detail-inventory --out di.json"
@@ -93,7 +90,7 @@
       "scope": "setup",
       "status": "skipped",
       "evidence": [],
-      "reason": "Procedural route, exactness=image-only. The subject is a flat-shaded vinyl polygon figure whose identity IS its facet angles; projecting the product shot would bake the reference's own facet shading into the albedo (the exact failure likeness_maximization.md (c) exists to prevent) and destroy the signal spec/facet-gate.json measures. The one textured surface is the Stage 2 faceDecal, authored as a CanvasTexture from measured landmark positions, not a camera-solved projection. Recorded in spec/character-contracts.md section 4.",
+      "reason": "Body needs no photo projection: nine flat single-albedo zones, no patterned finish. The only projected surface is the printed face, routed as a CanvasTexture/de-lit crop and recorded in materials['face-print'].referencePbr.",
       "command": "Record whether projection is required; if required run solve_camera_pose.py, delight_albedo.py, and bake_projected_texture.py, otherwise skip with a reason"
     },
     {
@@ -101,9 +98,7 @@
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/object-sculpt-spec.json",
-        "artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/author_spec.py",
-        "artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/build-constants.json"
+        "spec/object-sculpt-spec.json"
       ],
       "reason": "",
       "command": "python3 forge/stage2_spec/new_sculpt_spec.py \"<name>\" --image {reference} --assessment assessment.json --out object-sculpt-spec.json"
@@ -111,29 +106,19 @@
     {
       "id": "material-evidence",
       "scope": "setup",
-      "status": "skipped",
+      "status": "done",
       "evidence": [
-        "artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/palette.json"
+        "spec/pbr/skin.json"
       ],
-      "reason": "prompt 2 fixes the finished model at TWO material codes (matte vinyl + printed face) with no maps of any kind, so there is no per-region PBR to extract and nothing for apply_material_analysis.py to wire. The material evidence that does exist is albedo, and it is already measured by cluster, not eye-dropper: spec/sample_palette.py -> spec/palette.json, which the spec reads and the stage-3 deltaE gate scores against. Keeping extracted PBR maps is also forbidden by the repo's artifacts rule (AGENTS.md, Directory rules).",
-      "command": "python3 forge/stage1_intake/material_region_analysis.py --manifest material-regions.json --out-dir material-evidence --out material-analysis.json (single-crop route: analyze_texture.py + extract_pbr_evidence.py per verified crop; otherwise skip with a reason)"
-    },
-    {
-      "id": "material-spec-wiring",
-      "scope": "setup",
-      "status": "skipped",
-      "evidence": [
-        "artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/palette.json"
-      ],
-      "reason": "prompt 2 fixes the finished model at TWO material codes (matte vinyl + printed face) with no maps of any kind, so there is no per-region PBR to extract and nothing for apply_material_analysis.py to wire. The material evidence that does exist is albedo, and it is already measured by cluster, not eye-dropper: spec/sample_palette.py -> spec/palette.json, which the spec reads and the stage-3 deltaE gate scores against. Keeping extracted PBR maps is also forbidden by the repo's artifacts rule (AGENTS.md, Directory rules).",
-      "command": "python3 forge/stage2_spec/apply_material_analysis.py {spec} material-analysis.json --in-place"
+      "reason": "",
+      "command": "When material fidelity matters, run analyze_texture.py and extract_pbr_evidence.py per verified crop; otherwise skip with a reason"
     },
     {
       "id": "strict-validation",
       "scope": "setup",
       "status": "done",
       "evidence": [
-        "validate_sculpt_spec.py --strict-quality PASS"
+        "spec/object-sculpt-spec.json"
       ],
       "reason": "",
       "command": "python3 forge/stage2_spec/validate_sculpt_spec.py {spec} --strict-quality"
@@ -141,50 +126,40 @@
     {
       "id": "build-current-pass",
       "scope": "pass",
-      "status": "done",
-      "evidence": [
-        "src/utils/cloudStrifeFigure/createSole.ts (soleL/soleR), measurements.ts regenerated from landmarks.json"
-      ],
+      "status": "pending",
+      "evidence": [],
       "reason": "",
       "command": "python3 forge/stage3_build/generate_threejs_factory.py {spec} --out src/createObjectModel.ts --pass-id {pass_id}"
     },
     {
       "id": "render-capture",
       "scope": "pass",
-      "status": "done",
-      "evidence": [
-        "tools/capture_parts.mjs: front/back/left/right/orbit/orbit2 + meshes.json + parts.json"
-      ],
+      "status": "pending",
+      "evidence": [],
       "reason": "",
       "command": "Render {pass_id} and capture the fixed review view plus meaningful orbit views"
     },
     {
       "id": "review-contract-read",
       "scope": "pass",
-      "status": "done",
-      "evidence": [
-        "grimoire/review/gates_reference.md;grimoire/review/self_correction.md"
-      ],
+      "status": "pending",
+      "evidence": [],
       "reason": "",
       "command": "Read grimoire/review/gates_reference.md and grimoire/review/self_correction.md completely"
     },
     {
       "id": "tier1-diagnostics",
       "scope": "pass",
-      "status": "done",
-      "evidence": [
-        "silhouette IoU 0.720 (FAIL vs 0.85), aspect 0.0045, scale 0.0045, symmetry 0.0086"
-      ],
+      "status": "pending",
+      "evidence": [],
       "reason": "",
       "command": "python3 forge/stage4_review/diagnose_render.py --reference {reference} --render <shot> --spec {spec} --pass-id {pass_id} --in-place"
     },
     {
       "id": "multi-angle-review",
       "scope": "pass",
-      "status": "done",
-      "evidence": [
-        "orbit ratio 0.9483 both angles, verdict: no degenerate view"
-      ],
+      "status": "pending",
+      "evidence": [],
       "reason": "",
       "command": "python3 forge/stage4_review/diagnose_render_multi_angle.py --reference <fixed-shot> --orbit <orbit-shot> --orbit <orbit-shot>"
     },
@@ -233,14 +208,14 @@
     "perPass": {},
     "total": 0,
     "maxPerPass": 3,
-    "maxTotal": 60
+    "maxTotal": 6
   },
   "artifacts": {
     "reference": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp",
     "spec": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/object-sculpt-spec.json"
   },
   "passHistory": [],
-  "reviewCursor": 1,
+  "reviewCursor": 0,
   "iterationAction": "initial",
   "stopReason": ""
 }
