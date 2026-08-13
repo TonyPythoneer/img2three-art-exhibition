@@ -4752,6 +4752,116 @@
         "dimensions.shoulderWidth": 0.37977716694052077,
         "why": "chestWidth is the same quantity measured by a different script; shoulderWidth is the WHOLE silhouette across both deltoids and must NOT be used as the slab's width."
       }
+    },
+    "arm": {
+      "generatedBy": "spec/measure_arm.py",
+      "mirror_1_4_vs_1_5": {
+        "forwardLeanDifferenceDeg": 8.79755931339435,
+        "elbowBreakDifferenceDeg": 10.674000265309168,
+        "upperArmLengthNormalized": 0.17655199999999993,
+        "impliedDisplacementPx": {
+          "left": 23.3431153696768,
+          "right": 20.67315119340658
+        },
+        "sideArmFitMaxResidualPx": {
+          "left": 29.231768231768257,
+          "right": 9.878333333333345
+        },
+        "differenceIsAboveTheNoise": {
+          "left": false,
+          "right": false
+        },
+        "verdict": "MIRROR \u2014 the asymmetry is smaller than the residual of the fit that produced it",
+        "why": "the 8.8 degree forward-lean gap implies the sideways displacement above over the upper arm's length. poseAngles.sideArmFit's LEFT fit has a maximum residual of 29.23 px against the right's 9.88 \u2014 three times worse \u2014 so the left lean is the untrustworthy half of the pair. A difference below the instrument's own residual is not a difference.",
+        "consequence": "\u00a71.5's classification stands: upperDeltoid, lowerDeltoid and backArm are pure mirror pairs and \u00a75.10 applies to them. The adopted pose angles are the MEAN of the two sides, so neither side's error is carried whole. frontArm is still NOT a mirror \u2014 that pair differs by the bracer's width factor, which is measured below and has nothing to do with pose.",
+        "adoptedAbductionDeg": 17.38628285087884,
+        "adoptedForwardLeanDeg": 6.027332734541015,
+        "adoptedElbowBreakDeg": 16.43405721584586
+      },
+      "sections": {
+        "shoulder": {
+          "height": 0.706208,
+          "widthPerView": {
+            "front": 0.06096757195031771
+          },
+          "depthPerView": {
+            "left": 0.004682150133439433,
+            "right": 0.08987654979391854
+          },
+          "width": 0.06096757195031771,
+          "depth": 0.04727934996367899,
+          "widthSpread": 0.0
+        },
+        "deltoidWaist": {
+          "height": 0.674454,
+          "widthPerView": {
+            "front": 0.03937489021791352
+          },
+          "depthPerView": {
+            "left": 0.0023410750667197163,
+            "right": 0.07137255424811179
+          },
+          "width": 0.03937489021791352,
+          "depth": 0.03685681465741575,
+          "widthSpread": 0.0
+        },
+        "backArmTop": {
+          "height": 0.593164,
+          "widthPerView": {
+            "front": 0.04445552121377333,
+            "back": 0.045857529248097974
+          },
+          "depthPerView": {
+            "left": 0.038627738600875317,
+            "right": 0.0409731329942864
+          },
+          "width": 0.04515652523093565,
+          "depth": 0.03980043579758086,
+          "widthSpread": 0.0014020080343246435
+        },
+        "elbow": {
+          "height": 0.529656,
+          "widthPerView": {
+            "front": 0.08510056918065181,
+            "back": 0.0756029536252426
+          },
+          "depthPerView": {
+            "left": 0.06789117693487177,
+            "right": 0.09384169169659143
+          },
+          "width": 0.0803517614029472,
+          "depth": 0.0808664343157316,
+          "widthSpread": 0.00949761555540922
+        },
+        "fist": {
+          "height": 0.331511,
+          "widthPerView": {},
+          "depthPerView": {},
+          "width": null,
+          "depth": null,
+          "widthSpread": 0.0
+        }
+      },
+      "upperArmIsThinnest_5_8": {
+        "deltoidWaist": 0.03937489021791352,
+        "backArmTop": 0.04515652523093565,
+        "elbow": 0.0803517614029472,
+        "upperArmNarrowestLandmark": 0.5931636687666327,
+        "verdict": "REVIEW",
+        "note": "\u00a75.8 lists 'the upper arm being thinner than both its neighbours' as an identity feature whose failure blocks continue even when the global score passes."
+      },
+      "bracer": {
+        "atHeight": 0.5106034150839108,
+        "bracerWidth": 0.09018120017651161,
+        "plainWristWidth": 0.0,
+        "widthFactor": null,
+        "promptClaim": 1.05,
+        "note": "\u00a74[12] says the LEFT wrist segment has width factor ~1.05 and \u00a71.5 makes frontArm the one pair that is not a pure mirror. Measured here so the factor is a reading rather than a quotation."
+      },
+      "tolerances": {
+        "measurementUncertainty": 0.05447382376324872,
+        "rms": 0.01374117256657524
+      }
     }
   }
 }
