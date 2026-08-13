@@ -862,23 +862,34 @@ result numerically; "looks right" is not a result.
         --spec ART/spec/object-sculpt-spec.json --pass-id <pass> --in-place
     --spec is required for --in-place to have anywhere to write.
 
-    ⚠ THE REFERENCE MUST CONTAIN THE SAME PARTS THE RENDER DOES. Run against the whole
-      figure at Stage 1 and Tier 1 returns silhouette IoU 0.201, aspect delta 0.645, scale
-      delta 0.781 — and none of that is about shape. The top ~28% of front.webp is HAIR,
-      Stage 2 has not run, so the two silhouettes differ by a quarter of the figure's
-      height before any shape question is asked. The aspect delta IS the missing hair.
+    ⚠ MAKE THE COMPARISON FAIR. DO NOT REMOVE IT.
 
-      This is the same class of error as measuring the belt on the silhouette and getting
-      the arm span: the wrong instrument, applied confidently, producing a number that
-      looks like a verdict on the model. A blockout can only be scored against a
-      reference containing the parts the blockout has.
+      An earlier revision of this section excluded the whole-figure Tier 1 at Stage 1,
+      arguing that its IoU of 0.201 was the missing hair rather than the model. That was
+      WRONG and it is retracted here. The hair explains a difference in HEIGHT. It does
+      not explain shoulders narrower than the hips, or arms that stop at the waist, both
+      of which were true and neither of which any other gate could see. Switching off the
+      only instrument looking at the whole object let a 29% geometry shrink survive fifty
+      green assertions.
 
-      So at Stage 1, §5.1 runs PER PART against that part's own reference crop, which is
-      what the line above already says ("the part's reference crop"). The WHOLE-FIGURE
-      silhouette comparison belongs to §7.6, which already requires skull + hairCap to
-      reproduce back.webp's outer silhouette, and to §8.5b's four-view re-check. Recording
-      a whole-figure Tier 1 at Stage 1 is recording the instrument's error, not the
-      model's.
+      Two of the three numbers were the instrument and both have a fix that keeps the
+      check rather than deleting it:
+
+        scale delta 0.781   the capture framed the model to fit the viewport. Render with
+                            an orthographic camera scaled by the SOLE->CHIN anchor, the one
+                            span complete in all five references.
+        aspect delta 0.645  the reference contains hair the blockout does not. MASK the
+                            reference to the built region — chin down for Stage 1 — so the
+                            hair is excluded by construction, not by argument.
+
+      Whatever IoU survives those two is about the model, and it is a real gate. Its
+      threshold is pinned with fake frames like every other one here: the reference against
+      itself must score ~1.0, the reference against a same-height solid rectangle must
+      FAIL. Never guess it.
+
+      §5.1 ALSO runs per part against that part's own reference crop. The two are not
+      alternatives — the per-part check catches a wrong section, the whole-figure check
+      catches everything the per-part checks agree about and are all wrong about.
 
 5.2 forge/stage4_review/diagnose_render_multi_angle.py --reference <fixed view>
     --orbit <view> --orbit <view> (at least two --orbit flags) — every part here

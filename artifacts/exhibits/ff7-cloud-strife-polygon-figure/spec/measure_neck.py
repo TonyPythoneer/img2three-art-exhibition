@@ -14,6 +14,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import measure_landmarks as ML
 import refmask as R
 
 HERE = Path(__file__).resolve().parent
@@ -55,12 +56,43 @@ def main() -> int:
     fd = LM["views"]["front"]["landmarksPx"]
     chin_y = fd["chin"]        # neckTop
     shoulder_y = fd["shoulderLine"]  # chestTop
-    neck_height_px = shoulder_y - chin_y
-    neck_height = neck_height_px / UNIT["front"]
 
-    # Socket chain gap
-    socket_gap = LM["normalization"]["sole->chin"]["perView"]["front"]["chin"] - \
-                 LM["normalization"]["sole->chin"]["perView"]["front"].get("shoulderLine", 0)
+    # MEASURED INDEPENDENTLY, from the exposed skin column itself.
+    #
+    # This used to be (shoulderLine - chin) / unit, "cross-checked" against
+    # perView.chin - perView.shoulderLine — the SAME TWO LANDMARKS, one in pixels and one
+    # already normalised. gapDifference was therefore 0.0 by construction: it was
+    # arithmetically incapable of being anything else, and it was reported as agreement.
+    # The neck's height had no evidence behind it at all.
+    #
+    # The neck is the only bare SKIN column between the jaw and the collar, and it is
+    # narrow: the run that contains x=0 (the figure's own axis) at these rows is the neck,
+    # while the arms' skin sits far out to either side. Walking down from the chin until
+    # that central run disappears measures the column, not the two landmarks that bracket
+    # it — so the two numbers can now actually disagree.
+    def central_skin(view: str, row: int) -> tuple[int, int] | None:
+        v = views[view]
+        runs = ML.real_runs(v, row, R.band_map(v)["skin"])
+        axis = (v.x0 + v.x1) / 2
+        for r in runs:
+            if r[0] - 2 <= axis <= r[1] + 2:
+                return r
+        return None
+
+    measured: dict[str, float] = {}
+    for vname in ("front", "back", "left", "right"):
+        v = views[vname]
+        d = LM["views"][vname]["landmarksPx"]
+        rows = 0
+        for row in range(int(d["chin"]), min(v.h - 1, int(d["chin"]) + int(0.12 * UNIT[vname]))):
+            if central_skin(vname, row) is None:
+                break
+            rows += 1
+        if rows:
+            measured[vname] = rows / UNIT[vname]
+
+    neck_height = sum(measured.values()) / len(measured) if measured else 0.0
+    socket_gap = (shoulder_y - chin_y) / UNIT["front"]
     gap_diff = abs(neck_height - socket_gap)
 
     # ═══════ Report ═══════
@@ -79,7 +111,7 @@ def main() -> int:
     print(f"  adopted:   {neck_depth:.6f}")
 
     print(f"\n--- Height (Y) ---")
-    print(f"  front: {neck_height_px:.1f}px -> {neck_height:.6f}")
+    print(f"  front: {neck_height:.6f}")
     print(f"  socket chain gap: {socket_gap:.6f}")
     print(f"  difference: {gap_diff:.6f} (< MU {MU:.5f}: {'PASS' if gap_diff < MU else 'REVIEW'})")
     if gap_diff > MU:
@@ -109,6 +141,9 @@ def main() -> int:
         "heightY": {
             "normalized": round(neck_height, 8),
             "socketChainGap": round(socket_gap, 8),
+            "perView": {k: round(v, 8) for k, v in measured.items()},
+            "crossViewSpread": round(max(measured.values()) - min(measured.values()), 8) if len(measured) > 1 else 0.0,
+            "independent": "measured from the exposed skin column, NOT from (shoulderLine - chin); those two are the landmarks the socket gap is made of, so the old check compared a number to itself",
             "gapDifference": round(gap_diff, 8),
         },
         "cylinderRadius": round(cylinder_radius, 8),

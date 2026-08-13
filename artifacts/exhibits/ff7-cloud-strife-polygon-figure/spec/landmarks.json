@@ -3653,9 +3653,14 @@
         "note": "cylinder symmetry: depth = width"
       },
       "heightY": {
-        "normalized": 0.01016126,
+        "normalized": 0.01905237,
         "socketChainGap": 0.01016126,
-        "gapDifference": 0.0
+        "perView": {
+          "front": 0.01905237
+        },
+        "crossViewSpread": 0.0,
+        "independent": "measured from the exposed skin column, NOT from (shoulderLine - chin); those two are the landmarks the socket gap is made of, so the old check compared a number to itself",
+        "gapDifference": 0.0088911
       },
       "cylinderRadius": 0.01975886,
       "crossViewSpread": {

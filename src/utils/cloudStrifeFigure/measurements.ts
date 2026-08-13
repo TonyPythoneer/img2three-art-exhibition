@@ -171,7 +171,7 @@ export const HEAD = {
 /** S-14 neckColumn. CylinderGeometry(r, r, h, radialSegments=8) with flatShading. */
 export const NECK = {
   radius: 0.01975886,
-  height: 0.01016126,
+  height: 0.01905237,
   radialSegments: 8,
 } as const;
 
