@@ -1,0 +1,1967 @@
+{
+  "generatedBy": "spec/measure_head.py",
+  "measures": "hair silhouette only; sizes of face/neck come from prompt.txt \u00a71",
+  "shoulderY": 0.673,
+  "views": {
+    "front": {
+      "image": "front.webp",
+      "size": [
+        384,
+        827
+      ],
+      "hairTopY": 0.9964,
+      "hairLowestY": 0.6977,
+      "hairSpanMaxWidth": 0.295,
+      "hairSpanMaxWidthAtY": 0.7956,
+      "profileStepY": 0.005,
+      "profile": [
+        {
+          "y": 0.9952,
+          "figureX0": -0.133,
+          "figureX1": -0.1209,
+          "hairX0": -0.1282,
+          "hairX1": -0.1245
+        },
+        {
+          "y": 0.9903,
+          "figureX0": -0.1306,
+          "figureX1": -0.1149,
+          "hairX0": -0.1282,
+          "hairX1": -0.1185
+        },
+        {
+          "y": 0.9855,
+          "figureX0": -0.1282,
+          "figureX1": -0.11,
+          "hairX0": -0.1258,
+          "hairX1": -0.1125
+        },
+        {
+          "y": 0.9807,
+          "figureX0": -0.1245,
+          "figureX1": -0.1028,
+          "hairX0": -0.1221,
+          "hairX1": -0.1064
+        },
+        {
+          "y": 0.9758,
+          "figureX0": -0.1221,
+          "figureX1": -0.0967,
+          "hairX0": -0.1197,
+          "hairX1": -0.0992
+        },
+        {
+          "y": 0.971,
+          "figureX0": -0.1197,
+          "figureX1": -0.0907,
+          "hairX0": -0.1185,
+          "hairX1": -0.0955
+        },
+        {
+          "y": 0.9661,
+          "figureX0": -0.1173,
+          "figureX1": -0.0871,
+          "hairX0": -0.1137,
+          "hairX1": -0.0895
+        },
+        {
+          "y": 0.9613,
+          "figureX0": -0.1149,
+          "figureX1": -0.0798,
+          "hairX0": -0.1125,
+          "hairX1": -0.0846
+        },
+        {
+          "y": 0.9565,
+          "figureX0": -0.1125,
+          "figureX1": -0.075,
+          "hairX0": -0.1088,
+          "hairX1": -0.0786
+        },
+        {
+          "y": 0.9516,
+          "figureX0": -0.11,
+          "figureX1": -0.0036,
+          "hairX0": -0.1064,
+          "hairX1": -0.0726
+        },
+        {
+          "y": 0.9468,
+          "figureX0": -0.1076,
+          "figureX1": -0.0012,
+          "hairX0": -0.1052,
+          "hairX1": -0.0036
+        },
+        {
+          "y": 0.942,
+          "figureX0": -0.1052,
+          "figureX1": 0.0012,
+          "hairX0": -0.1028,
+          "hairX1": -0.0012
+        },
+        {
+          "y": 0.9371,
+          "figureX0": -0.1028,
+          "figureX1": 0.0024,
+          "hairX0": -0.0992,
+          "hairX1": 0.0012
+        },
+        {
+          "y": 0.9323,
+          "figureX0": -0.1004,
+          "figureX1": 0.0048,
+          "hairX0": -0.0979,
+          "hairX1": 0.0024
+        },
+        {
+          "y": 0.9274,
+          "figureX0": -0.0979,
+          "figureX1": 0.0073,
+          "hairX0": -0.0943,
+          "hairX1": 0.0048
+        },
+        {
+          "y": 0.9226,
+          "figureX0": -0.0955,
+          "figureX1": 0.0085,
+          "hairX0": -0.0919,
+          "hairX1": 0.0073
+        },
+        {
+          "y": 0.9178,
+          "figureX0": -0.0931,
+          "figureX1": 0.0121,
+          "hairX0": -0.0895,
+          "hairX1": 0.0085
+        },
+        {
+          "y": 0.9129,
+          "figureX0": -0.0907,
+          "figureX1": 0.0133,
+          "hairX0": -0.0871,
+          "hairX1": 0.0109
+        },
+        {
+          "y": 0.9081,
+          "figureX0": -0.0883,
+          "figureX1": 0.0145,
+          "hairX0": -0.0846,
+          "hairX1": 0.0121
+        },
+        {
+          "y": 0.9033,
+          "figureX0": -0.0859,
+          "figureX1": 0.0157,
+          "hairX0": -0.0834,
+          "hairX1": 0.0133
+        },
+        {
+          "y": 0.8984,
+          "figureX0": -0.0846,
+          "figureX1": 0.0181,
+          "hairX0": -0.081,
+          "hairX1": 0.0157
+        },
+        {
+          "y": 0.8936,
+          "figureX0": -0.081,
+          "figureX1": 0.023,
+          "hairX0": -0.0786,
+          "hairX1": 0.0181
+        },
+        {
+          "y": 0.8888,
+          "figureX0": -0.1112,
+          "figureX1": 0.0472,
+          "hairX0": -0.1076,
+          "hairX1": 0.0326
+        },
+        {
+          "y": 0.8839,
+          "figureX0": -0.1149,
+          "figureX1": 0.0544,
+          "hairX0": -0.1125,
+          "hairX1": 0.0496
+        },
+        {
+          "y": 0.8791,
+          "figureX0": -0.1173,
+          "figureX1": 0.058,
+          "hairX0": -0.1149,
+          "hairX1": 0.0544
+        },
+        {
+          "y": 0.8742,
+          "figureX0": -0.1197,
+          "figureX1": 0.0629,
+          "hairX0": -0.1173,
+          "hairX1": 0.0593
+        },
+        {
+          "y": 0.8694,
+          "figureX0": -0.1233,
+          "figureX1": 0.0653,
+          "hairX0": -0.1209,
+          "hairX1": 0.0641
+        },
+        {
+          "y": 0.8646,
+          "figureX0": -0.1258,
+          "figureX1": 0.0701,
+          "hairX0": -0.1245,
+          "hairX1": 0.0665
+        },
+        {
+          "y": 0.8597,
+          "figureX0": -0.1294,
+          "figureX1": 0.0713,
+          "hairX0": -0.127,
+          "hairX1": 0.0701
+        },
+        {
+          "y": 0.8549,
+          "figureX0": -0.133,
+          "figureX1": 0.075,
+          "hairX0": -0.1306,
+          "hairX1": 0.0726
+        },
+        {
+          "y": 0.8501,
+          "figureX0": -0.1354,
+          "figureX1": 0.0774,
+          "hairX0": -0.133,
+          "hairX1": 0.075
+        },
+        {
+          "y": 0.8452,
+          "figureX0": -0.1391,
+          "figureX1": 0.1439,
+          "hairX0": -0.1354,
+          "hairX1": 0.0786
+        },
+        {
+          "y": 0.8404,
+          "figureX0": -0.1415,
+          "figureX1": 0.1427,
+          "hairX0": -0.1391,
+          "hairX1": 0.1403
+        },
+        {
+          "y": 0.8356,
+          "figureX0": -0.1451,
+          "figureX1": 0.1391,
+          "hairX0": -0.1427,
+          "hairX1": 0.1366
+        },
+        {
+          "y": 0.8307,
+          "figureX0": -0.1475,
+          "figureX1": 0.133,
+          "hairX0": -0.1451,
+          "hairX1": 0.1294
+        },
+        {
+          "y": 0.8259,
+          "figureX0": -0.1511,
+          "figureX1": 0.1245,
+          "hairX0": -0.1487,
+          "hairX1": 0.1209
+        },
+        {
+          "y": 0.821,
+          "figureX0": -0.1536,
+          "figureX1": 0.1185,
+          "hairX0": -0.1511,
+          "hairX1": 0.1149
+        },
+        {
+          "y": 0.8162,
+          "figureX0": -0.1572,
+          "figureX1": 0.1125,
+          "hairX0": -0.1548,
+          "hairX1": 0.1088
+        },
+        {
+          "y": 0.8114,
+          "figureX0": -0.1596,
+          "figureX1": 0.1052,
+          "hairX0": -0.1572,
+          "hairX1": 0.1004
+        },
+        {
+          "y": 0.8065,
+          "figureX0": -0.1632,
+          "figureX1": 0.0992,
+          "hairX0": -0.1596,
+          "hairX1": 0.0943
+        },
+        {
+          "y": 0.8017,
+          "figureX0": -0.1644,
+          "figureX1": 0.1173,
+          "hairX0": -0.1632,
+          "hairX1": 0.1028
+        },
+        {
+          "y": 0.7969,
+          "figureX0": -0.1693,
+          "figureX1": 0.1354,
+          "hairX0": -0.1657,
+          "hairX1": 0.1282
+        },
+        {
+          "y": 0.792,
+          "figureX0": -0.1705,
+          "figureX1": 0.1294,
+          "hairX0": -0.1137,
+          "hairX1": 0.1233
+        },
+        {
+          "y": 0.7872,
+          "figureX0": -0.1137,
+          "figureX1": 0.1161,
+          "hairX0": -0.1112,
+          "hairX1": 0.1125
+        },
+        {
+          "y": 0.7823,
+          "figureX0": -0.1125,
+          "figureX1": 0.1028,
+          "hairX0": -0.1112,
+          "hairX1": 0.1004
+        },
+        {
+          "y": 0.7775,
+          "figureX0": -0.1137,
+          "figureX1": 0.1028,
+          "hairX0": -0.1125,
+          "hairX1": 0.1004
+        },
+        {
+          "y": 0.7727,
+          "figureX0": -0.1149,
+          "figureX1": 0.1052,
+          "hairX0": -0.1137,
+          "hairX1": 0.1028
+        },
+        {
+          "y": 0.7678,
+          "figureX0": -0.1161,
+          "figureX1": 0.1088,
+          "hairX0": -0.1149,
+          "hairX1": 0.1064
+        },
+        {
+          "y": 0.763,
+          "figureX0": -0.1173,
+          "figureX1": 0.11,
+          "hairX0": -0.1161,
+          "hairX1": 0.1052
+        },
+        {
+          "y": 0.7582,
+          "figureX0": -0.1185,
+          "figureX1": 0.1137,
+          "hairX0": -0.1173,
+          "hairX1": -0.0496
+        },
+        {
+          "y": 0.7533,
+          "figureX0": -0.1197,
+          "figureX1": 0.1137,
+          "hairX0": -0.1173,
+          "hairX1": -0.052
+        },
+        {
+          "y": 0.7485,
+          "figureX0": -0.1209,
+          "figureX1": 0.0883,
+          "hairX0": -0.1173,
+          "hairX1": -0.0556
+        },
+        {
+          "y": 0.7437,
+          "figureX0": -0.1209,
+          "figureX1": 0.0822,
+          "hairX0": -0.0883,
+          "hairX1": -0.058
+        },
+        {
+          "y": 0.7388,
+          "figureX0": -0.0919,
+          "figureX1": 0.0762,
+          "hairX0": -0.0846,
+          "hairX1": -0.0605
+        },
+        {
+          "y": 0.734,
+          "figureX0": -0.0859,
+          "figureX1": 0.0701,
+          "hairX0": -0.0822,
+          "hairX1": -0.0617
+        },
+        {
+          "y": 0.7291,
+          "figureX0": -0.081,
+          "figureX1": 0.0665,
+          "hairX0": -0.0786,
+          "hairX1": -0.0641
+        },
+        {
+          "y": 0.7243,
+          "figureX0": -0.0786,
+          "figureX1": 0.0641,
+          "hairX0": -0.0762,
+          "hairX1": -0.0629
+        },
+        {
+          "y": 0.7195,
+          "figureX0": -0.075,
+          "figureX1": 0.0593,
+          "hairX0": -0.0726,
+          "hairX1": -0.0617
+        },
+        {
+          "y": 0.7146,
+          "figureX0": -0.0726,
+          "figureX1": 0.0544,
+          "hairX0": -0.0713,
+          "hairX1": -0.0605
+        },
+        {
+          "y": 0.7098,
+          "figureX0": -0.0701,
+          "figureX1": 0.0496,
+          "hairX0": -0.0677,
+          "hairX1": -0.0593
+        },
+        {
+          "y": 0.705,
+          "figureX0": -0.0677,
+          "figureX1": 0.0447,
+          "hairX0": -0.0665,
+          "hairX1": -0.058
+        },
+        {
+          "y": 0.7001,
+          "figureX0": -0.0653,
+          "figureX1": 0.0387,
+          "hairX0": -0.0629,
+          "hairX1": -0.058
+        },
+        {
+          "y": 0.6953,
+          "figureX0": -0.0629,
+          "figureX1": 0.0314,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6904,
+          "figureX0": -0.0593,
+          "figureX1": 0.0169,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6856,
+          "figureX0": -0.0556,
+          "figureX1": 0.0145,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6808,
+          "figureX0": -0.1415,
+          "figureX1": 0.1403,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6759,
+          "figureX0": -0.1511,
+          "figureX1": 0.1487,
+          "hairX0": null,
+          "hairX1": null
+        }
+      ]
+    },
+    "back": {
+      "image": "back.webp",
+      "size": [
+        391,
+        829
+      ],
+      "hairTopY": 0.9952,
+      "hairLowestY": 0.7069,
+      "hairSpanMaxWidth": 0.3185,
+      "hairSpanMaxWidthAtY": 0.813,
+      "profileStepY": 0.005,
+      "profile": [
+        {
+          "y": 1.0,
+          "figureX0": 0.1261,
+          "figureX1": 0.1273,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.9952,
+          "figureX0": 0.1176,
+          "figureX1": 0.1273,
+          "hairX0": 0.1212,
+          "hairX1": 0.1236
+        },
+        {
+          "y": 0.9903,
+          "figureX0": 0.1104,
+          "figureX1": 0.1248,
+          "hairX0": 0.114,
+          "hairX1": 0.1236
+        },
+        {
+          "y": 0.9855,
+          "figureX0": 0.1043,
+          "figureX1": 0.1224,
+          "hairX0": 0.108,
+          "hairX1": 0.1212
+        },
+        {
+          "y": 0.9807,
+          "figureX0": 0.0995,
+          "figureX1": 0.1212,
+          "hairX0": 0.1031,
+          "hairX1": 0.1188
+        },
+        {
+          "y": 0.9759,
+          "figureX0": 0.0935,
+          "figureX1": 0.1188,
+          "hairX0": 0.0959,
+          "hairX1": 0.1176
+        },
+        {
+          "y": 0.971,
+          "figureX0": 0.0875,
+          "figureX1": 0.1164,
+          "hairX0": 0.0911,
+          "hairX1": 0.1152
+        },
+        {
+          "y": 0.9662,
+          "figureX0": 0.0127,
+          "figureX1": 0.114,
+          "hairX0": 0.0838,
+          "hairX1": 0.1128
+        },
+        {
+          "y": 0.9614,
+          "figureX0": 0.0103,
+          "figureX1": 0.1128,
+          "hairX0": 0.0127,
+          "hairX1": 0.1116
+        },
+        {
+          "y": 0.9566,
+          "figureX0": 0.0078,
+          "figureX1": 0.1116,
+          "hairX0": 0.009,
+          "hairX1": 0.1092
+        },
+        {
+          "y": 0.9517,
+          "figureX0": 0.0054,
+          "figureX1": 0.1092,
+          "hairX0": 0.0078,
+          "hairX1": 0.108
+        },
+        {
+          "y": 0.9469,
+          "figureX0": 0.003,
+          "figureX1": 0.1068,
+          "hairX0": 0.0054,
+          "hairX1": 0.1043
+        },
+        {
+          "y": 0.9421,
+          "figureX0": 0.0018,
+          "figureX1": 0.1043,
+          "hairX0": 0.003,
+          "hairX1": 0.1031
+        },
+        {
+          "y": 0.9373,
+          "figureX0": -0.0006,
+          "figureX1": 0.1031,
+          "hairX0": 0.0006,
+          "hairX1": 0.1007
+        },
+        {
+          "y": 0.9324,
+          "figureX0": -0.003,
+          "figureX1": 0.1007,
+          "hairX0": -0.0006,
+          "hairX1": 0.0995
+        },
+        {
+          "y": 0.9276,
+          "figureX0": -0.0054,
+          "figureX1": 0.0983,
+          "hairX0": -0.003,
+          "hairX1": 0.0971
+        },
+        {
+          "y": 0.9228,
+          "figureX0": -0.0078,
+          "figureX1": 0.0971,
+          "hairX0": -0.0054,
+          "hairX1": 0.0947
+        },
+        {
+          "y": 0.918,
+          "figureX0": -0.0103,
+          "figureX1": 0.0947,
+          "hairX0": -0.0078,
+          "hairX1": 0.0923
+        },
+        {
+          "y": 0.9131,
+          "figureX0": -0.0139,
+          "figureX1": 0.0923,
+          "hairX0": -0.0115,
+          "hairX1": 0.0911
+        },
+        {
+          "y": 0.9083,
+          "figureX0": -0.0476,
+          "figureX1": 0.0911,
+          "hairX0": -0.044,
+          "hairX1": 0.0887
+        },
+        {
+          "y": 0.9035,
+          "figureX0": -0.0513,
+          "figureX1": 0.1055,
+          "hairX0": -0.0489,
+          "hairX1": 0.0862
+        },
+        {
+          "y": 0.8987,
+          "figureX0": -0.0549,
+          "figureX1": 0.1104,
+          "hairX0": -0.0525,
+          "hairX1": 0.1068
+        },
+        {
+          "y": 0.8938,
+          "figureX0": -0.0585,
+          "figureX1": 0.1152,
+          "hairX0": -0.0549,
+          "hairX1": 0.1128
+        },
+        {
+          "y": 0.889,
+          "figureX0": -0.0609,
+          "figureX1": 0.12,
+          "hairX0": -0.0585,
+          "hairX1": 0.1164
+        },
+        {
+          "y": 0.8842,
+          "figureX0": -0.0645,
+          "figureX1": 0.1248,
+          "hairX0": -0.0621,
+          "hairX1": 0.1224
+        },
+        {
+          "y": 0.8794,
+          "figureX0": -0.0682,
+          "figureX1": 0.1297,
+          "hairX0": -0.0645,
+          "hairX1": 0.1261
+        },
+        {
+          "y": 0.8745,
+          "figureX0": -0.0718,
+          "figureX1": 0.1345,
+          "hairX0": -0.0682,
+          "hairX1": 0.1309
+        },
+        {
+          "y": 0.8697,
+          "figureX0": -0.0742,
+          "figureX1": 0.1381,
+          "hairX0": -0.0718,
+          "hairX1": 0.1357
+        },
+        {
+          "y": 0.8649,
+          "figureX0": -0.1429,
+          "figureX1": 0.1429,
+          "hairX0": -0.1393,
+          "hairX1": 0.1393
+        },
+        {
+          "y": 0.8601,
+          "figureX0": -0.1381,
+          "figureX1": 0.1478,
+          "hairX0": -0.1369,
+          "hairX1": 0.1441
+        },
+        {
+          "y": 0.8552,
+          "figureX0": -0.1333,
+          "figureX1": 0.1526,
+          "hairX0": -0.1309,
+          "hairX1": 0.149
+        },
+        {
+          "y": 0.8504,
+          "figureX0": -0.1285,
+          "figureX1": 0.1562,
+          "hairX0": -0.1248,
+          "hairX1": 0.1526
+        },
+        {
+          "y": 0.8456,
+          "figureX0": -0.1224,
+          "figureX1": 0.1598,
+          "hairX0": -0.1188,
+          "hairX1": 0.1574
+        },
+        {
+          "y": 0.8408,
+          "figureX0": -0.1152,
+          "figureX1": 0.1647,
+          "hairX0": -0.1116,
+          "hairX1": 0.1622
+        },
+        {
+          "y": 0.8359,
+          "figureX0": -0.1092,
+          "figureX1": 0.1683,
+          "hairX0": -0.1043,
+          "hairX1": 0.1647
+        },
+        {
+          "y": 0.8311,
+          "figureX0": -0.1019,
+          "figureX1": 0.1731,
+          "hairX0": -0.0983,
+          "hairX1": 0.1707
+        },
+        {
+          "y": 0.8263,
+          "figureX0": -0.0959,
+          "figureX1": 0.1779,
+          "hairX0": -0.0911,
+          "hairX1": 0.1755
+        },
+        {
+          "y": 0.8215,
+          "figureX0": -0.1212,
+          "figureX1": 0.1815,
+          "hairX0": -0.1019,
+          "hairX1": 0.1791
+        },
+        {
+          "y": 0.8166,
+          "figureX0": -0.1369,
+          "figureX1": 0.1864,
+          "hairX0": -0.1321,
+          "hairX1": 0.184
+        },
+        {
+          "y": 0.8118,
+          "figureX0": -0.1321,
+          "figureX1": 0.1912,
+          "hairX0": -0.1285,
+          "hairX1": 0.1864
+        },
+        {
+          "y": 0.807,
+          "figureX0": -0.1212,
+          "figureX1": 0.1888,
+          "hairX0": -0.1164,
+          "hairX1": 0.1224
+        },
+        {
+          "y": 0.8022,
+          "figureX0": -0.1092,
+          "figureX1": 0.1212,
+          "hairX0": -0.1031,
+          "hairX1": 0.1188
+        },
+        {
+          "y": 0.7973,
+          "figureX0": -0.0971,
+          "figureX1": 0.1188,
+          "hairX0": -0.0959,
+          "hairX1": 0.1176
+        },
+        {
+          "y": 0.7925,
+          "figureX0": -0.0983,
+          "figureX1": 0.1176,
+          "hairX0": -0.0971,
+          "hairX1": 0.1164
+        },
+        {
+          "y": 0.7877,
+          "figureX0": -0.1019,
+          "figureX1": 0.1188,
+          "hairX0": -0.0995,
+          "hairX1": 0.1055
+        },
+        {
+          "y": 0.7829,
+          "figureX0": -0.1031,
+          "figureX1": 0.12,
+          "hairX0": -0.1019,
+          "hairX1": 0.0947
+        },
+        {
+          "y": 0.778,
+          "figureX0": -0.108,
+          "figureX1": 0.1224,
+          "hairX0": -0.0657,
+          "hairX1": 0.0935
+        },
+        {
+          "y": 0.7732,
+          "figureX0": -0.1104,
+          "figureX1": 0.1236,
+          "hairX0": -0.0645,
+          "hairX1": 0.0935
+        },
+        {
+          "y": 0.7684,
+          "figureX0": -0.1116,
+          "figureX1": 0.1248,
+          "hairX0": -0.0645,
+          "hairX1": 0.0923
+        },
+        {
+          "y": 0.7636,
+          "figureX0": -0.0862,
+          "figureX1": 0.1261,
+          "hairX0": -0.0645,
+          "hairX1": 0.0923
+        },
+        {
+          "y": 0.7587,
+          "figureX0": -0.079,
+          "figureX1": 0.1248,
+          "hairX0": -0.0645,
+          "hairX1": 0.0911
+        },
+        {
+          "y": 0.7539,
+          "figureX0": -0.073,
+          "figureX1": 0.108,
+          "hairX0": -0.0645,
+          "hairX1": 0.0911
+        },
+        {
+          "y": 0.7491,
+          "figureX0": -0.0669,
+          "figureX1": 0.1007,
+          "hairX0": -0.0621,
+          "hairX1": 0.0899
+        },
+        {
+          "y": 0.7443,
+          "figureX0": -0.0645,
+          "figureX1": 0.0935,
+          "hairX0": -0.0609,
+          "hairX1": 0.0887
+        },
+        {
+          "y": 0.7394,
+          "figureX0": -0.0633,
+          "figureX1": 0.0911,
+          "hairX0": -0.0597,
+          "hairX1": 0.0875
+        },
+        {
+          "y": 0.7346,
+          "figureX0": -0.0597,
+          "figureX1": 0.0887,
+          "hairX0": -0.0549,
+          "hairX1": 0.0862
+        },
+        {
+          "y": 0.7298,
+          "figureX0": -0.0549,
+          "figureX1": 0.0838,
+          "hairX0": -0.0501,
+          "hairX1": 0.0802
+        },
+        {
+          "y": 0.725,
+          "figureX0": -0.0501,
+          "figureX1": 0.079,
+          "hairX0": -0.0464,
+          "hairX1": 0.0766
+        },
+        {
+          "y": 0.7201,
+          "figureX0": -0.0452,
+          "figureX1": 0.0766,
+          "hairX0": -0.0404,
+          "hairX1": 0.073
+        },
+        {
+          "y": 0.7153,
+          "figureX0": -0.0404,
+          "figureX1": 0.073,
+          "hairX0": -0.0356,
+          "hairX1": 0.0682
+        },
+        {
+          "y": 0.7105,
+          "figureX0": -0.0356,
+          "figureX1": 0.0706,
+          "hairX0": -0.0308,
+          "hairX1": 0.0645
+        },
+        {
+          "y": 0.7057,
+          "figureX0": -0.0187,
+          "figureX1": 0.0669,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.7008,
+          "figureX0": -0.0066,
+          "figureX1": 0.0621,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.696,
+          "figureX0": -0.1393,
+          "figureX1": 0.0308,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6912,
+          "figureX0": -0.1478,
+          "figureX1": 0.1707,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6864,
+          "figureX0": -0.155,
+          "figureX1": 0.1767,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6815,
+          "figureX0": -0.1622,
+          "figureX1": 0.184,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6767,
+          "figureX0": -0.1695,
+          "figureX1": 0.19,
+          "hairX0": null,
+          "hairX1": null
+        }
+      ]
+    },
+    "left": {
+      "image": "left.webp",
+      "size": [
+        214,
+        847
+      ],
+      "hairTopY": 0.9953,
+      "hairLowestY": 0.7308,
+      "hairSpanMaxWidth": 0.2279,
+      "hairSpanMaxWidthAtY": 0.8524,
+      "profileStepY": 0.005,
+      "profile": [
+        {
+          "y": 1.0,
+          "figureX0": -0.1063,
+          "figureX1": -0.1051,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.9953,
+          "figureX0": -0.1074,
+          "figureX1": -0.0956,
+          "hairX0": -0.1027,
+          "hairX1": -0.0992
+        },
+        {
+          "y": 0.9906,
+          "figureX0": -0.1051,
+          "figureX1": -0.0885,
+          "hairX0": -0.1027,
+          "hairX1": -0.0921
+        },
+        {
+          "y": 0.9858,
+          "figureX0": -0.1015,
+          "figureX1": -0.0826,
+          "hairX0": -0.0992,
+          "hairX1": -0.085
+        },
+        {
+          "y": 0.9811,
+          "figureX0": -0.0992,
+          "figureX1": -0.0767,
+          "hairX0": -0.0945,
+          "hairX1": -0.0779
+        },
+        {
+          "y": 0.9764,
+          "figureX0": -0.0956,
+          "figureX1": -0.0201,
+          "hairX0": -0.0933,
+          "hairX1": -0.0224
+        },
+        {
+          "y": 0.9717,
+          "figureX0": -0.0933,
+          "figureX1": -0.0177,
+          "hairX0": -0.0897,
+          "hairX1": -0.0189
+        },
+        {
+          "y": 0.9669,
+          "figureX0": -0.0897,
+          "figureX1": -0.0153,
+          "hairX0": -0.0874,
+          "hairX1": -0.0165
+        },
+        {
+          "y": 0.9622,
+          "figureX0": -0.0874,
+          "figureX1": -0.013,
+          "hairX0": -0.085,
+          "hairX1": -0.0142
+        },
+        {
+          "y": 0.9575,
+          "figureX0": -0.085,
+          "figureX1": -0.0106,
+          "hairX0": -0.0826,
+          "hairX1": -0.013
+        },
+        {
+          "y": 0.9528,
+          "figureX0": -0.0826,
+          "figureX1": -0.0094,
+          "hairX0": -0.0791,
+          "hairX1": -0.0106
+        },
+        {
+          "y": 0.9481,
+          "figureX0": -0.0791,
+          "figureX1": -0.0083,
+          "hairX0": -0.0767,
+          "hairX1": -0.0094
+        },
+        {
+          "y": 0.9433,
+          "figureX0": -0.0767,
+          "figureX1": -0.0071,
+          "hairX0": -0.0744,
+          "hairX1": -0.0083
+        },
+        {
+          "y": 0.9386,
+          "figureX0": -0.0744,
+          "figureX1": -0.0047,
+          "hairX0": -0.0708,
+          "hairX1": -0.0059
+        },
+        {
+          "y": 0.9339,
+          "figureX0": -0.072,
+          "figureX1": -0.0024,
+          "hairX0": -0.0685,
+          "hairX1": -0.0035
+        },
+        {
+          "y": 0.9292,
+          "figureX0": -0.0697,
+          "figureX1": -0.0012,
+          "hairX0": -0.0661,
+          "hairX1": -0.0024
+        },
+        {
+          "y": 0.9244,
+          "figureX0": -0.0673,
+          "figureX1": 0.0543,
+          "hairX0": -0.0638,
+          "hairX1": 0.0496
+        },
+        {
+          "y": 0.9197,
+          "figureX0": -0.0649,
+          "figureX1": 0.0579,
+          "hairX0": -0.0602,
+          "hairX1": 0.0555
+        },
+        {
+          "y": 0.915,
+          "figureX0": -0.0626,
+          "figureX1": 0.0626,
+          "hairX0": -0.059,
+          "hairX1": 0.0602
+        },
+        {
+          "y": 0.9103,
+          "figureX0": -0.0815,
+          "figureX1": 0.0661,
+          "hairX0": -0.059,
+          "hairX1": 0.0649
+        },
+        {
+          "y": 0.9055,
+          "figureX0": -0.0803,
+          "figureX1": 0.072,
+          "hairX0": -0.0767,
+          "hairX1": 0.0697
+        },
+        {
+          "y": 0.9008,
+          "figureX0": -0.0767,
+          "figureX1": 0.0767,
+          "hairX0": -0.0732,
+          "hairX1": 0.0732
+        },
+        {
+          "y": 0.8961,
+          "figureX0": -0.0732,
+          "figureX1": 0.0803,
+          "hairX0": -0.0697,
+          "hairX1": 0.0779
+        },
+        {
+          "y": 0.8914,
+          "figureX0": -0.0708,
+          "figureX1": 0.085,
+          "hairX0": -0.0697,
+          "hairX1": 0.0826
+        },
+        {
+          "y": 0.8867,
+          "figureX0": -0.0862,
+          "figureX1": 0.0897,
+          "hairX0": -0.0815,
+          "hairX1": 0.0874
+        },
+        {
+          "y": 0.8819,
+          "figureX0": -0.0992,
+          "figureX1": 0.0945,
+          "hairX0": -0.0956,
+          "hairX1": 0.0909
+        },
+        {
+          "y": 0.8772,
+          "figureX0": -0.1122,
+          "figureX1": 0.0992,
+          "hairX0": -0.1086,
+          "hairX1": 0.0956
+        },
+        {
+          "y": 0.8725,
+          "figureX0": -0.1157,
+          "figureX1": 0.1039,
+          "hairX0": -0.1133,
+          "hairX1": 0.1015
+        },
+        {
+          "y": 0.8678,
+          "figureX0": -0.1133,
+          "figureX1": 0.1086,
+          "hairX0": -0.1122,
+          "hairX1": 0.1063
+        },
+        {
+          "y": 0.863,
+          "figureX0": -0.1122,
+          "figureX1": 0.1145,
+          "hairX0": -0.1098,
+          "hairX1": 0.111
+        },
+        {
+          "y": 0.8583,
+          "figureX0": -0.1086,
+          "figureX1": 0.1181,
+          "hairX0": -0.1074,
+          "hairX1": 0.1145
+        },
+        {
+          "y": 0.8536,
+          "figureX0": -0.1063,
+          "figureX1": 0.1228,
+          "hairX0": -0.1051,
+          "hairX1": 0.1192
+        },
+        {
+          "y": 0.8489,
+          "figureX0": -0.1039,
+          "figureX1": 0.1251,
+          "hairX0": -0.1027,
+          "hairX1": 0.1228
+        },
+        {
+          "y": 0.8442,
+          "figureX0": -0.1015,
+          "figureX1": 0.124,
+          "hairX0": -0.0992,
+          "hairX1": 0.1228
+        },
+        {
+          "y": 0.8394,
+          "figureX0": -0.0992,
+          "figureX1": 0.124,
+          "hairX0": -0.0968,
+          "hairX1": 0.1216
+        },
+        {
+          "y": 0.8347,
+          "figureX0": -0.0968,
+          "figureX1": 0.1228,
+          "hairX0": -0.0945,
+          "hairX1": 0.1216
+        },
+        {
+          "y": 0.83,
+          "figureX0": -0.0945,
+          "figureX1": 0.1216,
+          "hairX0": -0.0933,
+          "hairX1": 0.1192
+        },
+        {
+          "y": 0.8253,
+          "figureX0": -0.0909,
+          "figureX1": 0.1204,
+          "hairX0": -0.0897,
+          "hairX1": 0.1192
+        },
+        {
+          "y": 0.8205,
+          "figureX0": -0.0897,
+          "figureX1": 0.1204,
+          "hairX0": -0.0874,
+          "hairX1": 0.1181
+        },
+        {
+          "y": 0.8158,
+          "figureX0": -0.0862,
+          "figureX1": 0.1192,
+          "hairX0": -0.085,
+          "hairX1": 0.1181
+        },
+        {
+          "y": 0.8111,
+          "figureX0": -0.0838,
+          "figureX1": 0.1181,
+          "hairX0": -0.0826,
+          "hairX1": 0.1169
+        },
+        {
+          "y": 0.8064,
+          "figureX0": -0.0815,
+          "figureX1": 0.1181,
+          "hairX0": -0.0803,
+          "hairX1": 0.1157
+        },
+        {
+          "y": 0.8017,
+          "figureX0": -0.0791,
+          "figureX1": 0.1169,
+          "hairX0": -0.0767,
+          "hairX1": 0.1145
+        },
+        {
+          "y": 0.7969,
+          "figureX0": -0.0767,
+          "figureX1": 0.1157,
+          "hairX0": -0.0744,
+          "hairX1": 0.1145
+        },
+        {
+          "y": 0.7922,
+          "figureX0": -0.0732,
+          "figureX1": 0.1145,
+          "hairX0": -0.072,
+          "hairX1": 0.1133
+        },
+        {
+          "y": 0.7875,
+          "figureX0": -0.0708,
+          "figureX1": 0.1145,
+          "hairX0": -0.0697,
+          "hairX1": 0.1122
+        },
+        {
+          "y": 0.7828,
+          "figureX0": -0.0685,
+          "figureX1": 0.1133,
+          "hairX0": -0.0673,
+          "hairX1": 0.111
+        },
+        {
+          "y": 0.778,
+          "figureX0": -0.0649,
+          "figureX1": 0.1122,
+          "hairX0": -0.0638,
+          "hairX1": 0.1086
+        },
+        {
+          "y": 0.7733,
+          "figureX0": -0.0638,
+          "figureX1": 0.1074,
+          "hairX0": -0.0614,
+          "hairX1": 0.1039
+        },
+        {
+          "y": 0.7686,
+          "figureX0": -0.0602,
+          "figureX1": 0.1027,
+          "hairX0": -0.059,
+          "hairX1": 0.1004
+        },
+        {
+          "y": 0.7639,
+          "figureX0": -0.0579,
+          "figureX1": 0.0968,
+          "hairX0": 0.0342,
+          "hairX1": 0.0945
+        },
+        {
+          "y": 0.7591,
+          "figureX0": -0.0543,
+          "figureX1": 0.0921,
+          "hairX0": 0.0354,
+          "hairX1": 0.0885
+        },
+        {
+          "y": 0.7544,
+          "figureX0": -0.0531,
+          "figureX1": 0.0874,
+          "hairX0": 0.039,
+          "hairX1": 0.0838
+        },
+        {
+          "y": 0.7497,
+          "figureX0": -0.0508,
+          "figureX1": 0.0815,
+          "hairX0": 0.0425,
+          "hairX1": 0.0779
+        },
+        {
+          "y": 0.745,
+          "figureX0": -0.0472,
+          "figureX1": 0.0767,
+          "hairX0": 0.0437,
+          "hairX1": 0.0732
+        },
+        {
+          "y": 0.7403,
+          "figureX0": -0.0449,
+          "figureX1": 0.072,
+          "hairX0": 0.0472,
+          "hairX1": 0.0673
+        },
+        {
+          "y": 0.7355,
+          "figureX0": -0.0425,
+          "figureX1": 0.0661,
+          "hairX0": 0.0484,
+          "hairX1": 0.0614
+        },
+        {
+          "y": 0.7308,
+          "figureX0": -0.0401,
+          "figureX1": 0.0614,
+          "hairX0": 0.0531,
+          "hairX1": 0.0567
+        },
+        {
+          "y": 0.7261,
+          "figureX0": -0.0366,
+          "figureX1": 0.0567,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.7214,
+          "figureX0": -0.0331,
+          "figureX1": 0.0331,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.7166,
+          "figureX0": -0.0165,
+          "figureX1": 0.0331,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.7119,
+          "figureX0": -0.0024,
+          "figureX1": 0.0626,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.7072,
+          "figureX0": -0.0047,
+          "figureX1": 0.0649,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.7025,
+          "figureX0": -0.026,
+          "figureX1": 0.0661,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6978,
+          "figureX0": -0.0283,
+          "figureX1": 0.0685,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.693,
+          "figureX0": -0.0307,
+          "figureX1": 0.0697,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6883,
+          "figureX0": -0.0319,
+          "figureX1": 0.0708,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6836,
+          "figureX0": -0.0342,
+          "figureX1": 0.072,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6789,
+          "figureX0": -0.0354,
+          "figureX1": 0.0744,
+          "hairX0": null,
+          "hairX1": null
+        }
+      ]
+    },
+    "right": {
+      "image": "right.webp",
+      "size": [
+        206,
+        831
+      ],
+      "hairTopY": 0.9964,
+      "hairLowestY": 0.704,
+      "hairSpanMaxWidth": 0.2262,
+      "hairSpanMaxWidthAtY": 0.8339,
+      "profileStepY": 0.005,
+      "profile": [
+        {
+          "y": 1.0,
+          "figureX0": 0.1167,
+          "figureX1": 0.1179,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.9952,
+          "figureX0": 0.1083,
+          "figureX1": 0.1203,
+          "hairX0": 0.1107,
+          "hairX1": 0.1167
+        },
+        {
+          "y": 0.9904,
+          "figureX0": 0.1023,
+          "figureX1": 0.1167,
+          "hairX0": 0.1047,
+          "hairX1": 0.1155
+        },
+        {
+          "y": 0.9856,
+          "figureX0": 0.0975,
+          "figureX1": 0.1131,
+          "hairX0": 0.0987,
+          "hairX1": 0.1119
+        },
+        {
+          "y": 0.9807,
+          "figureX0": 0.0903,
+          "figureX1": 0.1107,
+          "hairX0": 0.0927,
+          "hairX1": 0.1083
+        },
+        {
+          "y": 0.9759,
+          "figureX0": 0.0842,
+          "figureX1": 0.1071,
+          "hairX0": 0.0866,
+          "hairX1": 0.1059
+        },
+        {
+          "y": 0.9711,
+          "figureX0": 0.0794,
+          "figureX1": 0.1047,
+          "hairX0": 0.0806,
+          "hairX1": 0.1023
+        },
+        {
+          "y": 0.9663,
+          "figureX0": 0.0734,
+          "figureX1": 0.1011,
+          "hairX0": 0.0758,
+          "hairX1": 0.0999
+        },
+        {
+          "y": 0.9615,
+          "figureX0": 0.0674,
+          "figureX1": 0.0987,
+          "hairX0": 0.0698,
+          "hairX1": 0.0975
+        },
+        {
+          "y": 0.9567,
+          "figureX0": 0.0193,
+          "figureX1": 0.0963,
+          "hairX0": 0.0638,
+          "hairX1": 0.0939
+        },
+        {
+          "y": 0.9519,
+          "figureX0": 0.0168,
+          "figureX1": 0.0927,
+          "hairX0": 0.0181,
+          "hairX1": 0.0915
+        },
+        {
+          "y": 0.9471,
+          "figureX0": 0.0156,
+          "figureX1": 0.0903,
+          "hairX0": 0.0168,
+          "hairX1": 0.089
+        },
+        {
+          "y": 0.9422,
+          "figureX0": 0.0132,
+          "figureX1": 0.0878,
+          "hairX0": 0.0144,
+          "hairX1": 0.0866
+        },
+        {
+          "y": 0.9374,
+          "figureX0": 0.0108,
+          "figureX1": 0.0842,
+          "hairX0": 0.012,
+          "hairX1": 0.083
+        },
+        {
+          "y": 0.9326,
+          "figureX0": 0.0084,
+          "figureX1": 0.0818,
+          "hairX0": 0.0096,
+          "hairX1": 0.0794
+        },
+        {
+          "y": 0.9278,
+          "figureX0": 0.0072,
+          "figureX1": 0.0794,
+          "hairX0": 0.0084,
+          "hairX1": 0.0782
+        },
+        {
+          "y": 0.923,
+          "figureX0": 0.0048,
+          "figureX1": 0.077,
+          "hairX0": 0.006,
+          "hairX1": 0.0746
+        },
+        {
+          "y": 0.9182,
+          "figureX0": 0.0036,
+          "figureX1": 0.0734,
+          "hairX0": 0.0048,
+          "hairX1": 0.0722
+        },
+        {
+          "y": 0.9134,
+          "figureX0": 0.0012,
+          "figureX1": 0.071,
+          "hairX0": 0.0024,
+          "hairX1": 0.0698
+        },
+        {
+          "y": 0.9085,
+          "figureX0": 0.0,
+          "figureX1": 0.0686,
+          "hairX0": 0.0012,
+          "hairX1": 0.0662
+        },
+        {
+          "y": 0.9037,
+          "figureX0": -0.0253,
+          "figureX1": 0.0662,
+          "hairX0": -0.0012,
+          "hairX1": 0.065
+        },
+        {
+          "y": 0.8989,
+          "figureX0": -0.0602,
+          "figureX1": 0.0626,
+          "hairX0": -0.0566,
+          "hairX1": 0.0614
+        },
+        {
+          "y": 0.8941,
+          "figureX0": -0.0662,
+          "figureX1": 0.0878,
+          "hairX0": -0.0626,
+          "hairX1": 0.0854
+        },
+        {
+          "y": 0.8893,
+          "figureX0": -0.071,
+          "figureX1": 0.0842,
+          "hairX0": -0.0674,
+          "hairX1": 0.0818
+        },
+        {
+          "y": 0.8845,
+          "figureX0": -0.0758,
+          "figureX1": 0.0794,
+          "hairX0": -0.0734,
+          "hairX1": 0.0782
+        },
+        {
+          "y": 0.8797,
+          "figureX0": -0.0806,
+          "figureX1": 0.0758,
+          "hairX0": -0.0782,
+          "hairX1": 0.0734
+        },
+        {
+          "y": 0.8748,
+          "figureX0": -0.0842,
+          "figureX1": 0.071,
+          "hairX0": -0.0818,
+          "hairX1": 0.0686
+        },
+        {
+          "y": 0.87,
+          "figureX0": -0.089,
+          "figureX1": 0.0734,
+          "hairX0": -0.0854,
+          "hairX1": 0.0698
+        },
+        {
+          "y": 0.8652,
+          "figureX0": -0.0927,
+          "figureX1": 0.0903,
+          "hairX0": -0.0903,
+          "hairX1": 0.0842
+        },
+        {
+          "y": 0.8604,
+          "figureX0": -0.0975,
+          "figureX1": 0.1059,
+          "hairX0": -0.0951,
+          "hairX1": 0.1023
+        },
+        {
+          "y": 0.8556,
+          "figureX0": -0.1023,
+          "figureX1": 0.1143,
+          "hairX0": -0.0999,
+          "hairX1": 0.1119
+        },
+        {
+          "y": 0.8508,
+          "figureX0": -0.1071,
+          "figureX1": 0.1131,
+          "hairX0": -0.1047,
+          "hairX1": 0.1119
+        },
+        {
+          "y": 0.846,
+          "figureX0": -0.1119,
+          "figureX1": 0.1119,
+          "hairX0": -0.1083,
+          "hairX1": 0.1107
+        },
+        {
+          "y": 0.8412,
+          "figureX0": -0.1155,
+          "figureX1": 0.1095,
+          "hairX0": -0.1131,
+          "hairX1": 0.1083
+        },
+        {
+          "y": 0.8363,
+          "figureX0": -0.1215,
+          "figureX1": 0.1071,
+          "hairX0": -0.1179,
+          "hairX1": 0.1047
+        },
+        {
+          "y": 0.8315,
+          "figureX0": -0.1239,
+          "figureX1": 0.1047,
+          "hairX0": -0.1203,
+          "hairX1": 0.1023
+        },
+        {
+          "y": 0.8267,
+          "figureX0": -0.1239,
+          "figureX1": 0.1023,
+          "hairX0": -0.1203,
+          "hairX1": 0.0999
+        },
+        {
+          "y": 0.8219,
+          "figureX0": -0.1227,
+          "figureX1": 0.0999,
+          "hairX0": -0.1191,
+          "hairX1": 0.0975
+        },
+        {
+          "y": 0.8171,
+          "figureX0": -0.1215,
+          "figureX1": 0.0975,
+          "hairX0": -0.1191,
+          "hairX1": 0.0963
+        },
+        {
+          "y": 0.8123,
+          "figureX0": -0.1203,
+          "figureX1": 0.0951,
+          "hairX0": -0.1179,
+          "hairX1": 0.0927
+        },
+        {
+          "y": 0.8075,
+          "figureX0": -0.1203,
+          "figureX1": 0.0927,
+          "hairX0": -0.1167,
+          "hairX1": 0.0915
+        },
+        {
+          "y": 0.8026,
+          "figureX0": -0.1191,
+          "figureX1": 0.0903,
+          "hairX0": -0.1155,
+          "hairX1": 0.0878
+        },
+        {
+          "y": 0.7978,
+          "figureX0": -0.1179,
+          "figureX1": 0.0878,
+          "hairX0": -0.1155,
+          "hairX1": 0.0866
+        },
+        {
+          "y": 0.793,
+          "figureX0": -0.1167,
+          "figureX1": 0.0854,
+          "hairX0": -0.1143,
+          "hairX1": 0.0842
+        },
+        {
+          "y": 0.7882,
+          "figureX0": -0.1167,
+          "figureX1": 0.083,
+          "hairX0": -0.1131,
+          "hairX1": 0.0818
+        },
+        {
+          "y": 0.7834,
+          "figureX0": -0.1155,
+          "figureX1": 0.0806,
+          "hairX0": -0.1119,
+          "hairX1": 0.0794
+        },
+        {
+          "y": 0.7786,
+          "figureX0": -0.1143,
+          "figureX1": 0.0782,
+          "hairX0": -0.1119,
+          "hairX1": 0.077
+        },
+        {
+          "y": 0.7738,
+          "figureX0": -0.1131,
+          "figureX1": 0.0758,
+          "hairX0": -0.1107,
+          "hairX1": 0.0746
+        },
+        {
+          "y": 0.769,
+          "figureX0": -0.1131,
+          "figureX1": 0.0734,
+          "hairX0": -0.1107,
+          "hairX1": 0.0722
+        },
+        {
+          "y": 0.7641,
+          "figureX0": -0.1119,
+          "figureX1": 0.071,
+          "hairX0": -0.1083,
+          "hairX1": 0.0698
+        },
+        {
+          "y": 0.7593,
+          "figureX0": -0.1095,
+          "figureX1": 0.0686,
+          "hairX0": -0.1047,
+          "hairX1": 0.0674
+        },
+        {
+          "y": 0.7545,
+          "figureX0": -0.1035,
+          "figureX1": 0.0674,
+          "hairX0": -0.0987,
+          "hairX1": 0.065
+        },
+        {
+          "y": 0.7497,
+          "figureX0": -0.0987,
+          "figureX1": 0.0626,
+          "hairX0": -0.0951,
+          "hairX1": 0.0614
+        },
+        {
+          "y": 0.7449,
+          "figureX0": -0.0951,
+          "figureX1": 0.0614,
+          "hairX0": -0.0915,
+          "hairX1": 0.0602
+        },
+        {
+          "y": 0.7401,
+          "figureX0": -0.0903,
+          "figureX1": 0.0578,
+          "hairX0": -0.0854,
+          "hairX1": 0.0193
+        },
+        {
+          "y": 0.7353,
+          "figureX0": -0.0854,
+          "figureX1": 0.0505,
+          "hairX0": -0.0818,
+          "hairX1": 0.0181
+        },
+        {
+          "y": 0.7304,
+          "figureX0": -0.0806,
+          "figureX1": 0.0469,
+          "hairX0": -0.0782,
+          "hairX1": 0.0181
+        },
+        {
+          "y": 0.7256,
+          "figureX0": -0.077,
+          "figureX1": 0.0445,
+          "hairX0": -0.0734,
+          "hairX1": 0.0181
+        },
+        {
+          "y": 0.7208,
+          "figureX0": -0.0722,
+          "figureX1": 0.0421,
+          "hairX0": -0.0686,
+          "hairX1": 0.0181
+        },
+        {
+          "y": 0.716,
+          "figureX0": -0.0674,
+          "figureX1": 0.0385,
+          "hairX0": -0.0638,
+          "hairX1": 0.0181
+        },
+        {
+          "y": 0.7112,
+          "figureX0": -0.0626,
+          "figureX1": 0.0361,
+          "hairX0": 0.0096,
+          "hairX1": 0.0168
+        },
+        {
+          "y": 0.7064,
+          "figureX0": -0.0349,
+          "figureX1": 0.0325,
+          "hairX0": 0.012,
+          "hairX1": 0.0156
+        },
+        {
+          "y": 0.7016,
+          "figureX0": -0.0578,
+          "figureX1": 0.0168,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6968,
+          "figureX0": -0.0614,
+          "figureX1": 0.0205,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6919,
+          "figureX0": -0.065,
+          "figureX1": 0.0241,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6871,
+          "figureX0": -0.0698,
+          "figureX1": 0.0265,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6823,
+          "figureX0": -0.071,
+          "figureX1": 0.0277,
+          "hairX0": null,
+          "hairX1": null
+        },
+        {
+          "y": 0.6775,
+          "figureX0": -0.0734,
+          "figureX1": 0.0301,
+          "hairX0": null,
+          "hairX1": null
+        }
+      ]
+    }
+  }
+}
