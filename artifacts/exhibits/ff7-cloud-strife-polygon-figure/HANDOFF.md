@@ -255,70 +255,70 @@ self-certify a part, never enter the next stage on your own. `--action` on
 No dispatch: no `/orchestration`, no opencode, no subagents, without an explicit user
 order.
 
-## Open dispatch — ankle, running on opencode, supervised BY THE USER
+## Open dispatch — neck + waist, on opencode, supervised BY THE USER
 
-Started 2026-08-13. The user explicitly ordered the dispatch, which is what AGENTS.md's
-"never dispatch without an explicit user order" exception requires, and then took over
-supervision: **the coordinator is not waiting on this one.** Do not assume a silent
-dispatch is a dead dispatch.
+The user ordered the dispatch (which is what AGENTS.md's "never dispatch without an
+explicit user order" exception requires) and then took over supervision. **The
+coordinator is not waiting on this one.** A silent dispatch is not a dead dispatch.
 
 | | |
 |---|---|
 | run | `run_ef27de43353c` |
-| task | `task_e703aab1503e` |
-| dispatch | `ctx_46a97b3953c1` |
-| worker terminal | `term_0c497f67-57b9-465e-9bc0-63d2c7beb3ed` |
+| task | `task_cf8bf94971bb` |
+| dispatch | `ctx_caaad8919773` |
+| worker terminal | `term_51f68514-6c80-4374-a0ae-1156eeb06e4d` |
+| worktree | **current** (the main one) — not a child |
 | agent | opencode, model `opencode/mimo-v2.5-free` from the repo's `opencode.json` |
 
-⚠ `worker-start --model` is rejected for opencode — "Agent opencode does not support
-launch-time model selection". The model comes from `opencode.json` at the repo root
-instead, which is why that file stopped being gitignored. Changing it changes what a
-dispatched worker runs.
-
-Expected to take hours. It went 9 minutes with no message, which is normal and is not
-evidence of failure: a `check --wait` timeout, TUI idle, or silence are all checkpoints,
-never grounds to stop or release a worker.
-
-Checking on it:
+⚠ `worker-start --model` is rejected for opencode ("does not support launch-time model
+selection"). The model comes from `opencode.json` at the repo root, which is why that
+file stopped being gitignored. **Editing it changes what a dispatched worker runs.**
 
 ```bash
-orca orchestration worker-show --dispatch ctx_46a97b3953c1 --json
-orca orchestration worker-read --dispatch ctx_46a97b3953c1 --limit 50 --json
+orca orchestration worker-show --dispatch ctx_caaad8919773 --json
+orca orchestration worker-read --dispatch ctx_caaad8919773 --limit 50 --json
 orca orchestration check --wait --types worker_done,escalation,question --timeout-ms 900000 --json
+# only after a settled worker_done or escalation — never on a timeout or an idle TUI:
+orca orchestration worker-release --dispatch ctx_caaad8919773 --json
 ```
 
-Settling it, once `worker_done` or `escalation` arrives — process the message, then:
+### Why these two parts, and why now
 
-```bash
-orca orchestration worker-release --dispatch ctx_46a97b3953c1 --json
-```
+neck (§4[13], S-14) and waist (§4[7], S-07) are the only two remaining Stage 1 parts with
+**no shared-section chain and no unresolved contradiction**. Everything else is blocked on
+something:
 
-Release only after a settled `worker_done`. Not on a timeout, not on idle, not on a
-question or escalation.
+| not dispatched | blocked on |
+|---|---|
+| thigh / knee / calf | §5.7 fits crotch→cuff as ONE polyline; that fit cannot be produced from inside a segment. One owner must measure the whole line first |
+| the four arm factories | the §1.4-vs-§1.5 mirror contradiction below |
+| pelvis | self-check A FAILS by 0.0965 — see "Open for the user" |
+| chest | emits four sockets; it is the hub of the whole ledger |
+| head | `faceGroups` five-way triangle partition + a skull inset whose hair thickness is known to overshoot. **The previous attempt came out all-green and egg-shaped.** |
 
-### Scope the worker was given
-
-One part: **ankle** (boot cuff). Four deliverables — `spec/measure_ankle.py` →
-`parts.ankle`, `spec/gate_ankle.py`, `src/utils/cloudStrifeFigure/createAnkle.ts`
-registered in `parts.ts`, and §5's gates run with numbers recorded.
-
-Two things were owed to the ankle and are its real content:
-
-1. the cuff's own **section**, which §4[2] says must come out LARGER than
-   `dimensions.straightPantTubeWidth` — already measured, so this is falsifiable;
-2. the cuff's **fore-aft offset on the sole**, which is the `soleTop` socket's z
-   component. The sole is centred on its own footprint, so §4[1]'s "extends a long way
-   forward and only slightly backward" is not expressed anywhere in the model yet.
-
-Fenced off explicitly: no commits, no branch, no touching the sole / spec / viewer /
-page, no re-running `prompt.txt` §0.1's init block, no re-running `author_spec.py`, no
-advancing to calf, no re-pinning the facet threshold.
+It is also an experiment, not just a build: three gates landed this session that did not
+exist when the ankle was dispatched — socket shape, flatShading, and mirror — and each is
+proven to fail on the exact defect it names. This dispatch is where we find out whether
+they hold against a worker that has already produced three defects in one part.
 
 ### What to check before believing the result
 
-- `git status` — the brief forbids commits, so the work should be an unstaged working
-  tree. A commit means the brief was not followed.
-- `.img2threejs/state.json` and its `.bak` still intact.
-- `spec/facet-gate.json` unchanged — angle 42, threshold 0.33571.
-- Every number in `parts.ankle` carries a cross-view spread; `spec/audit_records.py`
-  should still run clean.
+- `git status` — the brief forbids commits, so the work must be an unstaged working tree.
+- `spec/facet-gate.json` unchanged: angle 42.0, threshold 0.3357142857142857.
+- **No existing gate was loosened.** `git diff spec/gate_*.py spec/socket_gate.py` should
+  show additions for the two new parts and nothing subtracted from sole/ankle. A worker
+  that makes its own part pass by weakening a shared assertion is the worst outcome here.
+- `landmarks.json` gained `parts.neck` and `parts.waist` and nothing else changed.
+- `.img2threejs/state.json` and its `.bak` intact.
+- No renders anywhere under `artifacts/`.
+
+### The one thing planted in the brief
+
+The brief tells the worker that the ledger puts `neckTop` (0.716369, the chin) and
+`chestTop` (0.706208, the shoulder line) about **0.0102** of figure height apart — a very
+short neck — and then requires it to measure the exposed column itself and say whether it
+agrees. The number may well be right; the head sits low and most of the neck is hidden.
+
+It is the one place in this dispatch where copying the quoted number passes and only
+measuring finds out. **How the worker handles that line is worth more than how many parts
+it ships.**
