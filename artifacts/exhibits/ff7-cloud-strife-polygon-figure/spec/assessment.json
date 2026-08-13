@@ -1,644 +1,547 @@
 {
-  "targetName": "Cloud Strife Polygon Figure",
-  "sourceImage": "references/front.webp",
+  "targetName": "FF7 Cloud Strife polygon figure",
+  "sourceImage": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp",
   "preSpecAssessment": {
     "objectClass": {
-      "primaryType": "stylized character figurine (soft-vinyl collectible)",
+      "primaryType": "stylized character figurine (vinyl polygon action figure)",
       "primaryDomain": "character",
-      "formLanguage": ["hard-surface", "character-like", "sculptural"],
-      "structureKind": ["articulated assembly", "compound object", "layered shell"],
-      "motionPotential": ["static prop", "articulated", "detachable", "whole-object transform"],
-      "materialFamilies": ["plastic", "rubber", "skin-like"],
-      "notes": "A soft-vinyl toy of a low-poly game character, not a character render. Hard flat facets, visible edge creases, matte vinyl and zero smoothing groups are the identity. Ten separable parts with clean cylindrical/socketed joints."
+      "formLanguage": [
+        "faceted",
+        "planar",
+        "hard-edged",
+        "low-poly",
+        "chamfered"
+      ],
+      "structureKind": [
+        "segmented",
+        "socketed",
+        "bilateral",
+        "fixed-pose"
+      ],
+      "motionPotential": [
+        "none \u2014 the pose is baked into every part (prompt \u00a71.4)"
+      ],
+      "materialFamilies": [
+        "matte vinyl",
+        "printed decal"
+      ],
+      "notes": "A physical polygon figure photographed flat-lit from four orthographic sides plus one three-quarter. The subject is the TOY, not the game character: its identity is facet angles and hard creases, which is why the projection route is refused (spec/character-contracts.md \u00a74)."
     },
     "complexity": {
-      "tier": "complex",
+      "tier": "ultra-complex",
       "scores": {
-        "silhouetteComplexity": 3,
-        "componentCount": 3,
-        "hierarchyDepth": 3,
-        "repetitionDensity": 1,
+        "silhouetteComplexity": 7,
+        "componentCount": 9,
+        "hierarchyDepth": 6,
+        "repetitionDensity": 8,
         "materialLayerCount": 2,
-        "localDetailDensity": 1,
-        "occlusionRisk": 1,
-        "actionReadinessNeed": 3
+        "localDetailDensity": 6,
+        "occlusionRisk": 3,
+        "actionReadinessNeed": 4
       },
       "estimatedCounts": {
-        "macroComponents": 4,
-        "mesoComponents": 23,
-        "microFeatureGroups": 8,
-        "materialLayers": 11,
-        "repetitionSystems": 1
+        "macroComponents": 8,
+        "mesoComponents": 37,
+        "microFeatureGroups": 24,
+        "materialLayers": 10,
+        "repetitionSystems": 2
       },
       "reasoning": [
-        "Deep hierarchy and a strict socket contract drive the tier, not surface detail.",
-        "Surface detail is deliberately low: the real object has no wear, dirt, scratches or relief.",
-        "The asymmetric arms mean the left and right chains cannot be mirrored, doubling the arm component count."
+        "37 parts across 8 groups, but only 15 Stage 1 shape codes and 3 shared generators \u2014 repetition density is high and that is what keeps the workload finite.",
+        "Occlusion risk is LOW for a four-view orthographic set: every side is observed. What is not observed is the crown, clipped in all four views.",
+        "Only two material codes in the finished model, so material is folded into the colour stage and stage 4 is skipped (prompt \u00a70.7).",
+        "Every tolerance in the build derives from measurementUncertainty=0.05447 (spec/landmarks.json), not from a guessed threshold."
       ]
     },
     "specDepthDecision": {
-      "requiredDepth": "complex",
-      "minimumComponentLevels": ["macro", "meso", "micro"],
+      "requiredDepth": "ultra-complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
       "needsRepetitionSystems": true,
       "needsMaterialLocalOverrides": true,
       "needsMultipleReviewViews": true,
       "needsActionReadyHierarchy": true,
-      "rationale": "Four orthographic reference views and a ten-part delivery contract require a socketed hierarchy three to six levels deep. Material depth is intentionally shallow because the subject genuinely has one flat albedo per zone."
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
     },
-    "unknownsToResolveBeforeImplementation": [],
+    "unknownsToResolveBeforeImplementation": [
+      "Forehead hairline is completely hidden by the fringe in every view; derived from the side-view hair-cap thickness instead (guess list \u00a711.1).",
+      "Crown height is clipped in all four orthographic views (row-0 figure pixels front 6 / back 4 / left 4 / right 6); total height 1.000 is extrapolated from left.webp's two straight spike edges.",
+      "hipYokeVTip is not separable by colour: shirt purple and pants purple differ by 0.007 in cluster mean y. Only a spatial boundary can find it, so it is absent from landmarks.json.",
+      "Occiput hair thickness is a fringe-depth measurement (left 33px / right 54px), NOT hair-cap shell thickness; insetting back.webp by it would overshoot.",
+      "Foot splay is recorded as a projection ratio atan2(lateral, foreAft), not a solved 3D angle; spec/measure_sole.py re-derives it from the ground-contact outline instead."
+    ],
     "detailInventory": {
-      "scanMethod": "grid-3x3",
-      "targetMinDetails": 10,
-      "note": "Zones were scanned with forge/stage1_intake/build_detail_inventory.py over front, back, left and right (spec/detail-inventory/<view>/). Every detail below maps to a real component.localFeatures or material.localOverrides id.",
-      "zoneScans": [
-        "spec/detail-inventory/front/detail-inventory.json",
-        "spec/detail-inventory/back/detail-inventory.json",
-        "spec/detail-inventory/left/detail-inventory.json",
-        "spec/detail-inventory/right/detail-inventory.json"
-      ],
+      "scanMethod": "component-zones + grid-4x4 per orthographic view",
+      "targetMinDetails": 16,
+      "note": "Enumerate every identity-defining small detail before authoring the spec. Each detail must map to a component.localFeatures entry or material.localOverrides entry, never prose only. Use forge/stage1_intake/build_detail_inventory.py to scan zones.",
       "details": [
         {
-          "id": "d-spike-fan",
-          "kind": "ridge",
-          "description": "9-11 flat-sided wedge spikes welded into the cap in an asymmetric fan; one dominant forward spike sets Y=1.000",
-          "region": {
-            "x": 0.0,
-            "y": 0.0,
-            "width": 1.0,
-            "height": 0.33,
-            "units": "normalized"
-          },
-          "scale": "macro",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "hair-spikes"
-          },
-          "evidenceRef": "front-head",
-          "confidence": 0.75
+          "id": "sole-toe-chamfer",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "left"
+          ],
+          "description": "The toe end of the sole slab is a blunt chamfer, not a point; the corner cut is visible as its own facet at 8x.",
+          "mapsTo": "components.soleL/soleR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-cap-occiput-crease",
-          "kind": "seam",
-          "description": "shallow V crease down the centre-back of the cap where the radial facet fan converges",
-          "region": {
-            "x": 0.1,
-            "y": 0.0,
-            "width": 0.8,
-            "height": 0.35,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "hair-cap"
-          },
-          "evidenceRef": "back-head",
-          "confidence": 0.8
+          "id": "sole-heel-chamfer",
+          "kind": "geometry",
+          "zones": [
+            "left",
+            "right"
+          ],
+          "description": "The heel end is the same blunt chamfer as the toe, so the slab reads as a trapezoid with two cut ends rather than a wedge.",
+          "mapsTo": "components.soleL/soleR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/left.webp"
         },
         {
-          "id": "d-fringe-lock",
-          "kind": "ridge",
-          "description": "single thin fringe wedge hanging past the brow to Y=0.740, separate from the cap",
-          "region": {
-            "x": 0.0,
-            "y": 0.0,
-            "width": 1.0,
-            "height": 0.33,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "hair-fringe"
-          },
-          "evidenceRef": "front-head",
-          "confidence": 0.8
+          "id": "sole-top-ledge",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "left"
+          ],
+          "description": "The sole's top face emerges from under the boot cuff as a clean ledge that runs all the way round; it is the widest horizontal plane in the lower body.",
+          "mapsTo": "components.soleL/soleR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-face-print",
-          "kind": "decal",
-          "description": "eyes, lash line, brows and mouth are printed flat on one unbroken facet; no eye geometry",
-          "region": {
-            "x": 0.0,
-            "y": 0.0,
-            "width": 1.0,
-            "height": 0.33,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "material",
-          "mapsTo": {
-            "type": "material.localOverrides",
-            "ref": "face-print"
-          },
-          "evidenceRef": "front-head",
-          "confidence": 0.85
+          "id": "bootcuff-step",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "left",
+            "right"
+          ],
+          "description": "The boot cuff's section is LARGER than the straight pant tube it swallows, with a hard step all round \u2014 not a taper.",
+          "mapsTo": "components.ankleL/ankleR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-choker-band",
-          "kind": "ridge",
-          "description": "thin brown band around the neck base, proud of the skin",
-          "region": {
-            "x": 0.0,
-            "y": 0.15,
-            "width": 1.0,
-            "height": 0.5,
-            "units": "normalized"
-          },
-          "scale": "micro",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "choker"
-          },
-          "evidenceRef": "angle-strap-choker",
-          "confidence": 0.65
+          "id": "bootcuff-vertical-chamfer",
+          "kind": "geometry",
+          "zones": [
+            "front"
+          ],
+          "description": "The cuff's four vertical edges are chamfered; each chamfer catches its own tone under flat shading.",
+          "mapsTo": "components.ankleL/ankleR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-strap-step",
-          "kind": "ridge",
-          "description": "two brown shoulder straps stand proud of the shirt with a hard step on both long edges",
-          "region": {
-            "x": 0.25,
-            "y": 0.3,
-            "width": 0.5,
-            "height": 0.22,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "strap-l"
-          },
-          "evidenceRef": "front-torso",
-          "confidence": 0.85
+          "id": "pant-front-crease",
+          "kind": "geometry",
+          "zones": [
+            "front"
+          ],
+          "description": "One vertical crease runs down the front centre of the straight pant tube.",
+          "mapsTo": "components.calfL/calfR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-strap-back-triangle",
-          "kind": "seam",
-          "description": "the straps cross the shoulder blades as dark triangular panels",
-          "region": {
-            "x": 0.1,
-            "y": 0.26,
-            "width": 0.45,
-            "height": 0.16,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "strap-back"
-          },
-          "evidenceRef": "back-shoulder-left",
-          "confidence": 0.75
+          "id": "pantleg-corner",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "left"
+          ],
+          "description": "The outer trouser line is a straight taper that hits exactly ONE hard corner and turns near-vertical below it. Not an arc, not two corners.",
+          "mapsTo": "components.kneeL/kneeR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-belt-step",
-          "kind": "ridge",
-          "description": "belt band stands proud of both the shirt above and the yoke below",
-          "region": {
-            "x": 0.25,
-            "y": 0.3,
-            "width": 0.5,
-            "height": 0.22,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "belt"
-          },
-          "evidenceRef": "front-torso",
-          "confidence": 0.88
+          "id": "crotch-notch",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "back"
+          ],
+          "description": "An inverted-V notch cuts up into the pelvis between the legs.",
+          "mapsTo": "components.pelvis.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-chevron-front",
-          "kind": "seam",
-          "description": "hip yoke panel ends in a downward V whose tip is at Y=0.435, stepped proud of the pant body",
-          "region": {
-            "x": 0.15,
-            "y": 0.48,
-            "width": 0.7,
-            "height": 0.26,
-            "units": "normalized"
-          },
-          "scale": "macro",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "hip-yoke"
-          },
-          "evidenceRef": "front-hips",
-          "confidence": 0.85
+          "id": "hip-kite",
+          "kind": "geometry",
+          "zones": [
+            "left",
+            "right"
+          ],
+          "description": "In profile the hip is a front/back-symmetric kite quadrilateral with one sharp point front and one back, deepest at the widest height.",
+          "mapsTo": "components.pelvis.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/left.webp"
         },
         {
-          "id": "d-chevron-back",
-          "kind": "seam",
-          "description": "the same chevron repeats on the back at the same height",
-          "region": {
-            "x": 0.0,
-            "y": 0.0,
-            "width": 1.0,
-            "height": 1.0,
-            "units": "normalized"
-          },
-          "scale": "macro",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "hip-yoke"
-          },
-          "evidenceRef": "back-full",
-          "confidence": 0.8
+          "id": "belt-proud-step",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "left",
+            "right",
+            "back"
+          ],
+          "description": "The belt stands proud of both the chest above and the pelvis below, with a hard step on each of its two edges.",
+          "mapsTo": "components.waist.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-pauldron-gap",
-          "kind": "seam",
-          "description": "continuous gap line along the whole deltoid/pauldron boundary - the cap is a separate shell",
-          "region": {
-            "x": 0.0,
-            "y": 0.3,
-            "width": 1.0,
-            "height": 0.4,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "pauldron-l"
-          },
-          "evidenceRef": "left-arm-bracer",
-          "confidence": 0.7
+          "id": "chest-hexagon",
+          "kind": "geometry",
+          "zones": [
+            "front"
+          ],
+          "description": "The chest's front outline is near-hexagonal: widest at the shoulder line, tapering to the waist, front and back near-planar.",
+          "mapsTo": "components.chest.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-bracer-overhang",
-          "kind": "seam",
-          "description": "grey bracer is wider than the forearm and overhangs the fist on the outer face",
-          "region": {
-            "x": 0.0,
-            "y": 0.3,
-            "width": 1.0,
-            "height": 0.4,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "bracer-l"
-          },
-          "evidenceRef": "left-arm-bracer",
-          "confidence": 0.8
+          "id": "deltoid-hex-waistline",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "back"
+          ],
+          "description": "Upper and lower deltoid meet at a hexagonal waistline; that horizontal crease is visible under zoom and is where the pauldron's lower edge lands.",
+          "mapsTo": "components.upperDeltoidL/R.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-fist-seam",
-          "kind": "seam",
-          "description": "flat horizontal cut where skin meets the black fist, no taper",
-          "region": {
-            "x": 0.0,
-            "y": 0.22,
-            "width": 0.38,
-            "height": 0.42,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "fist-r"
-          },
-          "evidenceRef": "front-arm-right",
-          "confidence": 0.85
+          "id": "upperarm-thin",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "back"
+          ],
+          "description": "The upper arm is markedly thinner in section than BOTH the deltoid above it and the forearm below it. The contrast is an identity feature.",
+          "mapsTo": "components.backArmL/backArmR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-sole-ledge",
-          "kind": "ridge",
-          "description": "sole slab top face steps out from under the cuff at Y=0.085 as a clean ledge",
-          "region": {
-            "x": 0.0,
-            "y": 0.78,
-            "width": 1.0,
-            "height": 0.22,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "sole-l"
-          },
-          "evidenceRef": "left-foot-wedge",
-          "confidence": 0.82
+          "id": "forearm-widens-downward",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "left",
+            "right"
+          ],
+          "description": "The forearm THICKENS as it descends \u2014 the opposite of human anatomy. Toy styling, not an error to be corrected.",
+          "mapsTo": "components.frontArmL/frontArmR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-thigh-crease",
-          "kind": "groove",
-          "description": "vertical crease down the centre of each thigh, present under two different lightings",
-          "region": {
-            "x": 0.15,
-            "y": 0.48,
-            "width": 0.7,
-            "height": 0.26,
-            "units": "normalized"
-          },
-          "scale": "meso",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "legs"
-          },
-          "evidenceRef": "front-hips",
-          "confidence": 0.7
+          "id": "bracer-overhang",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "left"
+          ],
+          "description": "The figure's LEFT wrist block is the grey bracer: about 1.05x wider than the right, its lower edge overhanging a little. The RIGHT is the same prism in skin colour, which is why no seam shows there.",
+          "mapsTo": "components.frontArmL.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-crotch-notch",
-          "kind": "hole",
-          "description": "inverted-V notch cut between the legs, apex Y=0.269 - a real silhouette opening",
-          "region": {
-            "x": 0.2,
-            "y": 0.68,
-            "width": 0.6,
-            "height": 0.16,
-            "units": "normalized"
-          },
-          "scale": "macro",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "legs"
-          },
-          "evidenceRef": "front-legs",
-          "confidence": 0.9
+          "id": "glove-flat-cut",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "left",
+            "right"
+          ],
+          "description": "The glove is a chamfered cuboid with NO finger geometry, joined to the wrist above by a single flat cut.",
+          "mapsTo": "components.frontArmL/frontArmR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         },
         {
-          "id": "d-global-chamfer",
-          "kind": "bevel",
-          "description": "every vertical edge on the boxy parts carries a small hard chamfer that catches a bright rim line",
-          "region": {
-            "x": 0.0,
-            "y": 0.0,
-            "width": 1.0,
-            "height": 1.0,
-            "units": "normalized"
-          },
-          "scale": "micro",
-          "affects": "geometry",
-          "mapsTo": {
-            "type": "component.localFeatures",
-            "ref": "torso"
-          },
-          "evidenceRef": "front-full",
-          "confidence": 0.75
+          "id": "elbow-break-forward",
+          "kind": "geometry",
+          "zones": [
+            "left",
+            "right"
+          ],
+          "description": "The elbows break forward so the fists land AHEAD of the hip line. A straight hanging arm is a failure.",
+          "mapsTo": "components.frontArmL/frontArmR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/left.webp"
+        },
+        {
+          "id": "pauldron-left-only",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "back",
+            "left"
+          ],
+          "description": "A black shoulder cap sits on the figure's LEFT deltoid only; the right deltoid is bare. Handedness carrier \u2014 the grey bracer is on the same side.",
+          "mapsTo": "components.pauldronL.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
+        },
+        {
+          "id": "hair-spikes-not-mirrored",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "back",
+            "left",
+            "right"
+          ],
+          "description": "Nine hair spikes, NOT left/right mirrored \u2014 the head+hair band scores mirrorIoU 0.657 against a 0.858 whole-figure noise floor.",
+          "mapsTo": "components.hair*.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
+        },
+        {
+          "id": "hairline-occiput-hard",
+          "kind": "geometry",
+          "zones": [
+            "back"
+          ],
+          "description": "A hard horizontal line crosses the occiput: all yellow above, neck skin below. The only stretch of hairline that can be measured directly.",
+          "mapsTo": "components.hairCap.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/back.webp"
+        },
+        {
+          "id": "ears-outside-cap",
+          "kind": "geometry",
+          "zones": [
+            "back"
+          ],
+          "description": "The ears sit OUTSIDE the hair cap; a small pink skin wedge is exposed on each side below the cap edge.",
+          "mapsTo": "components.earL/earR.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/back.webp"
+        },
+        {
+          "id": "face-print-eyes-brows-only",
+          "kind": "material",
+          "zones": [
+            "front"
+          ],
+          "description": "The printed face carries blue irises with dark pupils, white sclera, a black upper lash line, and brows \u2014 and NOTHING else. No printed nose, no printed mouth.",
+          "mapsTo": "materials.printedFace.localOverrides",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
+        },
+        {
+          "id": "jaw-chamfer-pointed-chin",
+          "kind": "geometry",
+          "zones": [
+            "front",
+            "left",
+            "right"
+          ],
+          "description": "The face plane is near-planar and widest at the cheekbones, with a pronounced chamfer along the jaw down to a small pointed chin.",
+          "mapsTo": "components.head.localFeatures",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
+        },
+        {
+          "id": "flat-shaded-facets",
+          "kind": "material",
+          "zones": [
+            "front",
+            "back",
+            "left",
+            "right"
+          ],
+          "description": "Every surface is flat-shaded matte vinyl: hard facet boundaries with no smooth gradient anywhere. This is the identity of the whole object and the reason the facet gate exists.",
+          "mapsTo": "materials.*.localOverrides",
+          "evidenceRef": "src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp"
         }
       ]
     },
     "anatomy": {
       "applies": true,
-      "styleAxis": "figurine",
-      "styleHeads": 4.65,
+      "styleHeads": 3.5257,
       "proportions": {
-        "headUnit": 0.215,
-        "torso": 1.828,
-        "legs": 2.381,
-        "shoulderWidth": 0.93,
-        "hipWidth": 1.242
+        "headUnit": 0.28363,
+        "torso": 0.3747,
+        "legs": 0.27181,
+        "shoulderWidth": 0.37977716694052077,
+        "hipWidth": 0.28324517801918436
       },
-      "proportionNote": "Figurine proportions, deliberately NOT human. The head box is the hair-inclusive silhouette from chin Y=0.69 to cap crown Y=0.905. Shoulder width is only 0.93 HU where a realistic adult is 1.5-2 HU, and the hip is wider than the shoulders - both are correct for this super-deformed toy and must not be 'fixed' toward human anatomy. If the spike tips are counted as head height instead of the cap crown, the figure reads as 3.2 HU.",
       "pose": {
-        "type": "symmetric standing, weight even, arms held out and broken forward at the elbow",
+        "type": "fixed, baked into every part (prompt \u00a71.4) \u2014 no skeleton",
         "jointAngles": {
-          "shoulder-l": {
-            "outward": 8,
-            "forward": 12,
-            "confidence": 0.7
-          },
-          "shoulder-r": {
-            "outward": 8,
-            "forward": 12,
-            "confidence": 0.7
-          },
-          "elbow-l": {
-            "forward": 35,
-            "confidence": 0.75
-          },
-          "elbow-r": {
-            "forward": 35,
-            "confidence": 0.75
-          },
-          "hip-l": {
-            "outward": 5,
-            "confidence": 0.8
-          },
-          "hip-r": {
-            "outward": 5,
-            "confidence": 0.8
-          },
-          "ankle-l": {
-            "yaw": 27,
-            "confidence": 0.75
-          },
-          "ankle-r": {
-            "yaw": -27,
-            "confidence": 0.75
-          },
-          "neck": {
-            "pitch": 0,
-            "yaw": 0,
-            "confidence": 0.85
-          }
-        },
-        "note": "Angles are derived from the measured socket endpoints in componentTree attachments; the endpoints are the authority, the angles are the readable summary."
+          "upperArmAbductionL": 18.666533479048187,
+          "upperArmAbductionR": 16.10603222270949,
+          "upperArmForwardLeanL": 1.6285530778438395,
+          "upperArmForwardLeanR": 10.42611239123819,
+          "elbowBreakL": 11.097057083191277,
+          "elbowBreakR": 21.771057348500445,
+          "footSplayL": 47.158247559981405,
+          "footSplayR": 44.40588377994643
+        }
       },
       "faceLandmarks": {
-        "boxDefinition": "head bounding box = chin Y=0.69 to hair cap crown Y=0.905, hair included",
-        "hairline": 0.35,
-        "eyeLine": 0.773,
-        "eyeSpacing": 0.156,
-        "noseBase": 0.86,
-        "mouthLine": 0.92,
-        "note": "eyeLine measured: the dark lash band occupies front.webp y=192-215, centre y=203 (absolute Y=0.755), which is 0.773 down the hair-inclusive head box. That sits far below the 0.45-0.55 realistic band because the bulky hair cap owns the top half of the box. eyeSpacing is the 28 px inner-corner gap over the 180 px cap width. noseBase and mouthLine are low-confidence: nothing below y=215 clears the dark-pixel threshold, so both features are very faint print."
+        "eyeLine": 0.80392,
+        "eyeSpacing": 0.16858,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "faceLandmarkNotes": {
+        "measurement": {
+          "measured": true,
+          "view": "front",
+          "headBoxPx": {
+            "x0": 51,
+            "x1": 312,
+            "y0": 0,
+            "y1": 255
+          },
+          "eyeBoxesPx": {
+            "figureRight": {
+              "x0": 156,
+              "x1": 163,
+              "y0": 200,
+              "y1": 212
+            },
+            "figureLeft": {
+              "x0": 207,
+              "x1": 220,
+              "y0": 198,
+              "y1": 210
+            }
+          },
+          "eyeLine": 0.803921568627451,
+          "eyeSpacing": 0.1685823754789272,
+          "note": "eyeLine is normalized down the head bounding box, eyeSpacing across it, per grimoire/character/reconstruction.md. The head box here is the head band of the silhouette (hair included), not the skull."
+        },
+        "noseBase": "NOT OBSERVABLE \u2014 the reference has no printed nose. Zero here means absent, not unmeasured.",
+        "mouthLine": "NOT OBSERVABLE \u2014 the reference has no printed mouth.",
+        "hairline": "NOT OBSERVABLE from the front: the fringe covers it entirely. Derived at Stage 2 from the side-view hair-cap thickness."
       },
       "features": [
-        "spiked gold hair in an asymmetric fan",
-        "printed angular blue eyes with a hard lash line",
-        "black pauldron on the figure's left shoulder only",
-        "grey bracer on the figure's left forearm only",
-        "black cuboid fists with no fingers",
-        "rhombic pant mass wider and deeper than the shoulders",
-        "olive boots: cuff block over a forward sole wedge"
+        "hair-spikes-not-mirrored",
+        "hairline-occiput-hard",
+        "ears-outside-cap",
+        "face-print-eyes-brows-only",
+        "jaw-chamfer-pointed-chin"
       ],
-      "confidence": 0.8,
-      "evidenceRefs": [
-        "front-full",
-        "back-full",
-        "left-hip-profile",
-        "right-arm-bare",
-        "front-head"
-      ],
-      "landmarkOverlay": "spec/front-landmarks.webp",
-      "note": "Overlay generated by forge/stage1_intake/extract_landmarks.py; its drawn guides are generic starting positions and were replaced by the measured values above."
+      "confidence": 0.72,
+      "confidenceNote": "0.72, not higher: four orthographic views cover every side, but the crown is clipped in all four and the forehead hairline is unobservable, so the adopted tolerance is measurementUncertainty=0.05447 \u2014 about 43px of front.webp, far above the 0.0137 RMS."
     },
-    "sourceImage": "references/front.webp",
-    "resolvedReadingLedger": [
-      {
-        "id": "u-cap-crown-boundary",
-        "question": "Where does the hair cap dome end and the spike bases begin?",
-        "readingA": "Y=0.905, the dome tangent measured off back.webp",
-        "readingB": "Y=0.940, the value carried in prompt.txt",
-        "chosen": "A",
-        "evidence": "back.webp shows the smooth dome tangent at 0.905; 0.940 falls inside a spike base",
-        "impact": "Sets headUnit and therefore every head-unit ratio."
+    "sourceImage": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp",
+    "pipelineRouting": {
+      "version": 1,
+      "track": "character-v1.5",
+      "source": "explicit",
+      "status": "resolved",
+      "classification": {
+        "kind": "character",
+        "confidence": 1.0,
+        "evidenceRefs": [
+          "pipeline-routing:explicit:character-v1.5"
+        ],
+        "provider": "pipeline-routing-cli",
+        "version": "1"
       },
-      {
-        "id": "u-rear-spike-count",
-        "question": "Two rear spikes or three?",
-        "readingA": "2",
-        "readingB": "3",
-        "chosen": "B",
-        "evidence": "back.webp at 5x shows three tips, but two overlap and may be one forked wedge",
-        "impact": "Spike instance count 9 vs 10."
-      },
-      {
-        "id": "u-strap-belt-hue",
-        "question": "Are the straps warm brown or cool olive?",
-        "readingA": "warm #51351D",
-        "readingB": "cool #4B4739",
-        "chosen": "A",
-        "evidence": "more-angle.webp separates strap from belt; the product shots collapse both",
-        "impact": "Whether strap and belt read as one material or two."
-      },
-      {
-        "id": "u-nose-mouth-landmarks",
-        "question": "Where are the nose base and mouth line on the printed face?",
-        "readingA": "noseBase 0.78 / mouthLine 0.88 of the head box",
-        "readingB": "no printed nose or mouth at all below the eye band",
-        "chosen": "A",
-        "evidence": "the dark-pixel scan finds nothing below Y=0.740 above threshold, so both features are very faint",
-        "impact": "Face decal content only; low risk."
-      },
-      {
-        "id": "u-foot-length",
-        "question": "How long is a single sole slab?",
-        "readingA": "0.148 from prompt.txt",
-        "readingB": "0.182 measured on left.webp",
-        "chosen": "A",
-        "evidence": "the side view overlaps both staggered feet, so 0.182 spans two soles, not one",
-        "impact": "Foot silhouette from the side."
-      }
-    ]
+      "conflicts": []
+    }
   },
   "qualityContract": {
-    "qualityBar": "complex",
+    "qualityBar": "ultra-complex",
     "definitionOfDone": [
-      "The rendered figure matches references/front.webp, back.webp, left.webp and right.webp in silhouette, the landmark heights in silhouette.landmarks, component hierarchy, flat-faceted shading and the nine-colour palette.",
-      "All three hard silhouette gates hold: hip wider than the shoulders, kite hip profile in side view, torso width:depth 2.0-2.4:1.",
-      "The handedness asymmetry is correct on all four orthographic views.",
-      "Every one of the ten Stage 1 parts explodes and is individually clickable."
+      "The rendered model matches the reference silhouette, primary proportions, visible component hierarchy, material response, and most recognizable local features for the selected fidelity tier."
     ],
     "minimumSpecDepth": {
-      "macroComponents": 3,
-      "mesoComponents": 8,
-      "microFeatureGroups": 5,
-      "materialLayers": 3,
-      "repetitionSystems": 1,
-      "reviewViewpoints": 4
+      "macroComponents": 5,
+      "mesoComponents": 16,
+      "microFeatureGroups": 8,
+      "materialLayers": 4,
+      "repetitionSystems": 2,
+      "reviewViewpoints": 5
     },
     "featureGroups": [
       {
-        "id": "hard-silhouette-gates",
-        "name": "The three hard silhouette gates",
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
         "required": true,
         "qualityCriteria": [
-          "Max hip width 0.267 exceeds torso shoulder width 0.2; measured on the front render, not asserted.",
-          "Left-view hip profile is a kite with a sharp front and back point, max depth 0.142 at Y=0.335.",
-          "Torso width:depth is 2.17:1, tolerance 2.0-2.4:1."
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
         ],
-        "evidenceRefs": ["front-hips", "left-hip-profile", "front-torso"],
+        "evidenceRefs": [
+          "full-object"
+        ],
         "failureModes": [
-          "hip built narrower than the shoulders",
-          "hip built as a cylinder, a skirt or a box",
-          "torso built with a square cross-section"
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
         ]
       },
       {
-        "id": "handedness",
-        "name": "Asymmetric armour",
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
         "required": true,
         "qualityCriteria": [
-          "Figure's left (+X) carries the black pauldron and the grey bracer.",
-          "Figure's right (-X) carries a bare deltoid and no bracer.",
-          "Both fists are black with no finger geometry."
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
         ],
-        "evidenceRefs": ["front-arm-left", "front-arm-right", "left-arm-bracer", "right-arm-bare"],
+        "evidenceRefs": [
+          "full-object"
+        ],
         "failureModes": [
-          "armour mirrored onto both arms",
-          "armour on the wrong side",
-          "fingers modelled on the fists"
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
         ]
       },
       {
-        "id": "faceted-shading",
-        "name": "Flat-faceted vinyl shading",
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
         "required": true,
         "qualityCriteria": [
-          "flatShading is true on every mesh; no smoothed vertex normals anywhere.",
-          "metalness 0 and roughness 0.80-0.90 on every visible material; no clearcoat, sheen or transmission.",
-          "Value variation comes only from facet orientation, not from a normal or bump map."
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
         ],
-        "evidenceRefs": ["front-full", "angle-strap-choker"],
+        "evidenceRefs": [
+          "full-object"
+        ],
         "failureModes": [
-          "subdivision or smoothing erases the facets",
-          "a specular hotspot appears on the vinyl",
-          "normal maps are introduced where the reference shows no relief"
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
         ]
       },
       {
-        "id": "palette-separation",
-        "name": "Nine-colour palette with strap and belt distinct",
+        "id": "surface-material-response",
+        "name": "Surface material response",
         "required": true,
         "qualityCriteria": [
-          "Strap brown and belt brown render as two distinguishable colours.",
-          "Shirt purple and pant purple render as two distinguishable values.",
-          "The printed face is the only textured surface in the model."
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
         ],
-        "evidenceRefs": ["angle-strap-choker", "front-torso", "front-head"],
+        "evidenceRefs": [
+          "full-object"
+        ],
         "failureModes": [
-          "strap and belt collapse into one olive",
-          "one purple used for both shirt and pants",
-          "face modelled as geometry instead of print"
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
         ]
       },
       {
-        "id": "socket-assembly",
-        "name": "Ten parts on sockets, explodable and clickable",
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
         "required": true,
         "qualityCriteria": [
-          "Every child component attaches at its parent socket with the recorded overlap and gap tolerance.",
-          "No child geometry is centred in space instead of pivoting from its socket.",
-          "All ten Stage 1 parts explode along their socket axes and re-seat."
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
         ],
-        "evidenceRefs": ["front-full", "left-arm-bracer"],
+        "evidenceRefs": [
+          "full-object"
+        ],
         "failureModes": [
-          "a child root floats away from its parent",
-          "parent-child transforms mix world and local coordinates",
-          "parts merged into one mesh"
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
         ]
       }
     ],
     "visualDeltaChecks": [
-      "front/back/left/right silhouette IoU against the four orthographic references",
-      "landmark height delta against silhouette.landmarks",
-      "hip-width to shoulder-width ratio delta",
-      "handedness check: pauldron and bracer on +X only",
-      "facet-count and flat-shading delta (no smoothing introduced)",
-      "palette delta per material against the recorded warm/cool pair"
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
     ],
     "antiShallowSpecRules": [
       "Do not proceed to code if qualityContract.qualityBar is unassessed.",
@@ -651,42 +554,29 @@
       "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
       "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
       "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
-      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
-      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
-      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md).",
-      "Do not smooth vertex normals on any component; flatShading is an identity feature, not a finish.",
-      "Do not mirror the shoulder or forearm chains; the armour is asymmetric.",
-      "Do not build the hip mass as a cylinder, capsule or skirt.",
-      "Do not model eye geometry; the face is printed art.",
-      "Do not add wear, dirt, scratches or chips; the reference is factory-fresh vinyl.",
-      "Do not raise texture resolution above the source crop size; upsampling is invented detail."
-    ],
-    "mustNotDo": [
-      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
-      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
-      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
-      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
-      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
-      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
-      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
-      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
-      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
-      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
-      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md).",
-      "Adjacent components must overlap by at least 0.02 world units at shared seams (source: grimoire/build/geometry_patterns.md).",
-      "Raised or recessed relief and fasteners must be geometry, instanced micro-parts, or displacement; a map alone is an approximation (source: grimoire/build/geometry_patterns.md).",
-      "Do not smooth vertex normals on any component; flatShading is an identity feature, not a finish.",
-      "Do not mirror the shoulder or forearm chains; the armour is asymmetric.",
-      "Do not build the hip mass as a cylinder, capsule or skirt.",
-      "Do not model eye geometry; the face is printed art.",
-      "Do not add wear, dirt, scratches or chips; the reference is factory-fresh vinyl.",
-      "Do not raise texture resolution above the source crop size; upsampling is invented detail."
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
     ]
   },
-  "authoringInstruction": "Authored. preSpecAssessment and qualityContract are mirrored from spec/object-sculpt-spec.json, which is the single source of truth.",
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "pipelineRouting": {
+    "version": 1,
+    "track": "character-v1.5",
+    "source": "explicit",
+    "status": "resolved",
+    "classification": {
+      "kind": "character",
+      "confidence": 1.0,
+      "evidenceRefs": [
+        "pipeline-routing:explicit:character-v1.5"
+      ],
+      "provider": "pipeline-routing-cli",
+      "version": "1"
+    },
+    "conflicts": []
+  },
   "localSpecSearch": {
     "collection": "core_3d",
-    "query": "Cloud Strife Polygon Figure low-poly faceted flat shading topology intent humanoid limb socket joint attachment contract chamfer bevel object-relative units hand-painted vs pbr texture stylized honest uncertainty single-image limits",
+    "query": "FF7 Cloud Strife polygon figure flat shaded low poly faceted vinyl figure action figure part decomposition socket chamfered box loft prism procedural geometry stylized hair card topology",
     "index": {
       "status": "hit",
       "reason": "current",
@@ -694,11 +584,44 @@
     },
     "matches": [
       {
+        "record_id": "core.socket-pivot",
+        "file_path": "grimoire/glossary/3d_vocabulary.md",
+        "heading": "Animation, Physics, And Destruction",
+        "key_path": null,
+        "score": 8.305729567613,
+        "snippets": [
+          "A pivot is a local rotation origin; a socket is an attachment point for a child part. In a runtime hierarchy, a socket Object3D is a child of the relevant pivot."
+        ],
+        "source_refs": [
+          {
+            "path": "grimoire/glossary/3d_vocabulary.md",
+            "heading": "Animation, Physics, And Destruction",
+            "key_path": null
+          },
+          {
+            "path": "grimoire/readiness/action_rigging.md",
+            "heading": "Hierarchy Pattern",
+            "key_path": null
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "grimoire/readiness/action_rigging.md"
+          },
+          {
+            "kind": "notebooklm-research",
+            "ref": "notebooklm:4b03c2f9-8393-411f-b5b4-039ab9532843",
+            "note": "Validated generic schema vocabulary; numeric claims remain backed by local source_refs."
+          }
+        ]
+      },
+      {
         "record_id": "core.topology-intent",
         "file_path": "grimoire/glossary/3d_vocabulary.md",
         "heading": "Geometry And Topology",
         "key_path": null,
-        "score": 19.92769845855,
+        "score": 7.684097480805,
         "snippets": [
           "Topology intent classifies a surface as hard-surface blockout, subdivision-ready, low-poly prop, organic deformed mesh, or alpha-card cluster."
         ],
@@ -722,19 +645,19 @@
         ]
       },
       {
-        "record_id": "core.pbr-hand-painted-vs-pbr-texture",
+        "record_id": "core.shader-mapping-csg-boolean-operations-for-sub-mesh-composition",
         "file_path": "docs/raw/img2threejs-skill-dataset.json",
         "heading": null,
-        "key_path": "categories.material_pbr[12]",
-        "score": 16.733321092293,
+        "key_path": "categories.rendering_shader_mapping[3]",
+        "score": 5.559577334162,
         "snippets": [
-          "Distinguishes textures with lighting baked directly into color (static, stylized) from textures that respond dynamically to scene lighting via separate PBR channels. Ph\u00e2n bi\u1ec7t k\u1ebft c\u1ea5u c\u00f3 \u00e1nh s\u00e1ng \u0111\u01b0\u1ee3c n\u01b0\u1edbng tr\u1ef1c ti\u1ebfp v\u00e0o m\u00e0u (t\u0129nh, c\u00e1ch \u0111i\u1ec7u) ..."
+          "Constructive solid geometry (union/subtract/intersect) for combining or cutting weapon/knife sub-meshes procedurally instead of hand-modeling every variant. H\u00ecnh h\u1ecdc r\u1eafn c\u1ea5u tr\u00fac (h\u1ee3p/tr\u1eeb/giao) \u0111\u1ec3 k\u1ebft h\u1ee3p ho\u1eb7c c\u1eaft c\u00e1c sub-mesh v\u0169 kh\u00ed/dao theo ..."
         ],
         "source_refs": [
           {
             "path": "docs/raw/img2threejs-skill-dataset.json",
             "heading": null,
-            "key_path": "categories.material_pbr[12]"
+            "key_path": "categories.rendering_shader_mapping[3]"
           }
         ],
         "evidence_refs": [
@@ -742,34 +665,6 @@
             "kind": "source",
             "ref": "docs/raw/img2threejs-skill-dataset.json",
             "note": "img2threejs NotebookLM research distillation"
-          }
-        ]
-      },
-      {
-        "record_id": "core.attachment-contract",
-        "file_path": "grimoire/readiness/joint_attachment.md",
-        "heading": "Attachment Contract",
-        "key_path": null,
-        "score": 14.009207226827,
-        "snippets": [
-          "An attached child records its parent, parent socket, local start and end, contact type, and embed depth or overlap where applicable."
-        ],
-        "source_refs": [
-          {
-            "path": "grimoire/readiness/joint_attachment.md",
-            "heading": "Attachment Contract",
-            "key_path": null
-          }
-        ],
-        "evidence_refs": [
-          {
-            "kind": "source",
-            "ref": "grimoire/readiness/joint_attachment.md"
-          },
-          {
-            "kind": "notebooklm-research",
-            "ref": "notebooklm:4b03c2f9-8393-411f-b5b4-039ab9532843",
-            "note": "Validated generic schema vocabulary; numeric claims remain backed by local source_refs."
           }
         ]
       }
