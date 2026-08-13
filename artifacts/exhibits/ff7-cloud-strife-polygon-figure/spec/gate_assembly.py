@@ -43,7 +43,13 @@ LEDGER = [
     ("thighL", "hip", "pelvis", "hipL"),
     ("thighR", "hip", "pelvis", "hipR"),
     ("pelvis", "pelvisTop", "waist", "pelvisTop"),
+    ("waist", "waistTop", "chest", "waistTop"),
 ]
+
+# §4: "`neckBase` and `neckTop` are the two UPWARD mates: the part above sits on the part
+# below, so BOTH sides emit the same name and §5.5 compares them directly." Neither hangs
+# off the other, so they are checked as an agreement rather than as a placement.
+UPWARD_MATES = [("neck", "chest", "neckBase")]
 
 
 def main(argv: list[str]) -> int:
@@ -98,6 +104,33 @@ def main(argv: list[str]) -> int:
                 f"{tuple(round(x, 6) for x in v)} -> want "
                 f"{tuple(round(x, 6) for x in want)}, got {tuple(round(x, 6) for x in got)}, "
                 f"worst |delta| = {worst:.3e}",
+            )
+        )
+
+    for above, below, name in UPWARD_MATES:
+        if above not in world or below not in world:
+            checks.append((f"§5.5 {above}/{below} agree on `{name}`", True, "skipped: not built"))
+            continue
+        va = (sockets.get(above) or {}).get(name)
+        vb = (sockets.get(below) or {}).get(name)
+        if not (va and vb and va.get("isVector3") and vb.get("isVector3")):
+            checks.append(
+                (
+                    f"§5.5 {above}/{below} agree on `{name}`",
+                    False,
+                    f"both must emit a bare-Vector3 `{name}`; got {bool(va)} / {bool(vb)}",
+                )
+            )
+            continue
+        pa = [world[above][i] + va["value"][i] for i in range(3)]
+        pb = [world[below][i] + vb["value"][i] for i in range(3)]
+        worst = max(abs(pa[i] - pb[i]) for i in range(3))
+        checks.append(
+            (
+                f"§5.5 {above}/{below} agree on `{name}`",
+                worst < EPS,
+                f"{above} puts it at {tuple(round(x, 6) for x in pa)}, {below} at "
+                f"{tuple(round(x, 6) for x in pb)}, worst |delta| = {worst:.3e}",
             )
         )
 

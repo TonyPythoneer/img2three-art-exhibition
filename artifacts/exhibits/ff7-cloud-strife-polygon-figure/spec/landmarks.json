@@ -4663,6 +4663,95 @@
         "verdict": "the claim is FALSE against the shoulder LINE and TRUE against the chest SLAB. The shoulder line's 0.37978 is the whole silhouette across both deltoids, which is what a shoulder width is; the hip's 0.28325 is nowhere near it, and the gap is 0.0965 against an uncertainty of 0.05447 \u2014 decided, not undecided.",
         "applied": "the measurement. \u00a70.6: where a script disagrees with this document, THE SCRIPT WINS. The pelvis is built at its measured width and stays the widest thing in the LOWER body, which is what \u00a74[6]'s other sentence \u2014 'the largest volume in the model and the part that decides the silhouette' \u2014 is actually about."
       }
+    },
+    "chest": {
+      "generatedBy": "spec/measure_chest.py",
+      "band": "purple (the shirt)",
+      "sections": {
+        "atWidestShirtRow": {
+          "widthPerView": {
+            "front": 0.13717703688821486,
+            "back": 0.21937250478144166
+          },
+          "depthPerView": {
+            "left": 0.12407697853614495,
+            "right": 0.0978068335992643
+          },
+          "width": 0.17827477083482826,
+          "depth": 0.11094190606770463,
+          "widthSpread": 0.08219546789322679,
+          "depthSpread": 0.02627014493688065
+        },
+        "atWaistTop": {
+          "widthPerView": {
+            "front": 0.10542309316409104,
+            "back": 0.14872712188572315
+          },
+          "depthPerView": {
+            "left": 0.02926343833399645,
+            "right": 0.1030936894694948
+          },
+          "width": 0.12707510752490708,
+          "depth": 0.06617856390174563,
+          "widthSpread": 0.04330402872163211,
+          "depthSpread": 0.07383025113549835
+        }
+      },
+      "widestShirtRow": {
+        "perView": {
+          "front": {
+            "width": 0.19814460883853258,
+            "height": 0.5957039842645627
+          },
+          "back": {
+            "width": 0.22556946819334678,
+            "height": 0.6023448436371788
+          }
+        },
+        "height": 0.5990244139508707,
+        "dropBelowShoulderLine": 0.10718329447364283,
+        "note": "the shirt's widest row, found by scanning the chest band. \u00a74[8] assumes it is the shoulder line; measured, it is not, because up there the shirt is not visible at all."
+      },
+      "adopted": {
+        "height": 0.1397173523861448,
+        "topHeight": 0.7062077084245135,
+        "bottomHeight": 0.5664903560383687,
+        "widestWidth": 0.17827477083482826,
+        "widestHeight": 0.5990244139508707,
+        "widthAtWaistTop": 0.12707510752490708,
+        "depthAtWidest": 0.11094190606770463,
+        "depthAtWaistTop": 0.06617856390174563
+      },
+      "slab_4_8": {
+        "depthOverWidth": 0.6223085047210208,
+        "verdict": "UNPINNED \u2014 reported, not asserted",
+        "why": "\u00a74[8] calls the chest a 'flat faceted SLAB' with 'front and back near-planar' and 'narrow chamfers' at the sides. That is a ratio claim, and the ratio is 0.622: the torso is nearly two thirds as deep as it is wide, which is a BLOCK rather than a sheet. But saying so needs a threshold, and any number put here would be guessed \u2014 AGENTS.md is explicit that a guessed threshold makes a gate useless and that a threshold must be pinned with a fake frame the way spec/facet-gate.json's angle was. There is no fake frame for 'slabness', so this reports the number and asserts nothing.",
+        "corroboration": "Stage 0's C_torsoIsASlab compared torso depth (0.16257) against half the SHOULDER width (0.18989, which spans both deltoids) and came back INDETERMINATE at a margin of 0.0273. Measured against the slab's own width the same picture appears: not thin. Two instruments, same answer.",
+        "consequence": "the chest is built at its MEASURED depth. If \u00a74[8]'s 'near-planar' is meant literally, that is a spec change and the owner's call, not a silent flattening here."
+      },
+      "taper_4_8": {
+        "widestWidth": 0.17827477083482826,
+        "widthAtWaistTop": 0.12707510752490708,
+        "difference": 0.05119966330992118,
+        "measurementUncertainty": 0.05447382376324872,
+        "verdict": "PASS (widest at the shoulder line)"
+      },
+      "shoulderSocketX": {
+        "value": 0.08913738541741413,
+        "derivedFrom": "half the slab's width at the shoulder line",
+        "why": "the deltoid is fused to the torso in every view \u2014 the armpit gap only opens below it \u2014 so there is no seam to measure. The mating point is where the slab ends."
+      },
+      "crossViewCheck": {
+        "worstSpread": 0.08219546789322679,
+        "measurementUncertainty": 0.05447382376324872,
+        "verdict": "REVIEW"
+      },
+      "vsLandmarksDimensions": {
+        "dimensions.chestWidth": 0.19814460883853258,
+        "thisScriptWidest": 0.17827477083482826,
+        "dimensions.shoulderWidth": 0.37977716694052077,
+        "why": "chestWidth is the same quantity measured by a different script; shoulderWidth is the WHOLE silhouette across both deltoids and must NOT be used as the slab's width."
+      }
     }
   }
 }

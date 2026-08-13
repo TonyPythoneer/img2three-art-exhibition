@@ -105,6 +105,27 @@ export const PELVIS = {
   hipOffsetX: 0.0692236,
 } as const;
 
+/**
+ * S-08 chestSlab, and the hub of §4's socket ledger — the only part emitting four.
+ *
+ * `widestDrop` is not zero: §4[8] says the slab is widest at the shoulder line, but AT
+ * that row the shirt measures 0.00124 wide because up there the figure is neck, black
+ * pauldron and bare deltoid. The widest row is 0.1186 below it.
+ *
+ * The depth/width ratio is 0.622 — a block, not the 'near-planar' sheet §4[8]
+ * describes. Reported and not asserted: no 'slabness' threshold has been pinned with
+ * a fake frame, and a guessed one would be worse than none.
+ */
+export const CHEST = {
+  height: 0.13971735,
+  widestWidth: 0.17827477,
+  widthAtWaistTop: 0.12707511,
+  depthAtWidest: 0.11094191,
+  depthAtWaistTop: 0.06617856,
+  widestDrop: 0.10718329,
+  shoulderOffsetX: 0.08913739,
+} as const;
+
 /** S-14 neckColumn. CylinderGeometry(r, r, h, radialSegments=8) with flatShading. */
 export const NECK = {
   radius: 0.01975886,

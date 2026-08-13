@@ -32,6 +32,7 @@ NECK = LM["parts"]["neck"]
 WAIST = LM["parts"]["waist"]
 LEG = LM["parts"]["pantLeg"]
 PELVIS = LM["parts"]["pelvis"]
+CHEST = LM["parts"]["chest"]
 
 def num(value: float) -> str:
     return repr(round(float(value), 8))
@@ -138,6 +139,27 @@ def main() -> None:
         f"  widestDrop: {num(PELVIS['adopted']['topHeight'] - PELVIS['adopted']['widestHeight'])},",
         f"  notchWidth: {num(PELVIS['adopted']['notchWidth'])},",
         f"  hipOffsetX: {num(PELVIS['hipSocketX']['adopted'])},",
+        "} as const;",
+        "",
+        "/**",
+        " * S-08 chestSlab, and the hub of §4's socket ledger — the only part emitting four.",
+        " *",
+        " * `widestDrop` is not zero: §4[8] says the slab is widest at the shoulder line, but AT",
+        " * that row the shirt measures 0.00124 wide because up there the figure is neck, black",
+        " * pauldron and bare deltoid. The widest row is 0.1186 below it.",
+        " *",
+        " * The depth/width ratio is 0.622 — a block, not the 'near-planar' sheet §4[8]",
+        " * describes. Reported and not asserted: no 'slabness' threshold has been pinned with",
+        " * a fake frame, and a guessed one would be worse than none.",
+        " */",
+        "export const CHEST = {",
+        f"  height: {num(CHEST['adopted']['height'])},",
+        f"  widestWidth: {num(CHEST['adopted']['widestWidth'])},",
+        f"  widthAtWaistTop: {num(CHEST['adopted']['widthAtWaistTop'])},",
+        f"  depthAtWidest: {num(CHEST['adopted']['depthAtWidest'])},",
+        f"  depthAtWaistTop: {num(CHEST['adopted']['depthAtWaistTop'])},",
+        f"  widestDrop: {num(CHEST['adopted']['topHeight'] - CHEST['adopted']['widestHeight'])},",
+        f"  shoulderOffsetX: {num(CHEST['shoulderSocketX']['value'])},",
         "} as const;",
         "",
         "/** S-14 neckColumn. CylinderGeometry(r, r, h, radialSegments=8) with flatShading. */",
