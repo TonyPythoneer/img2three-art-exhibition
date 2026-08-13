@@ -30,6 +30,13 @@ export type PartEntry = {
   name: string;
   /** The group node this part hangs under in the assembly. */
   module: string;
+  /**
+   * The mating name this part's local origin IS — its own upper socket, per §4's socket
+   * ledger (§1.4: the origin is the zero vector in the part's own frame). The part ABOVE
+   * emits this same name in `userData.sockets`, which is what lets a consumer join two
+   * parts without either of them knowing the other's dimensions.
+   */
+  origin: string;
   build: () => THREE.Group;
 };
 
@@ -46,8 +53,8 @@ export type PartEntry = {
  * function body, which cannot run before this module has finished evaluating.
  */
 export const STAGE1_PARTS: PartEntry[] = [
-  { name: "soleL", module: "legLeft", build: () => createSole("L") },
-  { name: "soleR", module: "legRight", build: () => createSole("R") },
-  { name: "ankleL", module: "legLeft", build: () => createAnkle("L") },
-  { name: "ankleR", module: "legRight", build: () => createAnkle("R") },
+  { name: "soleL", module: "legLeft", origin: "soleTop", build: () => createSole("L") },
+  { name: "soleR", module: "legRight", origin: "soleTop", build: () => createSole("R") },
+  { name: "ankleL", module: "legLeft", origin: "ankleTop", build: () => createAnkle("L") },
+  { name: "ankleR", module: "legRight", origin: "ankleTop", build: () => createAnkle("R") },
 ];

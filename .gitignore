@@ -11,3 +11,8 @@ __pycache__/
 # 161 MB working archive, and the lean-ctx tool cache
 Archive.zip
 .lean-ctx/
+
+# AGENTS.md "Directory rules": artifacts/ keeps measurement records and the scripts that
+# produce them, never renders. A gate's PNGs regenerate from the capture script next to
+# them, so a `--out` pointed inside artifacts/ is a mistake, not a deliverable.
+artifacts/exhibits/*/gate-evidence/

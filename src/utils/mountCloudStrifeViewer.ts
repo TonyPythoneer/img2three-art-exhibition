@@ -3,6 +3,7 @@ import { ArcballControls } from "three/examples/jsm/controls/ArcballControls.js"
 import { createUltimaWeaponV2LookDevLights } from "./ultimaWeaponV2/createUltimaWeaponV2LookDev";
 import { createPartInspector, readProvenance, type StageViewer } from "./partInspector";
 import { STAGE1_PARTS } from "./cloudStrifeFigure/parts";
+import { SOCKET_Y, SOLE_CENTRE_X } from "./cloudStrifeFigure/measurements";
 
 /**
  * The FF7 Cloud Strife polygon figure's viewer.
@@ -92,12 +93,80 @@ function buildGallery(): THREE.Group {
   return row;
 }
 
+/**
+ * Every part that is built, standing where the socket ledger puts it.
+ *
+ * NOT the Stage 1B integration file. It authors no geometry, it is thrown away when the
+ * real assembly lands, and it exists for one reason: a part you cannot see next to its
+ * neighbour is a part whose joint nobody has checked. It is also §5.5's socket assertion
+ * made visible — if an emitted socket and the ledger heights ever disagree, a part leaves
+ * the ground here rather than at Stage 1B.
+ */
 function buildAssembled(): THREE.Group {
-  const g = new THREE.Group();
-  g.name = "cloudStrifeFigure";
-  g.userData.provenance =
-    "Stage 1B has not run: no assembly exists yet. Switch to the parts gallery.";
-  return g;
+  const root = new THREE.Group();
+  root.name = "cloudStrifeFigure";
+  if (STAGE1_PARTS.length === 0) {
+    root.userData.provenance = "no Stage 1 part is built yet";
+    return root;
+  }
+  const ledgerY = SOCKET_Y as Record<string, number | undefined>;
+  const built = STAGE1_PARTS.map((entry) => ({ entry, part: entry.build() }));
+  const socketsOf = (p: THREE.Group) =>
+    (p.userData.sockets ?? {}) as Record<string, THREE.Vector3 | undefined>;
+
+  // Start every part at its own origin's ledger height, on its leg's centre line.
+  const at = new Map<string, THREE.Vector3>();
+  for (const { entry } of built) {
+    const leg = entry.module === "legLeft" || entry.module === "legRight";
+    const sideSign = entry.name.endsWith("R") ? -1 : 1;
+    at.set(
+      entry.name,
+      new THREE.Vector3(leg ? SOLE_CENTRE_X * sideSign : 0, ledgerY[entry.origin] ?? 0, 0),
+    );
+  }
+  // Then let a part that hangs off a socket take that socket's position instead of the
+  // ledger's. Restricted to the same module so a sided socket never captures the other leg.
+  // ponytail: re-runs the whole pass once per part instead of topologically sorting the
+  // chain. 23 parts, so it is 529 comparisons of a Map lookup; sort it if that ever matters.
+  const hosts = new Map<string, { host: string; socket: THREE.Vector3 }>();
+  for (const { entry } of built) {
+    const parent = built.find(
+      (b) =>
+        b.entry.name !== entry.name &&
+        b.entry.module === entry.module &&
+        socketsOf(b.part)[entry.origin],
+    );
+    if (parent)
+      hosts.set(entry.name, {
+        host: parent.entry.name,
+        socket: socketsOf(parent.part)[entry.origin]!,
+      });
+  }
+  for (let pass = 0; pass < built.length; pass += 1) {
+    for (const [name, { host, socket }] of hosts) {
+      at.set(name, at.get(host)!.clone().add(socket));
+    }
+  }
+
+  // One group node per §2 module, so partInspector derives the same module the table says.
+  const modules = new Map<string, THREE.Group>();
+  for (const { entry, part } of built) {
+    let mod = modules.get(entry.module);
+    if (!mod) {
+      mod = new THREE.Group();
+      mod.name = entry.module;
+      modules.set(entry.module, mod);
+      root.add(mod);
+    }
+    part.position.copy(at.get(entry.name)!);
+    mod.add(part);
+  }
+  const hung = [...hosts].map(([name, h]) => `${name}<-${h.host}`).join(", ");
+  root.userData.provenance =
+    `${built.length} of 23 Stage 1 parts, placed by the socket ledger` +
+    (hung ? `; hung from a socket: ${hung}` : "") +
+    ". Not a Stage 1B assembly — no geometry is authored here.";
+  return root;
 }
 
 export function mountCloudStrifeViewer(
@@ -317,7 +386,12 @@ export function mountCloudStrifeViewer(
     // The geometry itself, in the shape gate_facets.py and self_intersection.py consume.
     // Exported from the SAME build the screenshot is taken of: a gate that re-derives the
     // mesh from a second code path is measuring something the reviewer never saw.
-    const meshes: Array<{ name: string; vertices: number[][]; indices: number[] }> = [];
+    const meshes: Array<{
+      name: string;
+      vertices: number[][];
+      indices: number[];
+      material: { type: string; flatShading: unknown; color: string };
+    }> = [];
     model.traverse((object) => {
       if (!(object instanceof THREE.Mesh)) return;
       const geometry = object.geometry as THREE.BufferGeometry;
@@ -326,13 +400,53 @@ export function mountCloudStrifeViewer(
       const vertices: number[][] = [];
       for (let i = 0; i < position.count; i += 1)
         vertices.push([position.getX(i), position.getY(i), position.getZ(i)]);
+      // §5.4's second half. flatShading is a MATERIAL flag: it is invisible in the vertex
+      // data and only arguable from a screenshot, so it has to ride along with the mesh it
+      // belongs to. It used to live only in `__partInfo.materials` as a display string,
+      // which meant gate_facets.py read `material.flatShading` off a record that never had
+      // one, got None, and its `flat is not False` test passed — the assertion was there
+      // and measured nothing. Carried per-mesh and typed `unknown` so a material that is
+      // not a MeshStandardMaterial arrives as whatever it really is and fails loudly.
+      const material = object.material as THREE.MeshStandardMaterial;
       meshes.push({
         name: object.parent?.name || object.name || "mesh",
         vertices,
         indices: index ? Array.from(index.array) : [],
+        material: {
+          type: material?.type ?? "none",
+          flatShading: material?.flatShading,
+          color: material?.color ? `#${material.color.getHexString()}` : "none",
+        },
       });
     });
-    win.__partMeshes = { meshes };
+    // §4 fixes ONE socket shape: `group.userData.sockets = { <name>: THREE.Vector3 }`.
+    // Exported in a form that can FAIL rather than one that can only be read: a socket
+    // authored as anything else arrives as isVector3:false carrying its own key list, so
+    // spec/socket_gate.py can name the drift instead of quietly reaching for
+    // `.localPosition` and making the wrong shape work. A part that emits nothing still
+    // appears, with an empty map — "absent" and "emits nothing" are different failures.
+    const sockets: Record<string, Record<string, unknown>> = {};
+    model.traverse((object) => {
+      const declared = (object.userData as { sockets?: Record<string, unknown> }).sockets;
+      if (!declared || !object.name) return;
+      const described: Record<string, unknown> = {};
+      for (const [socketName, value] of Object.entries(declared)) {
+        const vec = value as THREE.Vector3 | null;
+        described[socketName] =
+          vec && vec.isVector3 === true
+            ? { isVector3: true, value: [vec.x, vec.y, vec.z] }
+            : {
+                isVector3: false,
+                value: null,
+                actual:
+                  value === null || typeof value !== "object"
+                    ? String(value)
+                    : `object{${Object.keys(value as object).join(",")}}`,
+              };
+      }
+      sockets[object.name] = described;
+    });
+    win.__partMeshes = { meshes, sockets };
     win.__partInfo = {
       mode: options.mode ?? "assembled",
       part: options.part ?? null,

@@ -59,12 +59,17 @@ const qs = (key: string): string | undefined => {
 // pins one part, ?view=front|back|left|right|orbit|orbit2 pins an orthographic camera and
 // publishes window.__renderReady for headless capture. src/pages/ is the URL surface, and
 // one more .vue would be one more junk route.
-const mode = ref<(typeof MODES)[number]["id"]>(
-  qs("mode") === "assembled" ? "assembled" : "gallery",
-);
+// Default is "assembled": open the route and every built part is standing where the
+// socket ledger puts it. No query string to remember and nothing to switch on — the
+// gallery chip is the detour, not the main road.
+const mode = ref<(typeof MODES)[number]["id"]>(qs("mode") === "gallery" ? "gallery" : "assembled");
 const partCount = computed(() => STAGE1_PARTS.length);
 
-const opts = computed(() => ({ mode: mode.value, part: qs("part"), view: qs("view") }));
+const opts = computed(() => ({
+  mode: mode.value,
+  part: qs("part"),
+  view: qs("view"),
+}));
 const variant = computed(() =>
   [opts.value.mode, opts.value.part ?? "", opts.value.view ?? ""].join("|"),
 );

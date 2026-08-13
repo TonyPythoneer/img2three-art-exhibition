@@ -15,7 +15,7 @@ import { ANKLE } from "./measurements";
  */
 export function createAnkle(side: "L" | "R"): THREE.Group {
   const sideSign = side === "L" ? 1 : -1;
-  const { cuffWidthX, cuffDepthZ, height } = ANKLE;
+  const { cuffWidthX, cuffDepthZ, height, foreAftOffset } = ANKLE;
 
   // Chamfer size: ~8% of the shorter cross-section axis, enough to catch light on each
   // vertical edge without visibly shrinking the cuff's footprint.
@@ -95,12 +95,33 @@ export function createAnkle(side: "L" | "R"): THREE.Group {
   group.name = `ankle${side}`;
   group.add(new THREE.Mesh(geometry, MANNEQUIN));
 
-  // Sockets: the bottom face emits soleTop for the sole to attach to.
+  // Sockets: the bottom face emits soleTop for the sole to hang from. §4 fixes the shape as
+  // `{ <name>: THREE.Vector3 }` — a bare vector, no rotation. §1.4 bakes the pose into the
+  // vertices, so a per-socket rotation is not merely redundant, it is a second, silently
+  // disagreeing copy of the pose.
+  //
+  // THE Z COMPONENT IS THE IDENTITY FEATURE OF THE FOOT IN PROFILE, so the sign is derived
+  // rather than picked:
+  //
+  //   - `spec/measure_ankle.py` defines its offset as (cuff centre - sole centre) converted
+  //     to model Z with `fwd_sign` (+Z forward, §1.1), averaged over left.webp and
+  //     right.webp. It measures NEGATIVE, so the cuff sits BEHIND the sole's plan centre.
+  //   - `createSole` re-centres its slab on its own plan bounding box, so the sole's local
+  //     origin IS that plan centre and carries none of the offset. All of it belongs here,
+  //     and applying it in both places would double it.
+  //   - This socket answers "where does the SOLE's centre sit relative to the CUFF", the
+  //     opposite direction to what was measured:
+  //         soleCentre.z - cuffCentre.z = -(cuffCentre.z - soleCentre.z) = -foreAftOffset
+  //     which is POSITIVE, i.e. forward. The slab therefore hangs a long way forward of the
+  //     cuff with only a short stub behind it — §4[1].
+  //   - Confirmed against the reference, not just the arithmetic: in left.webp forward is
+  //     the image's LEFT edge (`poseAngles.sideArmFit.left.imageXtoModelZ` = -1), and at 7x
+  //     NEAREST both plates run far to the left of their cuffs, with a stub to the right.
+  //
+  // X stays 0: the cuff's lateral position over the slab is not measured by any of the four
+  // orthographic views, and the mirror leaves 0 at 0, so §5.10 compares the pair unchanged.
   group.userData.sockets = {
-    soleTop: {
-      localPosition: new THREE.Vector3(0, -height, 0),
-      localRotation: new THREE.Euler(0, 0, 0),
-    },
+    soleTop: new THREE.Vector3(0, -height, -foreAftOffset),
   };
 
   return group;

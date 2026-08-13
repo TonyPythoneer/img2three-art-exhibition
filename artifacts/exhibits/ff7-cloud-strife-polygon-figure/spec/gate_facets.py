@@ -302,13 +302,28 @@ def check(path: Path) -> int:
     for mesh in load_meshes(path):
         name = mesh.get("name", "<unnamed>")
         r = measure(mesh, angle)
-        flat = mesh.get("material", {}).get("flatShading")
-        ok = r["fraction"] >= thr and flat is not False
-        failures += 0 if ok else 1
+        # §5.4's second assertion, and it must be `is True`, not `is not False`.
+        # `is not False` let a MISSING flag through, and the flag was missing on every
+        # capture ever taken: the exporter carried it in a display string on __partInfo
+        # and never on the mesh record, so this read None and passed. An assertion that
+        # cannot see its subject is not a lenient assertion, it is an absent one — so a
+        # capture that does not carry the flag now FAILS and says so, rather than being
+        # scored as flat-shaded on no evidence.
+        mat = mesh.get("material") or {}
+        flat = mat.get("flatShading")
+        why = []
+        if r["fraction"] < thr:
+            why.append(f"fraction {r['fraction']:.3f} < {thr:.3f}")
+        if flat is None:
+            why.append("no flatShading in the capture (stale meshes.json — recapture)")
+        elif flat is not True:
+            why.append(f"flatShading={flat!r}, must be True")
+        failures += 0 if not why else 1
         print(
-            f"{'PASS' if ok else 'FAIL'} {name:24s} fraction={r['fraction']:.3f} "
+            f"{'PASS' if not why else 'FAIL'} {name:24s} fraction={r['fraction']:.3f} "
             f"(>= {thr:.3f} at {angle:.0f} deg)  mean={r['meanDeg']:.1f} deg  "
-            f"tris={r['triangles']}  flatShading={flat}"
+            f"tris={r['triangles']}  {mat.get('type', '?')}:flatShading={flat}"
+            + (f"  <- {'; '.join(why)}" if why else "")
         )
     return 1 if failures else 0
 

@@ -30,6 +30,9 @@ import math
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import socket_gate  # noqa: E402  (same directory; the sys.path line above is what enables it)
+
 HERE = Path(__file__).resolve().parent
 LM = json.loads((HERE / "landmarks.json").read_text())
 SPEC = json.loads((HERE / "object-sculpt-spec.json").read_text())
@@ -38,12 +41,14 @@ RMS = LM["normalization"]["sole->chin"]["measurementUncertaintyRms"]
 BUDGET = next(c["triangleBudget"] for c in SPEC["componentTree"] if c["id"] == "soleL")
 
 
-def load(path: Path) -> dict:
+def load(path: Path) -> tuple[dict, dict]:
+    """The whole capture document and its single mesh — the sockets live beside the meshes
+    in it, and `socket_gate` reads them from there."""
     doc = json.loads(path.read_text())
     meshes = doc["meshes"] if isinstance(doc, dict) else doc
     if len(meshes) != 1:
         raise SystemExit(f"{path}: expected exactly one mesh, found {len(meshes)}")
-    return meshes[0]
+    return doc, meshes[0]
 
 
 def tris(mesh: dict) -> list[tuple[int, int, int]]:
@@ -100,7 +105,7 @@ def check(label: str, ok: bool, detail: str) -> None:
 def main(argv: list[str]) -> int:
     if len(argv) != 2:
         raise SystemExit(__doc__)
-    left, right = (load(Path(a)) for a in argv)
+    (doc_l, left), (doc_r, right) = (load(Path(a)) for a in argv)
 
     n_tris = len(tris(left))
     check("§5.4 triangle budget", n_tris <= BUDGET, f"{n_tris} <= {BUDGET}")
@@ -166,6 +171,13 @@ def main(argv: list[str]) -> int:
             blunt > 0.0,
             f"width at the extreme {name} band = {blunt:.5f}",
         )
+
+    # §4's socket contract. The sole is the bottom of the chain and emits nothing, so what
+    # this proves is that `sockets = {}` is DECLARED — "emits nothing" and "forgot to
+    # declare" are the same file to a reader and different bugs to the assembly.
+    RESULTS.extend(socket_gate.shape_checks(doc_l, "soleL"))
+    RESULTS.extend(socket_gate.shape_checks(doc_r, "soleR"))
+    RESULTS.append(socket_gate.mirror_check(doc_l, doc_r, "soleL", "soleR"))
 
     # §5.10: the pair is a pure mirror, so the R part needs no second visual review.
     lv, rv = left["vertices"], right["vertices"]

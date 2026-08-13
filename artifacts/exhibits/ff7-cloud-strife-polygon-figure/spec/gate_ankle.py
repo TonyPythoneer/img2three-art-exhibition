@@ -9,9 +9,13 @@ Reads the geometry export and asserts:
 
   §5.4  triangle count inside the part's spec budget (64)
   §5.5  the local origin IS ankleTop: top face on y=0, bottom face at -H
+  §5.5  the emitted soleTop socket lands the sole's origin on the ledger's soleTop height
+  §4    the socket obeys §4's shape: a bare THREE.Vector3, no rotation (socket_gate.py)
+  §4[1] the socket's z carries the measured fore-aft offset, and its SIGN puts the slab
+        forward of the cuff — the foot's identity feature in profile
   §4[2] the cuff cross-section is wider than straightPantTube on both X and Z
   §4[2] vertical edges are chamfered (four distinct extreme-width rows)
-  §5.10 mirror consistency: negate the R part's x and it matches the L part
+  §5.10 mirror consistency: negate the R part's x and it matches the L part, sockets too
 """
 from __future__ import annotations
 
@@ -19,6 +23,9 @@ import json
 import math
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import socket_gate  # noqa: E402  (same directory; the sys.path line above is what enables it)
 
 HERE = Path(__file__).resolve().parent
 LM = json.loads((HERE / "landmarks.json").read_text())
@@ -36,19 +43,28 @@ PANT_W = ANKLE["cuffSection"]["pantTubeWidthX"]
 PANT_D = ANKLE["cuffSection"]["pantTubeDepthZ"]
 CUFF_W = ANKLE["cuffSection"]["widthX"]["normalized"]
 CUFF_D = ANKLE["cuffSection"]["depthZ"]["normalized"]
+# measure_ankle.py measures (cuff centre - sole centre) in model Z, +Z forward. It is
+# NEGATIVE: the cuff sits behind the sole's plan centre. The socket points the other way —
+# where the SOLE's origin sits relative to the CUFF — so the socket's z is its negation.
 FORE_AFT = ANKLE["foreAftOffset"]["value"]
+SOCKET_Z = -FORE_AFT
+# The sole's own fore-aft extent, for turning that socket into a forward/backward reach.
+SOLE_B = SOLE["foreAftExtent"]["adopted"]
 
 # spec budget from object-sculpt-spec.json
 SPEC = json.loads((HERE / "object-sculpt-spec.json").read_text())
 BUDGET = next(c["triangleBudget"] for c in SPEC["componentTree"] if c["id"] == "ankleL")
 
 
-def load(path: Path) -> dict:
+def load(path: Path) -> tuple[dict, dict]:
+    """The whole capture document and its single mesh. The document is kept because the
+    sockets live beside the meshes in it, and a socket gate that re-derives its input from
+    a second code path is not checking the build the renders were taken of."""
     doc = json.loads(path.read_text())
     meshes = doc["meshes"] if isinstance(doc, dict) else doc
     if len(meshes) != 1:
         raise SystemExit(f"{path}: expected exactly one mesh, found {len(meshes)}")
-    return meshes[0]
+    return doc, meshes[0]
 
 
 def tris(mesh: dict) -> list[tuple[int, int, int]]:
@@ -82,7 +98,7 @@ def check(label: str, ok: bool, detail: str) -> None:
 def main(argv: list[str]) -> int:
     if len(argv) != 2:
         raise SystemExit(__doc__)
-    left, right = (load(Path(a)) for a in argv)
+    (doc_l, left), (doc_r, right) = (load(Path(a)) for a in argv)
 
     n_tris = len(tris(left))
     check("§5.4 triangle budget", n_tris <= BUDGET, f"{n_tris} <= {BUDGET}")
@@ -134,7 +150,53 @@ def main(argv: list[str]) -> int:
         f"built {built_d:.5f} > pant {PANT_D:.5f}",
     )
 
+    # ── §4's socket contract, then what this particular socket has to say ──────────────
+    #
+    # Order matters: the shape checks run first and the vector reads below only make sense
+    # once they pass, because `socket_gate.vector` refuses to guess at a non-Vector3.
+    RESULTS.extend(socket_gate.shape_checks(doc_l, "ankleL"))
+    RESULTS.extend(socket_gate.shape_checks(doc_r, "ankleR"))
+
+    if all(ok for label, ok, _ in RESULTS if label.startswith("§4 socket")):
+        sx, sy, sz = socket_gate.vector(doc_l, "ankleL", "soleTop")
+
+        # §5.5 expressed in the figure frame from both sides: the emitter's origin landmark
+        # plus its socket vector must land on the consumer's origin landmark.
+        check(
+            "§5.5 ankleTop + soleTop socket == soleTop landmark",
+            abs((ANKLE_TOP_Y + sy) - SOLE_TOP_Y) < 1e-6,
+            f"{ANKLE_TOP_Y:.6f} + ({sy:+.6f}) = {ANKLE_TOP_Y + sy:.6f} vs ledger {SOLE_TOP_Y:.6f}",
+        )
+        check(
+            "§4[2] socket sits on the cuff's own axis in X",
+            abs(sx) < 1e-6,
+            f"socket x = {sx:.9f} (the cuff's lateral position over the slab is unmeasured)",
+        )
+
+        # The reason this socket exists at all. `foreAftOffset` was measured and then went
+        # nowhere: the socket's z was 0, so the sole sat centred under the cuff and §4[1]'s
+        # "extends a long way FORWARD and only slightly backward" appeared nowhere in the
+        # model. A dimension gate cannot see that — the sole's own extents are unchanged by
+        # where it hangs — so the assertion has to be on the socket.
+        check(
+            "§4[1] socket z carries the measured fore-aft offset",
+            abs(sz - SOCKET_Z) < 1e-6,
+            f"socket z = {sz:+.8f} vs -foreAftOffset {SOCKET_Z:+.8f} "
+            f"(measured {FORE_AFT:+.8f}, spread {ANKLE['foreAftOffset']['crossViewSpread']:.6f})",
+        )
+        # And the sign, stated as the thing a human can check against the reference rather
+        # than as an arithmetic identity: reach forward of the cuff vs reach behind it.
+        forward = sz + SOLE_B / 2
+        backward = SOLE_B / 2 - sz
+        check(
+            "§4[1] the slab reaches further FORWARD of the cuff than behind it",
+            forward > backward,
+            f"forward {forward:.5f} vs backward {backward:.5f} "
+            f"(ratio {forward / backward:.2f}x, from B {SOLE_B:.5f})",
+        )
+
     # §5.10: the pair is a pure mirror, so the R part needs no second visual review.
+    RESULTS.append(socket_gate.mirror_check(doc_l, doc_r, "ankleL", "ankleR"))
     lv, rv = left["vertices"], right["vertices"]
     if len(lv) != len(rv):
         check("§5.10 mirror consistency", False, f"vertex counts differ: {len(lv)} vs {len(rv)}")
