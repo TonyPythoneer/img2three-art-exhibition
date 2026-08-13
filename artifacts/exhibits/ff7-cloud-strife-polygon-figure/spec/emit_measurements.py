@@ -27,6 +27,7 @@ CONST = json.loads((HERE / "build-constants.json").read_text())
 
 NORM = LM["normalization"]["sole->chin"]
 SOLE = LM["parts"]["sole"]
+ANKLE = LM["parts"]["ankle"]
 
 
 def num(value: float) -> str:
@@ -76,6 +77,16 @@ def main() -> None:
         "",
         "/** Half the gap between the two feet plus half a foot's width: where a sole sits in X. */",
         f"export const SOLE_CENTRE_X = {num(CONST['derived']['soleCentreX']['value'])};",
+        "",
+        "/** A-01 ankleCuff. Boot cuff: a prism whose section is LARGER than the pant tube it swallows. */",
+        "export const ANKLE = {",
+        f"  cuffWidthX: {num(ANKLE['cuffSection']['widthX']['normalized'])},",
+        f"  cuffDepthZ: {num(ANKLE['cuffSection']['depthZ']['normalized'])},",
+        f"  pantTubeWidthX: {num(ANKLE['cuffSection']['pantTubeWidthX'])},",
+        f"  pantTubeDepthZ: {num(ANKLE['cuffSection']['pantTubeDepthZ'])},",
+        f"  foreAftOffset: {num(ANKLE['foreAftOffset']['value'])},",
+        f"  height: {num(y['ankleTop'] - y['soleTop'])},",
+        "} as const;",
         "",
     ]
     OUT.write_text("\n".join(lines))

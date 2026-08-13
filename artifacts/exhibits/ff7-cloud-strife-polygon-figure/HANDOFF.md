@@ -254,3 +254,71 @@ self-certify a part, never enter the next stage on your own. `--action` on
 
 No dispatch: no `/orchestration`, no opencode, no subagents, without an explicit user
 order.
+
+## Open dispatch — ankle, running on opencode, supervised BY THE USER
+
+Started 2026-08-13. The user explicitly ordered the dispatch, which is what AGENTS.md's
+"never dispatch without an explicit user order" exception requires, and then took over
+supervision: **the coordinator is not waiting on this one.** Do not assume a silent
+dispatch is a dead dispatch.
+
+| | |
+|---|---|
+| run | `run_ef27de43353c` |
+| task | `task_e703aab1503e` |
+| dispatch | `ctx_46a97b3953c1` |
+| worker terminal | `term_0c497f67-57b9-465e-9bc0-63d2c7beb3ed` |
+| agent | opencode, model `opencode/mimo-v2.5-free` from the repo's `opencode.json` |
+
+⚠ `worker-start --model` is rejected for opencode — "Agent opencode does not support
+launch-time model selection". The model comes from `opencode.json` at the repo root
+instead, which is why that file stopped being gitignored. Changing it changes what a
+dispatched worker runs.
+
+Expected to take hours. It went 9 minutes with no message, which is normal and is not
+evidence of failure: a `check --wait` timeout, TUI idle, or silence are all checkpoints,
+never grounds to stop or release a worker.
+
+Checking on it:
+
+```bash
+orca orchestration worker-show --dispatch ctx_46a97b3953c1 --json
+orca orchestration worker-read --dispatch ctx_46a97b3953c1 --limit 50 --json
+orca orchestration check --wait --types worker_done,escalation,question --timeout-ms 900000 --json
+```
+
+Settling it, once `worker_done` or `escalation` arrives — process the message, then:
+
+```bash
+orca orchestration worker-release --dispatch ctx_46a97b3953c1 --json
+```
+
+Release only after a settled `worker_done`. Not on a timeout, not on idle, not on a
+question or escalation.
+
+### Scope the worker was given
+
+One part: **ankle** (boot cuff). Four deliverables — `spec/measure_ankle.py` →
+`parts.ankle`, `spec/gate_ankle.py`, `src/utils/cloudStrifeFigure/createAnkle.ts`
+registered in `parts.ts`, and §5's gates run with numbers recorded.
+
+Two things were owed to the ankle and are its real content:
+
+1. the cuff's own **section**, which §4[2] says must come out LARGER than
+   `dimensions.straightPantTubeWidth` — already measured, so this is falsifiable;
+2. the cuff's **fore-aft offset on the sole**, which is the `soleTop` socket's z
+   component. The sole is centred on its own footprint, so §4[1]'s "extends a long way
+   forward and only slightly backward" is not expressed anywhere in the model yet.
+
+Fenced off explicitly: no commits, no branch, no touching the sole / spec / viewer /
+page, no re-running `prompt.txt` §0.1's init block, no re-running `author_spec.py`, no
+advancing to calf, no re-pinning the facet threshold.
+
+### What to check before believing the result
+
+- `git status` — the brief forbids commits, so the work should be an unstaged working
+  tree. A commit means the brief was not followed.
+- `.img2threejs/state.json` and its `.bak` still intact.
+- `spec/facet-gate.json` unchanged — angle 42, threshold 0.33571.
+- Every number in `parts.ankle` carries a cross-view spread; `spec/audit_records.py`
+  should still run clean.

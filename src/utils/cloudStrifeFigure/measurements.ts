@@ -52,3 +52,13 @@ export const SOCKET_Y = {
 
 /** Half the gap between the two feet plus half a foot's width: where a sole sits in X. */
 export const SOLE_CENTRE_X = 0.10097754;
+
+/** A-01 ankleCuff. Boot cuff: a prism whose section is LARGER than the pant tube it swallows. */
+export const ANKLE = {
+  cuffWidthX: 0.10288278,
+  cuffDepthZ: 0.15187617,
+  pantTubeWidthX: 0.06096757,
+  pantTubeDepthZ: 0.0772598,
+  foreAftOffset: -0.0606725,
+  height: 0.107018,
+} as const;

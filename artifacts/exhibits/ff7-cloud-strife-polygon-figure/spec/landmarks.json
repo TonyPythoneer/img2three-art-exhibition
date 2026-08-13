@@ -3591,6 +3591,53 @@
         "worst": 0.02365024354714816,
         "verdict": "PASS"
       }
+    },
+    "ankle": {
+      "generatedBy": "spec/measure_ankle.py",
+      "cuffSection": {
+        "widthX": {
+          "normalized": 0.10288278,
+          "vsPantTube": 0.04191521
+        },
+        "depthZ": {
+          "normalized": 0.15187617,
+          "vsPantTube": 0.07461637,
+          "perView": {
+            "left": 0.14514665,
+            "right": 0.15860568
+          }
+        },
+        "pantTubeWidthX": 0.06096757,
+        "pantTubeDepthZ": 0.0772598,
+        "widerOnBothAxes": true,
+        "crossViewSpread": 0.01345902
+      },
+      "foreAftOffset": {
+        "value": -0.0606725,
+        "perView": {
+          "left": -0.068476,
+          "right": -0.052869
+        },
+        "crossViewSpread": 0.015607
+      },
+      "raw": {
+        "left": {
+          "cuffDepthPx": 124,
+          "cuffDepthNorm": 0.1451466541366224,
+          "cuffCenterImg": 101.5,
+          "soleCenterImg": 43.0,
+          "offsetImgPx": 58.5,
+          "offsetZ": -0.068476
+        },
+        "right": {
+          "cuffDepthPx": 120,
+          "cuffDepthNorm": 0.1586056761069151,
+          "cuffCenterImg": 109.5,
+          "soleCenterImg": 149.5,
+          "offsetImgPx": -40.0,
+          "offsetZ": -0.052869
+        }
+      }
     }
   }
 }

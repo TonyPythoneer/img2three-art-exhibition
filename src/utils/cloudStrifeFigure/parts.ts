@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { createSole } from "./createSole";
+import { createAnkle } from "./createAnkle";
 
 /**
  * The Stage 1 part registry, and the one material every Stage 1 part shares.
@@ -47,4 +48,6 @@ export type PartEntry = {
 export const STAGE1_PARTS: PartEntry[] = [
   { name: "soleL", module: "legLeft", build: () => createSole("L") },
   { name: "soleR", module: "legRight", build: () => createSole("R") },
+  { name: "ankleL", module: "legLeft", build: () => createAnkle("L") },
+  { name: "ankleR", module: "legRight", build: () => createAnkle("R") },
 ];
