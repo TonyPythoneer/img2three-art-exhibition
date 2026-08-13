@@ -1,0 +1,642 @@
+{
+  "schema": "ff7-cloud-strife-facet-gate/1",
+  "generatedBy": "artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/gate_facets.py",
+  "assertion": "fraction of edge-adjacent triangle pairs with normal angle >= angleDeg must be >= threshold",
+  "sweep": [
+    {
+      "angleDeg": 6.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.4852941176470588,
+        "fake:lofted-egg-8x8": 0.7
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": -0.12857142857142856
+    },
+    {
+      "angleDeg": 8.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.7
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": -0.12857142857142856
+    },
+    {
+      "angleDeg": 10.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.7
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": -0.12857142857142856
+    },
+    {
+      "angleDeg": 12.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.65
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": -0.07857142857142863
+    },
+    {
+      "angleDeg": 14.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.65
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": -0.07857142857142863
+    },
+    {
+      "angleDeg": 16.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.65
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": -0.07857142857142863
+    },
+    {
+      "angleDeg": 18.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.6
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": -0.02857142857142858
+    },
+    {
+      "angleDeg": 20.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.5
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.0714285714285714
+    },
+    {
+      "angleDeg": 22.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.45
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.12142857142857139
+    },
+    {
+      "angleDeg": 24.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.45
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.12142857142857139
+    },
+    {
+      "angleDeg": 26.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.35
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.22142857142857142
+    },
+    {
+      "angleDeg": 28.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.25
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.3214285714285714
+    },
+    {
+      "angleDeg": 30.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.2
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.3714285714285714
+    },
+    {
+      "angleDeg": 32.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.2
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.3714285714285714
+    },
+    {
+      "angleDeg": 34.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.2
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.3714285714285714
+    },
+    {
+      "angleDeg": 36.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.2
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.3714285714285714
+    },
+    {
+      "angleDeg": 38.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.2
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.3714285714285714
+    },
+    {
+      "angleDeg": 40.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.15
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.4214285714285714
+    },
+    {
+      "angleDeg": 42.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.1
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.5714285714285714
+      },
+      "separation": 0.4714285714285714
+    },
+    {
+      "angleDeg": 44.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.05
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.5714285714285714,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.33095238095238094
+    },
+    {
+      "angleDeg": 46.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 48.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 50.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 52.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 54.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 56.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 58.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.6,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 60.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.4,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 62.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.4,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 64.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.4,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 66.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.4,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 68.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.4,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 70.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.4,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 72.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.4,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 74.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.4,
+        "control:loftPrism-8": 0.38095238095238093
+      },
+      "separation": 0.38095238095238093
+    },
+    {
+      "angleDeg": 76.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.4,
+        "control:loftPrism-8": 0.19047619047619047
+      },
+      "separation": 0.19047619047619047
+    },
+    {
+      "angleDeg": 78.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.2,
+        "control:loftPrism-8": 0.19047619047619047
+      },
+      "separation": 0.19047619047619047
+    },
+    {
+      "angleDeg": 80.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.2,
+        "control:loftPrism-8": 0.19047619047619047
+      },
+      "separation": 0.19047619047619047
+    },
+    {
+      "angleDeg": 82.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.2,
+        "control:loftPrism-8": 0.19047619047619047
+      },
+      "separation": 0.19047619047619047
+    },
+    {
+      "angleDeg": 84.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.2,
+        "control:loftPrism-8": 0.19047619047619047
+      },
+      "separation": 0.19047619047619047
+    },
+    {
+      "angleDeg": 86.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.2,
+        "control:loftPrism-8": 0.19047619047619047
+      },
+      "separation": 0.19047619047619047
+    },
+    {
+      "angleDeg": 88.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.2,
+        "control:loftPrism-8": 0.19047619047619047
+      },
+      "separation": 0.19047619047619047
+    },
+    {
+      "angleDeg": 90.0,
+      "fakeFractions": {
+        "fake:smooth-sphere": 0.0,
+        "fake:lofted-egg-8x8": 0.0
+      },
+      "controlFractions": {
+        "control:chamfered-box": 0.38095238095238093,
+        "control:loftPrism-6": 0.2,
+        "control:loftPrism-8": 0.19047619047619047
+      },
+      "separation": 0.19047619047619047
+    }
+  ],
+  "angleDeg": 42.0,
+  "threshold": 0.3357142857142857,
+  "fakeFrames": {
+    "fake:smooth-sphere": {
+      "fraction": 0.0,
+      "fails": true
+    },
+    "fake:lofted-egg-8x8": {
+      "fraction": 0.1,
+      "fails": true
+    }
+  },
+  "positiveControls": {
+    "control:chamfered-box": {
+      "fraction": 0.5714285714285714,
+      "passes": true
+    },
+    "control:loftPrism-6": {
+      "fraction": 0.6,
+      "passes": true
+    },
+    "control:loftPrism-8": {
+      "fraction": 0.5714285714285714,
+      "passes": true
+    }
+  },
+  "separation": 0.4714285714285714,
+  "minSeparation": 0.15,
+  "pinned": true,
+  "detail": {
+    "fake:smooth-sphere": {
+      "adjacentPairs": 3264,
+      "triangles": 2304,
+      "fraction": 0.0,
+      "meanDeg": 4.21648301772135,
+      "medianDeg": 5.642299797740066,
+      "p90Deg": 7.5080061745449935,
+      "maxDeg": 7.515497989968
+    },
+    "fake:lofted-egg-8x8": {
+      "adjacentPairs": 160,
+      "triangles": 128,
+      "fraction": 0.1,
+      "meanDeg": 19.37356982327713,
+      "medianDeg": 21.19994828411761,
+      "p90Deg": 43.78980952419716,
+      "maxDeg": 44.80433112021851
+    },
+    "control:chamfered-box": {
+      "adjacentPairs": 42,
+      "triangles": 28,
+      "fraction": 0.5714285714285714,
+      "meanDeg": 42.85714297213507,
+      "medianDeg": 45.00000000000001,
+      "p90Deg": 90.0,
+      "maxDeg": 90.0
+    },
+    "control:loftPrism-6": {
+      "adjacentPairs": 30,
+      "triangles": 20,
+      "fraction": 0.6,
+      "meanDeg": 47.61449458930676,
+      "medianDeg": 58.07247280423818,
+      "p90Deg": 103.89788624801399,
+      "maxDeg": 103.89788624801399
+    },
+    "control:loftPrism-8": {
+      "adjacentPairs": 42,
+      "triangles": 28,
+      "fraction": 0.5714285714285714,
+      "meanDeg": 42.5585593732338,
+      "medianDeg": 43.43243670947746,
+      "p90Deg": 104.78683400965315,
+      "maxDeg": 104.78683400965315
+    }
+  }
+}

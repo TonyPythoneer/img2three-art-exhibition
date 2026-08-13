@@ -1,0 +1,1004 @@
+════════════════════════════════════════════════════════════════════
+img2threejs prompt — FF7 Cloud Strife 低多邊形軟膠公仔
+中文審閱版。機器讀的是同目錄的 prompt.txt（英文），**英文版為準**：兩份牴觸時
+以英文版為準，改一邊就要同步改另一邊。
+src/assets/exhibits/ff7-cloud-strife-polygon-figure/prompt.txt 是英文版的
+**發佈鏡像** —— 展品頁顯示的就是它，它是複本不是來源。這裡改完要重新複製一次：
+  cp <ART>/prompt.txt <REPO>/src/assets/exhibits/ff7-cloud-strife-polygon-figure/prompt.txt
+════════════════════════════════════════════════════════════════════
+
+/img2threejs
+
+參考圖：src/assets/exhibits/ff7-cloud-strife-polygon-figure/
+  front.webp / back.webp / left.webp / right.webp / more-angle.webp
+展品 slug：ff7-cloud-strife-polygon-figure
+
+主題：FF7 Cloud Strife 低多邊形軟膠公仔（PS1 field model 造型）。這是一個「玩具」，
+不是動畫角色：硬平面、可見稜線、零平滑群組。分面本身就是它的身分，不准修圓變好看。
+
+本次為完全覆蓋重建。忽略 artifacts/exhibits/ff7-cloud-strife-polygon-figure/ 底下
+所有既有 spec／量測／決議，重新 init state、重新量測、重新寫零件。
+
+
+═══════════════════════════════════════════════
+§0 執行紀律
+═══════════════════════════════════════════════
+
+0.0 路徑。三個根目錄，不准混用。
+
+      REPO  = img2three-art-exhibition 這個 checkout。
+      SKILL = img2threejs skill 的 checkout（放 SKILL.md 與 forge/ 的那個目錄）。
+              本文件所有 `forge/...` 指令都以 SKILL 當工作目錄執行。
+      ART   = REPO/artifacts/exhibits/ff7-cloud-strife-polygon-figure/
+      REFS  = REPO/src/assets/exhibits/ff7-cloud-strife-polygon-figure/
+
+    本文件寫 `spec/...` 就是 `ART/spec/...`，寫 `.img2threejs/...` 就是
+    `ART/.img2threejs/...`。以 `src/`、`content/` 開頭的路徑相對 REPO。
+    因為 forge 從 SKILL 跑，所以傳給 forge 腳本的每一個路徑（`--state`、`--spec`、
+    `--reference`、`--render`、`--out`，以及位置參數的 spec）**一律用絕對路徑**。
+    在那裡寫相對路徑會解析到 SKILL 底下，寫錯地方。
+
+0.1 用 img2threejs skill 當 runtime 權威。
+
+    `ART/.img2threejs/state.json` **已經存在**（上一次嘗試留下的），而
+    `forge/state.py init` 拒絕覆蓋既有 state（會印
+    `state error: refusing to overwrite existing state` 並以 exit 2 結束）。
+    這次是完全覆蓋重建，所以先刪掉它，連同舊 spec 一起：
+
+      mv ART/.img2threejs/state.json ART/.img2threejs/state.json.bak
+      mv ART/spec/object-sculpt-spec.json ART/spec/object-sculpt-spec.json.bak
+
+    是搬走不是刪掉。舊 state 的 `reviewHistory` 是上一次嘗試唯一的記錄，留著不花成本。
+    但不准去讀 .bak 來重建進度 —— §0.1 的「不准靠聊天記憶重建進度」同樣適用於
+    過期的 state 檔。
+
+    然後才開工：
+
+      python3 forge/state.py init --state ART/.img2threejs/state.json \
+        --reference REFS/front.webp --profile character \
+        --spec ART/spec/object-sculpt-spec.json \
+        --max-per-pass 3 --max-total 60
+      （ART / REFS 是 §0.0 定的目錄名；實際下指令時要展開成絕對路徑，
+        不是照抄這串字）
+
+    每次開始／恢復／修正迴圈，動程式碼之前先跑：
+
+      python3 forge/next.py --state ART/.img2threejs/state.json [ART/spec/object-sculpt-spec.json]
+
+    在 `ART/spec/object-sculpt-spec.json` 還沒生出來之前，**位置參數要省略**。
+    next.py 會直接讀那個檔，檔案不存在或解析失敗就 exit 2；不給位置參數時它改印
+    pre-spec 階段的檢查清單。spec 生出來之後就一律帶上。
+
+    exit code：3（或 `status=stopped`）是**硬停** —— 回報並要求輸入。
+    2 是腳本／state／指令錯誤 —— 去修指令或路徑；它跟模型無關，
+    絕對不是「該改幾何」的訊號。不准靠聊天記憶重建進度。
+
+    本文件寫 `--pass-id <pass>` 的地方，`<pass>` 就是 `forge/next.py` 對當前 spec
+    印出來的 `current pass`。不准自己編一個。
+
+    修正預算說明：per-pass 3 是「同一個零件連改三次還不對，就是判讀錯了不是程式錯了，
+    停下來重看圖」。total 60 的算法出自 AGENTS.md § "collaboration cadence"：
+    「工廠數 × 3，再加上組裝與後續 stage 的餘裕」—— 14 個工廠 × 3 = 42，
+    60 留 18 給 Stage 1B–3。預設的 total 6 在全模任何地方改滿六次就用光，
+    那會在 37 個零件做完之前就硬停。
+
+0.2 不外派。判讀、寫程式、跑腳本、跑閘門、build，全部由主 agent 自己做。
+
+    這只是重述 AGENTS.md § "Work split: the agent does all of it, the user drives
+    advancement" 的 repo 預設。舊的「非視覺工作外派給 opencode」常設規則**已廢止**，
+    這裡沒有覆寫任何東西。
+
+    ⚠ 沒有使用者明確下令，絕對不准呼叫 /orchestration、不准啟動 opencode、
+      不准開 subagent 分工。這條沒有例外。
+      「這件事外派比較快」「這是純機械工作」都不是理由。
+
+0.3 一次一個零件。零件的回合在「§5 適用於它的每一條閘門都跑完並記錄」時結束。
+    然後停下來，在同一則回覆交出：
+      - 該零件的 render（§5.1）與 orbit render（§5.2）
+      - 參考圖 crop 與 render 在 6–8× NEAREST 下並排（§5.3）
+      - §5 每一條閘門的數值結果，各自標明 PASS 或 FAIL
+    然後等使用者判 continue / refine-spec / refine-code。
+    不准連做兩個零件，不准自己判定「過了」，不准自己決定進下一個 stage。
+
+0.4 接合處放大 6–8× NEAREST 逐點看。原尺寸 crop 不算看過；crop 按接合處切不按材質切。
+    未放大不得說「解析不出來」；放大後仍不行 → 寫「放大 N× 後仍無法判讀」並附圖。
+
+0.5 猜測清單：判讀不出的部位登記（部位／兩種讀法／選了哪個／憑什麼），第一則回覆就給。
+    判讀歧義不要卡住，給預設往下做並講明——0.3 的「不得自行推進」只管閘門之後那一步。
+
+0.6 每個數字只能追溯到 ART/ 底下的量測產物。不抄自己的摘要、不抄別份文件、
+    不把數字寫死在這份 prompt 再引用它。
+
+    ⚠ **這份文件自己的數字也受這條約束。** 底下引用的每個量測值（§1.5 的鏡射表、
+      §2 的色碼表、§3.1 的裁切缺陷）都是帶進來當起點的**既往量測**，不是證據。
+      Stage 0 的腳本必須把它們重新量一次。腳本跟本文件不一致時，**以腳本為準**：
+      記錄腳本的值，並在同一則回覆回報差異。不准默默沿用 prompt 的數字。
+
+0.7 階段對照表，對的是 AGENTS.md § "New model: the stages"。**編號已經一致**，
+    這張表只是告訴你每個 stage 寫在哪一節。
+
+      AGENTS.md 的 stage        本 prompt            說明
+      ────────────────────────────────────────────────────────────────────
+      P0 參考圖 triage          §3.1                 同一支腳本、同一套方法
+      P1 拆件與編碼             §2                   已經決定好，就寫在本檔
+      P2 放大掃描               §0.4 + §11            常設規則 + 猜測清單
+      0  量測與工具             §3「Stage 0」        含零件陳列頁
+      1  單色零件               §4「Stage 1」        相同
+      1B 粗組裝                 §6「Stage 1B」       相同
+      2  表面幾何               §7「Stage 2」        臉、頭髮、耳朵
+      3  上色（含材質）         §8「Stage 3」        材質併進來：AGENTS.md P1 寫
+                                                     「材質碼只有一兩個就不要給它
+                                                     獨立 stage，併進上色那個
+                                                     stage」，而這裡剛好兩個（§2）
+      4  材質碼                 **跳過**             只在材質碼 ≥3 時才成立
+      5  完整整合與精修         §9 「Stage 5」       相同
+      6  細節迭代               §10「Stage 6」       相同
+
+    ⚠ **一條已登記的例外**，是使用者決定的，而且帶著補償閘門。
+      AGENTS.md 硬規則 1 說所有幾何要在任何上色之前完成，而 pauldronL 是幾何。
+      使用者明確把 pauldronL 指派到 Stage 3。規則 1 的例外條款之所以允許，
+      **只因為 §8.5b 帶著完整四視圖 silhouette 對 Stage 1B 的重驗**。
+      §8.5b 一旦被拿掉，這條例外同時失效，pauldronL 就要移回 Stage 2。
+      不准把這條例外擴大到別的東西。胸前兩條肩帶與背後布片維持**未排程**（§2），
+      沒有使用者下令就沒有 stage。
+
+
+═══════════════════════════════════════════════
+§1 座標與命名公約
+═══════════════════════════════════════════════
+
+1.1 Y 上、地面 Y=0、全高（髮尖→鞋底）normalize 成 1.000、Z 向前（面朝 +Z）。
+    右手座標系，跟 Three.js 一致。
+    本文件所有寫成 `< 1e-6` 或 `± 容差` 的數字都在這個 normalize 單位下，
+    1.000 = 整尊公仔。
+
+1.2 左／右一律是 Cloud 本人的左右。
+    front.webp：人物右 = 畫面左。back.webp：人物右 = 畫面右。
+    left.webp = 人物左側對鏡頭。right.webp = 人物右側對鏡頭。
+
+    在模型空間裡這決定了正負號：面朝 +Z、+Y 向上、右手座標系 →
+    人物的**左** = +X，人物的**右** = -X。每個分左右的工廠都收
+    `side: "L" | "R"`，並自己導出 `sideSign = side === "L" ? 1 : -1`。
+    程式碼其他任何地方都不准把這個號寫死。
+
+1.3 已放大核對的手性，不准搞反：
+    黑色肩甲 + 灰色護腕 = 人物左邊。
+    人物右邊是裸露三角肌，無護腕，只有黑手套。
+
+1.4 姿勢直接烘進零件。這是固定姿勢的玩具，沒有動畫需求。
+    每個零件按參考圖上「已經擺好的姿勢」建，包含手肘前折、上臂外展前傾、雙腳外八。
+    每個零件的 local origin = **它自己的上接點**在該姿勢下的位置，
+    也就是該零件自身座標系的零向量。
+    → Stage 1B 的組裝是純平移，不做任何旋轉。
+
+1.5 鏡射重用。Stage 1 沒有顏色與材質，所以左右成對的零件在 Stage 1
+    幾何完全相同、只差一個鏡射。一個工廠產生一份 geometry，用 `sideSign`（§1.2）
+    帶進去，不要寫兩份、不要複製貼上。
+
+      純鏡射對（8 對）：sole / ankle / calf / knee / thigh /
+                       upperDeltoid / lowerDeltoid / backArm
+      非純鏡射（1 對）：frontArm —— 人物左手的護腕段寬度係數 ~1.05、右手 1.0。
+                       幾何只差這一個參數，但左右都要看。
+      本身左右對稱（5 個）：pelvis / chest / waist / neck / head
+
+    這個分類是量出來的，不是假設的。front.webp 剪影分段鏡射檢查
+    （既往量測，§0.6 適用）：
+      上臂段    mirrorIoU 0.943  外伸差 1px   → 純鏡射，最高分
+      鞋與鞋底  mirrorIoU 0.914  外伸差 1px   → 純鏡射
+      褲管段    mirrorIoU 0.958  外伸差 3px   → 純鏡射
+      骨盆段    mirrorIoU 0.933               → 自身對稱
+      肩段      mirrorIoU 0.915  外伸差 2px   → 純鏡射
+      前臂＋手  mirrorIoU 0.875  外伸差 11px  → **不是**純鏡射（護腕較寬）
+      頭＋髮    mirrorIoU 0.657               → **強烈不對稱**（髮刺，如預期）
+
+    ⚠ **鏡射軸要用最佳擬合軸**，以半像素為步長掃出讓全身 IoU 最大的那一條
+      （docs/agents/claude.md 的 "Banded mirror IoU"），**不是** bounding box 中線。
+      在 front.webp 上重新量：bbox 中線 0.825、最佳擬合軸 0.858。
+      既往量測記的全身 0.858 就是同一個最佳擬合值，代表上表的軸取對了；
+      用 bbox 中線掃會把每一段的分數一起拉低。
+
+    ⚠ **這張表要看「外伸差」，不是看 IoU。** 全身整體分數（0.858）
+      是照片透視與擺位造成的底噪；前臂的 0.875 並沒有低於底噪，
+      光看 IoU 會判成鏡射對。真正把前臂跟所有純鏡射對分開的是橫向外伸差：
+      純鏡射對是 1–3px，前臂是 11px。IoU 那一欄只是佐證。
+
+    ⚠ 這條省的是「看圖」的回合，不只是程式碼行數：
+      純鏡射對只做一邊的 render 與參考圖比對，另一邊用 §5.10 的
+      鏡射一致性斷言帶過，不重跑第二次視覺審查。
+
+    ⚠ 整個 Stage 1 只 new 一個 material instance，全部零件共用同一個。
+      每個零件各自 new 一個是浪費，而且之後換材質要改 23 個地方。
+
+1.6 物件樹的命名就是零件表。src/utils/partInspector.ts 讀的是物件樹不是註冊表。
+    它實際的規則如下，§2 的命名必須滿足它：
+      - **具名的 Mesh 一律是零件**。
+      - **具名的 Group** 只有在「底下有 mesh」且「底下沒有任何可選取的後代」時
+        才算零件；具名 Group 底下若還有具名且帶 mesh 的節點，它就是**容器**，
+        會被穿過去往下找。
+      - 零件的「群組 / module」= 根節點以下、離它最近的具名祖先；
+        根節點自己的名字永遠不會被當成 module 回報。
+      - `kind` 判成 `detail` 的條件是：該節點本身不是 mesh，**且底下每一個 mesh**
+        都帶 `userData.explodeWithParent === true`。這個旗標是讀在 **mesh** 上，
+        不是讀在外層 Group 上——只設在 Group 上完全沒有作用。
+    所以工廠內部的子分段（前臂的三段等）一律不命名，一個工廠 = 一個零件。
+
+
+═══════════════════════════════════════════════
+§2 群組與零件表
+═══════════════════════════════════════════════
+
+根節點：cloudStrifeFigure
+
+  群組         零件                                            階段   工廠
+  ─────────────────────────────────────────────────────────────────────────
+  head        head                                             S1    createHead
+              neck                                             S1    createNeck
+
+  armLeft     upperDeltoidL                                    S1    createUpperDeltoid("L")
+              lowerDeltoidL                                    S1    createLowerDeltoid("L")
+              backArmL                                         S1    createBackArm("L")
+              frontArmL   (前臂+護腕+手套，內部不命名)            S1    createFrontArm("L")
+              pauldronL   (黑色肩甲)                            S3    createPauldron
+
+  armRight    upperDeltoidR                                    S1    createUpperDeltoid("R")
+              lowerDeltoidR                                    S1    createLowerDeltoid("R")
+              backArmR                                         S1    createBackArm("R")
+              frontArmR   (前臂+腕+手套，內部不命名)              S1    createFrontArm("R")
+
+  torso       chest                                            S1    createChest
+              waist       (皮帶)                                S1    createWaist
+              pelvis      (燈籠褲膨脹主體)                       S1    createPelvis
+              胸前兩條肩帶 + 背後斜三角布片                       TBD   使用者說之後再說，尚未排程。
+                                                                     不要自己排進任何 stage。
+
+  legLeft     thighL      (燈籠褲收口斜面)                       S1    createThigh("L")
+              kneeL       (褲管束口折角)                         S1    createKnee("L")
+              calfL       (直筒褲管)                             S1    createCalf("L")
+              ankleL      (鞋口)                                 S1    createAnkle("L")
+              soleL       (鞋底板)                               S1    createSole("L")
+
+  legRight    thighR / kneeR / calfR / ankleR / soleR           S1    同上帶 "R"
+
+  hair        hairCap     (髮帽殼)                               S2    createHairCap
+              crownSpikeFront / crownSpikeRear                  S2    createHairSpike
+              fringeRightOuter / fringeRightMid / fringeRightInner
+              sideburnRight
+              fringeLeft
+              sideburnLeftUpper / sideburnLeftLower
+
+  face        earL / earR                                       S2    createEar
+              faceDecal   (detail，explodeWithParent=true)       S2    createFaceDecal
+
+  零件數：Stage 1 = 23、Stage 2 = 13（含 1 個 detail）、Stage 3 = 1，合計 37。
+  肩帶 3 件未排程，不計入。
+
+  ⚠ Stage 1 的 23 個零件只需要 **15 次**視覺審查：8 對純鏡射對各只看一邊（§1.5）
+    = 8 次，frontArm 左右都看 = 2 次，5 個自身對稱件各一次 = 5 次。
+
+  三個跟原始提案不同的地方，理由寫在這裡：
+
+  a) 腿拆成 legLeft / legRight 兩個群組，不是「腿和鞋子一塊」。
+     理由只有一個：跟手臂一致，群組標籤看得出是哪一邊。
+     ⚠ 更正：我先前說「兩腳外八角度不同」，量過之後是**錯的**。
+       front.webp 剪影鏡射檢查，boots+soles 那一段 mirrorIoU=0.914、
+       左右最大外伸差 1px —— 佔該視圖 820px 身高的 0.12%（§3.1 (3)）。
+       兩腳是鏡射對稱的，所以 S-01 soleSlab 確實是純鏡射對，不要拆成兩個形狀碼。
+
+  b) 「臉部特徵」拆成 hair 和 face 兩個群組。
+     頭髮是 10 個零件、驗收對象是拓樸；臉是 2 個耳朵加 1 張貼圖、驗收對象是貼圖對位。
+     混成一個群組的話那個群組的閘門沒有意義。
+
+  c) 眼睛／瞳孔／眉毛不做成幾何，做成 faceDecal 一張 CanvasTexture。
+     參考圖上它們是印刷平面藝術。做成幾何會多出六片薄片（兩眼、兩瞳、兩眉），
+     在 flatShading 下會 z-fighting。若堅持要幾何，說一聲，照做但上述風險成立。
+
+
+──── 形狀碼／色碼／材質碼（三軸正交）────
+
+每個零件掛三個碼，彼此獨立。無色無材質的 Stage 1 只看形狀碼，所以形狀相同的零件
+在 Stage 1 就是同一個東西；到 Stage 3 才會因為色碼不同而分開。
+
+  S-xx  形狀碼  幾何身分。同碼 = 共用同一份 geometry（可含鏡射）。Stage 1 只管這個。
+  C-xx  色碼    albedo 身分。Stage 3 才有意義。
+  M-xx  材質碼  表面身分（roughness / metalness / flatShading 家族）。Stage 3。
+
+⚠ 形狀碼由「量出來的尺寸」指派，不是由名字指派。
+  兩個零件量出來的斷面與長度差在 §3.1 記下的容差內 → 就是同一個形狀碼 →
+  只做一份 geometry。這條在 Stage 2 的髮刺特別有用：9 根刺不一定是 9 個形狀。
+
+形狀碼表（Stage 1 = 15 個形狀 / 23 個零件）：
+
+  碼    形狀名          用在哪些零件                 產生器
+  ────────────────────────────────────────────────────────────────
+  S-01  soleSlab        soleL / soleR (鏡射)         一次性
+  S-02  bootCuff        ankleL / ankleR (鏡射)       chamferedBox
+  S-03  pantTube        calfL / calfR (鏡射)         chamferedBox
+  S-04  pantGather      kneeL / kneeR (鏡射)         loftPrism
+  S-05  pantTaper       thighL / thighR (鏡射)       loftPrism
+  S-06  pelvisKite      pelvis                       一次性
+  S-07  belt            waist                        一次性
+  S-08  chestSlab       chest                        loftPrism (6→6)
+  S-09  deltoidLower    lowerDeltoidL/R (鏡射)       loftPrism (6→4)
+  S-10  deltoidUpper    upperDeltoidL/R (鏡射)       loftPrism (4→6)
+  S-11  upperArm        backArmL / backArmR (鏡射)   chamferedBox
+  S-12  forearmBracer   frontArmL                    loftPrism + chamferedBox ×2
+  S-13  forearmPlain    frontArmR                    同上，腕段寬度係數 1.0
+  S-14  neckColumn      neck                         loftPrism (8→8)
+  S-15  skull           head                         一次性
+
+  Stage 2：S-16 ear (鏡射, triWedge)、S-17 hairCap (一次性)、
+           S-18…S-26 九根髮刺 (triWedge，形狀碼在量測後才指派，
+           量出來相同的要合併)、S-27 faceDecal (平面)
+  Stage 3：S-28 pauldron (一次性)
+
+產生器（真正省工作量的是這個，不是形狀碼本身）：
+
+  只有在「**≥2 個形狀碼**用得上、而且不需要為此多加選項」時才共用產生器。
+  為了共用而長出一堆選項的產生器，比各寫各的還難維護。
+  下面的數量單位是**形狀碼**（共用規則就是用這個單位講的），不是呼叫次數。
+
+  chamferedBox(w, d, h, chamfer)          → 3 個形狀碼：S-02 S-03 S-11。
+                                            另外也用來做 S-12 / S-13 內部的腕段與手套段。
+  loftPrism(topNgon, botNgon, h, radii)   → 8 個形狀碼：S-04 S-05 S-08 S-09
+                                            S-10 S-12 S-13 S-14。
+  triWedge(len, baseW, baseH)             → 10 個形狀碼：S-16 加 S-18…S-26。
+                                            只在 Stage 2；髮刺三角柱共 13 個（§7.4），
+                                            再加兩隻耳朵。
+  其餘（S-01 S-06 S-07 S-15 S-17 S-27 S-28）各自一次性，不硬湊。
+
+色碼（Stage 3 才用。以下是**已經量出來的值**，不是猜的 —— 但 §0.6 適用：
+spec/sample_palette.py 必須重跑得出來，不一致時以腳本輸出為準）：
+
+  量法：corner flood fill 取出人物剪影（判定規則見 §3.1，**兩個條件都要成立**），
+  把人物像素依 24 階量化分群，取每群的質心色、像素佔比、平均 y 與平均 x
+  （相對鏡射軸）。用位置指認每一群，不用肉眼點取樣。
+
+  ⚠ sample_palette.py 還必須**寫明並實作**「三張冷光圖的取樣值 → 下表『採用』欄」
+    那一步的歸約規則（平均？依像素佔比加權？中位數？）。這條規則目前沒有記錄，
+    而且採用欄並不是三個取樣值的算術平均。把規則寫進腳本，然後用腳本的輸出取代下表。
+
+  碼    內容              採用（冷光四視圖）      對照（more-angle 暖光）
+  ─────────────────────────────────────────────────────────────────────
+  C-01  膚色（亮）        #E0C2BA                 #F4CAB2
+  C-01s 膚色（中／暗）    #CFB5AF                 #E2B19F
+  C-02  髮黃              #D0B063                 #F4C745（亮）/ #E2B13E（中）
+  C-03  上衣紫            #4C4A7C                 #5B487D
+  C-04  褲紫（比上衣深）  #454280                 #37256C
+  C-05  皮帶橄欖褐        #564C44                 —（暖光此處取樣不乾淨）
+  C-05b 鞋橄欖褐          #443F33                 #5A421C
+  C-06  肩帶褐            —                       未排程，取樣留待肩帶開工
+  C-07  近黑（手套＋肩甲）#232427                 #080911
+  C-08  護腕灰            #7F8283                 #808284
+  C-09  臉部印刷          貼圖，不是單色          —
+
+  ⚠ 為什麼採用冷光那組（我原本建議暖光，量完改口）：
+
+    a) 三張冷光圖彼此高度一致 —— 髮黃 #D1AE58 / #D1B165 / #CFB067，
+       護腕 #7E8182 / #7D8284 / #86898A。暖光只有一張，無從交叉驗證。
+    b) 護腕是中性灰，它在兩組裡幾乎相同（#7E8182 vs #808284）。
+       中性色一致代表兩組**白平衡都沒偏**，差異是「飽和度」不是「色溫」。
+       暖光那張是打光加強過的行銷照，飽和度是打光的性質不是塗料的性質。
+    c) 四張正交圖是平光產品照，本來就是取 albedo 的正確來源。
+
+    暖光那一欄留著只是對照。要改採暖光是使用者的決定，改了要在 spec 寫明理由。
+
+材質碼：
+
+  M-00 假人灰    color 0xB0B0B0、metalness 0、roughness 0.85、flatShading
+                 Stage 1 專用，全模共用同一個 instance
+  M-01 霧面軟膠  metalness 0、roughness 0.85、flatShading、無任何 map
+  M-02 印刷臉    M-01 再加一張 map（唯一有貼圖的表面）
+
+  ⚠ **成品裡只有兩個材質碼**（M-01 與 M-02）；M-00 是 Stage 1 的替身，
+    到 Stage 3 就沒了。整個公仔是同一種霧面軟膠，唯一例外是印刷臉。
+    變化全在色碼那一軸——Stage 3 的工作是「取色」不是「調材質」，
+    不要在 roughness / metalness 上花時間調。
+
+
+═══════════════════════════════════════════════
+§3 Stage 0 — 量測與工具（第一回合的全部內容）
+═══════════════════════════════════════════════
+
+交付四樣（3.1–3.4），缺一使用者就看不到任何東西。
+
+3.1 spec/measure_landmarks.py → spec/landmarks.json
+
+    剪影抽取：corner flood fill，tol=18。已驗過五張圖都乾淨，腋下的洞、胯下缺口、
+    鞋底板的階都對。不要用全域門檻，那五張圖都會失敗。
+
+    ⚠ **人物判定要兩個條件都成立。** flood fill 只能從邊界進來，
+      被人物包住的白色區域會被誤判成人物：
+        figure = (從邊界 flood fill 到不了) AND (255 - min(r,g,b) > tol)
+      只用其中一個都會錯。被包住的區域在 more-angle 最大（兩腿之間那塊），
+      但 front / left / right 也都有；每張圖的「被包住白色像素數」都要量並記錄。
+
+    ⚠ **三個裁切缺陷**，量測腳本必須處理，不是可以忽略的雜訊。
+      下面的數字是用上述規則在 tol=18 下重新量出來的 —— 要重跑得出來，
+      不一致就回報（§0.6）。
+
+      (1) 髮尖在**四張正交圖**都被裁掉：每張最上面一列都還有人物像素
+            front 6px / back 4px / left 4px / right 6px（第 0 列的人物像素數）
+          more-angle **沒有**被裁頭（第 0 列 0 px）。
+          → 「全高 = 髮尖→鞋底」在任何單張正交圖都量不到，而且各切各的量。
+
+      (2) **四張正交圖都貼齊至少一側邊界**，所以任何一張的橫向量測都不能不檢查就用。
+          人物 bounding box 對圖寬，以及實際落在最左／最右一欄的人物像素：
+            front  x 5..379 / 寬 384   最左欄 0   最右欄 0
+            back   x 1..390 / 寬 391   最左欄 0   最右欄 1   （在 y=512）
+            left   x 2..213 / 寬 214   最左欄 0   最右欄 8   （y 126..133）
+            right  x 0..205 / 寬 206   最左欄 9   最右欄 2   （y 0..146）
+          → right.webp 被切掉的是 y 0..146，正好是**頭髮與頭部那一段**，
+          也正是 §3.1 髮尖外插與 §4[14] 頭殼內縮要用的那一段。
+          把每張圖被裁到的行／列範圍記進 landmarks.json，並在所有寬度量測與
+          所有 silhouette IoU（§6、§8.5b）中排除掉。
+          ⚠ back.webp 仍然不可用來量橫向尺寸。這條規則保留，但要知道它的理由現在是
+            「框得太貼」（左邊只剩 1px 邊距、右邊 0），不是「切掉一大塊」：
+            先前「最右一欄還有 50px 實心」的說法**重跑不出來**，量到的是 1px。
+
+      (3) 各視圖人物像素高度不同：front 820 / back 823 / left 846 / right 829。
+          → 不能直接跨圖比對。
+
+    處理方式：
+      - 跨視圖對齊基準用「鞋底 → 下巴」，這兩個地標在五張圖裡都完整。
+      - 全高 1.000 是推導值不是量測值：髮尖高度用側視外插（髮刺兩條邊是直線，
+        延長取交點）。**用 left.webp 做這件事，不要用 right.webp**——
+        right.webp 依 (2) 在頭髮那一段被裁。
+      - 對齊殘差以 `measurementUncertainty`（normalize 單位）寫進 landmarks.json。
+        **它就是那個容差**：本文件 §3、§4、§5 裡所有「在容差內」「± 容差」
+        都是指「在 measurementUncertainty 內」；§6 的 IoU 門檻也由它導出，不憑感覺訂。
+
+    要量的：
+      垂直地標 Y：鞋底 0.000 / 鞋口上緣 / 褲管折角 / 胯下 V 頂點 / 最寬臀點 /
+        臀襠 V 尖 / 皮帶上下緣 / 肩線 / 三角肌六邊形腰線 / 下巴 / 髮帽頂 /
+        最高髮尖 1.000（外插值）
+      寬深：肩寬、最大臀寬、臀最大深度、軀幹深度、頭寬、髮帽寬、頸寬、腳長、腳寬、
+        褲管直筒段寬度
+      姿勢角：上臂外展角、上臂前傾角、肘部前折角、雙腳外八角
+        ⚠ 這些是 3D 角。front 視圖量到的是**投影角**不是真實角——上臂同時外展又
+          前傾，正面投影會把兩者混成一個角。必須用 front + side 兩個正交投影
+          反解出 3D 方向向量，再從向量取角。單視圖直讀一定錯。
+      髮厚：left/right 視圖中「裸露臉平面」到「髮外輪廓」的法向距離
+
+    所有零件工廠只能從 landmarks.json 讀值，禁止在零件檔寫魔術數字。
+
+    量完自檢三條輪廓事實，任一不成立表示量錯：
+      A. 臀比肩更寬也更深 —— 褲子是全模最大體積
+      B. 側視臀部是前後對稱的箏形四邊形，不是圓柱也不是裙子
+      C. 軀幹是薄板：軀幹深度 ≤ 0.5 × 肩寬（深度:寬度 ≤ 1:2）
+
+3.2 spec/gate_facets.py —— 法線夾角分佈閘門（見 §5.4），含造假 frame 夾門檻的流程。
+    它要把門檻、夾角參數、兩個造假 frame 的結果都寫進 spec/facet-gate.json。
+
+3.3 spec/sample_palette.py —— 重跑出 §2 的色碼表（分群法，不是肉眼點取樣），
+    輸出 spec/palette.json，含 §2 要求的冷光歸約規則。Stage 3 只能讀這支的輸出。
+
+3.4 展品頁加 parts-gallery 模式：零件一字排開、各自可 orbit。
+    做進既有的 src/pages/ff7-cloud-strife-polygon-figure/index.vue 與
+    src/utils/mountCloudStrifeViewer.ts。不准新增 .vue ——
+    src/pages/ 就是 URL 表面，多一個檔就多一條垃圾 route。
+
+    ⚠ ExhibitStage 有 explode 的 UI，但它只在 viewer 物件有 `setExplode` 時才顯示
+      那個控制項（src/components/stage/ExhibitStage.vue）。
+      mountCloudStrifeViewer 目前回傳的是 { parts, selectPart, setIsolate,
+      provenance, dispose }，**沒有 setExplode**，所以現在 explode 是藏起來的。
+      要把 `inspector.setExplode` 透過 StageViewer 傳出去，否則 §5.9 沒得驗。
+
+    ⚠ 還有第五個接線缺口，但**不能在這裡補**：src/components/home/heroStage.ts 的
+      heroEntries() 缺 ff7-cloud-strife-polygon-figure 的條目，首頁 hero 現在
+      看不到這個展品。但每個條目都要一個回傳完整模型的 `build()`，
+      而在 Stage 1B 之前根本沒有那個模型。所以它是 **Stage 1B 的工作（§6.4）**，
+      不是 Stage 0 的。不准拿佔位模型去湊。
+      （已查：另外四個接線點——展品頁本身、src/utils/exhibits.ts、
+      src/utils/exhibitSlugs.ts、content/exhibits/ff7-cloud-strife-polygon-figure.yml
+      ——都已經接好了。）
+
+    順帶：刪掉未追蹤的 src/pages/head-capture-harness.vue（功能搬進 src/utils/），
+    未追蹤的 src/utils/cloudStrifeFigure/ 整個清掉重寫。
+
+3.5 spec/audit_records.py —— §0.6 的機械執行端。AGENTS.md 宣稱這條規則是靠這支
+    腳本擋的，但它目前只存在於 artifacts/exhibits/ff7-cloud-strife-ultima-weapon/spec/。
+    移植過來：spec 裡出現任何 ART/ 底下沒有產物能追溯的數字，它就要 FAIL。
+    在它存在並跑乾淨之前，§0.6 只是勸告不是閘門。
+
+
+═══════════════════════════════════════════════
+§4 Stage 1 — 零件生成（23 個零件，14 個工廠）
+═══════════════════════════════════════════════
+
+Stage 1 完全不考慮上色與材質。全部零件用同一個單色假人材質（M-00）：
+
+  new THREE.MeshStandardMaterial({ color: 0xb0b0b0, flatShading: true,
+                                   metalness: 0, roughness: 0.85 })
+
+零件檔裡出現第二個顏色常數、任何貼圖、任何材質分歧 = FAIL。
+顏色歸屬的判讀結論可以寫進 spec 註記，但不准落到程式碼，那是 Stage 3 的事。
+
+位置：src/utils/cloudStrifeFigure/create<Part>.ts（平放，不開子資料夾）
+
+  export function createSole(side: "L" | "R"): THREE.Group      // 9 個分左右的工廠
+  export function createPelvis(): THREE.Group                   // 5 個不分左右的工廠
+
+  group.name = "<零件名>"   ← 照 §2 的表，partInspector 靠這個
+  group.userData.sockets = { <name>: THREE.Vector3 }   // 零件自身座標系
+
+不准建立組裝根節點或 scene。
+
+──── SOCKET 對照表（一個接點一個名字，兩邊都用同一個）────
+
+每個零件的 local origin 是它自己的上接點（§1.4），也就是自身座標系的零向量。
+其他需要的點一律用 `userData.sockets` 輸出。
+**一個接點只有一個名字**，由在那裡相接的兩個零件共用 —— §5.5 就是靠這個才驗得動。
+
+  零件           origin（自身零點）    輸出的 socket
+  ─────────────────────────────────────────────────────────────────
+  sole           soleTop               —              （底面貼 Y=0）
+  ankle          ankleTop              soleTop
+  calf           calfTop               ankleTop
+  knee           kneeTop               calfTop
+  thigh          hip                   kneeTop
+  pelvis         pelvisTop             hipL, hipR
+  waist          waistTop              pelvisTop
+  chest          chestTop              waistTop, neckBase, shoulderL, shoulderR
+  upperDeltoid   shoulder              deltoidWaist
+  lowerDeltoid   deltoidWaist          backArmTop
+  backArm        backArmTop            elbow
+  frontArm       elbow                 fist
+  neck           neckTop               neckBase
+  head           skullTop              neckTop
+
+  - 分左右的輸出端帶 L/R 後綴（`hipL` 對上 thighL 的 `hip`；
+    `shoulderR` 對上 upperDeltoidR 的 `shoulder`）。不分左右的直接同名對接。
+  - `chestTop` 與 `skullTop` 是「有 origin 但沒人輸出」的：chest 是軀幹錨點，
+    Stage 1B 直接照肩線地標擺；head 掛在 `neckTop` 上。
+    `fist` 是「只輸出沒人用」的末端。
+  - `neckBase` 與 `neckTop` 是兩個**向上**的接點：上面的零件坐在下面的零件上，
+    所以兩邊都輸出同一個名字，§5.5 直接比這兩個值。
+
+執行順序（由簡到難，socket 由下往上串）：
+  sole → ankle → calf → knee → thigh → pelvis → waist → chest →
+  lowerDeltoid → upperDeltoid → backArm → frontArm → neck → head
+
+sole 排第一是故意的：它最簡單，先用它驗證閘門機器跑得動，
+不然後面每個零件都在 debug 工具而不是 debug 模型。
+head 排最後，因為髮帽邊界最後才鎖。
+
+
+──── 下半身：這是燈籠褲，不是貼身褲 ────
+
+pelvis / thigh / knee / calf 四件是同一條燈籠褲的四段，不是「腿」。
+褲子在臀部鼓到最大，往下一路收口，在褲管折角處束住，最後成直筒插進鞋口。
+所以 thigh 不是最粗的地方（最粗在 pelvis），knee 不是解剖學的膝蓋（膝蓋被褲子蓋住）。
+
+側視與正視都量得到這條收口線：外側輪廓先是一段斜面，在某個高度出現一個硬折角，
+折角以下轉成近垂直。那個折角是圖上真的有的一條折線，不是建模者自己切的。
+
+
+[1] sole ×2 — createSole(side)（鞋底板）
+    等厚扁平板，厚度均勻，不是曲面鞋底。
+    俯視是梯形：腳跟端寬、腳尖端窄，向前伸出很長，腳跟只伸出一點。
+    腳尖與腳跟都是斜切鈍面，不是尖點。上表面從鞋口底下伸出，形成乾淨的 ledge。
+    外八角度烘進零件（角度讀 landmarks.json）。
+    origin: soleTop，底面貼 Y=0。不輸出 socket。
+
+[2] ankle ×2 — createAnkle(side)（鞋口）
+    四角柱，斷面比褲管直筒段大，把褲管下端吃進去，交界一圈可見段差。垂直稜倒角。
+    origin: ankleTop / 輸出: soleTop
+
+[3] calf ×2 — createCalf(side)（褲管直筒段）
+    長方柱，斷面近正方帶倒角，近等寬（上下寬度差在 measurementUncertainty 內），
+    正面中線一道垂直折痕。折角以下到鞋口全是這一段。
+    origin: calfTop / 輸出: ankleTop
+
+[4] knee ×2 — createKnee(side)（褲管束口段）
+    短段。任務只有一個：把上面的斜面轉成下面的垂直，折角就在這一段裡。
+    高度短（讀 landmarks.json 的「褲管折角」），斷面從 thigh 下緣收到 calf 上緣。
+    ⚠ 折角是圖上真有的線，但不是接縫、不是台階——布料是連續的。
+      三件在接點的斷面尺寸必須完全相等（共用同一組常數），否則會冒出圖上沒有的假縫。
+    origin: kneeTop / 輸出: calfTop
+
+[5] thigh ×2 — createThigh(side)（燈籠褲收口斜面段）
+    梯形柱，從胯下起，外側是一路內收的斜面，上寬下窄。
+    ⚠ 它不是最粗的地方，最粗在 pelvis。從胯下開始褲子就在收了。
+    origin: hip / 輸出: kneeTop
+
+[6] pelvis — createPelvis（燈籠褲膨脹主體）
+    全模最大體積，決定剪影的零件。
+    正面：五邊形 —— 腰寬起 → 左右外擴到最寬 → 收進去 → 胯下一個倒 V 缺口
+    側面：箏形四邊形，前一尖點、後一尖點，前後必須對稱，最寬處深度最大
+    最寬處必須寬於肩寬。面數少、面積大、稜線硬。
+    origin: pelvisTop / 輸出: hipL, hipR
+
+──── 上半身 ────
+
+[7] waist — createWaist（皮帶）
+    一圈扁環，表示軀幹到臀部的收縮位置。上下緣都要有硬段差，
+    比 chest 下緣和 pelvis 上緣都突出。
+    origin: waistTop / 輸出: pelvisTop
+
+[8] chest — createChest（胸廓）
+    扁平 slab。正面近六邊形：肩線最寬、兩側往下收到腰。前後近乎平面，側面是窄倒角，
+    垂直稜全部倒角。Stage 1 不做肩帶（肩帶未排程，見 §8）。
+    origin: chestTop / 輸出: waistTop, neckBase, shoulderL, shoulderR
+
+[9] lowerDeltoid ×2 — createLowerDeltoid(side)（下三角肌）
+    loft：上斷面六邊形 → 下斷面四邊形。下端四邊形是為了跟 backArm 的長方柱同斷面對接。
+    權威：front.webp 人物右肩（裸露、無肩甲遮擋，最乾淨）。
+    origin: deltoidWaist（六邊形腰線）/ 輸出: backArmTop
+
+[10] upperDeltoid ×2 — createUpperDeltoid(side)（上三角肌）
+    loft：上斷面四邊形 → 下斷面六邊形，下端六邊形與 lowerDeltoid 的上端同斷面。
+    兩段在六邊形腰線對接，那條橫折痕在放大圖裡看得到。
+    ⚠ Stage 1 左右兩肩幾何相同。人物左肩的黑色肩甲是 Stage 3 才加的獨立零件，
+      它蓋的正是 upperDeltoid，肩甲下緣就落在六邊形腰線位置。
+    origin: shoulder（對上 chest 的 shoulderL / shoulderR）/ 輸出: deltoidWaist
+
+[11] backArm ×2 — createBackArm(side)（上臂）
+    很纖細的長方柱，斷面近正方帶倒角。比上面的三角肌、下面的前臂都明顯細——這是識別特徵。
+    外展角與前傾角烘進零件（讀 landmarks.json）。
+    origin: backArmTop / 輸出: elbow
+
+[12] frontArm ×2 — createFrontArm(side)（前臂＋手腕＋手套，一個零件，內部不命名）
+    兩隻手都是三段，由上到下：
+      a. 前臂：梯形柱，上窄下寬（往下越來越粗，跟人體相反，這是玩具造型）
+      b. 手腕：長方柱。人物左手是護腕（略寬，寬度係數 ~1.05，下緣微微外突）；
+         人物右手同樣是一段長方柱，只是同膚色所以圖上看不到接縫
+      c. 手套：長方柱，倒角立方，完全沒有手指幾何，與上一段是一刀平切的硬接縫
+    幾何左右對稱，差別只有 b 段的寬度係數；顏色差異留到 Stage 3。
+    肘部前折角烘進零件：拳頭要落在臀部前方。手臂垂直下垂 = FAIL。
+    origin: elbow / 輸出: fist
+
+[13] neck — createNeck
+    CylinderGeometry(r, r, h, radialSegments = 8) + flatShading。
+    使用者指定圓柱、參考圖是多面柱，低分段圓柱同時滿足兩者。短、細。
+    origin: neckTop / 輸出: neckBase（對上 chest 的 neckBase）
+
+[14] head — createHead
+    多面體頭殼＋臉，不含頭髮、不含耳朵、不含眼睛。
+    臉近乎一個平面，顴骨最寬，下巴收成小尖，下顎一道明顯倒角。
+    ⚠ back.webp 的外輪廓是髮帽殼不是頭殼（背面整顆被黃髮蓋住，沒有頭皮外露）。
+      頭殼輪廓 = back.webp 外輪廓向內縮一層髮厚（髮厚取自 landmarks.json）。
+      back.webp 的橫向裁切（§3.1 (2)）只有 y=512 那一個像素，遠在頭部那一段之下，
+      所以該視圖的頭部輪廓是完整的。用之前先對 landmarks.json 記下的被裁行範圍確認。
+
+    必須輸出面群組標記，Stage 2 的頭髮、五官、耳朵各自長在對應區上。
+    每個陣列裝的是 head geometry 的三角形索引：
+
+      group.userData.faceGroups = {
+        scalp: number[],  // 髮帽覆蓋區 —— Stage 2 髮帽殼貼合這塊
+        face:  number[],  // 臉平面 —— Stage 2 faceDecal 貼這塊
+        jaw:   number[],  // 下顎倒角，露在外面
+        nape:  number[],  // 後頸，髮帽下緣以下，露在外面
+        ear:   number[],  // 耳朵基座，Stage 2 三角柱耳從這裡長出去
+      }
+      head 的每一個三角形都必須剛好出現在一個陣列裡。要斷言這件事。
+
+    髮際線（scalp 與其他區的邊界）走向，四張正交圖交叉讀出來的：
+      後段：後腦一條硬水平線，線以上全黃、線以下是脖子皮膚。
+            back.webp 最清楚，是整條髮際線唯一能直接量的部分。
+      側段：從額角往下、經耳前，繞到耳後接回後段水平線（left/right 視圖）
+      前段：額頭上緣，被瀏海完全遮住量不到 → 只能從側視髮殼厚度往回推，
+            這是猜測清單第 1 條（§11）
+      耳：耳朵露在髮帽外，背視兩側各露一塊皮膚楔形。**這是 §7.3 的權威。**
+
+    origin: skullTop / 輸出: neckTop（對上 neck 的 origin）
+    ✅ Stage 2 驗收條件（現在就寫進 spec）：頭殼 + 髮帽的背視輪廓必須重合
+       back.webp 外輪廓（§7.6）
+
+
+═══════════════════════════════════════════════
+§5 Stage 1 閘門（每個零件都要過，過完停下來等指令）
+═══════════════════════════════════════════════
+
+每個零件都要跑 5.1–5.10。5.7 與 5.10 只在指定範圍適用。
+每一條都要記數值結果，「看起來對」不算結果。
+
+5.1 forge/stage4_review/diagnose_render.py Tier 1 過：
+      python3 forge/stage4_review/diagnose_render.py \
+        --reference <該零件的參考圖 crop 絕對路徑> \
+        --render <該零件的 render 絕對路徑> \
+        --spec ART/spec/object-sculpt-spec.json --pass-id <pass> --in-place
+    `--in-place` 要有地方寫回去，所以 `--spec` 是必填。
+
+5.2 forge/stage4_review/diagnose_render_multi_angle.py --reference <固定視角>
+    --orbit <視角> --orbit <視角>（至少兩個 --orbit）—— 每個零件都非平面。
+    這支不吃 --spec 也不吃 --pass-id；它的結論在 5.8 記進 review。
+    出現 "DEGENERATE-VIEW DETECTED" 就是 FAIL。
+
+5.3 forge/stage4_review/make_comparison_sheet.py --reference <圖> --render <shot>
+    --out <絕對路徑>.png --json，然後用 agent vision 在 ≥6× NEAREST 下看那張表。
+    沒放大的比對不算看過。
+
+5.4 法線夾角分佈斷言（專門擋「全綠但模型是圓的」）：
+    量相鄰面法線夾角分佈，斷言「夾角 ≥ 12° 的相鄰面對比例 ≥ 門檻」。
+    門檻必須用造假 frame 夾出來：拿平滑球和 8 段 loft 蛋跑同一條斷言，
+    兩者都要 FAIL，門檻才算訂好。憑感覺填 = 這條閘門無效，硬停。
+    12° 這個夾角是閘門的**參數**，不是量出來的值。若任一造假 frame 在 12° 下
+    竟然 PASS，就把角度往上調到兩者都 FAIL 為止，並把最後採用的角度
+    連同門檻與兩個造假 frame 的結果一起寫進 spec/facet-gate.json。
+    另外斷言 material.flatShading === true、三角形數不超過 spec 記的該零件上限。
+
+5.5 socket 對位斷言。對 §4 socket 對照表裡「這個零件有份」的每一個接點名字：
+    把該點在**全身座標系**下的位置從兩邊各算一次 —— 輸出端的 origin 地標
+    （landmarks.json）加上它的 socket 向量，對上接收端的 origin 地標
+    （兩個向上接點則對上它自己輸出的同名 socket）—— 斷言 ‖差‖ < 1e-6
+    （normalize 單位，§1.1）。
+    零件階段就要跑，不要留到組裝才發現。
+    （Stage 1 名義上「不求組合」，但這條保留：拿掉的話 Stage 1B 幾乎必然回頭改全部 23 件。）
+
+5.6 命名斷言：group.name 與 §2 的表完全一致，且 partInspector 依 §1.6 的規則掃出來的
+    「零件 / 群組」歸屬與表相符 —— 把零件建起來，跑 createPartInspector，
+    比對 PartInfo.name、PartInfo.module、PartInfo.kind 與 §2。
+    名字錯了 explode 與 isolate 就是壞的。
+
+5.7 褲管折角斷言（thigh / knee / calf 三件共同的閘門，任一件改動都要重跑）：
+    把三件疊起來，側視與正視外輪廓**各取一次**，對兩者分別斷言
+      a. 折角只有一個。可判定形式：把胯下到鞋口的外輪廓用兩段折線擬合，
+         最大殘差要在 measurementUncertainty 內，而且改用三段擬合不能把殘差
+         壓到它以下。不准出現第二個折角或圓弧過渡。
+      b. 折角落在 landmarks.json 的「褲管折角」高度 ± measurementUncertainty 內
+      c. 兩個接點 C0 連續：斷面尺寸相等，‖差‖ < 1e-6，不准有台階
+      d. calf 段近等寬：上下寬度差在 measurementUncertainty 內
+
+5.8 forge/stage4_review/append_review.py ART/spec/object-sculpt-spec.json
+    --pass-id <pass> --fidelity <0-1> --action <continue|refine-spec|refine-code|
+    request-input|stop> --summary "..." --comparison-image <5.3 那張表>
+    --feature-reviews-json <檔案> --in-place
+    逐項分數放在 --feature-reviews-json。以下識別特徵任一錯了，總分過也是 FAIL：
+    手性、臀部側視箏形、褲管單一折角、肘部前折（拳頭在臀線前方）、
+    鞋底前伸的梯形楔、鞋口斷面大於褲管、上臂比上下都細、
+    三角肌兩段在六邊形腰線對接。
+    ⚠ --action 是 **agent 記錄下來的判讀**，不是放行許可。0.3 仍然成立：
+      不管填什麼，都要停下來等使用者。
+
+5.9 零件可單獨點選、單獨 isolate。用 §3.4 的 parts-gallery 模式載入它，確認：
+    partInspector 只列出它一個，name 與 module 與 §2 相符；點它會選中；
+    isolate 會把其他東西藏掉；explode 滑桿有出現（這需要 §3.4 那條
+    setExplode 的接線）。
+
+5.10 鏡射一致性斷言（只有 §1.5 列的 8 對純鏡射對要跑）：
+     把 R 件的頂點 x 座標取負，與 L 件逐點比對，‖差‖ < 1e-6；socket 也要一起比。
+     過了就不必對 R 件重跑 5.3 的視覺比對——這是這條的全部意義。
+     但 5.1 / 5.2 的 render 兩邊都還是要跑，確認它真的生得出來。
+     frontArm 不適用（左右差一個護腕寬度係數），左右都要看。
+
+5.11 pass 記帳，SKILL.md 第 8 步與第 11 步要求的，不是選配：
+
+       python3 forge/stage3_build/orchestrate_passes.py check ART/spec/object-sculpt-spec.json \
+         --pass-id <pass>
+
+     `check` 才是真正會擋住 pass 前進的東西，而且 §5.1 的 Tier 1 結果沒被記錄時它就會擋。
+     在 5.1–5.10 都跑完之後跑它，它擋下來要當成 **§5 沒過**，不是腳本錯誤。
+     接著對同一份 spec 跑 `orchestrate_passes.py sync --in-place`，
+     再跑一次 `forge/next.py`（§0.1）把新 state 讀進來，然後才交付。
+
+
+═══════════════════════════════════════════════
+§6 Stage 1B — 組裝（23 個零件全過、且使用者下令才開始）
+═══════════════════════════════════════════════
+
+src/utils/cloudStrifeFigure/createCloudStrifePolygonFigure.ts，純組裝：
+import 14 個工廠、依 §2 的表建群組節點、照 §4 對照表裡的 socket 名字平移擺放。
+
+  ⚠ 姿勢已經烘進零件（§1.4），所以這個檔案裡不做任何旋轉，只做平移。
+  ⚠ 這個檔案不准出現任何幾何。形狀要改就回零件檔改。
+  ⚠ 常數所有權：組裝檔只擁有 socket 位置與群組節點的名字。
+
+閘門：對四張正交參考圖做正/背/左/右 silhouette IoU。
+  - 先做一個 blockout 版本（每個零件都用它的包圍柱體），量它在四個視圖的 IoU。
+    那是**下限**：組好的模型在每一個視圖都必須**高於** blockout，
+    而且要高出 measurementUncertainty（§3.1）以上。
+    只打平或更低，代表那些細節沒有換到該有的東西。
+  - 算 IoU 之前，把 landmarks.json 記下的被裁行／列（§3.1 (2)）**從兩張圖都遮掉**。
+    不遮的話，跑出畫面的肢體會被算成 miss，而那是模型改不掉的。
+
+6.4 接線，在上面那道閘門過了之後才做，不准提前。這是第一次真的有一個完成的模型，
+    所以第五個接線點在這裡補上（§3.4）：在 src/components/home/heroStage.ts 的
+    heroEntries() 加 ff7-cloud-strife-polygon-figure 條目，
+    `build: () => createCloudStrifePolygonFigure()`。
+    注意那個檔案自己的註解寫的限制：src/utils/exhibits.ts 會被 vite.config.ts
+    import 來列 SSG route，**必須不含 three.js**——所以 hero 清單才要獨立一份。
+    不要為了「簡化」把 build 函式搬進展品登錄檔。
+
+
+═══════════════════════════════════════════════
+§7 Stage 2 — 臉部與頭髮（Stage 1B 過、且使用者下令才開始）
+═══════════════════════════════════════════════
+
+7.1 earL / earR — createEar(side)：三角柱，從臉部側面向外延伸，長在 head 的 ear 面群組上。
+    正面與背面各露一小塊楔形，側視幾乎被頭髮蓋住。
+
+7.2 faceDecal — createFaceDecal：眼睛／眉毛／嘴是印刷平面藝術，不是幾何。
+    CanvasTexture（colorSpace = SRGBColorSpace）貼在 head 的 face 面群組上。
+    不准建眼球、不准建瞳孔薄片。
+    `userData.explodeWithParent = true` 要設在 **mesh 上**，不是外層 Group ——
+    partInspector 是從 mesh 讀這個旗標的（§1.6）。只設在 Group 上的話，
+    faceDecal 會被判成零件、explode 時會單獨飛出去。
+
+    ⚠ **Stage 2 貼的是灰階佔位圖，不是真正的臉。**
+      貼圖就是材質，材質屬於 Stage 3 —— 但 Stage 2 需要一張貼圖才能驗證 UV
+      有沒有正確落在 head 的 face 面群組上。所以 Stage 2 畫一張中性灰的對位圖
+      （眼睛方框、眉毛筆畫、嘴線，加上 UV island 邊界的外框），**只驗位置**。
+      Stage 3（§8）才換成真正的彩色臉。在這裡就上彩色臉，會變成灰色的頭配彩色的臉。
+
+    7.2a 對位閘門：render 正面與 3/4 視角，在 ≥6× 下確認：眼線落在 landmarks.json
+         量到的眼線 Y、圖案被 face 面群組框住沒有溢到 jaw 或 scalp、
+         UV island 的外框沒有在任何一邊被切掉。
+
+7.3 hairCap — createHairCap：多面圓頂，貼合 head 的 scalp 面群組。
+    背視有放射狀面扇收斂到後腦、中線一道淺 V 折痕，在後頸收成一條硬水平線。
+    ⚠ 它的邊界就是 head 的 scalp 面群組，不多不少。**§4[14] 是權威：
+      耳朵在髮帽殼之外**，背視兩側各露一塊皮膚楔形。側視看起來像被蓋住，
+      是因為髮帽從耳朵旁邊掃過去在投影上重疊，但它不可以把耳朵包進去。
+      見猜測清單第 4 條（§11）。
+
+7.4 髮刺：9 根，13 個三角柱，左右不鏡射。方位用 Cloud 本人的左右。
+    照下表擺，不准程序化亂灑。一列 = 一個零件。
+
+      零件名                三角柱  生長方向
+      ──────────────────────────────────────────────────────────────────
+      crownSpikeFront         1    向上、前傾，全模最高點 Y=1.000
+      crownSpikeRear          1    向上，較短，在前刺後方
+      fringeRightOuter        2    覆額頭後往右外前方掃，橫向伸最遠
+      fringeRightMid          2    右外前方，略下
+      fringeRightInner        2    沿太陽穴往下前方，尖端落在右眼外側
+      sideburnRight           1    向下，貼著臉頰，切到顴骨
+      fringeLeft              2    覆額頭後往前下方掃，中段有折點，尖端到眼睛高度
+      sideburnLeftUpper       1    沿頭殼表面法線向左外側，略上
+      sideburnLeftLower       1    沿頭殼表面法線向左外側，略下
+      ──────────────────────────────────────────────────────────────────
+      9 個零件、13 個三角柱。左邊兩根鬢角各 1 柱是依猜測清單第 2 條（§11）的預設；
+      改採它的讀法 B 的話總數變 15，§2 的 triWedge 數量也要跟著改。
+
+    ⚠ 左右鬢角的判定證據：法線向外長的刺，從同側側視圖看會是被壓扁的四邊形斷面，
+      不是三角形。left.webp 頭殼前方那兩塊四邊形色塊就是 sideburnLeftUpper/Lower。
+      建完模要用同一個檢查回頭驗：從 left.webp 的相機角度 render，
+      那兩根必須也呈現壓扁的四邊形，呈現三角形就是方向做錯了。
+
+7.5 先鎖拓樸再調材質 —— 材質救不回錯的髮片拓樸。
+
+7.6 Stage 2 硬條件：頭殼 + 髮帽 + 髮刺 的背視輪廓必須重合 back.webp 外輪廓，
+    遮罩照 §6。
+
+
+═══════════════════════════════════════════════
+§8 Stage 3 — 材質、顏色，以及一個裝飾零件
+═══════════════════════════════════════════════
+
+⚠ 這個 stage 不只上色，還會「加幾何」。使用者明確指定 pauldron 放在 Stage 3。
+  它在參考圖上是有厚度、有可見縫隙的獨立殼，不是印上去的。
+  因此 Stage 3 的閘門必須包含 silhouette 重驗，不能只驗 ΔE。
+
+⚠ 胸前兩條肩帶與背後斜三角布片**未排程**。不准在這個 stage 順手做掉，
+  也不准自己排到別的 stage。要做由使用者另外下令。
+
+8.1 pauldronL — createPauldron：黑色肩甲，厚實倒角四邊形殼，
+    浮在 upperDeltoidL 上方留可見縫隙，下緣落在六邊形腰線。背視延伸到上背。
+
+8.2 全模 MeshStandardMaterial、flatShading: true、metalness: 0、roughness 0.80–0.90。
+    無 gloss、無 clearcoat、無 normal map。唯一有貼圖的表面是 faceDecal。
+
+8.2a 把 Stage 2 的灰階對位佔位圖（§7.2）換成真正的彩色臉，**沿用同一套 UV**——
+     對位在 §7.2a 已經驗過，不准位移。換完再跑一次 §7.2a 的位置檢查；
+     換貼圖把眼線挪動了就是 FAIL，那不是顏色問題。
+
+8.3 顏色用 §2 色碼表已量出來的值，並用 spec/sample_palette.py 重跑驗證一次；
+    腳本跟表不一致時以腳本為準（§0.6）。不准抄任何既有 json，也不准肉眼點取樣。
+    採用冷光四視圖那一欄，理由見 §2；要改採暖光是使用者的決定，改了要寫明理由。
+    兩組數字不准混用。
+
+8.4 目前已知的顏色歸屬：兩手手套 C-07、人物左手腕護腕 C-08、人物右手腕 C-01、
+    肩甲 C-07、皮帶 C-05、鞋 C-05b、上衣 C-03、褲 C-04、髮 C-02、faceDecal C-09。
+    ⚠ **這份清單不完整。** 8.5a 能跑之前，37 個零件**每一個**都要掛上色碼，
+      而且每個碼都要指名它來自 palette.json 的哪一群。上面沒點到的零件
+      （head、neck、兩段三角肌、backArm、前臂各段、鞋底板）以及一直沒用到的
+      C-01s，都要對照 palette.json 決定，並把歸屬寫進 spec。
+      決定完要回報清單，不准默默猜。
+
+8.5 閘門：
+    a. 色域：**每個零件**的取樣色與 render 色在 CIELAB 下 ΔE 門檻內；
+       門檻用刻意調錯色的 fake frame 夾出來（一個已知 ΔE 偏移量的 frame
+       必須 FAIL，門檻才算訂好）。
+    b. silhouette 重驗：加了 pauldronL 之後，正/背/左/右四視圖 IoU
+       （遮罩照 §6）必須不低於 Stage 1B。
+
+
+═══════════════════════════════════════════════
+§9 Stage 5 — 完整整合與精修（Stage 3 完成、且使用者下令才開始）
+═══════════════════════════════════════════════
+
+這個 stage 收下已組裝、已上色的模型，修掉只有組起來才看得到的問題。**它不新增任何東西。**
+
+9.1 範圍。只准做這些，其他都不准：
+    - 補掉接合處看得到的縫與互相穿插
+    - 消除相鄰零件共面造成的 z-fighting
+    - 修正整合檔裡的 socket 位置
+    - 要改形狀就**回去改那個零件檔**，永遠不在整合檔裡改
+    這裡禁止：新零件、新形狀碼、新色碼、新材質碼。任何會增加這四者之一的事情，
+    退回擁有它的那個 stage，並且需要使用者重新下令。
+
+9.2 方法。照 socket 串接的順序（§4 的 socket ledger）逐個接合處走，
+    一回合一個接合處，每個都在 ≥6× NEAREST 下對照參考圖 crop。
+    §0.3 的「一回合一件」在這裡管的是接合處，跟 Stage 1 管零件一樣。
+
+9.3 閘門：
+    a. 四視圖 silhouette IoU（依 §6 遮罩）必須**超過** Stage 1B 的結果，
+       且差距大於 measurementUncertainty。持平不算過 —— 這個 stage 的存在就是要改善它。
+    b. §5.8 的每一項識別特徵在組裝後的模型上以 ≥6× 重新確認。
+       它們是逐件驗過的，但組裝會破壞它們。
+    c. 三角形總數在 spec 記錄的模型預算之內。
+    d. §5.4 的分面斷言在組裝後的模型重跑一次。修接合處正是平滑偷偷跑進來的地方。
+
+
+═══════════════════════════════════════════════
+§10 Stage 6 — 細節迭代（Stage 5 完成、且使用者下令才開始）
+═══════════════════════════════════════════════
+
+10.1 這個 stage 沒有自動結束條件，也沒有完成條件。它一次執行**一個使用者指定的變更**，
+     做完就停。它什麼時候結束由使用者說了算。
+
+10.2 每次迭代就是一個回合：
+     - 使用者指名一個變更
+     - 你在動手**之前**先講明它會碰到哪些零件檔、哪些閘門
+     - 你做掉它，重跑它碰到的每一條閘門，交出數字
+     - 你停下來
+
+10.3 修正預算（§0.1）仍然生效、仍然計數。如果某次迭代是同一個零件的第三次修正，
+     那就是 §0.1 的訊號：判讀錯了不是程式錯了。再動手之前先回去看參考圖。
+
+10.4 這裡提出的任何會增加零件、形狀碼、色碼或材質碼的事情，**不是 stage 6 的變更**。
+     講明它不是，然後退回擁有它的那個 stage。
+
+
+═══════════════════════════════════════════════
+§11 猜測清單（開工第一則回覆就要給，這五條已知）
+═══════════════════════════════════════════════
+
+1. 額頭髮際線位置。被瀏海完全遮住，量不到。
+   讀法 A：從側視髮殼厚度往內推，髮際線在眉上約一個髮厚處
+   讀法 B：髮帽前緣直接切到眉線
+   預設 A。驗收靠「頭殼+髮帽 = back.webp 外輪廓」（§7.6）把它夾住。
+
+2. 左鬢角的三角柱數。使用者原文「兩個尖刺…適用兩個三角柱」。
+   讀法 A：每根 1 個，共 2 個（與右鬢角一致）
+   讀法 B：每根 2 個，共 4 個
+   預設 A。§7.4 的表與 13 柱總數都是照 A 算的。
+
+3. knee 段的高度。折角在圖上是一條線，看不出這段束口有多高。
+   讀法 A：短段，高度約褲管總長的 8–12%，斜轉直集中在這一小段
+   讀法 B：折角是零高度的稜，knee 件退化成一個轉接環
+   預設 A（照使用者三件式規格做）。無論哪一種，§5.7 的
+   「只有一個折角、兩接點 C0 連續」都必須成立。
+
+4. 髮帽殼有沒有把耳朵包進去。§4[14] 把背視讀成「耳朵旁各露一塊皮膚楔形」，
+   §7.1 把側視讀成「耳朵幾乎完全被頭髮蓋住」。
+   讀法 A：耳朵在髮帽外，髮帽從旁邊掃過去，側視看起來被蓋住只是投影重疊
+   讀法 B：髮帽把耳朵包進去，背視那兩塊楔形是從髮帽下緣露出來的耳垂
+   預設 A（§4[14] 是從 back.webp 量出來的，而背視是頭型的權威）。
+   做 §7.3 之前先把 back.webp 與 left.webp 的耳朵區放大 ≥6× 看過，回報是哪一種。
+
+5. 後腦的髮厚。§4[14] 把 back.webp 的輪廓內縮一層髮厚得到頭殼，但髮厚只在**臉**
+   那一處量得到（從 left/right 視圖）。後腦的頭髮通常比額頭那邊蓬。
+   讀法 A：髮厚均勻 —— 全部用臉那邊量到的值
+   讀法 B：後腦較厚，頭殼在背面要多內縮一些
+   預設 A。這是清單裡槓桿最大的一條：head 是最後一個做的零件，而 Stage 2 的髮帽殼
+   與九根髮刺全都長在它上面，錯了會傳染到十三個零件。
+   §7.6 的條件（「頭殼 + 髮帽 = back.webp 外輪廓」）就是夾它的東西 ——
+   如果 §7.6 差得比 measurementUncertainty 還多、而髮帽本身是對的，
+   那就是內縮量錯了、讀法 B 才對。要講出來，不准把髮帽加厚去蓋掉它。
+
+
+═══════════════════════════════════════════════
+§12 硬停條件
+═══════════════════════════════════════════════
+
+- forge/next.py exit 3 或 status=stopped
+- 修正預算觸頂（單 pass 3 次／總計 60 次）
+- 放大 8× 後仍無法判讀，且該處影響識別特徵
+- §5.4 的門檻無法用造假 frame 夾出來（閘門本身無效，不准帶著跑）
+- Stage 0 的腳本重跑不出本文件宣稱的某個數字，且差距大於
+  measurementUncertainty（§0.6）
+
+任一發生：停下來，寫清楚卡在哪、看到什麼、需要什麼輸入。
+
+forge 腳本 exit 2 **不是**硬停 —— 那是指令下錯或路徑寫錯（§0.0、§0.1）。
+改指令重跑。

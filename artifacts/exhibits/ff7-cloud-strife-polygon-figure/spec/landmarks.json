@@ -1,0 +1,3596 @@
+{
+  "schema": "ff7-cloud-strife-landmarks/1",
+  "generatedBy": "artifacts/exhibits/ff7-cloud-strife-polygon-figure/spec/measure_landmarks.py",
+  "silhouetteRule": "figure = (unreachable by 4-neighbour flood fill from the border) AND (255 - min(r,g,b) > 18)",
+  "tol": 18,
+  "views": {
+    "front": {
+      "size": [
+        384,
+        827
+      ],
+      "figurePixels": 156667,
+      "enclosedWhitePixels": 274,
+      "bbox": {
+        "x0": 5,
+        "x1": 379,
+        "y0": 0,
+        "y1": 819
+      },
+      "pixelHeight": 820,
+      "clipping": {
+        "topRowFigurePixels": 6,
+        "bottomRowFigurePixels": 0,
+        "leftColumnFigurePixels": 0,
+        "rightColumnFigurePixels": 0,
+        "clippedRowRanges": {
+          "left": [],
+          "right": []
+        },
+        "clippedColumnRanges": {
+          "top": [
+            [
+              81,
+              86
+            ]
+          ],
+          "bottom": []
+        }
+      },
+      "landmarksPx": {
+        "sole": 819,
+        "bootCuffTopHighest": 683,
+        "beltTop": 373,
+        "beltBottom": 407,
+        "hairTopVisible": 6,
+        "pantHem": 691,
+        "crotchNotchApex": 605,
+        "widestHip": 558,
+        "neckNarrowest": 262,
+        "chin": 255,
+        "shoulderLine": 263,
+        "deltoidWaistline": 288,
+        "upperArmNarrowest": 352,
+        "pantLegCrease": 604.0
+      },
+      "notes": [],
+      "hipWidthPx": 223,
+      "headAxisPx": 181,
+      "neckWidthPx": 31,
+      "armGapRows": [
+        329,
+        513
+      ],
+      "armGapBlocks": [
+        [
+          263,
+          271
+        ],
+        [
+          329,
+          513
+        ]
+      ],
+      "shoulderExtentPx": 299,
+      "armFitRows": [
+        329,
+        453
+      ],
+      "upperArmWidthPx": 32,
+      "imageLeftArm": {
+        "breakY": 406.0,
+        "maxResidualPx": 3.601103537812392,
+        "upperSlopeDxDy": -0.28874922545808623,
+        "lowerSlopeDxDy": -0.10548740772904906
+      },
+      "imageRightArm": {
+        "breakY": 402.0,
+        "maxResidualPx": 3.263783783783765,
+        "upperSlopeDxDy": 0.3378304331728989,
+        "lowerSlopeDxDy": 0.14377187740117817
+      },
+      "pantCrease": {
+        "lo": {
+          "breakY": 609.0,
+          "twoSegmentMaxResidualPx": 4.7300632911392455,
+          "threeSegmentMaxResidualPx": 2.316002747252753,
+          "taperSlopeDxDy": 0.4959873644668317,
+          "tubeSlopeDxDy": -0.028456669912366114
+        },
+        "hi": {
+          "breakY": 599.0,
+          "twoSegmentMaxResidualPx": 6.825468164793961,
+          "threeSegmentMaxResidualPx": 3.2142857142857792,
+          "taperSlopeDxDy": -0.48116035977635524,
+          "tubeSlopeDxDy": -0.03895131086142322
+        }
+      }
+    },
+    "back": {
+      "size": [
+        391,
+        829
+      ],
+      "figurePixels": 170517,
+      "enclosedWhitePixels": 0,
+      "bbox": {
+        "x0": 1,
+        "x1": 390,
+        "y0": 0,
+        "y1": 822
+      },
+      "pixelHeight": 823,
+      "clipping": {
+        "topRowFigurePixels": 4,
+        "bottomRowFigurePixels": 0,
+        "leftColumnFigurePixels": 0,
+        "rightColumnFigurePixels": 1,
+        "clippedRowRanges": {
+          "left": [],
+          "right": [
+            [
+              512,
+              512
+            ]
+          ]
+        },
+        "clippedColumnRanges": {
+          "top": [
+            [
+              299,
+              302
+            ]
+          ],
+          "bottom": []
+        }
+      },
+      "landmarksPx": {
+        "sole": 822,
+        "bootCuffTopHighest": 706,
+        "beltTop": 369,
+        "beltBottom": 399,
+        "hairTopVisible": 5,
+        "pantHem": 713,
+        "crotchNotchApex": 621,
+        "widestHip": 572,
+        "neckNarrowest": 247,
+        "chin": 244,
+        "shoulderLine": 254,
+        "deltoidWaistline": 279,
+        "upperArmNarrowest": 335,
+        "pantLegCrease": 635.5,
+        "hairCapCrown": 85
+      },
+      "notes": [],
+      "hipWidthPx": 241,
+      "headAxisPx": 215,
+      "neckWidthPx": 32,
+      "armGapRows": [
+        327,
+        522
+      ],
+      "armGapBlocks": [
+        [
+          254,
+          263
+        ],
+        [
+          327,
+          522
+        ]
+      ],
+      "shoulderExtentPx": 325,
+      "armFitRows": [
+        327,
+        465
+      ],
+      "upperArmWidthPx": 36,
+      "imageLeftArm": {
+        "breakY": 401.0,
+        "maxResidualPx": 2.871578947368434,
+        "upperSlopeDxDy": -0.34347083926031297,
+        "lowerSlopeDxDy": -0.164881993006993
+      },
+      "imageRightArm": {
+        "breakY": 344.0,
+        "maxResidualPx": 1.5617475060199695,
+        "upperSlopeDxDy": 0.5123839009287926,
+        "lowerSlopeDxDy": 0.13128963290716772
+      },
+      "pantCrease": {
+        "lo": {
+          "breakY": 635.0,
+          "twoSegmentMaxResidualPx": 2.4003508771930058,
+          "threeSegmentMaxResidualPx": 1.358148893360152,
+          "taperSlopeDxDy": 0.5044184981684982,
+          "tubeSlopeDxDy": -0.049018492176386916
+        },
+        "hi": {
+          "breakY": 636.0,
+          "twoSegmentMaxResidualPx": 2.3550092558311917,
+          "threeSegmentMaxResidualPx": 1.7300999629767944,
+          "taperSlopeDxDy": -0.5231206293706294,
+          "tubeSlopeDxDy": 0.057963717141799334
+        }
+      }
+    },
+    "left": {
+      "size": [
+        214,
+        847
+      ],
+      "figurePixels": 90762,
+      "enclosedWhitePixels": 18,
+      "bbox": {
+        "x0": 2,
+        "x1": 213,
+        "y0": 0,
+        "y1": 845
+      },
+      "pixelHeight": 846,
+      "clipping": {
+        "topRowFigurePixels": 4,
+        "bottomRowFigurePixels": 0,
+        "leftColumnFigurePixels": 0,
+        "rightColumnFigurePixels": 8,
+        "clippedRowRanges": {
+          "left": [],
+          "right": [
+            [
+              126,
+              133
+            ]
+          ]
+        },
+        "clippedColumnRanges": {
+          "top": [
+            [
+              16,
+              19
+            ]
+          ],
+          "bottom": []
+        }
+      },
+      "landmarksPx": {
+        "sole": 845,
+        "bootCuffTopHighest": 660,
+        "beltTop": 354,
+        "beltBottom": 383,
+        "hairTopVisible": 5,
+        "pantHem": 706,
+        "neckNarrowest": 242,
+        "chin": 233,
+        "shoulderLine": 244
+      },
+      "notes": [],
+      "headAxisPx": 111,
+      "neckWidthPx": 31
+    },
+    "right": {
+      "size": [
+        206,
+        831
+      ],
+      "figurePixels": 84770,
+      "enclosedWhitePixels": 18,
+      "bbox": {
+        "x0": 0,
+        "x1": 205,
+        "y0": 0,
+        "y1": 828
+      },
+      "pixelHeight": 829,
+      "clipping": {
+        "topRowFigurePixels": 6,
+        "bottomRowFigurePixels": 0,
+        "leftColumnFigurePixels": 9,
+        "rightColumnFigurePixels": 2,
+        "clippedRowRanges": {
+          "left": [
+            [
+              138,
+              146
+            ]
+          ],
+          "right": [
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        "clippedColumnRanges": {
+          "top": [
+            [
+              200,
+              205
+            ]
+          ],
+          "bottom": []
+        }
+      },
+      "landmarksPx": {
+        "sole": 828,
+        "bootCuffTopHighest": 645,
+        "beltTop": 362,
+        "beltBottom": 391,
+        "hairTopVisible": 5,
+        "pantHem": 694,
+        "neckNarrowest": 288,
+        "chin": 286,
+        "shoulderLine": 290
+      },
+      "notes": [],
+      "headAxisPx": 101,
+      "neckWidthPx": 35
+    },
+    "more-angle": {
+      "size": [
+        297,
+        584
+      ],
+      "figurePixels": 71431,
+      "enclosedWhitePixels": 2968,
+      "bbox": {
+        "x0": 0,
+        "x1": 294,
+        "y0": 1,
+        "y1": 578
+      },
+      "pixelHeight": 578,
+      "clipping": {
+        "topRowFigurePixels": 0,
+        "bottomRowFigurePixels": 0,
+        "leftColumnFigurePixels": 5,
+        "rightColumnFigurePixels": 0,
+        "clippedRowRanges": {
+          "left": [
+            [
+              363,
+              367
+            ]
+          ],
+          "right": []
+        },
+        "clippedColumnRanges": {
+          "top": [],
+          "bottom": []
+        }
+      },
+      "landmarksPx": {
+        "sole": 578,
+        "bootCuffTopHighest": 455,
+        "beltTop": 271,
+        "beltBottom": 292,
+        "hairTopVisible": 3,
+        "pantHem": 473,
+        "crotchNotchApex": 404,
+        "widestHip": 393,
+        "neckNarrowest": 198,
+        "chin": 188,
+        "shoulderLine": 202,
+        "deltoidWaistline": 219,
+        "upperArmNarrowest": 253,
+        "pantLegCrease": 454.5
+      },
+      "notes": [],
+      "hipWidthPx": 127,
+      "headAxisPx": 143,
+      "neckWidthPx": 26,
+      "armGapRows": [
+        253,
+        369
+      ],
+      "armGapBlocks": [
+        [
+          202,
+          203
+        ],
+        [
+          253,
+          369
+        ]
+      ],
+      "shoulderExtentPx": 191,
+      "armFitRows": [
+        253,
+        315
+      ],
+      "upperArmWidthPx": 22,
+      "imageLeftArm": {
+        "breakY": 294.0,
+        "maxResidualPx": 2.2397563676633325,
+        "upperSlopeDxDy": -0.40235799367960456,
+        "lowerSlopeDxDy": 0.03162055335968379
+      },
+      "imageRightArm": {
+        "breakY": 275.0,
+        "maxResidualPx": 1.8097826086956559,
+        "upperSlopeDxDy": 0.3651185770750988,
+        "lowerSlopeDxDy": 0.1539198606271777
+      },
+      "pantCrease": {
+        "lo": {
+          "breakY": 449.0,
+          "twoSegmentMaxResidualPx": 2.779794313369621,
+          "threeSegmentMaxResidualPx": 1.4284615384615194,
+          "taperSlopeDxDy": 0.4369976665802437,
+          "tubeSlopeDxDy": -0.14805194805194805
+        },
+        "hi": {
+          "breakY": 460.0,
+          "twoSegmentMaxResidualPx": 33.74545454545478,
+          "threeSegmentMaxResidualPx": 30.392857142856883,
+          "taperSlopeDxDy": 0.031988395617818834,
+          "tubeSlopeDxDy": -7.418181818181818
+        }
+      }
+    }
+  },
+  "totalHeight": {
+    "view": "left",
+    "rowsFitted": 34,
+    "leftEdge": {
+      "slope": 0.5948051948051948,
+      "intercept": 13.626890756302522,
+      "maxResidualPx": 2.3731092436974777
+    },
+    "rightEdge": {
+      "slope": 1.3697478991596639,
+      "intercept": 20.840336134453782,
+      "maxResidualPx": 1.840336134453782
+    },
+    "apexPx": [
+      8.090230098348488,
+      -9.308359621451103
+    ],
+    "clippedAbovePx": 9.308359621451103,
+    "totalHeightPx": 854.3083596214511,
+    "measuredPixelHeight": 846
+  },
+  "anchorCandidates": {
+    "sole->chin": {
+      "spanPx": {
+        "front": 564,
+        "back": 578,
+        "left": 612,
+        "right": 542,
+        "more-angle": 390
+      },
+      "measurableIn": [
+        "back",
+        "front",
+        "left",
+        "more-angle",
+        "right"
+      ]
+    },
+    "sole->beltBottom": {
+      "spanPx": {
+        "front": 412,
+        "back": 423,
+        "left": 462,
+        "right": 437,
+        "more-angle": 286
+      },
+      "measurableIn": [
+        "back",
+        "front",
+        "left",
+        "more-angle",
+        "right"
+      ]
+    }
+  },
+  "normalization": {
+    "sole->chin": {
+      "anchor": "sole->chin",
+      "spanNormalized": 0.7163689704162332,
+      "perView": {
+        "front": {
+          "bootCuffTopHighest": 0.17274145385923353,
+          "beltTop": 0.5664903560383687,
+          "beltBottom": 0.5233049925735603,
+          "hairTopVisible": 1.0326382499085063,
+          "pantHem": 0.1625801918675139,
+          "crotchNotchApex": 0.2718137582784998,
+          "widestHip": 0.33151117247985257,
+          "neckNarrowest": 0.7074778661734785,
+          "chin": 0.7163689704162332,
+          "shoulderLine": 0.7062077084245135,
+          "deltoidWaistline": 0.6744537647003898,
+          "upperArmNarrowest": 0.5931636687666327,
+          "pantLegCrease": 0.2730839160274648,
+          "sole": 0.0
+        },
+        "back": {
+          "bootCuffTopHighest": 0.14376955115619905,
+          "beltTop": 0.5614448851186049,
+          "beltBottom": 0.5242631046471741,
+          "hairTopVisible": 1.0125838215052985,
+          "pantHem": 0.13509380237953186,
+          "crotchNotchApex": 0.24911792915858627,
+          "widestHip": 0.30984817059525654,
+          "neckNarrowest": 0.7126507923690901,
+          "chin": 0.7163689704162332,
+          "shoulderLine": 0.7039750435924229,
+          "deltoidWaistline": 0.6729902265328972,
+          "upperArmNarrowest": 0.6035842363195598,
+          "pantLegCrease": 0.23114673526406138,
+          "sole": 0.0
+        },
+        "left": {
+          "bootCuffTopHighest": 0.21654944367157375,
+          "beltTop": 0.5747339288796903,
+          "beltBottom": 0.5407883404122544,
+          "hairTopVisible": 0.9832515280222809,
+          "pantHem": 0.16270471713702028,
+          "neckNarrowest": 0.7058341326159945,
+          "chin": 0.7163689704162332,
+          "shoulderLine": 0.7034930575492747,
+          "sole": 0.0
+        },
+        "right": {
+          "bootCuffTopHighest": 0.2418736560630455,
+          "beltTop": 0.6159187088818536,
+          "beltBottom": 0.5775890038226825,
+          "hairTopVisible": 1.087770595299926,
+          "pantHem": 0.17710967165272185,
+          "neckNarrowest": 0.713725542481118,
+          "chin": 0.7163689704162332,
+          "shoulderLine": 0.7110821145460027,
+          "sole": 0.0
+        },
+        "more-angle": {
+          "bootCuffTopHighest": 0.2259317522081966,
+          "beltTop": 0.5639109587635476,
+          "beltBottom": 0.5253372449719043,
+          "hairTopVisible": 1.056185020485472,
+          "pantHem": 0.1928685689582166,
+          "crotchNotchApex": 0.31961077141647326,
+          "widestHip": 0.3398160500692388,
+          "neckNarrowest": 0.6980005352773554,
+          "chin": 0.7163689704162332,
+          "shoulderLine": 0.6906531612218043,
+          "deltoidWaistline": 0.6594268214857121,
+          "upperArmNarrowest": 0.5969741420135276,
+          "pantLegCrease": 0.22685017396514048,
+          "sole": 0.0
+        }
+      },
+      "landmarkSpread": {
+        "bootCuffTopHighest": 0.09810410490684646,
+        "beltTop": 0.05447382376324872,
+        "beltBottom": 0.05428401124912219,
+        "hairTopVisible": 0.10451906727764504,
+        "pantHem": 0.04201586927318998,
+        "crotchNotchApex": 0.022695829119913524,
+        "widestHip": 0.021663001884596023,
+        "neckNarrowest": 0.007891409865123489,
+        "chin": 0.0,
+        "shoulderLine": 0.007589056996727961,
+        "deltoidWaistline": 0.0014635381674925618,
+        "upperArmNarrowest": 0.010420567552927085,
+        "pantLegCrease": 0.041937180763403414,
+        "sole": 0.0
+      },
+      "crossValidationSet": [
+        "beltTop",
+        "neckNarrowest",
+        "pantHem",
+        "shoulderLine"
+      ],
+      "crossValidationViews": [
+        "back",
+        "front",
+        "left",
+        "right"
+      ],
+      "measurementUncertainty": 0.05447382376324872,
+      "measurementUncertaintyRms": 0.01374117256657524,
+      "worstLandmark": "beltTop"
+    },
+    "sole->beltBottom": {
+      "anchor": "sole->beltBottom",
+      "spanNormalized": 0.5407883404122544,
+      "perView": {
+        "front": {
+          "bootCuffTopHighest": 0.17851265605841407,
+          "beltTop": 0.5854165044268579,
+          "beltBottom": 0.5407883404122544,
+          "hairTopVisible": 1.0671381571727254,
+          "pantHem": 0.16801191158438972,
+          "crotchNotchApex": 0.28089491468015154,
+          "widestHip": 0.34258678846504464,
+          "neckNarrowest": 0.7311143340039459,
+          "chin": 0.7403024854187172,
+          "shoulderLine": 0.7298017409446929,
+          "deltoidWaistline": 0.6969869144633667,
+          "upperArmNarrowest": 0.6129809586711719,
+          "pantLegCrease": 0.2822075077394046,
+          "sole": 0.0
+        },
+        "back": {
+          "bootCuffTopHighest": 0.1483012942974504,
+          "beltTop": 0.5791421234202158,
+          "beltBottom": 0.5407883404122544,
+          "hairTopVisible": 1.0445013572501463,
+          "pantHem": 0.13935207826225943,
+          "crotchNotchApex": 0.2569703461533408,
+          "widestHip": 0.31961485839967757,
+          "neckNarrowest": 0.7351141743192584,
+          "chin": 0.7389495526200546,
+          "shoulderLine": 0.7261649582840675,
+          "deltoidWaistline": 0.6942034724440997,
+          "upperArmNarrowest": 0.622609744162572,
+          "pantLegCrease": 0.23843268436615947,
+          "sole": 0.0
+        },
+        "left": {
+          "bootCuffTopHighest": 0.21654944367157375,
+          "beltTop": 0.5747339288796903,
+          "beltBottom": 0.5407883404122544,
+          "hairTopVisible": 0.9832515280222809,
+          "pantHem": 0.16270471713702028,
+          "neckNarrowest": 0.7058341326159945,
+          "chin": 0.7163689704162332,
+          "shoulderLine": 0.7034930575492747,
+          "sole": 0.0
+        },
+        "right": {
+          "bootCuffTopHighest": 0.22646285193465115,
+          "beltTop": 0.5766758961833193,
+          "beltBottom": 0.5407883404122544,
+          "hairTopVisible": 1.01846408274436,
+          "pantHem": 0.1658252577007828,
+          "neckNarrowest": 0.6682510384956919,
+          "chin": 0.6707260423419723,
+          "shoulderLine": 0.6657760346494116,
+          "sole": 0.0
+        },
+        "more-angle": {
+          "bootCuffTopHighest": 0.2325768037437318,
+          "beltTop": 0.5804965751977696,
+          "beltBottom": 0.5407883404122544,
+          "hairTopVisible": 1.0872492857938683,
+          "pantHem": 0.19854117392757592,
+          "crotchNotchApex": 0.3290110882228401,
+          "widestHip": 0.3498106397771576,
+          "neckNarrowest": 0.7185299627855128,
+          "chin": 0.7374386460167106,
+          "shoulderLine": 0.7109664894930338,
+          "deltoidWaistline": 0.6788217279999977,
+          "upperArmNarrowest": 0.6145322050139255,
+          "pantLegCrease": 0.2335222379052917,
+          "sole": 0.0
+        }
+      },
+      "landmarkSpread": {
+        "bootCuffTopHighest": 0.07816155763720076,
+        "beltTop": 0.010682575547167561,
+        "beltBottom": 0.0,
+        "hairTopVisible": 0.08388662915044454,
+        "pantHem": 0.02865983332213029,
+        "crotchNotchApex": 0.02392456852681074,
+        "widestHip": 0.022971930065367074,
+        "neckNarrowest": 0.06686313582356651,
+        "chin": 0.06957644307674493,
+        "shoulderLine": 0.06402570629528126,
+        "deltoidWaistline": 0.0027834420192669462,
+        "upperArmNarrowest": 0.009628785491400116,
+        "pantLegCrease": 0.04377482337324515,
+        "sole": 0.0
+      },
+      "crossValidationSet": [
+        "beltTop",
+        "neckNarrowest",
+        "pantHem",
+        "shoulderLine"
+      ],
+      "crossValidationViews": [
+        "back",
+        "front",
+        "left",
+        "right"
+      ],
+      "measurementUncertainty": 0.06686313582356651,
+      "measurementUncertaintyRms": 0.024445315715428156,
+      "worstLandmark": "neckNarrowest"
+    }
+  },
+  "adoptedAnchor": "sole->chin",
+  "measurementUncertainty": 0.05447382376324872,
+  "dimensions": {
+    "maxHipWidth": 0.28324517801918436,
+    "maxHipDepthPerView": {
+      "left": 0.14280557906990268,
+      "right": 0.1546405342042422
+    },
+    "maxHipDepthRow": {
+      "left": 560,
+      "right": 556
+    },
+    "maxHipDepth": 0.1546405342042422,
+    "shoulderWidth": 0.37977716694052077,
+    "chestWidth": 0.19814460883853258,
+    "torsoDepth": {
+      "left": 0.14046450400318297,
+      "right": 0.16257081800958798
+    },
+    "neckWidth": 0.03937489021791352,
+    "hairCapWidth": 0.29001788767716014,
+    "footWidthEach": [
+      0.1943341355916377,
+      0.003810473246894857,
+      0.20195508208542742
+    ],
+    "footLength": {
+      "left": 0.1872860053375773,
+      "right": 0.2061873789389896
+    },
+    "straightPantTubeWidth": [
+      0.06096757195031771,
+      0.05842725645238781
+    ]
+  },
+  "poseAngles": {
+    "sideArmFit": {
+      "left": {
+        "breakY": 337.0,
+        "maxResidualPx": 29.231768231768257,
+        "upperSlopeDzDy": 0.028431270222314998,
+        "lowerSlopeDzDy": 0.09256532940743467,
+        "imageXtoModelZ": -1.0
+      },
+      "right": {
+        "breakY": 456.0,
+        "maxResidualPx": 9.878333333333345,
+        "upperSlopeDzDy": 0.18400548300988384,
+        "lowerSlopeDzDy": -0.16456521739130434,
+        "imageXtoModelZ": 1.0
+      }
+    },
+    "figureLeftUpperArm": {
+      "part": "upperArm(figureLeft)",
+      "directionXYZimage": [
+        0.31994362576343044,
+        -0.9470538896052797,
+        0.026925945050462186
+      ],
+      "abductionDeg": 18.666533479048187,
+      "forwardLeanDeg": 1.6285530778438395,
+      "totalTiltFromVerticalDeg": 18.727927545122174
+    },
+    "figureLeftForeArm": {
+      "part": "foreArm(figureLeft)",
+      "directionXYZimage": [
+        0.1417150229911603,
+        -0.9856936248785395,
+        0.09124105508169035
+      ],
+      "abductionDeg": 8.181457983826704,
+      "forwardLeanDeg": 5.288532414402518,
+      "totalTiltFromVerticalDeg": 9.703347008239332
+    },
+    "figureLeftElbowBreakDeg": 11.097057083191277,
+    "figureLeftElbowRowPx": {
+      "front": 402.0,
+      "left": 337.0
+    },
+    "figureRightUpperArm": {
+      "part": "upperArm(figureRight)",
+      "directionXYZimage": [
+        -0.2731798927556615,
+        -0.9460800884306279,
+        0.1740839236377113
+      ],
+      "abductionDeg": 16.10603222270949,
+      "forwardLeanDeg": 10.42611239123819,
+      "totalTiltFromVerticalDeg": 18.900932226264473
+    },
+    "figureRightForeArm": {
+      "part": "foreArm(figureRight)",
+      "directionXYZimage": [
+        -0.10352808046758563,
+        -0.9814259606559289,
+        -0.16150857656881262
+      ],
+      "abductionDeg": 6.021713423436866,
+      "forwardLeanDeg": 9.345132428511672,
+      "totalTiltFromVerticalDeg": 11.0602598029307
+    },
+    "figureRightElbowBreakDeg": 21.771057348500445,
+    "figureRightElbowRowPx": {
+      "front": 406.0,
+      "right": 456.0
+    },
+    "footSplayDeg": {
+      "left": 47.158247559981405,
+      "right": 44.40588377994643
+    }
+  },
+  "hairThickness": {
+    "left": {
+      "view": "left",
+      "measures": "fringe depth: face plane -> outermost hair silhouette ahead of it",
+      "rowRange": [
+        63,
+        200
+      ],
+      "rows": 41,
+      "medianPx": 33,
+      "p10Px": 6,
+      "p90Px": 42,
+      "minPx": 2,
+      "maxPx": 79,
+      "medianNormalized": 0.038627738600875317
+    },
+    "right": {
+      "view": "right",
+      "measures": "fringe depth: face plane -> outermost hair silhouette ahead of it",
+      "rowRange": [
+        79,
+        240
+      ],
+      "rows": 66,
+      "medianPx": 54,
+      "p10Px": 8,
+      "p90Px": 73,
+      "minPx": 6,
+      "maxPx": 92,
+      "medianNormalized": 0.07137255424811179
+    }
+  },
+  "selfChecks": {
+    "A_hipWiderThanShoulderLine": {
+      "hipWidth": 0.28324517801918436,
+      "shoulderWidth": 0.37977716694052077,
+      "margin": -0.09653198892133641,
+      "verdict": "FAIL"
+    },
+    "A1_hipWiderThanChestSlab": {
+      "hipWidth": 0.28324517801918436,
+      "chestWidth": 0.19814460883853258,
+      "margin": 0.08510056918065179,
+      "verdict": "PASS"
+    },
+    "B_hipKite_left": {
+      "frontApexRow": 502.0,
+      "backApexRow": 556.0,
+      "apexHeightGap": 0.06320902680143234,
+      "twoSegmentResidualPx": [
+        20.882555282555273,
+        6.1742361684558205
+      ],
+      "oneSegmentResidualPx": [
+        26.816252135940772,
+        24.229960129105763
+      ],
+      "outlineCleanThresholdPx": 17.086167192429023,
+      "cornerIsReal": false,
+      "margin": -0.00873520303818362,
+      "verdict": "INDETERMINATE(glove occludes the hip outline)"
+    },
+    "B_hipKite_right": {
+      "frontApexRow": 450.0,
+      "backApexRow": 423.0,
+      "apexHeightGap": 0.03568627712405589,
+      "twoSegmentResidualPx": [
+        49.51847735482079,
+        57.35828877005348
+      ],
+      "oneSegmentResidualPx": [
+        76.39759584062543,
+        60.47719625451899
+      ],
+      "outlineCleanThresholdPx": 15.131867023360345,
+      "cornerIsReal": false,
+      "margin": 0.018787546639192826,
+      "verdict": "INDETERMINATE(glove occludes the hip outline)"
+    },
+    "A2_hipDeeperThanShoulders": {
+      "hipDepth": 0.1546405342042422,
+      "shoulderDepth": 0.16257081800958798,
+      "margin": -0.007930283805345772,
+      "verdict": "INDETERMINATE"
+    },
+    "C_torsoIsASlab": {
+      "torsoDepth": 0.16257081800958798,
+      "halfShoulderWidth": 0.18988858347026039,
+      "margin": 0.02731776546067241,
+      "verdict": "INDETERMINATE"
+    }
+  },
+  "promptDisagreements": [
+    "self-check A_hipWiderThanShoulderLine FAILS by 0.0965 (> uncertainty)"
+  ],
+  "parts": {
+    "sole": {
+      "generatedBy": "spec/measure_sole.py",
+      "adopted": {
+        "aspectLtoW": 2.4,
+        "toeTaper": 0.72,
+        "endChamferOfThickness": 0.34,
+        "why": "plan outline is unobservable from four orthographic views; see the module docstring of spec/measure_sole.py"
+      },
+      "raw": {
+        "front": {
+          "band": [
+            683,
+            819
+          ],
+          "maxWidthPx": 369,
+          "rowAtMaxWidth": 779,
+          "runsAtMaxWidth": [
+            [
+              5,
+              157
+            ],
+            [
+              212,
+              212
+            ],
+            [
+              215,
+              373
+            ]
+          ],
+          "widthProfile": [
+            [
+              683,
+              191
+            ],
+            [
+              684,
+              196
+            ],
+            [
+              685,
+              197
+            ],
+            [
+              686,
+              201
+            ],
+            [
+              687,
+              201
+            ],
+            [
+              688,
+              202
+            ],
+            [
+              689,
+              202
+            ],
+            [
+              690,
+              202
+            ],
+            [
+              691,
+              202
+            ],
+            [
+              692,
+              203
+            ],
+            [
+              693,
+              203
+            ],
+            [
+              694,
+              203
+            ],
+            [
+              695,
+              203
+            ],
+            [
+              696,
+              203
+            ],
+            [
+              697,
+              203
+            ],
+            [
+              698,
+              203
+            ],
+            [
+              699,
+              203
+            ],
+            [
+              700,
+              203
+            ],
+            [
+              701,
+              203
+            ],
+            [
+              702,
+              203
+            ],
+            [
+              703,
+              203
+            ],
+            [
+              704,
+              203
+            ],
+            [
+              705,
+              203
+            ],
+            [
+              706,
+              203
+            ],
+            [
+              707,
+              203
+            ],
+            [
+              708,
+              203
+            ],
+            [
+              709,
+              203
+            ],
+            [
+              710,
+              203
+            ],
+            [
+              711,
+              203
+            ],
+            [
+              712,
+              203
+            ],
+            [
+              713,
+              203
+            ],
+            [
+              714,
+              203
+            ],
+            [
+              715,
+              203
+            ],
+            [
+              716,
+              203
+            ],
+            [
+              717,
+              203
+            ],
+            [
+              718,
+              203
+            ],
+            [
+              719,
+              203
+            ],
+            [
+              720,
+              203
+            ],
+            [
+              721,
+              203
+            ],
+            [
+              722,
+              203
+            ],
+            [
+              723,
+              204
+            ],
+            [
+              724,
+              205
+            ],
+            [
+              725,
+              206
+            ],
+            [
+              726,
+              208
+            ],
+            [
+              727,
+              212
+            ],
+            [
+              728,
+              214
+            ],
+            [
+              729,
+              218
+            ],
+            [
+              730,
+              220
+            ],
+            [
+              731,
+              222
+            ],
+            [
+              732,
+              227
+            ],
+            [
+              733,
+              231
+            ],
+            [
+              734,
+              233
+            ],
+            [
+              735,
+              237
+            ],
+            [
+              736,
+              241
+            ],
+            [
+              737,
+              243
+            ],
+            [
+              738,
+              245
+            ],
+            [
+              739,
+              250
+            ],
+            [
+              740,
+              252
+            ],
+            [
+              741,
+              256
+            ],
+            [
+              742,
+              259
+            ],
+            [
+              743,
+              263
+            ],
+            [
+              744,
+              265
+            ],
+            [
+              745,
+              269
+            ],
+            [
+              746,
+              273
+            ],
+            [
+              747,
+              275
+            ],
+            [
+              748,
+              280
+            ],
+            [
+              749,
+              283
+            ],
+            [
+              750,
+              285
+            ],
+            [
+              751,
+              289
+            ],
+            [
+              752,
+              293
+            ],
+            [
+              753,
+              294
+            ],
+            [
+              754,
+              299
+            ],
+            [
+              755,
+              303
+            ],
+            [
+              756,
+              305
+            ],
+            [
+              757,
+              309
+            ],
+            [
+              758,
+              314
+            ],
+            [
+              759,
+              315
+            ],
+            [
+              760,
+              320
+            ],
+            [
+              761,
+              323
+            ],
+            [
+              762,
+              326
+            ],
+            [
+              763,
+              330
+            ],
+            [
+              764,
+              334
+            ],
+            [
+              765,
+              337
+            ],
+            [
+              766,
+              340
+            ],
+            [
+              767,
+              345
+            ],
+            [
+              768,
+              347
+            ],
+            [
+              769,
+              350
+            ],
+            [
+              770,
+              355
+            ],
+            [
+              771,
+              358
+            ],
+            [
+              772,
+              360
+            ],
+            [
+              773,
+              364
+            ],
+            [
+              774,
+              365
+            ],
+            [
+              775,
+              366
+            ],
+            [
+              776,
+              367
+            ],
+            [
+              777,
+              368
+            ],
+            [
+              778,
+              368
+            ],
+            [
+              779,
+              369
+            ],
+            [
+              780,
+              369
+            ],
+            [
+              781,
+              369
+            ],
+            [
+              782,
+              369
+            ],
+            [
+              783,
+              369
+            ],
+            [
+              784,
+              369
+            ],
+            [
+              785,
+              369
+            ],
+            [
+              786,
+              369
+            ],
+            [
+              787,
+              369
+            ],
+            [
+              788,
+              369
+            ],
+            [
+              789,
+              369
+            ],
+            [
+              790,
+              369
+            ],
+            [
+              791,
+              369
+            ],
+            [
+              792,
+              369
+            ],
+            [
+              793,
+              369
+            ],
+            [
+              794,
+              369
+            ],
+            [
+              795,
+              369
+            ],
+            [
+              796,
+              369
+            ],
+            [
+              797,
+              368
+            ],
+            [
+              798,
+              368
+            ],
+            [
+              799,
+              367
+            ],
+            [
+              800,
+              367
+            ],
+            [
+              801,
+              367
+            ],
+            [
+              802,
+              367
+            ],
+            [
+              803,
+              367
+            ],
+            [
+              804,
+              363
+            ],
+            [
+              805,
+              360
+            ],
+            [
+              806,
+              363
+            ],
+            [
+              807,
+              360
+            ],
+            [
+              808,
+              357
+            ],
+            [
+              809,
+              350
+            ],
+            [
+              810,
+              359
+            ],
+            [
+              811,
+              347
+            ],
+            [
+              812,
+              344
+            ],
+            [
+              813,
+              334
+            ],
+            [
+              814,
+              330
+            ],
+            [
+              815,
+              24
+            ],
+            [
+              816,
+              21
+            ],
+            [
+              817,
+              24
+            ],
+            [
+              818,
+              21
+            ],
+            [
+              819,
+              3
+            ]
+          ],
+          "thickness": {
+            "px": 54,
+            "p10": 1,
+            "p90": 70,
+            "samples": 55,
+            "columns": [
+              5,
+              59
+            ],
+            "normalized": 0.06858851844410743
+          },
+          "thicknessNormalized": 0.06858851844410743
+        },
+        "back": {
+          "band": [
+            706,
+            822
+          ],
+          "maxWidthPx": 362,
+          "rowAtMaxWidth": 756,
+          "runsAtMaxWidth": [
+            [
+              19,
+              178
+            ],
+            [
+              226,
+              380
+            ]
+          ],
+          "widthProfile": [
+            [
+              706,
+              190
+            ],
+            [
+              707,
+              196
+            ],
+            [
+              708,
+              201
+            ],
+            [
+              709,
+              207
+            ],
+            [
+              710,
+              211
+            ],
+            [
+              711,
+              213
+            ],
+            [
+              712,
+              215
+            ],
+            [
+              713,
+              217
+            ],
+            [
+              714,
+              218
+            ],
+            [
+              715,
+              218
+            ],
+            [
+              716,
+              218
+            ],
+            [
+              717,
+              218
+            ],
+            [
+              718,
+              218
+            ],
+            [
+              719,
+              218
+            ],
+            [
+              720,
+              218
+            ],
+            [
+              721,
+              218
+            ],
+            [
+              722,
+              218
+            ],
+            [
+              723,
+              218
+            ],
+            [
+              724,
+              218
+            ],
+            [
+              725,
+              218
+            ],
+            [
+              726,
+              218
+            ],
+            [
+              727,
+              218
+            ],
+            [
+              728,
+              218
+            ],
+            [
+              729,
+              218
+            ],
+            [
+              730,
+              218
+            ],
+            [
+              731,
+              218
+            ],
+            [
+              732,
+              218
+            ],
+            [
+              733,
+              218
+            ],
+            [
+              734,
+              218
+            ],
+            [
+              735,
+              218
+            ],
+            [
+              736,
+              218
+            ],
+            [
+              737,
+              218
+            ],
+            [
+              738,
+              258
+            ],
+            [
+              739,
+              262
+            ],
+            [
+              740,
+              265
+            ],
+            [
+              741,
+              269
+            ],
+            [
+              742,
+              314
+            ],
+            [
+              743,
+              321
+            ],
+            [
+              744,
+              328
+            ],
+            [
+              745,
+              334
+            ],
+            [
+              746,
+              340
+            ],
+            [
+              747,
+              343
+            ],
+            [
+              748,
+              346
+            ],
+            [
+              749,
+              349
+            ],
+            [
+              750,
+              352
+            ],
+            [
+              751,
+              354
+            ],
+            [
+              752,
+              357
+            ],
+            [
+              753,
+              360
+            ],
+            [
+              754,
+              361
+            ],
+            [
+              755,
+              361
+            ],
+            [
+              756,
+              362
+            ],
+            [
+              757,
+              362
+            ],
+            [
+              758,
+              362
+            ],
+            [
+              759,
+              362
+            ],
+            [
+              760,
+              362
+            ],
+            [
+              761,
+              362
+            ],
+            [
+              762,
+              362
+            ],
+            [
+              763,
+              362
+            ],
+            [
+              764,
+              361
+            ],
+            [
+              765,
+              361
+            ],
+            [
+              766,
+              360
+            ],
+            [
+              767,
+              360
+            ],
+            [
+              768,
+              360
+            ],
+            [
+              769,
+              360
+            ],
+            [
+              770,
+              360
+            ],
+            [
+              771,
+              359
+            ],
+            [
+              772,
+              359
+            ],
+            [
+              773,
+              358
+            ],
+            [
+              774,
+              357
+            ],
+            [
+              775,
+              357
+            ],
+            [
+              776,
+              356
+            ],
+            [
+              777,
+              354
+            ],
+            [
+              778,
+              352
+            ],
+            [
+              779,
+              349
+            ],
+            [
+              780,
+              348
+            ],
+            [
+              781,
+              346
+            ],
+            [
+              782,
+              343
+            ],
+            [
+              783,
+              340
+            ],
+            [
+              784,
+              336
+            ],
+            [
+              785,
+              337
+            ],
+            [
+              786,
+              330
+            ],
+            [
+              787,
+              326
+            ],
+            [
+              788,
+              322
+            ],
+            [
+              789,
+              319
+            ],
+            [
+              790,
+              315
+            ],
+            [
+              791,
+              311
+            ],
+            [
+              792,
+              308
+            ],
+            [
+              793,
+              304
+            ],
+            [
+              794,
+              299
+            ],
+            [
+              795,
+              301
+            ],
+            [
+              796,
+              291
+            ],
+            [
+              797,
+              288
+            ],
+            [
+              798,
+              284
+            ],
+            [
+              799,
+              281
+            ],
+            [
+              800,
+              277
+            ],
+            [
+              801,
+              274
+            ],
+            [
+              802,
+              271
+            ],
+            [
+              803,
+              268
+            ],
+            [
+              804,
+              264
+            ],
+            [
+              805,
+              259
+            ],
+            [
+              806,
+              256
+            ],
+            [
+              807,
+              251
+            ],
+            [
+              808,
+              248
+            ],
+            [
+              809,
+              244
+            ],
+            [
+              810,
+              240
+            ],
+            [
+              811,
+              241
+            ],
+            [
+              812,
+              232
+            ],
+            [
+              813,
+              228
+            ],
+            [
+              814,
+              229
+            ],
+            [
+              815,
+              221
+            ],
+            [
+              816,
+              219
+            ],
+            [
+              817,
+              215
+            ],
+            [
+              818,
+              210
+            ],
+            [
+              819,
+              189
+            ],
+            [
+              820,
+              158
+            ],
+            [
+              821,
+              56
+            ],
+            [
+              822,
+              14
+            ]
+          ],
+          "thickness": {
+            "px": 49,
+            "p10": 27,
+            "p90": 65,
+            "samples": 54,
+            "columns": [
+              327,
+              380
+            ],
+            "normalized": 0.06073024143667029
+          },
+          "thicknessNormalized": 0.06073024143667029
+        },
+        "left": {
+          "band": [
+            660,
+            845
+          ],
+          "maxWidthPx": 160,
+          "rowAtMaxWidth": 806,
+          "runsAtMaxWidth": [
+            [
+              3,
+              162
+            ]
+          ],
+          "widthProfile": [
+            [
+              660,
+              67
+            ],
+            [
+              661,
+              73
+            ],
+            [
+              662,
+              76
+            ],
+            [
+              663,
+              78
+            ],
+            [
+              664,
+              79
+            ],
+            [
+              665,
+              79
+            ],
+            [
+              666,
+              79
+            ],
+            [
+              667,
+              79
+            ],
+            [
+              668,
+              79
+            ],
+            [
+              669,
+              80
+            ],
+            [
+              670,
+              80
+            ],
+            [
+              671,
+              80
+            ],
+            [
+              672,
+              80
+            ],
+            [
+              673,
+              80
+            ],
+            [
+              674,
+              80
+            ],
+            [
+              675,
+              80
+            ],
+            [
+              676,
+              80
+            ],
+            [
+              677,
+              80
+            ],
+            [
+              678,
+              80
+            ],
+            [
+              679,
+              80
+            ],
+            [
+              680,
+              80
+            ],
+            [
+              681,
+              80
+            ],
+            [
+              682,
+              80
+            ],
+            [
+              683,
+              80
+            ],
+            [
+              684,
+              80
+            ],
+            [
+              685,
+              109
+            ],
+            [
+              686,
+              113
+            ],
+            [
+              687,
+              117
+            ],
+            [
+              688,
+              120
+            ],
+            [
+              689,
+              124
+            ],
+            [
+              690,
+              127
+            ],
+            [
+              691,
+              130
+            ],
+            [
+              692,
+              134
+            ],
+            [
+              693,
+              138
+            ],
+            [
+              694,
+              140
+            ],
+            [
+              695,
+              142
+            ],
+            [
+              696,
+              143
+            ],
+            [
+              697,
+              143
+            ],
+            [
+              698,
+              143
+            ],
+            [
+              699,
+              143
+            ],
+            [
+              700,
+              143
+            ],
+            [
+              701,
+              144
+            ],
+            [
+              702,
+              145
+            ],
+            [
+              703,
+              146
+            ],
+            [
+              704,
+              146
+            ],
+            [
+              705,
+              146
+            ],
+            [
+              706,
+              146
+            ],
+            [
+              707,
+              146
+            ],
+            [
+              708,
+              146
+            ],
+            [
+              709,
+              146
+            ],
+            [
+              710,
+              146
+            ],
+            [
+              711,
+              146
+            ],
+            [
+              712,
+              147
+            ],
+            [
+              713,
+              147
+            ],
+            [
+              714,
+              147
+            ],
+            [
+              715,
+              147
+            ],
+            [
+              716,
+              147
+            ],
+            [
+              717,
+              146
+            ],
+            [
+              718,
+              146
+            ],
+            [
+              719,
+              145
+            ],
+            [
+              720,
+              144
+            ],
+            [
+              721,
+              143
+            ],
+            [
+              722,
+              141
+            ],
+            [
+              723,
+              139
+            ],
+            [
+              724,
+              137
+            ],
+            [
+              725,
+              139
+            ],
+            [
+              726,
+              133
+            ],
+            [
+              727,
+              131
+            ],
+            [
+              728,
+              130
+            ],
+            [
+              729,
+              128
+            ],
+            [
+              730,
+              125
+            ],
+            [
+              731,
+              124
+            ],
+            [
+              732,
+              122
+            ],
+            [
+              733,
+              120
+            ],
+            [
+              734,
+              119
+            ],
+            [
+              735,
+              117
+            ],
+            [
+              736,
+              115
+            ],
+            [
+              737,
+              113
+            ],
+            [
+              738,
+              111
+            ],
+            [
+              739,
+              113
+            ],
+            [
+              740,
+              107
+            ],
+            [
+              741,
+              106
+            ],
+            [
+              742,
+              104
+            ],
+            [
+              743,
+              103
+            ],
+            [
+              744,
+              101
+            ],
+            [
+              745,
+              99
+            ],
+            [
+              746,
+              101
+            ],
+            [
+              747,
+              95
+            ],
+            [
+              748,
+              94
+            ],
+            [
+              749,
+              92
+            ],
+            [
+              750,
+              90
+            ],
+            [
+              751,
+              88
+            ],
+            [
+              752,
+              87
+            ],
+            [
+              753,
+              87
+            ],
+            [
+              754,
+              88
+            ],
+            [
+              755,
+              90
+            ],
+            [
+              756,
+              91
+            ],
+            [
+              757,
+              93
+            ],
+            [
+              758,
+              95
+            ],
+            [
+              759,
+              97
+            ],
+            [
+              760,
+              98
+            ],
+            [
+              761,
+              100
+            ],
+            [
+              762,
+              101
+            ],
+            [
+              763,
+              103
+            ],
+            [
+              764,
+              104
+            ],
+            [
+              765,
+              106
+            ],
+            [
+              766,
+              107
+            ],
+            [
+              767,
+              109
+            ],
+            [
+              768,
+              110
+            ],
+            [
+              769,
+              112
+            ],
+            [
+              770,
+              113
+            ],
+            [
+              771,
+              115
+            ],
+            [
+              772,
+              116
+            ],
+            [
+              773,
+              118
+            ],
+            [
+              774,
+              119
+            ],
+            [
+              775,
+              121
+            ],
+            [
+              776,
+              121
+            ],
+            [
+              777,
+              123
+            ],
+            [
+              778,
+              122
+            ],
+            [
+              779,
+              127
+            ],
+            [
+              780,
+              125
+            ],
+            [
+              781,
+              127
+            ],
+            [
+              782,
+              128
+            ],
+            [
+              783,
+              130
+            ],
+            [
+              784,
+              131
+            ],
+            [
+              785,
+              133
+            ],
+            [
+              786,
+              134
+            ],
+            [
+              787,
+              136
+            ],
+            [
+              788,
+              137
+            ],
+            [
+              789,
+              139
+            ],
+            [
+              790,
+              140
+            ],
+            [
+              791,
+              142
+            ],
+            [
+              792,
+              143
+            ],
+            [
+              793,
+              144
+            ],
+            [
+              794,
+              147
+            ],
+            [
+              795,
+              148
+            ],
+            [
+              796,
+              149
+            ],
+            [
+              797,
+              151
+            ],
+            [
+              798,
+              151
+            ],
+            [
+              799,
+              152
+            ],
+            [
+              800,
+              154
+            ],
+            [
+              801,
+              155
+            ],
+            [
+              802,
+              157
+            ],
+            [
+              803,
+              158
+            ],
+            [
+              804,
+              159
+            ],
+            [
+              805,
+              159
+            ],
+            [
+              806,
+              160
+            ],
+            [
+              807,
+              160
+            ],
+            [
+              808,
+              160
+            ],
+            [
+              809,
+              159
+            ],
+            [
+              810,
+              159
+            ],
+            [
+              811,
+              156
+            ],
+            [
+              812,
+              153
+            ],
+            [
+              813,
+              157
+            ],
+            [
+              814,
+              146
+            ],
+            [
+              815,
+              143
+            ],
+            [
+              816,
+              146
+            ],
+            [
+              817,
+              137
+            ],
+            [
+              818,
+              133
+            ],
+            [
+              819,
+              129
+            ],
+            [
+              820,
+              126
+            ],
+            [
+              821,
+              123
+            ],
+            [
+              822,
+              120
+            ],
+            [
+              823,
+              116
+            ],
+            [
+              824,
+              113
+            ],
+            [
+              825,
+              110
+            ],
+            [
+              826,
+              107
+            ],
+            [
+              827,
+              103
+            ],
+            [
+              828,
+              100
+            ],
+            [
+              829,
+              95
+            ],
+            [
+              830,
+              92
+            ],
+            [
+              831,
+              89
+            ],
+            [
+              832,
+              84
+            ],
+            [
+              833,
+              79
+            ],
+            [
+              834,
+              75
+            ],
+            [
+              835,
+              70
+            ],
+            [
+              836,
+              65
+            ],
+            [
+              837,
+              59
+            ],
+            [
+              838,
+              52
+            ],
+            [
+              839,
+              45
+            ],
+            [
+              840,
+              40
+            ],
+            [
+              841,
+              33
+            ],
+            [
+              842,
+              27
+            ],
+            [
+              843,
+              27
+            ],
+            [
+              844,
+              14
+            ],
+            [
+              845,
+              6
+            ]
+          ],
+          "thickness": {
+            "px": 41,
+            "p10": 28,
+            "p90": 50,
+            "samples": 24,
+            "columns": [
+              3,
+              26
+            ],
+            "normalized": 0.04799203886775418
+          },
+          "thicknessNormalized": 0.04799203886775418
+        },
+        "right": {
+          "band": [
+            645,
+            828
+          ],
+          "maxWidthPx": 156,
+          "rowAtMaxWidth": 690,
+          "runsAtMaxWidth": [
+            [
+              36,
+              191
+            ]
+          ],
+          "widthProfile": [
+            [
+              645,
+              69
+            ],
+            [
+              646,
+              72
+            ],
+            [
+              647,
+              74
+            ],
+            [
+              648,
+              75
+            ],
+            [
+              649,
+              77
+            ],
+            [
+              650,
+              77
+            ],
+            [
+              651,
+              77
+            ],
+            [
+              652,
+              77
+            ],
+            [
+              653,
+              77
+            ],
+            [
+              654,
+              77
+            ],
+            [
+              655,
+              77
+            ],
+            [
+              656,
+              77
+            ],
+            [
+              657,
+              77
+            ],
+            [
+              658,
+              77
+            ],
+            [
+              659,
+              77
+            ],
+            [
+              660,
+              77
+            ],
+            [
+              661,
+              77
+            ],
+            [
+              662,
+              77
+            ],
+            [
+              663,
+              77
+            ],
+            [
+              664,
+              77
+            ],
+            [
+              665,
+              77
+            ],
+            [
+              666,
+              77
+            ],
+            [
+              667,
+              77
+            ],
+            [
+              668,
+              77
+            ],
+            [
+              669,
+              77
+            ],
+            [
+              670,
+              77
+            ],
+            [
+              671,
+              110
+            ],
+            [
+              672,
+              114
+            ],
+            [
+              673,
+              117
+            ],
+            [
+              674,
+              120
+            ],
+            [
+              675,
+              123
+            ],
+            [
+              676,
+              126
+            ],
+            [
+              677,
+              129
+            ],
+            [
+              678,
+              132
+            ],
+            [
+              679,
+              135
+            ],
+            [
+              680,
+              137
+            ],
+            [
+              681,
+              139
+            ],
+            [
+              682,
+              140
+            ],
+            [
+              683,
+              141
+            ],
+            [
+              684,
+              143
+            ],
+            [
+              685,
+              147
+            ],
+            [
+              686,
+              150
+            ],
+            [
+              687,
+              154
+            ],
+            [
+              688,
+              155
+            ],
+            [
+              689,
+              155
+            ],
+            [
+              690,
+              156
+            ],
+            [
+              691,
+              156
+            ],
+            [
+              692,
+              156
+            ],
+            [
+              693,
+              156
+            ],
+            [
+              694,
+              156
+            ],
+            [
+              695,
+              156
+            ],
+            [
+              696,
+              156
+            ],
+            [
+              697,
+              156
+            ],
+            [
+              698,
+              156
+            ],
+            [
+              699,
+              156
+            ],
+            [
+              700,
+              156
+            ],
+            [
+              701,
+              155
+            ],
+            [
+              702,
+              155
+            ],
+            [
+              703,
+              154
+            ],
+            [
+              704,
+              154
+            ],
+            [
+              705,
+              153
+            ],
+            [
+              706,
+              153
+            ],
+            [
+              707,
+              151
+            ],
+            [
+              708,
+              150
+            ],
+            [
+              709,
+              148
+            ],
+            [
+              710,
+              147
+            ],
+            [
+              711,
+              145
+            ],
+            [
+              712,
+              143
+            ],
+            [
+              713,
+              140
+            ],
+            [
+              714,
+              138
+            ],
+            [
+              715,
+              140
+            ],
+            [
+              716,
+              134
+            ],
+            [
+              717,
+              133
+            ],
+            [
+              718,
+              130
+            ],
+            [
+              719,
+              133
+            ],
+            [
+              720,
+              126
+            ],
+            [
+              721,
+              125
+            ],
+            [
+              722,
+              122
+            ],
+            [
+              723,
+              125
+            ],
+            [
+              724,
+              118
+            ],
+            [
+              725,
+              116
+            ],
+            [
+              726,
+              118
+            ],
+            [
+              727,
+              112
+            ],
+            [
+              728,
+              110
+            ],
+            [
+              729,
+              108
+            ],
+            [
+              730,
+              111
+            ],
+            [
+              731,
+              104
+            ],
+            [
+              732,
+              103
+            ],
+            [
+              733,
+              100
+            ],
+            [
+              734,
+              99
+            ],
+            [
+              735,
+              96
+            ],
+            [
+              736,
+              94
+            ],
+            [
+              737,
+              92
+            ],
+            [
+              738,
+              90
+            ],
+            [
+              739,
+              89
+            ],
+            [
+              740,
+              88
+            ],
+            [
+              741,
+              87
+            ],
+            [
+              742,
+              88
+            ],
+            [
+              743,
+              89
+            ],
+            [
+              744,
+              91
+            ],
+            [
+              745,
+              92
+            ],
+            [
+              746,
+              93
+            ],
+            [
+              747,
+              94
+            ],
+            [
+              748,
+              96
+            ],
+            [
+              749,
+              97
+            ],
+            [
+              750,
+              99
+            ],
+            [
+              751,
+              100
+            ],
+            [
+              752,
+              101
+            ],
+            [
+              753,
+              103
+            ],
+            [
+              754,
+              104
+            ],
+            [
+              755,
+              105
+            ],
+            [
+              756,
+              106
+            ],
+            [
+              757,
+              108
+            ],
+            [
+              758,
+              109
+            ],
+            [
+              759,
+              110
+            ],
+            [
+              760,
+              111
+            ],
+            [
+              761,
+              112
+            ],
+            [
+              762,
+              114
+            ],
+            [
+              763,
+              115
+            ],
+            [
+              764,
+              116
+            ],
+            [
+              765,
+              118
+            ],
+            [
+              766,
+              119
+            ],
+            [
+              767,
+              124
+            ],
+            [
+              768,
+              122
+            ],
+            [
+              769,
+              123
+            ],
+            [
+              770,
+              124
+            ],
+            [
+              771,
+              126
+            ],
+            [
+              772,
+              127
+            ],
+            [
+              773,
+              128
+            ],
+            [
+              774,
+              130
+            ],
+            [
+              775,
+              131
+            ],
+            [
+              776,
+              132
+            ],
+            [
+              777,
+              133
+            ],
+            [
+              778,
+              134
+            ],
+            [
+              779,
+              136
+            ],
+            [
+              780,
+              137
+            ],
+            [
+              781,
+              138
+            ],
+            [
+              782,
+              139
+            ],
+            [
+              783,
+              141
+            ],
+            [
+              784,
+              142
+            ],
+            [
+              785,
+              143
+            ],
+            [
+              786,
+              145
+            ],
+            [
+              787,
+              146
+            ],
+            [
+              788,
+              147
+            ],
+            [
+              789,
+              148
+            ],
+            [
+              790,
+              149
+            ],
+            [
+              791,
+              148
+            ],
+            [
+              792,
+              145
+            ],
+            [
+              793,
+              143
+            ],
+            [
+              794,
+              140
+            ],
+            [
+              795,
+              137
+            ],
+            [
+              796,
+              135
+            ],
+            [
+              797,
+              132
+            ],
+            [
+              798,
+              129
+            ],
+            [
+              799,
+              126
+            ],
+            [
+              800,
+              123
+            ],
+            [
+              801,
+              121
+            ],
+            [
+              802,
+              117
+            ],
+            [
+              803,
+              114
+            ],
+            [
+              804,
+              112
+            ],
+            [
+              805,
+              115
+            ],
+            [
+              806,
+              105
+            ],
+            [
+              807,
+              103
+            ],
+            [
+              808,
+              105
+            ],
+            [
+              809,
+              97
+            ],
+            [
+              810,
+              94
+            ],
+            [
+              811,
+              92
+            ],
+            [
+              812,
+              88
+            ],
+            [
+              813,
+              84
+            ],
+            [
+              814,
+              82
+            ],
+            [
+              815,
+              79
+            ],
+            [
+              816,
+              76
+            ],
+            [
+              817,
+              71
+            ],
+            [
+              818,
+              66
+            ],
+            [
+              819,
+              60
+            ],
+            [
+              820,
+              54
+            ],
+            [
+              821,
+              49
+            ],
+            [
+              822,
+              48
+            ],
+            [
+              823,
+              36
+            ],
+            [
+              824,
+              31
+            ],
+            [
+              825,
+              24
+            ],
+            [
+              826,
+              18
+            ],
+            [
+              827,
+              12
+            ],
+            [
+              828,
+              5
+            ]
+          ],
+          "thickness": {
+            "px": 34,
+            "p10": 20,
+            "p90": 44,
+            "samples": 23,
+            "columns": [
+              169,
+              191
+            ],
+            "normalized": 0.04493827489695927
+          },
+          "thicknessNormalized": 0.04493827489695927
+        }
+      },
+      "lateralExtent": {
+        "adopted": 0.19814460883853258,
+        "front": [
+          0.1943341355916377,
+          0.20195508208542742
+        ],
+        "back": [
+          0.1983028291809642,
+          0.19210586576905908
+        ],
+        "crossViewSpread": 0.002940261363520935
+      },
+      "foreAftExtent": {
+        "adopted": 0.19673669213828346,
+        "left": 0.1872860053375773,
+        "right": 0.2061873789389896,
+        "crossViewSpread": 0.018901373601412308
+      },
+      "thickness": {
+        "adopted": 0.055562268411372795,
+        "perView": {
+          "front": 0.06858851844410743,
+          "back": 0.06073024143667029,
+          "left": 0.04799203886775418,
+          "right": 0.04493827489695927
+        },
+        "crossViewSpread": 0.02365024354714816
+      },
+      "splayDeg": {
+        "derived": 45.3812008042821,
+        "priorProjectionRatio": {
+          "left": 47.158247559981405,
+          "right": 44.40588377994643
+        },
+        "method": "solved from A/B with the adopted L/W AND the end chamfer, against the same eight-point outline the factory builds; poseAngles.footSplayDeg is atan2(A, B), the bounding-box diagonal, which is biased toward 45"
+      },
+      "planCheck": {
+        "builtLateral": 0.19814460883853258,
+        "builtForeAft": 0.1967366921382835,
+        "lateralResidual": 0.0,
+        "foreAftResidual": 2.7755575615628914e-17,
+        "note": "the chamfered outline's own bbox, recomputed from the solved plan. Both residuals must be ~0: they are what the first solve got wrong."
+      },
+      "planTrapezoid": {
+        "heelWidth": 0.0971657640237917,
+        "toeWidth": 0.06995935009713003,
+        "length": 0.2331978336571001,
+        "endChamfer": 0.01889117125986675,
+        "frame": "foot-local: +z toward the toe, +x toward the figure's left, origin at the slab's plan centroid, bottom face on y=0"
+      },
+      "crossViewCheck": {
+        "measurementUncertainty": 0.05447382376324872,
+        "worst": 0.02365024354714816,
+        "verdict": "PASS"
+      }
+    }
+  }
+}
