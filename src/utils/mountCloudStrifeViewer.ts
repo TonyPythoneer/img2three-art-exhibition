@@ -125,22 +125,39 @@ function buildAssembled(): THREE.Group {
     );
   }
   // Then let a part that hangs off a socket take that socket's position instead of the
-  // ledger's. Restricted to the same module so a sided socket never captures the other leg.
-  // ponytail: re-runs the whole pass once per part instead of topologically sorting the
-  // chain. 23 parts, so it is 529 comparisons of a Map lookup; sort it if that ever matters.
-  const hosts = new Map<string, { host: string; socket: THREE.Vector3 }>();
+  // ledger's.
+  //
+  // §4's ledger has TWO naming rules and the match has to obey both:
+  //
+  //   - "A sided emitter carries the L/R suffix (`hipL` mates with thighL's `hip`)". So a
+  //     part called thighL whose origin is `hip` looks for `hipL` FIRST and only then for
+  //     a plain `hip`. Without that the pelvis's two hip sockets match neither thigh.
+  //   - Unsided names mate directly — but `soleTop` is emitted by BOTH ankleL and ankleR,
+  //     so an unsided name still has to prefer an emitter in the same module or the left
+  //     sole ends up hanging off the right cuff.
+  //
+  // The chain also crosses modules: pelvis is `torso` and the thighs are `legLeft` /
+  // `legRight`. A same-module restriction is what kept the legs detached from the hips, so
+  // it is a PREFERENCE now, not a filter.
+  //
+  // ponytail: re-runs the whole placement pass once per part instead of topologically
+  // sorting the chain. 23 parts, so 529 Map lookups; sort it if that ever matters.
+  const sideOf = (name: string) => (name.endsWith("L") ? "L" : name.endsWith("R") ? "R" : "");
+  const hosts = new Map<string, { host: string; socket: THREE.Vector3; via: string }>();
   for (const { entry } of built) {
-    const parent = built.find(
-      (b) =>
-        b.entry.name !== entry.name &&
-        b.entry.module === entry.module &&
-        socketsOf(b.part)[entry.origin],
-    );
-    if (parent)
-      hosts.set(entry.name, {
-        host: parent.entry.name,
-        socket: socketsOf(parent.part)[entry.origin]!,
-      });
+    const wanted = [entry.origin + sideOf(entry.name), entry.origin].filter(Boolean);
+    let found: { host: string; socket: THREE.Vector3; via: string } | undefined;
+    for (const name of wanted) {
+      const candidates = built.filter(
+        (b) => b.entry.name !== entry.name && socketsOf(b.part)[name],
+      );
+      const parent = candidates.find((b) => b.entry.module === entry.module) ?? candidates[0];
+      if (parent) {
+        found = { host: parent.entry.name, socket: socketsOf(parent.part)[name]!, via: name };
+        break;
+      }
+    }
+    if (found) hosts.set(entry.name, found);
   }
   for (let pass = 0; pass < built.length; pass += 1) {
     for (const [name, { host, socket }] of hosts) {
@@ -161,7 +178,7 @@ function buildAssembled(): THREE.Group {
     part.position.copy(at.get(entry.name)!);
     mod.add(part);
   }
-  const hung = [...hosts].map(([name, h]) => `${name}<-${h.host}`).join(", ");
+  const hung = [...hosts].map(([name, h]) => `${name}<-${h.host}.${h.via}`).join(", ");
   root.userData.provenance =
     `${built.length} of 23 Stage 1 parts, placed by the socket ledger` +
     (hung ? `; hung from a socket: ${hung}` : "") +
@@ -391,7 +408,10 @@ export function mountCloudStrifeViewer(
       vertices: number[][];
       indices: number[];
       material: { type: string; flatShading: unknown; color: string };
+      /** Where this part's own frame sits in the figure, so a gate can check placement. */
+      world: number[];
     }> = [];
+    model.updateMatrixWorld(true);
     model.traverse((object) => {
       if (!(object instanceof THREE.Mesh)) return;
       const geometry = object.geometry as THREE.BufferGeometry;
@@ -417,6 +437,12 @@ export function mountCloudStrifeViewer(
           flatShading: material?.flatShading,
           color: material?.color ? `#${material.color.getHexString()}` : "none",
         },
+        // The part GROUP's world origin, not the mesh's. Vertex data is local, so without
+        // this an assembled capture cannot answer the one question the assembled view
+        // exists to answer: did each part actually land on its host's socket? The pair
+        // preview learned that the hard way — it agreed on Y by arithmetic while silently
+        // dropping Z, and no export could show it.
+        world: (object.parent ?? object).getWorldPosition(new THREE.Vector3()).toArray(),
       });
     });
     // §4 fixes ONE socket shape: `group.userData.sockets = { <name>: THREE.Vector3 }`.

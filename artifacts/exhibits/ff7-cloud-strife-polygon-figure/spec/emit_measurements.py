@@ -31,6 +31,7 @@ ANKLE = LM["parts"]["ankle"]
 NECK = LM["parts"]["neck"]
 WAIST = LM["parts"]["waist"]
 LEG = LM["parts"]["pantLeg"]
+PELVIS = LM["parts"]["pelvis"]
 
 def num(value: float) -> str:
     return repr(round(float(value), 8))
@@ -116,6 +117,27 @@ def main() -> None:
         f"  thighHeight: {num(y['hip'] - y['kneeTop'])},",
         f"  kneeHeight: {num(y['kneeTop'] - y['calfTop'])},",
         f"  calfHeight: {num(y['calfTop'] - y['ankleTop'])},",
+        "} as const;",
+        "",
+        "/**",
+        " * S-06 pelvisKite. The largest volume in the LOWER body and the part that decides its",
+        " * silhouette. Front outline a pentagon, profile a front/back-symmetric kite.",
+        " *",
+        " * §4[6] also says 'the widest point must be WIDER THAN THE SHOULDERS'. Measured, that",
+        " * is FALSE: hip 0.28325 against a shoulder line of 0.37978, a gap of 0.0965 against an",
+        " * uncertainty of 0.05447 — decided, not undecided. It IS wider than the chest slab, by",
+        " * 0.0851. §0.6 says the script wins, so these are the measured numbers.",
+        " */",
+        "export const PELVIS = {",
+        f"  height: {num(PELVIS['adopted']['height'])},",
+        f"  widthAtTop: {num(PELVIS['adopted']['widthAtTop'])},",
+        f"  depthAtTop: {num(PELVIS['adopted']['depthAtTop'])},",
+        f"  widestWidth: {num(PELVIS['adopted']['widestWidth'])},",
+        f"  maxDepth: {num(PELVIS['adopted']['maxDepth'])},",
+        "  /** How far BELOW pelvisTop the widest ring sits. */",
+        f"  widestDrop: {num(PELVIS['adopted']['topHeight'] - PELVIS['adopted']['widestHeight'])},",
+        f"  notchWidth: {num(PELVIS['adopted']['notchWidth'])},",
+        f"  hipOffsetX: {num(PELVIS['hipSocketX']['adopted'])},",
         "} as const;",
         "",
         "/** S-14 neckColumn. CylinderGeometry(r, r, h, radialSegments=8) with flatShading. */",

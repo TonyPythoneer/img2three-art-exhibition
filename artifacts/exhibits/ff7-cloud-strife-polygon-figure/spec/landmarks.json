@@ -4572,6 +4572,97 @@
         "readingB": "`hip` stays at the crotch; the taper belongs to the pelvis and thigh/knee/calf all live below the crotch, where the outer line is already vertical and \u00a75.7's corner has nothing to find.",
         "chosen": "B, refined. \u00a74[6] describes the PELVIS's own outline as flaring to the widest point and THEN PULLING IN to the crotch notch, so the inward taper above the crotch is the pelvis's, not the thigh's. The thigh/knee/calf chain is fitted from the crotch DOWN, where the two legs are separate runs and a per-leg section exists at all. `hip` stays at crotchNotchApex; what changes is this script's fit range, which was the thing that was wrong."
       }
+    },
+    "pelvis": {
+      "generatedBy": "spec/measure_pelvis.py",
+      "band": "purple",
+      "pentagon": {
+        "front": {
+          "widthAtPelvisTop": 0.14352782563303962,
+          "widestWidth": 0.28324517801918436,
+          "widestHeight": 0.33151117247985257,
+          "crotchNotchHeight": 0.2718137582784998,
+          "notchWidth": 0.049536152209633144
+        },
+        "back": {
+          "widthAtPelvisTop": 0.11278473409667339,
+          "widestWidth": 0.29869363645382735,
+          "widestHeight": 0.30984817059525654,
+          "crotchNotchHeight": 0.24911792915858627,
+          "notchWidth": null
+        }
+      },
+      "kite": {
+        "left": {
+          "depthAtPelvisTop": 0.028092900800636596,
+          "maxDepth": 0.14280557906990268,
+          "maxDepthHeight": 0.3336031970075596,
+          "frontReach": 0.08954612130202914,
+          "backReach": 0.05208892023451368,
+          "frontBackAsymmetry": 0.03745720106751546
+        },
+        "right": {
+          "depthAtPelvisTop": 0.10838054533972531,
+          "maxDepth": 0.1546405342042422,
+          "maxDepthHeight": 0.35950619917567417,
+          "frontReach": 0.058816271556314345,
+          "backReach": 0.09450254868037024,
+          "frontBackAsymmetry": 0.03568627712405589
+        }
+      },
+      "kiteSymmetry_4_6": {
+        "worstAsymmetry": 0.03745720106751546,
+        "measurementUncertainty": 0.05447382376324872,
+        "verdict": "PASS (front/back symmetric)",
+        "note": "self-check B was INDETERMINATE on the SILHOUETTE because the glove sits in front of the hip. On the purple band the glove is not there at all \u2014 it is near-black \u2014 so the outline is the trouser's own."
+      },
+      "hipSocketX": {
+        "perView": {
+          "front": {
+            "legCentreOffsetX": 0.0692235973185899,
+            "signedFromImage": [
+              -0.06731836069514248,
+              0.0692235973185899
+            ]
+          }
+        },
+        "adopted": 0.0692235973185899,
+        "crossViewSpread": 0.0
+      },
+      "adopted": {
+        "height": 0.2628391488550173,
+        "topHeight": 0.5233049925735603,
+        "crotchHeight": 0.26046584371854303,
+        "widthAtTop": 0.1281562798648565,
+        "widestWidth": 0.2909694072365059,
+        "widestHeight": 0.32067967153755456,
+        "depthAtTop": 0.06823672307018096,
+        "maxDepth": 0.14872305663707244,
+        "maxDepthHeight": 0.3465546980916169,
+        "notchWidth": 0.049536152209633144,
+        "widthSpread": 0.015448458434642987,
+        "depthSpread": 0.01183495513433952
+      },
+      "widestPoint_4_6": {
+        "claim": "\u00a74[6]: the widest point must be WIDER THAN THE SHOULDERS",
+        "measuredHipWidth": 0.2909694072365059,
+        "shoulderWidth": 0.37977716694052077,
+        "chestSlabWidth": 0.19814460883853258,
+        "vsShoulderLine": {
+          "hipWidth": 0.28324517801918436,
+          "shoulderWidth": 0.37977716694052077,
+          "margin": -0.09653198892133641,
+          "verdict": "FAIL"
+        },
+        "vsChestSlab": {
+          "hipWidth": 0.28324517801918436,
+          "chestWidth": 0.19814460883853258,
+          "margin": 0.08510056918065179,
+          "verdict": "PASS"
+        },
+        "verdict": "the claim is FALSE against the shoulder LINE and TRUE against the chest SLAB. The shoulder line's 0.37978 is the whole silhouette across both deltoids, which is what a shoulder width is; the hip's 0.28325 is nowhere near it, and the gap is 0.0965 against an uncertainty of 0.05447 \u2014 decided, not undecided.",
+        "applied": "the measurement. \u00a70.6: where a script disagrees with this document, THE SCRIPT WINS. The pelvis is built at its measured width and stays the widest thing in the LOWER body, which is what \u00a74[6]'s other sentence \u2014 'the largest volume in the model and the part that decides the silhouette' \u2014 is actually about."
+      }
     }
   }
 }

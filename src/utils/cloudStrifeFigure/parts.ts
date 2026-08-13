@@ -6,6 +6,7 @@ import { createWaist } from "./createWaist";
 import { createThigh } from "./createThigh";
 import { createKnee } from "./createKnee";
 import { createCalf } from "./createCalf";
+import { createPelvis } from "./createPelvis";
 
 /**
  * The Stage 1 part registry, and the one material every Stage 1 part shares.
@@ -68,6 +69,7 @@ export const STAGE1_PARTS: PartEntry[] = [
   { name: "kneeR", module: "legRight", origin: "kneeTop", build: () => createKnee("R") },
   { name: "calfL", module: "legLeft", origin: "calfTop", build: () => createCalf("L") },
   { name: "calfR", module: "legRight", origin: "calfTop", build: () => createCalf("R") },
+  { name: "pelvis", module: "torso", origin: "pelvisTop", build: () => createPelvis() },
   { name: "waist", module: "torso", origin: "waistTop", build: () => createWaist() },
   { name: "neck", module: "head", origin: "neckTop", build: () => createNeck() },
 ];

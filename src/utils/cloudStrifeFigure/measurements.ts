@@ -84,6 +84,27 @@ export const PANT_LEG = {
   calfHeight: 0.03262855,
 } as const;
 
+/**
+ * S-06 pelvisKite. The largest volume in the LOWER body and the part that decides its
+ * silhouette. Front outline a pentagon, profile a front/back-symmetric kite.
+ *
+ * §4[6] also says 'the widest point must be WIDER THAN THE SHOULDERS'. Measured, that
+ * is FALSE: hip 0.28325 against a shoulder line of 0.37978, a gap of 0.0965 against an
+ * uncertainty of 0.05447 — decided, not undecided. It IS wider than the chest slab, by
+ * 0.0851. §0.6 says the script wins, so these are the measured numbers.
+ */
+export const PELVIS = {
+  height: 0.26283915,
+  widthAtTop: 0.12815628,
+  depthAtTop: 0.06823672,
+  widestWidth: 0.29096941,
+  maxDepth: 0.14872306,
+  /** How far BELOW pelvisTop the widest ring sits. */
+  widestDrop: 0.20262532,
+  notchWidth: 0.04953615,
+  hipOffsetX: 0.0692236,
+} as const;
+
 /** S-14 neckColumn. CylinderGeometry(r, r, h, radialSegments=8) with flatShading. */
 export const NECK = {
   radius: 0.01975886,
