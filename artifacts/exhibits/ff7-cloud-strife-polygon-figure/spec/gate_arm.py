@@ -80,6 +80,34 @@ def main(argv: list[str]) -> int:
         g = rings[y]
         return len(g), max(p[0] for p in g) - min(p[0] for p in g), max(p[2] for p in g) - min(p[2] for p in g)
 
+    # THE ASSERTION THIS GATE WAS MISSING, and it is the reason 50 of them passed on a
+    # model that was 29% too narrow: every other check here compares the MODEL TO ITSELF —
+    # the two seams to each other, the two sides to each other, the vertex counts. Not one
+    # compared the BUILT geometry to the MEASUREMENT it was built from, so `ngon()`
+    # inscribing its polygon in the section's ellipse (extent w·cos(π/n): 0.707 w for a
+    # quad, 0.866 w for a hexagon) was invisible. Both seams shrank equally, both sides
+    # shrank equally, and every assertion stayed green.
+    #
+    # A part gate with no built-vs-measured line proves the factory implemented itself.
+    built_vs_measured = [
+        ("upperDeltoidL", True, "shoulder"),
+        ("upperDeltoidL", False, "deltoidWaist"),
+        ("lowerDeltoidL", True, "deltoidWaist"),
+        ("lowerDeltoidL", False, "backArmTop"),
+        ("backArmL", True, "backArmTop"),
+        ("frontArmL", True, "backArmTop"),
+    ]
+    for part, top, key in built_vs_measured:
+        n, bw, bd = section(part, top)
+        mw = ARM["sections"][key]["width"]
+        md = ARM["sections"][key]["depth"]
+        add(
+            f"§0.6 {part} {'top' if top else 'bottom'} section IS the measurement",
+            abs(bw - mw) < 1e-6 and abs(bd - md) < 1e-6,
+            f"built {bw:.6f} x {bd:.6f} vs measured {mw:.6f} x {md:.6f} "
+            f"(ratio {bw / mw:.4f} x {bd / md:.4f})",
+        )
+
     # §4[10]: quad -> hexagon, and §4[9]: hexagon -> quad
     for side in ("L", "R"):
         add(

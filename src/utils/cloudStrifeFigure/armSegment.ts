@@ -2,7 +2,21 @@ import * as THREE from "three";
 import { MANNEQUIN } from "./parts";
 import { ARM } from "./measurements";
 
-/** A ring of `n` points, an inscribed polygon of a w x d rectangle at height y. */
+/**
+ * A ring of `n` points whose bounding box is EXACTLY w x d at height y.
+ *
+ * The first version inscribed the polygon in the w x d ellipse, so its actual extent came
+ * out as w·cos(π/n): 0.707 w for a quad, 0.866 w for a hexagon. Every part built through
+ * it — eight arm parts and the head — was 13% to 29% narrower than the number it was
+ * given, and the quads were not even the right SHAPE: points at ±45° make a diamond, where
+ * §4[11] asks for "a rectangular prism, near-square section".
+ *
+ * That is why the arms read as stubs, the shoulders came out narrower than the pelvis and
+ * the head rendered as a cone. It had nothing to do with the measurements.
+ *
+ * Normalising by the extremes puts the extent back on w and d exactly, and for n=4 it
+ * lands the four points on the corners of the rectangle — the prism §4[11] specifies.
+ */
 export function ngon(
   n: number,
   w: number,
@@ -10,12 +24,10 @@ export function ngon(
   y: number,
   lean: number,
 ): Array<[number, number, number]> {
-  const out: Array<[number, number, number]> = [];
-  for (let i = 0; i < n; i += 1) {
-    const a = (i / n) * Math.PI * 2 + Math.PI / n;
-    out.push([Math.cos(a) * (w / 2), y, Math.sin(a) * (d / 2) + lean]);
-  }
-  return out;
+  const angles = Array.from({ length: n }, (_, i) => (i / n) * Math.PI * 2 + Math.PI / n);
+  const cx = Math.max(...angles.map((a) => Math.abs(Math.cos(a))));
+  const cz = Math.max(...angles.map((a) => Math.abs(Math.sin(a))));
+  return angles.map((a) => [(Math.cos(a) / cx) * (w / 2), y, (Math.sin(a) / cz) * (d / 2) + lean]);
 }
 
 /**
