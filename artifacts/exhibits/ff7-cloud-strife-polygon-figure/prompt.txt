@@ -106,14 +106,30 @@ re-measure, re-author every part.
       "Dispatching this would be faster" and "this is purely mechanical" are
       not reasons.
 
-0.3 ONE PART PER TURN. A part's turn ends when every gate in §5 that applies to it
-    has been run and recorded. Then STOP and hand over, in one reply:
-      - the part's render (§5.1) and its orbit renders (§5.2),
-      - the reference crop and the render side by side at 6-8x NEAREST (§5.3),
-      - the numeric result of every §5 gate, each marked PASS or FAIL.
-    Then wait for the user to say continue / refine-spec / refine-code.
-    Never do two parts back to back. Never declare a part "passed" yourself.
-    Never decide to enter the next stage yourself.
+0.3 DECIDE AND KEEP GOING. A part's turn ends when every gate in §5 that applies to it
+    has been run and recorded. Then RULE on it yourself — continue / refine-spec /
+    refine-code — record the ruling, say what the numbers were, and start the next part.
+
+    Report in the same reply: the part's render (§5.1) and its orbit renders (§5.2), the
+    reference crop and the render side by side at 6-8x NEAREST (§5.3), and the numeric
+    result of every §5 gate marked PASS or FAIL — including the ones that failed.
+
+    This REPLACES the former "stop and wait for the user on every part". That rule was
+    written when the agent's judgement was the weak link; it is not any more, and a run
+    that stops twenty-three times to ask permission costs more than one that stops when
+    something is genuinely undecidable. Asking on every part is a sign the planning was
+    not finished, not a sign of care.
+
+    ⚠ STOP AND ASK only when ALL THREE hold:
+        a) the decision changes work already committed,
+        b) the evidence genuinely does not settle it, and
+        c) proceeding under either reading would waste the work.
+      A gate that fails for a reason you can name and fix is NOT that — fix it. A
+      threshold that cannot be pinned with a fake frame IS that: a guessed threshold is
+      worse than no gate, so stop rather than invent one.
+
+    What does not change: never declare a part passed that the gates did not pass, never
+    loosen an assertion to make one pass, and never hide a failing number.
 
 0.4 Inspect every joint at 6-8x NEAREST. A crop at native resolution does not
     count as having looked. Cut crops at JOINTS, not at material boundaries.
@@ -845,6 +861,24 @@ result numerically; "looks right" is not a result.
         --render <abs path to the part's render> \
         --spec ART/spec/object-sculpt-spec.json --pass-id <pass> --in-place
     --spec is required for --in-place to have anywhere to write.
+
+    ⚠ THE REFERENCE MUST CONTAIN THE SAME PARTS THE RENDER DOES. Run against the whole
+      figure at Stage 1 and Tier 1 returns silhouette IoU 0.201, aspect delta 0.645, scale
+      delta 0.781 — and none of that is about shape. The top ~28% of front.webp is HAIR,
+      Stage 2 has not run, so the two silhouettes differ by a quarter of the figure's
+      height before any shape question is asked. The aspect delta IS the missing hair.
+
+      This is the same class of error as measuring the belt on the silhouette and getting
+      the arm span: the wrong instrument, applied confidently, producing a number that
+      looks like a verdict on the model. A blockout can only be scored against a
+      reference containing the parts the blockout has.
+
+      So at Stage 1, §5.1 runs PER PART against that part's own reference crop, which is
+      what the line above already says ("the part's reference crop"). The WHOLE-FIGURE
+      silhouette comparison belongs to §7.6, which already requires skull + hairCap to
+      reproduce back.webp's outer silhouette, and to §8.5b's four-view re-check. Recording
+      a whole-figure Tier 1 at Stage 1 is recording the instrument's error, not the
+      model's.
 
 5.2 forge/stage4_review/diagnose_render_multi_angle.py --reference <fixed view>
     --orbit <view> --orbit <view> (at least two --orbit flags) — every part here

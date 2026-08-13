@@ -22,18 +22,23 @@ user calls for it by hand.
 
 The split still exists — it just moved from agent↔agent to agent↔user:
 
-|                             | What                                                                                                                      | Who                                                 |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| **Reading**                 | Reading the references, inspecting joints under zoom, writing the guess list                                              | Main agent                                          |
-| **Producing**               | Writing `.ts`/`.py`/`.mjs`/`.json`, running forge scripts and gates, measurement scripts, build/test, wiring              | Main agent                                          |
-| **Accepting and advancing** | Judging a render `continue`/`refine-spec`/`refine-code`, choosing the next part, deciding whether to enter the next stage | **The user.** The agent must not advance on its own |
+|                             | What                                                                                                         | Who                                                                                                                                                           |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Reading**                 | Reading the references, inspecting joints under zoom, writing the guess list                                 | Main agent                                                                                                                                                    |
+| **Producing**               | Writing `.ts`/`.py`/`.mjs`/`.json`, running forge scripts and gates, measurement scripts, build/test, wiring | Main agent                                                                                                                                                    |
+| **Accepting and advancing** | Judging a render `continue`/`refine-spec`/`refine-code`, choosing the next part, entering the next stage     | **The agent**, on the gates' evidence, recorded in the spec. The user sets direction and intervenes when they want to — they are not a per-part approval step |
 
-Cadence: **one part per turn**. When the gates finish, stop. Hand over the render, the reference
-crop side by side at 6–8× NEAREST, and the gate numbers, then wait. Never do two parts back to
-back. Never declare a part "passed" yourself.
+Cadence: **rule on the part, report it, start the next one.** When the gates finish, decide
+`continue` / `refine-spec` / `refine-code` yourself on the evidence they produced, record it, and
+hand over the render, the reference crop side by side at 6–8× NEAREST, and every gate number —
+including the ones that failed. Then keep going.
 
-This rule governs only **advancement after the gates**. An ambiguous reading follows the Modelling
-rules below: pick a default, proceed, and say so. Do not stall.
+Stop and ask only when the decision changes committed work AND the evidence genuinely does not
+settle it AND either reading would waste the work. An ambiguous _reading_ is never that: pick a
+default, proceed, and say so. Do not stall.
+
+Never declare a part "passed" that the gates did not pass, and never loosen an assertion to make
+one pass. Those are the limits; the approval step is not.
 
 Deliverables are always **files plus a rerunnable command**, never a conclusion in chat.
 
@@ -159,9 +164,24 @@ Four hard rules:
 
 ## New model: collaboration cadence
 
-- **One part per turn.** When the gates finish, stop and hand over the render, the reference crop
-  at 6–8× NEAREST side by side, and the gate numbers. Wait for the user to call
-  `continue` / `refine-spec` / `refine-code`. Never do two in a row, never self-certify.
+- **Decide, then keep going. Do not ask for `continue`.** The verdict after a gate run —
+  `continue` / `refine-spec` / `refine-code` — is the AGENT's to make and to record, on the
+  evidence the gates produced. Report what the numbers say and what you decided, then do the next
+  thing.
+
+  This replaces the old "one part per turn, stop and wait" rule, which was written when the
+  agent's judgement was the weak link. It is not any more; the weak link now is momentum. Asking
+  the user to rule on every part means the planning was not finished, and a run that stops
+  twenty-three times costs more than one that stops when something is genuinely undecidable.
+
+  **Stop and ask ONLY when all three hold:** the decision changes work already committed, the
+  evidence genuinely does not settle it, and proceeding under either reading would be wasted
+  effort. A gate that fails for a reason you can name and fix is not that — fix it. A threshold
+  that cannot be pinned with a fake frame IS that — a guessed threshold is worse than none.
+
+  What does not change: never self-certify a part the gates did not pass, never loosen an
+  assertion to make one pass, and always report the numbers, including the ones that failed.
+
 - **Scale the correction budget to the part count.**
   `state.py init --max-per-pass 3 --max-total N`, where N ≈ factories × 3 plus headroom for
   integration and the later stages. **Leave per-pass at 3** — if the same part has been corrected
