@@ -3666,44 +3666,44 @@
     "waist": {
       "generatedBy": "spec/measure_waist.py",
       "widthX": {
-        "normalized": 0.39247874,
+        "normalized": 0.13209641,
         "perView": {
-          "front": 0.39247874
+          "front": 0.13209641
         },
-        "frontTop": 0.35818449,
-        "frontBottom": 0.43058348
+        "frontTop": 0.13463672,
+        "frontBottom": 0.01016126
       },
       "depthZ": {
-        "normalized": 0.09646136,
+        "normalized": 0.06270151,
         "perView": {
-          "left": 0.09247247,
-          "right": 0.10045026
+          "left": 0.08310816,
+          "right": 0.04229485
         }
       },
       "heightY": -0.04318536,
       "proudMargins": {
         "perView": {
           "front": {
-            "chestWidth": 0.35818449,
-            "pelvisWidth": 0.43185363,
-            "beltWidth": 0.39247874,
-            "proudOfChest": 0.03429426,
-            "proudOfPelvis": -0.03937489
+            "chestWidth": 0.10923357,
+            "pelvisWidth": 0.14606814,
+            "beltWidth": 0.13209641,
+            "proudOfChest": 0.02286284,
+            "proudOfPelvis": -0.01397174
           },
           "back": {
-            "chestWidth": 0.37429659,
-            "pelvisWidth": 0.43502683,
-            "beltWidth": 0.39164809,
-            "proudOfChest": 0.0173515,
-            "proudOfPelvis": -0.04337874
+            "chestWidth": 0.14005137,
+            "pelvisWidth": 0.11278473,
+            "beltWidth": 0.14005137,
+            "proudOfChest": 0.0,
+            "proudOfPelvis": 0.02726664
           }
         },
-        "avgProudOfChest": 0.02582288,
-        "avgProudOfPelvis": -0.04137681
+        "avgProudOfChest": 0.01143142,
+        "avgProudOfPelvis": 0.00664745
       },
       "crossViewSpread": {
         "width": 0.0,
-        "depth": 0.0079778
+        "depth": 0.04081332
       }
     },
     "pantLeg": {

@@ -18,6 +18,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import measure_landmarks as ML
 import refmask as R
 
 HERE = Path(__file__).resolve().parent
@@ -32,6 +33,25 @@ for vname in ("front", "back", "left", "right"):
     UNIT[vname] = (px["sole"] - px["chin"]) / span
 
 
+def band_span(v: R.View, row: int, band: str) -> float:
+    """Span of one COLOUR BAND on a row, in pixels — never the silhouette.
+
+    Every width in this file used to come from `v.row_extent(row)`, which is the whole
+    silhouette from its first run's start to its last run's end. At belt height that row
+    also carries BOTH FOREARMS, so all three numbers it produced — belt, chest and pelvis
+    — were arm spans measured at three heights. The belt came out 0.39248 wide against a
+    shoulder width of 0.37978: a belt wider than the shoulders, which is not a belt. The
+    resulting "belt is NARROWER than the pelvis" was an artefact, not a disagreement with
+    §4[7], and it shipped as an EXPECTED FAIL.
+
+    The bands separate them cleanly. The belt is olive and the boots are the only other
+    olive thing, 0.36 of figure height below; the shirt and the pants are purple and the
+    belt sits between them; the forearms are skin, the gloves near-black, the bracer grey.
+    """
+    runs = ML.real_runs(v, row, R.band_map(v)[band])
+    return float(runs[-1][1] - runs[0][0] + 1) if runs else 0.0
+
+
 def main() -> int:
     views = {k: R.load(k) for k in ("front", "back", "left", "right")}
 
@@ -43,15 +63,14 @@ def main() -> int:
     belt_mid = int((belt_top + belt_bot) / 2)
 
     # Belt width: measure silhouette at the belt midpoint
-    ext = fv.row_extent(belt_mid)
-    belt_width_px = (ext[1] - ext[0] + 1) if ext else 0
+    belt_width_px = band_span(fv, belt_mid, "olive")
     belt_width = belt_width_px / UNIT["front"]
 
     # Also measure at belt top and bottom for cross-check
-    ext_top = fv.row_extent(belt_top)
-    ext_bot = fv.row_extent(belt_bot)
-    belt_top_width = (ext_top[1] - ext_top[0] + 1) / UNIT["front"] if ext_top else 0
-    belt_bot_width = (ext_bot[1] - ext_bot[0] + 1) / UNIT["front"] if ext_bot else 0
+
+
+    belt_top_width = band_span(fv, belt_top, "olive") / UNIT["front"]
+    belt_bot_width = band_span(fv, belt_bot, "olive") / UNIT["front"]
 
     # ═══════ b) DEPTH (model Z) from profile views ═══════
     depths_px: dict[str, float] = {}
@@ -62,9 +81,9 @@ def main() -> int:
         bt = dd["beltTop"]
         bb = dd["beltBottom"]
         bm = int((bt + bb) / 2)
-        ext = v.row_extent(bm)
-        if ext:
-            depths_px[vname] = ext[1] - ext[0] + 1
+
+        if band_span(v, bm, "olive") > 0:
+            depths_px[vname] = band_span(v, bm, "olive")
             depth_per_view[vname] = depths_px[vname] / UNIT[vname]
 
     belt_depth = sum(depth_per_view.values()) / len(depth_per_view) if depth_per_view else 0
@@ -84,17 +103,17 @@ def main() -> int:
 
         # Chest section: measure at belt top - 1 (just above the belt)
         chest_row = max(0, bt - 1)
-        chest_ext = v.row_extent(chest_row)
-        chest_w = (chest_ext[1] - chest_ext[0] + 1) / UNIT[vname] if chest_ext else 0
+
+        chest_w = band_span(v, chest_row, "purple") / UNIT[vname]
 
         # Pelvis section: measure at belt bottom + 1 (just below the belt)
         pelvis_row = min(v.h - 1, bb + 1)
-        pelvis_ext = v.row_extent(pelvis_row)
-        pelvis_w = (pelvis_ext[1] - pelvis_ext[0] + 1) / UNIT[vname] if pelvis_ext else 0
+
+        pelvis_w = band_span(v, pelvis_row, "purple") / UNIT[vname]
 
         # Belt width at this view's midpoint
-        belt_ext = v.row_extent(int((bt + bb) / 2))
-        belt_w = (belt_ext[1] - belt_ext[0] + 1) / UNIT[vname] if belt_ext else 0
+
+        belt_w = band_span(v, int((bt + bb) / 2), "olive") / UNIT[vname]
 
         proud_margins[vname] = {
             "chestWidth": round(chest_w, 8),
@@ -158,7 +177,7 @@ def main() -> int:
             "avgProudOfPelvis": round(avg_proud_pelvis, 8),
         },
         "crossViewSpread": {
-            "width": 0.0,  # single front view only
+            "width": 0.0,  # single front view only — a one-sample spread, not an agreement
             "depth": round(depth_spread, 8),
         },
     }

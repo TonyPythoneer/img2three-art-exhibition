@@ -135,7 +135,7 @@ export const NECK = {
 
 /** S-07 belt. A flat band standing proud of chest and pelvis. */
 export const WAIST = {
-  widthX: 0.39247874,
-  depthZ: 0.09646136,
+  widthX: 0.13209641,
+  depthZ: 0.06270151,
   height: 0.04318536,
 } as const;
