@@ -76,10 +76,9 @@ export const exhibits: Exhibit[] = [
   },
   {
     slug: "ff7-cloud-strife-polygon-figure",
-    status: "planning",
-    // No model yet: the ten Stage 1 parts are gated behind spec review. The stage
-    // still mounts, carrying the brief, the reference plates and the prompt.
-    liveModel: false,
+    status: "building",
+    // Head-bare mounted (skull, neck, choker). Hair, eyes, ears pending.
+    liveModel: true,
     promptFile: "prompt.txt",
     ...veliteFields("ff7-cloud-strife-polygon-figure"),
   },

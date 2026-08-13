@@ -1,329 +1,1238 @@
-# English Master Prompt — VII Polygon Soft Vinyl Figure: Cloud Strife
-
-Two-stage build. Stage 1 sculpts ten isolated parts, each in its own agent, with **no integration**.
-Stage 2 assembles them. Run Stage 1 to completion and review it before opening Stage 2.
-
-References live in `references/` (white background trimmed, lossless WebP):
-
-| file | view | note |
-|---|---|---|
-| `front.webp` (384×827) | orthographic front | primary proportion authority |
-| `back.webp` (391×829) | orthographic back | back panels, hair rear dome |
-| `left.webp` (214×847) | figure's **left** side | pauldron + grey bracer side |
-| `right.webp` (206×831) | figure's **right** side | bare-shoulder side |
-| `more-angle.webp` (297×584) | 3/4 front-right, warm studio light | strap/choker detail authority only |
-
-Handedness is fixed and asymmetric — get it right before anything else:
-**figure's LEFT** = black shoulder pauldron + grey forearm bracer + black fist.
-**figure's RIGHT** = bare skin deltoid, no bracer, black fist only.
-
----
-
-## BEGIN PROMPT
-
-You are the lead agent for a code-only Three.js reconstruction of the **VII Polygon Soft Vinyl
-Figure — Cloud Strife**, a faceted low-poly vinyl statue of the PS1 Final Fantasy VII field model.
-The subject is a *toy*, not a character: hard flat facets, visible edge creases, matte vinyl,
-zero smoothing groups. Do not "improve" it into a smooth anime figure — the faceting **is** the
-identity.
-
-### 0. Run the real img2threejs workflow
-
-Use the checked-out img2threejs repository as runtime authority (`SKILL.md`).
-
-```bash
-python3 forge/state.py init \
-  --state .img2threejs/state.json \
-  --reference references/front.webp \
-  --profile character
-```
-
-At every start, resume, and correction loop, before touching implementation code:
-
-```bash
-python3 forge/next.py --state .img2threejs/state.json object-sculpt-spec.json
-```
-
-Exit code `3` or `status=stopped` is a hard stop — report and request input. Never reconstruct
-progress from chat memory. Use the repository's real `ObjectSculptSpec`, `detailInventory`,
-`qualityContract`, sockets, materials, review history, and generated TypeScript `THREE.Group`
-factory. Do not invent repository internals.
-
-The `character` profile requires the character contracts and landmark evidence. The subject is a
-stylized figurine, so record `anatomy` as **figurine proportions**, not human proportions, and say
-so in the spec rationale.
-
-### 1. Measured proportions (authority: `front.webp`, `left.webp`)
-
-All values normalized to **total height = 1.000** (hair tip → sole bottom). Tolerance ±0.010;
-these were read off the trimmed references, they are measurements, not style choices.
-
-Vertical landmarks (Y up, 0.000 = sole plane):
-
-| landmark | Y |
-|---|---|
-| sole bottom / ground | 0.000 |
-| sole slab top / boot cuff base | 0.173 |
-| pant hem — bare leg column emerges, crotch arch apex | 0.268 |
-| widest hip point | 0.318 |
-| hip yoke chevron tip (front **and** back) | 0.435 |
-| belt bottom edge | 0.513 |
-| belt top edge | 0.546 |
-| shoulder line (top of torso slab) | 0.673 |
-| chin | 0.700 |
-| hair-cap crown | ~0.940 |
-| tallest spike tip | 1.000 |
-
-Widths / depths, as a fraction of total height:
-
-| measure | value |
-|---|---|
-| torso shoulder width (shirt only, no arms) | 0.200 |
-| max hip width | 0.278 |
-| hair mass width (cap, excluding spikes) | 0.218 |
-| full arm-to-arm span | 0.360 |
-| torso depth (chest front→back) | 0.089 |
-| hip depth at widest (profile kite) | 0.142 |
-| foot length (heel→toe) | 0.148 |
-| neck width | ~0.035 |
-
-Read these three silhouette facts as hard gates:
-1. The **hip is wider and deeper than the shoulders** — the pants are the largest volume in the model.
-2. In profile the hip/pants read as a **kite/rhombus** with a sharp point front and back at Y≈0.318,
-   not as a cylinder or a skirt.
-3. The **torso is a thin slab** (depth 0.089 vs width 0.200), roughly 2.2:1 flat.
-
-### 2. Palette
-
-Two reference photos disagree on white balance. `front/back/left/right` are cool and desaturated;
-`more-angle` is warm and saturated (closer to the PS1 game palette).
-
-**Default to the warm `more-angle` reading** — it separates the brown straps from the olive belt,
-which the cool photos collapse. State this choice in the spec.
-
-| material | hex (default, warm) | cool-photo reading | notes |
-|---|---|---|---|
-| hair | `#F4D054` | `#D4B15E` | flat matte, one albedo, no gradient |
-| skin | `#F1D3AB` lit / `#D7AA9C` shadow | `#E1C8B1` / `#D2B5AC` | vinyl, roughness ~0.85 |
-| shirt purple | `#47346B` | `#555386` | |
-| pants purple | `#2F2160` … `#47346B` | `#393666` … `#4F4C6C` | slightly darker than shirt |
-| shoulder strap / choker | `#51351D` warm brown | `#4B4739` olive | **the disputed one** |
-| waist belt | `#65502C` | `#4B4739` | one shade lighter than the straps |
-| boots | `#65502C` olive-brown | `#4B4739` | same family as the belt |
-| pauldron / gloves | `#15121B` near-black | `#2E2C26` | |
-| left bracer | `#A99894` grey | `#A79B9A` | |
-
-Materials: `MeshStandardMaterial`, `flatShading: true` everywhere, `metalness: 0`,
-`roughness: 0.80–0.90`. No gloss, no clearcoat, no normal maps. The vinyl reads matte in every
-reference. The **only** textured surface in the whole model is the printed face (see part 1).
-
-### 3. Stage 1 — ten isolated parts, no integration
-
-Dispatch one agent per part. Each agent owns exactly one part and must not touch another's file.
-
-Every part agent delivers:
-- `src/exhibits/ff7-cloud-strife-polygon-figure/parts/create<Part>.ts`, exporting
-  `create<Part>(options): THREE.Group`, built at the true normalized scale from §1;
-- the part's own origin at its **socket point** (the joint where Stage 2 will attach it), listed
-  below per part, so Stage 2 is pure placement with no re-centering;
-- a named socket for every downstream attachment, as `group.userData.sockets = { name: Vector3 }`;
-- a standalone render of the part from front + the relevant side + one 3/4 orbit, compared against
-  the matching reference crop at ≥6× NEAREST zoom;
-- a 猜測清單 entry for anything the references do not resolve: part / two readings / which was
-  chosen / on what evidence.
-
-**Do not integrate.** No part agent may create the assembled figure, a shared root group, or a
-scene. Stage 2 does that.
-
----
-
-**Part 1 — head** (`front.webp` y 0–250, `back.webp` y 50–350, both side views)
-
-Two sub-volumes plus a face decal:
-
-- *Hair cap*: a faceted dome, ~12–16 facets, closest to a low-subdivision icosahedron flattened
-  slightly front-to-back. The back view shows a clean radial facet fan converging at the occiput
-  with a shallow V crease down the centre-back. It covers the whole skull, the ears, and stops at
-  a hard horizontal line at the nape.
-- *Hair spikes*: 9–11 separate flat-sided wedges, each a 3–4 sided pyramid with a long thin
-  triangular profile, welded into the cap. Layout from the references:
-  one dominant spike leaning up-and-forward over the brow (the tallest, defines Y=1.000);
-  2 more large spikes fanning up-and-back from the crown; 2 side spikes projecting laterally
-  past the ears in the front view; 2–3 shorter rear spikes visible only in the back view;
-  1–2 short forward fringe wedges hanging over the eyes down to Y≈0.760.
-  Spikes are **not** rotationally symmetric — copy the reference layout, do not procedurally
-  scatter them.
-- *Head/face*: a rounded-off wedge, widest at the cheekbones, tapering to a small pointed chin.
-  The face plane is nearly flat. Ears are small skin wedges just visible under the hair cap in
-  the front view.
-- *Face decal*: the eyes, brows, and mouth line are **printed flat art**, not geometry. Build them
-  as a `CanvasTexture` (`colorSpace = SRGBColorSpace`) mapped to the front face plane, or as a
-  projected crop of `front.webp` de-lit via `stage1_intake/delight_albedo.py`. Do not model
-  eyeballs. The eyes are large, angular, blue (`#3D6382` iris, white sclera, hard black lash line),
-  brows are thin dark angular strokes. Chin: 0.700; eye line: ~0.790.
-- *Neck*: a short skin column, width 0.035, from 0.673 to 0.700, plus a thin brown choker band at
-  its base (clearest in `more-angle.webp`).
-
-Socket origin: neck base, at (0, 0.673, 0).
-
----
-
-**Part 2 — left shoulder** / **Part 3 — right shoulder** (`front.webp` y 195–365, both side views)
-
-Asymmetric. Build them as two separate parts, not a mirror pair.
-
-- *Right shoulder (figure's right, bare)*: a skin deltoid plate. In the side view it reads as a
-  **pentagon** — flat outer face, chamfered top, tapering to the upper-arm socket at the bottom.
-  It sits proud of the torso, wider than the upper arm below it. No sleeve, no cap.
-- *Left shoulder*: the same skin deltoid, **plus** a black pauldron cap sitting over its top and
-  outer face. The pauldron is a chunky beveled quad — flat top, flat outer face, chamfered leading
-  and trailing edges, clearly a separate shell floating a hair above the deltoid with a visible
-  gap line. In `back.webp` it wraps onto the upper back and is met by a dark olive-brown triangular
-  strap panel crossing the shoulder blade diagonally.
-
-Socket origins: shoulder joint centre, at (±0.100, 0.660, 0). Socket out: `upperArm`.
-
----
-
-**Part 4 — left back arm** / **Part 5 — right back arm** (upper arms; side views are authority)
-
-Both identical, mirrored. A narrow skin bar, roughly square in section with chamfered corners,
-markedly thinner than both the deltoid above and the forearm below. It runs **down and slightly
-forward**: about 10–15° of forward lean off vertical in the side view, and about 8° outward in
-the front view. Length ≈ 0.115.
-
-Socket origins: shoulder end. Socket out: `elbow`.
-
----
-
-**Part 6 — left front arm** / **Part 7 — right front arm** (forearm + hand; `F8`/`F9` crops)
-
-The forearm is a **wider, deeper block than the upper arm** — a tapered slab that widens as it
-descends, angled forward and inward so the fists sit ahead of the hips. That forward-broken elbow
-is a signature of the pose; a straight hanging arm is a fail.
-
-- *Right front arm*: skin forearm → hard horizontal seam → **black fist**, a single chamfered
-  cuboid with no finger geometry. The seam is a clean flat cut, not a taper.
-- *Left front arm*: skin forearm → **grey bracer** (a slightly wider cuboid segment, ~0.045 tall)
-  → hard seam → **black fist**. The bracer's outer face is flat; its lower edge overhangs the
-  fist slightly in the side view.
-
-Socket origins: elbow. Socket out: `fist` (Stage 2 may want a weapon anchor there).
-
----
-
-**Part 8 — body** (torso; `F5`, `B3`, `A2` crops)
-
-A flat faceted slab, chamfered at every vertical edge, from the shoulder line (0.673) down to the
-belt (0.546–0.513). Front and back are near-flat planes; the sides are narrow chamfers.
-
-On the front:
-- two vertical shoulder straps, ~0.030 wide, brown, running from the shoulder line down to the
-  belt, spaced to leave a purple centre panel between them. They are raised strips with a real
-  thickness step, not painted-on;
-- the straps continue **over** the shoulder line and onto the back, where they read as diagonal
-  triangular panels crossing the shoulder blades;
-- the waist **belt** is a wide brown band, 0.033 tall, wrapping fully around, standing proud of
-  the shirt with a hard step above and below.
-
-The shirt's lower hem sits inside the belt; the belt is the widest thing on the torso.
-
-Socket origin: waist centre, at (0, 0.513, 0). Sockets out: `neck`, `shoulderL`, `shoulderR`, `hip`.
-
----
-
-**Part 9 — legs** (pants + legs; `F10`, `F11`, `L2` crops)
-
-One continuous volume, not two trousers. This is the hardest part and the one that decides the
-silhouette.
-
-- From the belt down, a **hip yoke** panel with a downward-pointing **chevron/V tip** at 0.435,
-  present on the front *and* the back, sitting proud of the pant body with a visible step.
-- Below the yoke, the pants flare outward and forward/backward to the widest point at 0.318,
-  where the profile is a **kite**: sharp point front, sharp point back, max depth 0.142, max
-  width 0.278. Facets read as a small number of large flat planes with hard creases; there is a
-  vertical crease running down the centre of each thigh in the front view.
-- The volume then contracts sharply to the **crotch arch**, an inverted-V notch whose apex is at
-  0.268 — this is where the two legs separate.
-- Below 0.268, two **bare tapered columns** (still purple, still pants) drop almost straight to
-  the boot cuffs at 0.173, tapering slightly and splaying outward about 5°.
-
-Socket origin: waist centre, at (0, 0.513, 0). Sockets out: `ankleL`, `ankleR` at (±0.055, 0.173, 0).
-
----
-
-**Part 10 — shoes** (`F12`, `L3` crops)
-
-Two pieces per foot, and the wedge is the whole character of it:
-
-- *Boot cuff*: an olive-brown cuboid with chamfered vertical edges, from 0.173 down to ~0.085,
-  swallowing the bottom of the pant column with a visible overlap step.
-- *Sole slab*: a flat wedge under the cuff. It extends **forward** a long way (total foot length
-  0.148, with roughly ⅔ of that ahead of the ankle) and **backward** only a short heel. Its top
-  face steps out from under the cuff as a clean ledge; the toe end is a blunt chamfered wedge, not
-  a point. Thickness ≈ 0.055, uniform — it is a slab, not a curved sole.
-- Feet splay outward ~25–30° in plan view. They are **not** parallel.
-
-Socket origins: ankle top centre. Build both feet in this one part, mirrored.
-
----
-
-### 4. Stage 1 gates
-
-Per part, before it may be marked done:
-
-1. `forge/stage4_review/diagnose_render.py` Tier 1 passes, recorded into the spec with
-   `--pass-id <pass> --in-place`.
-2. `diagnose_render_multi_angle.py` on the fixed view plus ≥2 orbit views — every part here is
-   non-planar.
-3. `make_comparison_sheet.py` against the matching reference crop, inspected with agent vision at
-   ≥6× NEAREST. An unzoomed comparison does not count as having looked.
-4. `append_review.py` with per-feature scores. A part fails if any identity-defining feature is
-   wrong even when the global score passes — specifically: handedness, the hip kite profile, the
-   forward-broken elbow, the spike layout, the sole wedge.
-5. Flat shading is on and no facet has been smoothed away.
-6. The part is explodable and clickable on its own.
-
-Correction budget: 3 per pass, 6 total, per the local state. Reaching either is a hard stop.
-
-### 5. Stage 2 — integration
-
-Only after all ten parts pass. Do not start early.
-
-1. Build `createCloudStrifePolygonFigureModel.ts` as a pure assembly: import the ten part
-   factories, attach each at its socket, apply the pose rotations below. **No geometry authored
-   in this file.** If a part needs a shape change, it goes back to the part file.
-2. Pose, off the neutral part orientations:
-   - upper arms: 8° outward, 12° forward;
-   - forearms: broken forward at the elbow so the fists land ahead of the hip line, level with
-     0.400–0.450;
-   - feet: ±27° yaw outward;
-   - head: neutral, level gaze;
-   - the figure stands with legs slightly apart, weight even, feet flat on Y=0.
-3. Constant ownership: the integration file owns **only** socket positions and pose rotations.
-   Every dimension from §1 stays owned by the part that uses it. Shape work can run in parallel;
-   integration cannot.
-4. Whole-figure gates: silhouette IoU against all four orthographic views (front, back, left,
-   right), part coverage via `check_part_coverage.py --manifest parts.json`, and an explode /
-   click check on the assembled model.
-5. Wire the exhibit into the four places `CLAUDE.md` requires: `src/exhibits/index.ts`,
-   `src/pages/[slug].vue` `STAGES`, `src/components/home/heroStage.ts` `heroEntries()`, and a
-   cover image + `prompt.txt` at the **exhibit root** (the home-page glob only scans direct
-   children — files under `references/` are invisible to it).
-6. Write `spec/RELATIONSHIPS.md`: the ten parts, their sockets, the pipeline order, and which
-   constants each part owns.
-
-### 6. Known unresolved readings — carry these forward
-
-Give the user this list in your first reply and again at delivery.
-
-| # | part | reading A | reading B | chosen | on what evidence |
-|---|---|---|---|---|---|
-| 1 | strap/belt colour | warm brown `#51351D` | cool olive `#4B4739` | **A** | `more-angle.webp` separates strap from belt; the cool product shots collapse both into one olive under a blue-ish studio light |
-| 2 | rear spike count | 2 | 3 | **3** | `back.webp` at 5× shows three distinct tips left of the crown, but two of them overlap and may be one forked wedge |
-| 3 | pauldron mounting | rigid shell fused to the deltoid | separate floating cap | **B** | a continuous gap line is visible along the whole deltoid/pauldron boundary in `left.webp` at 6× |
-| 4 | face art | printed decal | modelled eye geometry | **A** | at 7× the eye edges are anti-aliased print, and they lie flat on a single unbroken facet — no geometry crease under them |
-| 5 | thigh crease | a real geometric crease | a lighting seam | **A** | the crease persists across `front.webp` and `more-angle.webp` under different lighting |
-| 6 | hidden faces | — | — | — | the underside of the sole slab, the inner thigh faces above 0.268, and the top of the hair cap are not visible in any reference; they are inferred and labelled as such |
-
-## END PROMPT
+════════════════════════════════════════════════════════════════════
+img2threejs prompt — FF7 Cloud Strife low-poly soft-vinyl figure
+Machine-facing English version. This file is authoritative: prompt.zh-tw.txt
+in this directory is the human review translation, and where the two disagree,
+THIS FILE WINS. Any edit to one must be mirrored into the other.
+src/assets/exhibits/ff7-cloud-strife-polygon-figure/prompt.txt is the PUBLISHED
+MIRROR of this file — it is what the exhibit page displays, and it is a copy, not
+a source. After any edit here, re-copy:
+  cp <ART>/prompt.txt <REPO>/src/assets/exhibits/ff7-cloud-strife-polygon-figure/prompt.txt
+════════════════════════════════════════════════════════════════════
+
+/img2threejs
+
+References: src/assets/exhibits/ff7-cloud-strife-polygon-figure/
+  front.webp / back.webp / left.webp / right.webp / more-angle.webp
+Exhibit slug: ff7-cloud-strife-polygon-figure
+
+Subject: FF7 Cloud Strife low-poly soft-vinyl figure (PS1 field-model styling).
+This is a TOY, not an animated character: hard flat facets, visible edge creases,
+zero smoothing groups. The faceting IS the identity. Do not "improve" it into a
+smooth anime figure.
+
+This is a FULL OVERWRITE rebuild. Ignore every existing spec / measurement /
+decision under artifacts/exhibits/ff7-cloud-strife-polygon-figure/. Re-init state,
+re-measure, re-author every part.
+
+
+═══════════════════════════════════════════════
+§0 OPERATING RULES
+═══════════════════════════════════════════════
+
+0.0 PATHS. Three roots. Never mix them.
+
+      REPO  = the img2three-art-exhibition checkout.
+      SKILL = the img2threejs skill checkout (the directory holding SKILL.md and
+              forge/). Every `forge/...` command in this document is run with
+              SKILL as the working directory.
+      ART   = REPO/artifacts/exhibits/ff7-cloud-strife-polygon-figure/
+      REFS  = REPO/src/assets/exhibits/ff7-cloud-strife-polygon-figure/
+
+    In this document `spec/...` means `ART/spec/...` and `.img2threejs/...` means
+    `ART/.img2threejs/...`. Paths beginning `src/` or `content/` are relative to
+    REPO. Because forge runs from SKILL, EVERY path handed to a forge script
+    (`--state`, `--spec`, `--reference`, `--render`, `--out`, and the positional
+    spec) MUST be an absolute path. A relative path there resolves inside SKILL
+    and writes to the wrong place.
+
+0.1 The img2threejs skill is the runtime authority.
+
+    `ART/.img2threejs/state.json` ALREADY EXISTS from an earlier attempt, and
+    `forge/state.py init` refuses to overwrite an existing state file (it prints
+    `state error: refusing to overwrite existing state` and exits 2). This is a
+    full-overwrite rebuild, so delete it first, together with the stale spec:
+
+      mv ART/.img2threejs/state.json ART/.img2threejs/state.json.bak
+      mv ART/spec/object-sculpt-spec.json ART/spec/object-sculpt-spec.json.bak
+
+    Move, do not delete. The old state's `reviewHistory` is the only record of the
+    previous attempt and costs nothing to keep. Do not read the .bak files for
+    progress — §0.1's "never reconstruct progress from chat memory" applies to
+    stale state files too.
+
+    Then, before anything else:
+
+      python3 forge/state.py init --state ART/.img2threejs/state.json \
+        --reference REFS/front.webp --profile character \
+        --spec ART/spec/object-sculpt-spec.json \
+        --max-per-pass 3 --max-total 60
+      (ART / REFS name the directories in §0.0; expand them to absolute paths on
+       the real command line — they are not literal strings to paste)
+
+    At every start, resume, and correction loop, before touching code:
+
+      python3 forge/next.py --state ART/.img2threejs/state.json [ART/spec/object-sculpt-spec.json]
+
+    OMIT the positional spec argument until `ART/spec/object-sculpt-spec.json`
+    exists on disk. next.py reads that file directly and exits 2 if it is missing
+    or unparseable; with no positional argument it reports the pre-spec checklist
+    instead. Once the spec exists, always pass it.
+
+    Exit codes: 3 (or `status=stopped`) is a HARD STOP — report and request input.
+    2 is a script/state/invocation error — fix the command or the paths; it says
+    nothing about the model, and it is never a reason to correct geometry.
+    Never reconstruct progress from chat memory.
+
+    Wherever this document says `--pass-id <pass>`, `<pass>` is the pass id that
+    `forge/next.py` prints as `current pass` for the current spec. Do not invent one.
+
+    On the correction budget: per-pass 3 means "if the same part has been
+    corrected three times and is still wrong, the READING is wrong, not the code —
+    stop and look at the reference again". AGENTS.md § "collaboration cadence"
+    sizes the total as "factories x 3 plus headroom for integration and the later
+    stages": 14 factories x 3 = 42, and 60 leaves 18 for Stages 1B-3. The default
+    total of 6 is spent after six corrections anywhere in the model, which would
+    hard-stop the run long before the 37 parts are built.
+
+0.2 NO DISPATCH. Reading the references, writing code, running scripts, running
+    gates, building — all done by the main agent itself.
+
+    This restates the repo default in AGENTS.md § "Work split: the agent does all
+    of it, the user drives advancement". The older standing rule that dispatched
+    non-visual work to opencode is REVOKED; nothing here overrides anything.
+
+    ⚠ WITHOUT AN EXPLICIT USER ORDER, never call /orchestration, never launch
+      opencode, never spawn subagents to split the work. No exceptions.
+      "Dispatching this would be faster" and "this is purely mechanical" are
+      not reasons.
+
+0.3 ONE PART PER TURN. A part's turn ends when every gate in §5 that applies to it
+    has been run and recorded. Then STOP and hand over, in one reply:
+      - the part's render (§5.1) and its orbit renders (§5.2),
+      - the reference crop and the render side by side at 6-8x NEAREST (§5.3),
+      - the numeric result of every §5 gate, each marked PASS or FAIL.
+    Then wait for the user to say continue / refine-spec / refine-code.
+    Never do two parts back to back. Never declare a part "passed" yourself.
+    Never decide to enter the next stage yourself.
+
+0.4 Inspect every joint at 6-8x NEAREST. A crop at native resolution does not
+    count as having looked. Cut crops at JOINTS, not at material boundaries.
+    You may not claim "unresolvable" without zooming first; if it is still
+    unresolvable after zooming, write "unresolvable after Nx zoom" and attach
+    the image.
+
+0.5 Guess list: log anything the references do not resolve (part / two readings /
+    which was chosen / on what evidence). Deliver it in the first reply.
+    Do not stall on an ambiguous reading — pick a default, proceed, and say so.
+    Rule 0.3's "never advance yourself" governs only the step AFTER the gates.
+
+0.6 Every number must trace back to a measurement artefact under ART/. Do not copy
+    from your own summary, do not copy from another document, and do not hardcode
+    numbers into this prompt and then cite them.
+
+    ⚠ THIS DOCUMENT'S OWN NUMBERS ARE SUBJECT TO THAT RULE. Every measured figure
+      quoted below (§1.5's mirror table, §2's colour table, §3.1's crop defects)
+      is a PRIOR measurement carried in as a starting point, not evidence. The
+      Stage 0 scripts must re-derive each of them. Where a script disagrees with
+      this document, THE SCRIPT WINS: record the script's value, and report the
+      discrepancy in the same reply. Do not silently keep the prompt's number.
+
+0.7 STAGE MAP against AGENTS.md § "New model: the stages". The numbers AGREE;
+    this table exists only to say which section holds each stage.
+
+      AGENTS.md stage          this prompt          note
+      ────────────────────────────────────────────────────────────────────
+      P0 reference triage      §3.1                 same script, same method
+      P1 decompose + code      §2                   already decided, in this file
+      P2 zoom scan             §0.4 + §11           standing rule + guess list
+      0  measurement, tooling  §3 "Stage 0"         includes the parts gallery
+      1  monochrome parts      §4 "Stage 1"         same
+      1B rough assembly        §6 "Stage 1B"        same
+      2  surface geometry      §7 "Stage 2"         face, hair, ears
+      3  colour (+ material)   §8 "Stage 3"         material folded in: AGENTS.md
+                                                    P1 says "if there are only one
+                                                    or two material codes, do not
+                                                    give them their own stage —
+                                                    fold them into the colour
+                                                    stage", and there are two (§2)
+      4  material codes        SKIPPED              only applies when there are >=3
+      5  integration + refine  §9  "Stage 5"        same
+      6  detail iteration      §10 "Stage 6"        same
+
+    ⚠ ONE RECORDED EXCEPTION, decided by the user, with its compensating gate.
+      AGENTS.md hard rule 1 says all geometry finishes before any colour, and
+      pauldronL is geometry. The user explicitly assigned pauldronL to Stage 3
+      anyway. Rule 1's exception clause permits this ONLY because §8.5b carries the
+      full four-view silhouette re-check against Stage 1B. If §8.5b is ever dropped,
+      the exception dies with it and pauldronL moves to Stage 2.
+      Do not extend this exception to anything else. The two chest straps and the
+      back panel remain UNSCHEDULED (§2) and get no stage without a user order.
+
+
+═══════════════════════════════════════════════
+§1 COORDINATES AND CONVENTIONS
+═══════════════════════════════════════════════
+
+1.1 Y up, ground at Y=0, total height (hair tip to sole bottom) normalized to
+    1.000, Z forward (the figure faces +Z). Right-handed, as Three.js is.
+    Every tolerance written `< 1e-6` or `± tol` in this document is in these
+    normalized units, where 1.000 is the whole figure.
+
+1.2 LEFT and RIGHT always mean the FIGURE'S OWN left and right.
+    front.webp: figure's right = image left. back.webp: figure's right = image right.
+    left.webp = the figure's LEFT side faces the camera.
+    right.webp = the figure's RIGHT side faces the camera.
+
+    In model space this fixes the sign: facing +Z with +Y up in a right-handed
+    frame, the figure's LEFT is +X and the figure's RIGHT is -X. Every sided
+    factory takes `side: "L" | "R"` and derives `sideSign = side === "L" ? 1 : -1`.
+    Nothing else in the codebase may hardcode that sign.
+
+1.3 Handedness, verified under zoom. Do not get this backwards:
+    BLACK PAULDRON + GREY BRACER = the figure's LEFT.
+    The figure's RIGHT is a bare deltoid, no bracer, black glove only.
+
+1.4 THE POSE IS BAKED INTO THE PARTS. This is a fixed-pose toy; there is no
+    animation requirement. Author every part in the pose the references already
+    show — forward-broken elbows, upper arms abducted and leaned forward, feet
+    splayed outward. Each part's local origin is its own UPPER socket AS POSED,
+    so the local origin is the zero vector in the part's own frame.
+    => Stage 1B assembly is pure translation. No rotations there.
+
+1.5 MIRROR REUSE. Stage 1 carries no colour and no material, so every left/right
+    pair is geometrically IDENTICAL up to a mirror. One factory emits one
+    geometry, parameterised by `sideSign` (§1.2). Do not author two versions and
+    do not copy-paste.
+
+      Pure mirror pairs (8): sole / ankle / calf / knee / thigh /
+                             upperDeltoid / lowerDeltoid / backArm
+      Not a pure mirror (1): frontArm — the figure's LEFT wrist segment has width
+                             factor ~1.05, the RIGHT has 1.0. One parameter apart,
+                             but both sides still need looking at.
+      Self-symmetric singles (5): pelvis / chest / waist / neck / head
+
+    This classification is MEASURED, not assumed. Band-by-band mirror check on
+    front.webp's silhouette (prior measurement — §0.6 applies):
+      upper arms       mirrorIoU 0.943  extent diff  1px  -> pure mirror, best score
+      boots + soles    mirrorIoU 0.914  extent diff  1px  -> pure mirror
+      pant legs        mirrorIoU 0.958  extent diff  3px  -> pure mirror
+      pelvis           mirrorIoU 0.933                    -> self-symmetric
+      shoulders        mirrorIoU 0.915  extent diff  2px  -> pure mirror
+      forearms + hands mirrorIoU 0.875  extent diff 11px  -> NOT a pure mirror
+                                                             (the wider bracer)
+      head + hair      mirrorIoU 0.657                    -> STRONGLY asymmetric
+                                                             (the spikes; expected)
+
+    ⚠ MIRROR ABOUT THE BEST-FIT AXIS, swept in half-pixel steps to maximise
+      whole-figure IoU (docs/agents/claude.md, "Banded mirror IoU") — NOT about
+      the bounding-box centre. Re-derived on front.webp: bbox centre scores 0.825,
+      best-fit axis 0.858. The prior measurement's whole-figure figure of 0.858
+      is that same best-fit number, so the table above is on the right axis; a
+      bbox-centre sweep would drag every band down with it.
+
+    ⚠ READ THAT TABLE BY THE EXTENT DIFFERENCE, NOT BY THE IoU. The whole-figure
+      score (0.858) is the noise floor from photographic perspective and staging,
+      so 0.875 for the forearms is NOT below the floor and on IoU alone would look
+      like a mirror. What separates the forearms from every pure pair is the
+      lateral extent difference: 1-3px on the pure pairs, 11px here. The IoU
+      column only corroborates.
+
+    ⚠ What this saves is REVIEW TURNS, not just lines of code: for a pure mirror
+      pair, render and compare ONE side against the reference; the other side is
+      covered by the mirror-consistency assertion in §5.10, with no second visual
+      review.
+
+    ⚠ Instantiate exactly ONE material for the whole of Stage 1 and share it
+      across every part. A `new` per part is waste, and it makes a later material
+      change a 23-file edit.
+
+1.6 THE OBJECT-TREE NAMING IS THE PART TABLE. src/utils/partInspector.ts reads the
+    object graph, not a registry. Its exact rules, which the naming in §2 must
+    satisfy:
+      - a NAMED Mesh is always a part.
+      - a NAMED Group is a part only if it contains at least one mesh AND contains
+        no selectable descendant. A named Group that contains another named,
+        mesh-bearing node is a CONTAINER and is descended through instead.
+      - a part's "group"/module is its nearest NAMED ancestor below the root; the
+        root's own name is never reported as a module.
+      - `kind` is `detail` only when the node is not itself a mesh and EVERY mesh
+        under it carries `userData.explodeWithParent === true`. The flag is read
+        on the MESH, not on the wrapping Group — setting it on the Group alone
+        does nothing.
+    Therefore sub-segments inside a factory (the forearm's three blocks, etc.)
+    must stay UNNAMED. One factory = one part.
+
+
+═══════════════════════════════════════════════
+§2 GROUP / PART TABLE
+═══════════════════════════════════════════════
+
+Root node: cloudStrifeFigure
+
+  group       part                                            stage  factory
+  ─────────────────────────────────────────────────────────────────────────
+  head        head                                             S1    createHead
+              neck                                             S1    createNeck
+
+  armLeft     upperDeltoidL                                    S1    createUpperDeltoid("L")
+              lowerDeltoidL                                    S1    createLowerDeltoid("L")
+              backArmL                                         S1    createBackArm("L")
+              frontArmL   (forearm+bracer+glove, unnamed inside) S1   createFrontArm("L")
+              pauldronL   (black shoulder cap)                  S3    createPauldron
+
+  armRight    upperDeltoidR                                    S1    createUpperDeltoid("R")
+              lowerDeltoidR                                    S1    createLowerDeltoid("R")
+              backArmR                                         S1    createBackArm("R")
+              frontArmR   (forearm+wrist+glove, unnamed inside) S1    createFrontArm("R")
+
+  torso       chest                                            S1    createChest
+              waist       (belt)                                S1    createWaist
+              pelvis      (bloomer-pants main volume)           S1    createPelvis
+              two chest straps + diagonal back panel            TBD   Deferred by the user;
+                                                                     NOT scheduled. Do not
+                                                                     assign them a stage.
+
+  legLeft     thighL      (bloomer taper)                       S1    createThigh("L")
+              kneeL       (pant-leg gather / crease segment)     S1    createKnee("L")
+              calfL       (straight pant tube)                   S1    createCalf("L")
+              ankleL      (boot cuff)                            S1    createAnkle("L")
+              soleL       (sole slab)                            S1    createSole("L")
+
+  legRight    thighR / kneeR / calfR / ankleR / soleR            S1    same factories, "R"
+
+  hair        hairCap                                           S2    createHairCap
+              crownSpikeFront / crownSpikeRear                   S2    createHairSpike
+              fringeRightOuter / fringeRightMid / fringeRightInner
+              sideburnRight
+              fringeLeft
+              sideburnLeftUpper / sideburnLeftLower
+
+  face        earL / earR                                       S2    createEar
+              faceDecal   (detail, explodeWithParent=true)       S2    createFaceDecal
+
+  Part count: Stage 1 = 23, Stage 2 = 13 (one of them a detail), Stage 3 = 1.
+  Total 37. The three straps are unscheduled and not counted.
+
+  ⚠ Stage 1's 23 parts need only 15 VISUAL REVIEWS: 8 pure mirror pairs are
+    reviewed on one side each (§1.5) = 8, frontArm needs both sides = 2, and the
+    5 self-symmetric singles are one each = 5.
+
+  Three deliberate departures from the original grouping proposal, with reasons:
+
+  a) The legs are split into legLeft / legRight rather than one "legs and shoes"
+     group. The only reason is consistency with the arms, so the group label says
+     which side a part is on.
+     ⚠ CORRECTION: an earlier claim that "the two feet splay at different angles"
+       is WRONG — it was checked. Mirroring front.webp's silhouette, the
+       boots+soles band scores mirrorIoU=0.914 with a 1px difference in maximum
+       lateral extent — 0.12% of the 820px figure height in that view (§3.1 (3)).
+       The feet ARE mirror-symmetric, so S-01 soleSlab really is a pure mirror
+       pair; do not split it into two shape codes.
+
+  b) "Facial features" is split into a `hair` group and a `face` group. Hair is
+     10 parts whose acceptance criterion is TOPOLOGY; the face is 2 ears plus one
+     decal whose acceptance criterion is DECAL REGISTRATION. Merged, the group's
+     gate would mean nothing.
+
+  c) Eyes / pupils / brows are NOT geometry. They are printed flat art on the
+     reference, built here as one faceDecal CanvasTexture. Modelling them would
+     add six thin slivers — two eyes, two pupils, two brows — that z-fight under
+     flatShading. If geometry is insisted on later, that is a user call and the
+     risk above stands.
+
+
+──── SHAPE CODE / COLOUR CODE / MATERIAL CODE (three orthogonal axes) ────
+
+Every part carries three independent codes. Stage 1 has no colour and no material,
+so it reads ONLY the shape code: parts sharing a shape code ARE the same thing in
+Stage 1, and only diverge at Stage 3 when their colour codes differ.
+
+  S-xx  shape code     Geometry identity. Same code = one shared geometry
+                       (mirroring allowed). Stage 1 cares about this and nothing else.
+  C-xx  colour code    Albedo identity. Only meaningful at Stage 3.
+  M-xx  material code  Surface identity (roughness / metalness / flatShading family).
+                       Stage 3.
+
+⚠ SHAPE CODES ARE ASSIGNED FROM MEASURED DIMENSIONS, NOT FROM NAMES.
+  If two parts measure the same section and length within the tolerance recorded
+  in §3.1, they get the SAME shape code and only one geometry is authored. This
+  matters most for the Stage 2 hair: 9 spikes are not necessarily 9 shapes.
+
+SHAPE TABLE (Stage 1 = 15 shapes across 23 parts):
+
+  code  shape           used by                       generator
+  ────────────────────────────────────────────────────────────────────
+  S-01  soleSlab        soleL / soleR (mirrored)      one-off
+  S-02  bootCuff        ankleL / ankleR (mirrored)    chamferedBox
+  S-03  pantTube        calfL / calfR (mirrored)      chamferedBox
+  S-04  pantGather      kneeL / kneeR (mirrored)      loftPrism
+  S-05  pantTaper       thighL / thighR (mirrored)    loftPrism
+  S-06  pelvisKite      pelvis                        one-off
+  S-07  belt            waist                         one-off
+  S-08  chestSlab       chest                         loftPrism (6->6)
+  S-09  deltoidLower    lowerDeltoidL/R (mirrored)    loftPrism (6->4)
+  S-10  deltoidUpper    upperDeltoidL/R (mirrored)    loftPrism (4->6)
+  S-11  upperArm        backArmL / backArmR (mirrored) chamferedBox
+  S-12  forearmBracer   frontArmL                     loftPrism + chamferedBox x2
+  S-13  forearmPlain    frontArmR                     same, wrist width factor 1.0
+  S-14  neckColumn      neck                          loftPrism (8->8)
+  S-15  skull           head                          one-off
+
+  Stage 2: S-16 ear (mirrored, triWedge); S-17 hairCap (one-off);
+           S-18..S-26 the nine hair spikes (triWedge; codes assigned AFTER
+           measurement — collapse any that measure the same);
+           S-27 faceDecal (plane)
+  Stage 3: S-28 pauldron (one-off)
+
+GENERATORS (this axis is what actually saves work, not the shape codes themselves):
+
+  Share a generator ONLY when >=2 SHAPE CODES use it AND no extra option is needed
+  to make that happen. A generator that grows options in order to be shared is
+  harder to maintain than writing each shape separately. The counts below are
+  shape codes, which is the unit the sharing rule is stated in — not call sites.
+
+  chamferedBox(w, d, h, chamfer)         -> 3 shape codes: S-02 S-03 S-11.
+                                            Also builds the wrist block and the
+                                            glove block inside S-12 and S-13.
+  loftPrism(topNgon, botNgon, h, radii)  -> 8 shape codes: S-04 S-05 S-08 S-09
+                                            S-10 S-12 S-13 S-14.
+  triWedge(len, baseW, baseH)            -> 10 shape codes: S-16 plus S-18..S-26.
+                                            Stage 2 only; 13 spike prisms in total
+                                            (§7.4) plus the two ears.
+  Everything else (S-01 S-06 S-07 S-15 S-17 S-27 S-28) stays one-off. Do not force
+  them into a shared generator.
+
+COLOUR CODES (Stage 3. These values are ALREADY MEASURED, not guessed — but §0.6
+applies: spec/sample_palette.py must reproduce them, and where it disagrees its
+output wins):
+
+  Method: extract the figure silhouette by corner flood fill (the exact rule is in
+  §3.1 — both conditions, not one), quantise the figure pixels into 24-level
+  buckets, and report each cluster's centroid colour, pixel share, mean y, and
+  mean x relative to the mirror axis. Clusters are identified BY POSITION, not by
+  eye-dropper guesswork.
+
+  ⚠ sample_palette.py must also STATE AND APPLY the reduction that turns the three
+    per-view cool samples into the one ADOPTED value below (mean? pixel-share
+    weighted? median?). That reduction is currently unrecorded, and the ADOPTED
+    column is not the plain arithmetic mean of the three samples. Write the rule
+    into the script, then let the script's output replace this table.
+
+  code   content              ADOPTED (cool 4-view)   reference (more-angle, warm)
+  ─────────────────────────────────────────────────────────────────────────────
+  C-01   skin (lit)           #E0C2BA                 #F4CAB2
+  C-01s  skin (mid/shadow)    #CFB5AF                 #E2B19F
+  C-02   hair yellow          #D0B063                 #F4C745 lit / #E2B13E mid
+  C-03   shirt purple         #4C4A7C                 #5B487D
+  C-04   pants purple (darker)#454280                 #37256C
+  C-05   belt olive-brown     #564C44                 — (no clean warm sample here)
+  C-05b  boot olive-brown     #443F33                 #5A421C
+  C-06   strap brown          —                       unscheduled; sample when built
+  C-07   near-black (gloves + pauldron) #232427       #080911
+  C-08   bracer grey          #7F8283                 #808284
+  C-09   printed face         a texture, not a flat colour
+
+  ⚠ WHY THE COOL SET IS ADOPTED (this reverses an earlier recommendation, made
+    before the measurement):
+
+    a) The three cool views agree closely with each other — hair
+       #D1AE58 / #D1B165 / #CFB067; bracer #7E8182 / #7D8284 / #86898A.
+       more-angle is a single view with nothing to cross-check against.
+    b) The bracer is a NEUTRAL GREY and it reads almost identically in both sets
+       (#7E8182 vs #808284). A neutral matching across both sets means NEITHER is
+       white-balance skewed — the difference between them is SATURATION, not
+       colour temperature. more-angle is a lit marketing shot; saturation there is
+       a property of the lighting, not of the vinyl.
+    c) The four orthographic views are flat-lit product shots, which is the correct
+       source for albedo in the first place.
+
+    The warm column is kept for reference only. Switching to it is a user decision
+    and must be justified in the spec if taken.
+
+MATERIAL CODES:
+
+  M-00 mannequin grey  color 0xB0B0B0, metalness 0, roughness 0.85, flatShading.
+                       Stage 1 only; ONE shared instance across the whole model.
+  M-01 matte vinyl     metalness 0, roughness 0.85, flatShading, no maps of any kind
+  M-02 printed face    M-01 plus one map (the only textured surface in the model)
+
+  ⚠ THERE ARE ONLY TWO MATERIAL CODES IN THE FINISHED MODEL (M-01 and M-02); M-00
+    is the Stage 1 stand-in and is gone by Stage 3. The whole figure is one matte
+    vinyl; the printed face is the single exception. All the variation lives on
+    the COLOUR axis, which means Stage 3's job is SAMPLING COLOUR, not tuning
+    material. Do not spend time adjusting roughness / metalness.
+
+
+═══════════════════════════════════════════════
+§3 STAGE 0 — MEASUREMENT AND TOOLING (the whole first turn)
+═══════════════════════════════════════════════
+
+Four deliverables (3.1-3.4). Missing any one of them means the user can see nothing.
+
+3.1 spec/measure_landmarks.py -> spec/landmarks.json
+
+    Silhouette extraction: corner flood fill, tol=18. Verified clean on all five
+    references, including the armpit holes, the crotch notch, and the sole-slab
+    ledge. Do NOT use a global threshold; it fails on all five.
+
+    ⚠ THE FIGURE TEST NEEDS BOTH CONDITIONS. Flood fill only enters from the
+      border, so white regions ENCLOSED by the figure get misclassified as figure:
+        figure = (unreachable by flood fill from the border) AND (255 - min(r,g,b) > tol)
+      Either condition alone is wrong. The enclosed regions are largest in
+      more-angle (the gap between the legs) but exist in front / left / right too;
+      measure and record the enclosed-pixel count for every view.
+
+    ⚠ THREE CROPPING DEFECTS. The script must handle them; they are not noise to
+      be ignored. The numbers below were re-derived with the exact rule above at
+      tol=18 — reproduce them, and report any disagreement (§0.6).
+
+      (1) The hair tip is CLIPPED in the four ORTHOGRAPHIC references — the
+          topmost row of each still contains figure pixels:
+            front 6px / back 4px / left 4px / right 6px (row-0 figure-pixel count).
+          more-angle is NOT top-clipped (row-0 count 0).
+          => "total height = hair tip to sole" cannot be measured from any single
+          orthographic view, and each one is clipped by a different amount.
+
+      (2) EVERY orthographic view is framed FLUSH to at least one side edge, so
+          no lateral measurement from any of them is safe without checking first.
+          Figure bounding box vs image width, and the figure pixels actually
+          sitting in the first/last column:
+            front  x 5..379 of 384   left col 0   right col 0
+            back   x 1..390 of 391   left col 0   right col 1   (row y=512)
+            left   x 2..213 of 214   left col 0   right col 8   (rows y 126..133)
+            right  x 0..205 of 206   left col 9   right col 2   (rows y 0..146)
+          => right.webp is clipped across rows 0..146, which is the HAIR AND HEAD
+          band — the same band §3.1's hair-tip extrapolation and §4[14]'s skull
+          inset depend on. Record the clipped row ranges per view in
+          landmarks.json and exclude them from every width measurement and from
+          every silhouette IoU (§6, §8.5b).
+          ⚠ back.webp is still not to be used for lateral measurement. That rule
+            stands, but note it now rests on flush framing (1px of margin on the
+            left, 0 on the right), not on a large cut: an earlier claim of "50px
+            of solid in the rightmost column" does not reproduce — the measured
+            value is 1px.
+
+      (3) The figure's pixel height differs per view:
+            front 820 / back 823 / left 846 / right 829.
+          => views cannot be compared directly.
+
+    Handling:
+      - Cross-view alignment anchor is SOLE -> CHIN. Both landmarks are complete
+        in all five references.
+      - Total height 1.000 is a DERIVED value, not a measured one: extrapolate the
+        hair tip from a side view (the spike's two edges are straight lines;
+        extend them and take the intersection). Use left.webp for this, not
+        right.webp — right.webp is clipped through the hair band per (2).
+      - Record the alignment residual in landmarks.json as `measurementUncertainty`
+        (in normalized units). It is THE tolerance: every "within tolerance" and
+        "± tol" in §3, §4 and §5 of this document means "within
+        measurementUncertainty", and §6's IoU threshold is derived from it, not
+        guessed.
+
+    What to measure:
+      Vertical landmarks Y: sole 0.000 / boot-cuff top / pant-leg crease /
+        crotch-notch apex / widest hip / hip-yoke V tip / belt top and bottom /
+        shoulder line / deltoid hexagonal waistline / chin / hair-cap crown /
+        tallest hair tip 1.000 (extrapolated)
+      Widths and depths: shoulder width, max hip width, max hip depth, torso depth,
+        head width, hair-cap width, neck width, foot length, foot width,
+        straight-pant-tube width
+      Pose angles: upper-arm abduction, upper-arm forward lean, elbow break angle,
+        foot splay angle
+        ⚠ These are 3D angles. A front view yields a PROJECTED angle, not the real
+          one — an upper arm that is both abducted and leaned forward collapses
+          both into a single front-view angle. Solve the 3D direction vector from
+          the front AND side orthogonal projections, then take the angle from the
+          vector. Reading one view directly is always wrong.
+      Hair thickness: normal distance from the exposed face plane to the outer hair
+        silhouette in the left/right views
+
+    Every part factory may only read from landmarks.json. Magic numbers inside a
+    part file are forbidden.
+
+    Self-check three silhouette facts once measured. Any failure means a bad measure:
+      A. The hip is wider AND deeper than the shoulders — the pants are the
+         largest volume in the model.
+      B. In profile the hip reads as a front/back-symmetric KITE quadrilateral,
+         not a cylinder and not a skirt.
+      C. The torso is a thin slab: torso depth <= 0.5 x shoulder width
+         (depth:width <= 1:2).
+
+3.2 spec/gate_facets.py — the normal-angle distribution gate (see §5.4), including
+    the fake-frame procedure that pins its threshold. It writes its threshold, its
+    angle parameter, and both fake-frame results into spec/facet-gate.json.
+
+3.3 spec/sample_palette.py — reproduces §2's colour table by clustering (not by
+    hand-picked eye-dropper points), writing spec/palette.json, including the
+    explicit cool-view reduction rule demanded in §2. Stage 3 may only read that
+    output.
+
+3.4 Add a parts-gallery mode to the exhibit page: parts laid out in a row, each
+    independently orbitable.
+    Build it INTO the existing src/pages/ff7-cloud-strife-polygon-figure/index.vue
+    and src/utils/mountCloudStrifeViewer.ts. Do NOT add a .vue file — src/pages/
+    is the URL surface; one more file is one more junk route.
+
+    ⚠ ExhibitStage provides the explode UI, but it only renders that control when
+      the viewer object exposes `setExplode` (src/components/stage/ExhibitStage.vue).
+      mountCloudStrifeViewer currently returns { parts, selectPart, setIsolate,
+      provenance, dispose } and NOT setExplode, so explode is hidden today.
+      Forward `inspector.setExplode` through the returned StageViewer, or §5.9 is
+      untestable.
+
+    ⚠ There is a fifth wiring gap, but it CANNOT be fixed here: heroEntries() in
+      src/components/home/heroStage.ts is missing the
+      ff7-cloud-strife-polygon-figure entry, so the home page hero does not show
+      this exhibit at all. Each entry needs a `build()` that returns a finished
+      model, and no such model exists until Stage 1B. It is therefore a Stage 1B
+      task (§6.4), not a Stage 0 one. Do not stub it with a placeholder model.
+      (Checked: the other four wiring points — the page, src/utils/exhibits.ts,
+      src/utils/exhibitSlugs.ts and
+      content/exhibits/ff7-cloud-strife-polygon-figure.yml — are already in place.)
+
+    While there: delete the untracked src/pages/head-capture-harness.vue (move any
+    functionality into src/utils/), and wipe the untracked
+    src/utils/cloudStrifeFigure/ for a clean rewrite.
+
+
+3.5 spec/audit_records.py — the mechanical enforcement of §0.6. AGENTS.md claims
+    this rule is enforced by such a script, but it exists only under
+    artifacts/exhibits/ff7-cloud-strife-ultima-weapon/spec/. Port it: it must fail
+    when a number appears in the spec that no artefact under ART/ produced. Until
+    it exists and runs clean, §0.6 is exhortation, not a gate.
+
+
+═══════════════════════════════════════════════
+§4 STAGE 1 — PART GENERATION (23 parts, 14 factories)
+═══════════════════════════════════════════════
+
+STAGE 1 IGNORES COLOUR AND MATERIAL ENTIRELY. Every part uses one grey
+mannequin material (M-00):
+
+  new THREE.MeshStandardMaterial({ color: 0xb0b0b0, flatShading: true,
+                                   metalness: 0, roughness: 0.85 })
+
+A second colour constant, any texture, or any material divergence inside a part
+file = FAIL. Colour findings may be noted in the spec, but must NOT reach the
+code — that is Stage 3's job.
+
+Location: src/utils/cloudStrifeFigure/create<Part>.ts (flat; no subdirectories)
+
+  export function createSole(side: "L" | "R"): THREE.Group      // 9 sided factories
+  export function createPelvis(): THREE.Group                   // 5 unsided factories
+
+  group.name = "<part name>"   // per §2; partInspector depends on it
+  group.userData.sockets = { <name>: THREE.Vector3 }   // in the part's local frame
+
+Do not create an assembly root or a scene.
+
+──── SOCKET LEDGER (one name per mating point; both parts must use it) ────
+
+Every part's local origin is its own upper socket (§1.4), i.e. the zero vector in
+its own frame. Every OTHER named point it needs is emitted in `userData.sockets`.
+A mating point has exactly ONE name, shared by the two parts that meet there —
+that is what makes §5.5 checkable.
+
+  part           origin (local zero)   emits
+  ─────────────────────────────────────────────────────────────────
+  sole           soleTop               —              (bottom face on Y=0)
+  ankle          ankleTop              soleTop
+  calf           calfTop               ankleTop
+  knee           kneeTop               calfTop
+  thigh          hip                   kneeTop
+  pelvis         pelvisTop             hipL, hipR
+  waist          waistTop              pelvisTop
+  chest          chestTop              waistTop, neckBase, shoulderL, shoulderR
+  upperDeltoid   shoulder              deltoidWaist
+  lowerDeltoid   deltoidWaist          backArmTop
+  backArm        backArmTop            elbow
+  frontArm       elbow                 fist
+  neck           neckTop               neckBase
+  head           skullTop              neckTop
+
+  - A sided emitter carries the L/R suffix (`hipL` mates with thighL's `hip`;
+    `shoulderR` mates with upperDeltoidR's `shoulder`). Unsided names mate directly.
+  - `chestTop` and `skullTop` are origins with no emitter: chest is the trunk
+    anchor, placed in Stage 1B straight from the shoulder-line landmark, and head
+    hangs off `neckTop`. `fist` is emitted and never consumed (terminal).
+  - `neckBase` and `neckTop` are the two UPWARD mates: the part above sits on the
+    part below, so both sides emit the same name and §5.5 compares them directly.
+
+Build order (simple to hard, sockets chaining bottom-up):
+  sole -> ankle -> calf -> knee -> thigh -> pelvis -> waist -> chest ->
+  lowerDeltoid -> upperDeltoid -> backArm -> frontArm -> neck -> head
+
+sole is first on purpose: it is the simplest, so it proves the gate machinery
+runs before anything hard depends on it. Otherwise every later part is debugging
+the tooling instead of the model. head is last because the hairline is locked last.
+
+
+──── LOWER BODY: THESE ARE BLOOMER PANTS, NOT FITTED TROUSERS ────
+
+pelvis / thigh / knee / calf are four segments of ONE pair of baggy pants, not
+"a leg". The pants balloon to maximum at the hip, taper continuously downward,
+gather at the pant-leg crease, and finish as a straight tube into the boot cuff.
+So: thigh is NOT the widest point (pelvis is), and knee is NOT the anatomical
+knee (the knee is covered by fabric and never visible).
+
+Both the profile and front views show the gather line: the outer silhouette runs
+as a straight TAPER, then hits a HARD CORNER at a specific height, then turns
+near-vertical below it. That corner is a real line in the reference, not a
+modeller's arbitrary cut.
+
+
+[1] sole x2 — createSole(side)
+    Flat slab of uniform thickness. Not a curved shoe sole.
+    In plan view it is a TRAPEZOID: wide at the heel end, narrow at the toe end,
+    extending a long way FORWARD and only slightly backward.
+    Toe and heel are both blunt chamfers, not points.
+    The top face emerges from under the boot cuff as a clean ledge.
+    Splay angle is baked in (read it from landmarks.json).
+    origin: soleTop, bottom face on Y=0. Emits nothing.
+
+[2] ankle x2 — createAnkle(side)  (boot cuff)
+    Rectangular prism whose cross-section is LARGER than the straight pant tube.
+    It swallows the bottom of the pant leg with a visible step all round.
+    Vertical edges chamfered.
+    origin: ankleTop / emits: soleTop
+
+[3] calf x2 — createCalf(side)  (straight pant tube)
+    Rectangular prism, near-square section with chamfered corners, NEAR-CONSTANT
+    WIDTH (top-to-bottom difference within measurementUncertainty), one vertical
+    crease down the front centre. Everything below the crease corner is this segment.
+    origin: calfTop / emits: ankleTop
+
+[4] knee x2 — createKnee(side)  (pant-leg gather segment)
+    A SHORT segment with exactly one job: turn the taper above into the vertical
+    below. The corner lives inside this segment.
+    Short height (read the pant-leg crease height from landmarks.json); section
+    runs from thigh's bottom section to calf's top section.
+    ⚠ The corner is a real crease, but it is NOT a seam and NOT a step — the
+      fabric is continuous. The three parts must share ONE set of section
+      constants so their joins match exactly, or a seam appears that the
+      reference does not have.
+    origin: kneeTop / emits: calfTop
+
+[5] thigh x2 — createThigh(side)  (bloomer taper segment)
+    Trapezoidal prism from the crotch down; the outer face is a continuous inward
+    TAPER, wide at top, narrow at bottom.
+    ⚠ This is not the widest point. pelvis is. The pants are already contracting
+      from the crotch downward.
+    origin: hip / emits: kneeTop
+
+[6] pelvis — createPelvis  (bloomer main volume)
+    The largest volume in the model and the part that decides the silhouette.
+    Front: a PENTAGON — belt width, flaring out to the widest point, then pulling
+      in to an inverted-V crotch notch.
+    Profile: a KITE quadrilateral, one sharp point front and one back,
+      FRONT/BACK SYMMETRIC, maximum depth at the widest height.
+    The widest point must be WIDER THAN THE SHOULDERS.
+    Few facets, large areas, hard creases.
+    origin: pelvisTop / emits: hipL, hipR
+
+──── UPPER BODY ────
+
+[7] waist — createWaist  (belt)
+    A flat band wrapping all the way round, marking where the torso pulls in.
+    Hard steps on both its top and bottom edges; it stands proud of both the chest
+    above and the pelvis below.
+    origin: waistTop / emits: pelvisTop
+
+[8] chest — createChest
+    Flat faceted slab. Front outline near-hexagonal: widest at the shoulder line,
+    tapering down to the waist. Front and back near-planar; sides are narrow
+    chamfers; every vertical edge chamfered.
+    Stage 1 does NOT build the chest straps (they are unscheduled — §8).
+    origin: chestTop / emits: waistTop, neckBase, shoulderL, shoulderR
+
+[9] lowerDeltoid x2 — createLowerDeltoid(side)
+    Loft: TOP SECTION HEXAGONAL -> BOTTOM SECTION QUADRILATERAL. The quad bottom
+    exists so it mates with backArm's rectangular prism at an identical section.
+    Authority: the figure's RIGHT shoulder in front.webp (bare, no pauldron
+    occlusion, the cleanest read).
+    origin: deltoidWaist (the hexagonal waistline) / emits: backArmTop
+
+[10] upperDeltoid x2 — createUpperDeltoid(side)
+    Loft: TOP SECTION QUADRILATERAL -> BOTTOM SECTION HEXAGONAL, its bottom hexagon
+    identical to lowerDeltoid's top. The two meet at the hexagonal waistline; that
+    horizontal crease is visible under zoom.
+    ⚠ In Stage 1 both shoulders are geometrically identical. The figure's left
+      black pauldron is a separate Stage 3 part; it covers exactly this
+      upperDeltoid, and its lower edge lands on the hexagonal waistline.
+    origin: shoulder (mates with chest's shoulderL / shoulderR) / emits: deltoidWaist
+
+[11] backArm x2 — createBackArm(side)  (upper arm)
+    A very slender rectangular prism, near-square section with chamfered corners.
+    Markedly thinner than both the deltoid above and the forearm below — that
+    contrast is an identity feature.
+    Abduction and forward lean are baked in (read from landmarks.json).
+    origin: backArmTop / emits: elbow
+
+[12] frontArm x2 — createFrontArm(side)  (forearm + wrist + glove; ONE part,
+     sub-segments unnamed)
+    BOTH arms are three segments, top to bottom:
+      a. forearm: trapezoidal prism, narrow at top, WIDE at bottom (it thickens
+         as it descends — the opposite of human anatomy; this is toy styling)
+      b. wrist: rectangular prism. The figure's LEFT is the grey bracer (slightly
+         wider, factor ~1.05, its lower edge overhanging a little). The figure's
+         RIGHT is the same rectangular prism, only skin-coloured, which is why no
+         seam is visible there in the reference.
+      c. glove: rectangular prism, chamfered cuboid, NO finger geometry at all,
+         joined to the segment above by a single flat cut.
+    Geometry is left/right symmetric; the only difference is segment b's width
+    factor. The colour difference belongs to Stage 3.
+    The elbow break is baked in: the fists must land AHEAD of the hip line.
+    A straight hanging arm = FAIL.
+    origin: elbow / emits: fist
+
+[13] neck — createNeck
+    CylinderGeometry(r, r, h, radialSegments = 8) with flatShading.
+    The user specified a cylinder; the reference reads as a faceted column; a
+    low-segment cylinder satisfies both. Short and thin.
+    origin: neckTop / emits: neckBase (mates with chest's neckBase)
+
+[14] head — createHead
+    Faceted skull + face. NO hair, NO ears, NO eyes.
+    The face is near-planar, widest at the cheekbones, tapering to a small pointed
+    chin, with a pronounced chamfer along the jaw.
+    ⚠ back.webp's outer silhouette is the HAIR CAP, not the skull — the whole
+      cranium is yellow hair back there, no scalp is exposed.
+      Skull outline = back.webp's outer silhouette inset by one hair thickness
+      (hair thickness from landmarks.json).
+      back.webp's lateral clipping (§3.1 (2)) is one pixel at y=512, far below the
+      head band, so the head silhouette in that view is intact. Confirm that
+      against landmarks.json's recorded clipped-row ranges before relying on it.
+
+    MUST EMIT FACE-GROUP TAGS so Stage 2's hair, features, and ears each attach to
+    the right region. Each array holds triangle indices into the head geometry:
+
+      group.userData.faceGroups = {
+        scalp: number[],  // hair-cap footprint — Stage 2's hairCap conforms here
+        face:  number[],  // face plane — Stage 2's faceDecal maps here
+        jaw:   number[],  // jaw chamfer, stays exposed
+        nape:  number[],  // nape below the hair-cap edge, stays exposed
+        ear:   number[],  // ear base — Stage 2's triangular-prism ears grow here
+      }
+      Every triangle of the head must appear in exactly one array. Assert it.
+
+    Hairline (the scalp boundary), cross-read from all four orthographic views:
+      rear:  a HARD HORIZONTAL LINE across the occiput — all yellow above,
+             neck skin below. back.webp shows this clearest; it is the only
+             stretch of the hairline that can be measured directly.
+      side:  from the temple down, in front of the ear, round behind it, rejoining
+             the rear horizontal (left/right views)
+      front: the forehead edge — COMPLETELY HIDDEN BY THE FRINGE, unmeasurable.
+             Derive it from the side-view hair-cap thickness; it is guess-list
+             item 1 (§11).
+      ears:  the ears sit OUTSIDE the hair cap; the back view shows a small skin
+             wedge exposed on each side. This is the authority for §7.3.
+
+    origin: skullTop / emits: neckTop (mates with neck's origin)
+    ✅ Stage 2 acceptance condition, recorded in the spec NOW: skull + hairCap must
+       reproduce back.webp's outer silhouette (§7.6).
+
+
+═══════════════════════════════════════════════
+§5 STAGE 1 GATES (every part; stop and wait once they pass)
+═══════════════════════════════════════════════
+
+Run 5.1-5.10 for every part. 5.7 and 5.10 apply only where stated. Record every
+result numerically; "looks right" is not a result.
+
+5.1 forge/stage4_review/diagnose_render.py Tier 1 passes:
+      python3 forge/stage4_review/diagnose_render.py \
+        --reference <abs path to the part's reference crop> \
+        --render <abs path to the part's render> \
+        --spec ART/spec/object-sculpt-spec.json --pass-id <pass> --in-place
+    --spec is required for --in-place to have anywhere to write.
+
+5.2 forge/stage4_review/diagnose_render_multi_angle.py --reference <fixed view>
+    --orbit <view> --orbit <view> (at least two --orbit flags) — every part here
+    is non-planar. It takes neither --spec nor --pass-id; record its verdict in
+    the review at 5.8. A "DEGENERATE-VIEW DETECTED" verdict is a FAIL.
+
+5.3 forge/stage4_review/make_comparison_sheet.py --reference <img> --render <shot>
+    --out <abs path>.png --json, then inspect that sheet with agent vision at
+    >=6x NEAREST. An unzoomed comparison does not count as looking.
+
+5.4 NORMAL-ANGLE DISTRIBUTION ASSERTION (this one exists to stop "all green but
+    the model is round"):
+    Measure the distribution of angles between adjacent face normals; assert
+    "fraction of adjacent face pairs with angle >= 12 degrees is >= threshold".
+    THE THRESHOLD MUST BE PINNED WITH FAKE FRAMES: run the same assertion against
+    a smooth sphere and an 8-segment lofted egg. BOTH must FAIL before the
+    threshold is considered set. A guessed threshold makes this gate useless —
+    hard stop instead.
+    The 12-degree angle is a parameter of the gate, not a measured value. If
+    either fake frame PASSES at 12 degrees, raise the angle until both fail, and
+    write the angle you settled on into spec/facet-gate.json alongside the
+    threshold and both fake-frame results.
+    Also assert material.flatShading === true and that the triangle count is
+    within the part's budget recorded in the spec.
+
+5.5 SOCKET ALIGNMENT ASSERTION. For every mating name in §4's socket ledger that
+    this part participates in: express the point in the FIGURE frame from both
+    sides — the emitter's origin landmark (landmarks.json) plus its socket vector,
+    against the consumer's origin landmark (or, for the two upward mates, its own
+    emitted socket) — and assert ||delta|| < 1e-6 in normalized units (§1.1).
+    Run it at the part stage, not at assembly.
+    (Stage 1 nominally "does not require assembly", but this stays: dropping it
+    would all but guarantee going back to rework all 23 parts at Stage 1B.)
+
+5.6 NAMING ASSERTION: group.name matches §2's table exactly, and the part/group
+    attribution that partInspector derives (§1.6's rules) matches the table —
+    build the part, run createPartInspector over it, and compare PartInfo.name,
+    PartInfo.module and PartInfo.kind against §2. Wrong names mean explode and
+    isolate are silently broken.
+
+5.7 PANT-LEG CREASE ASSERTION (a shared gate over thigh / knee / calf; rerun it
+    whenever any of the three changes):
+    Stack the three parts, take BOTH the profile and the front outer silhouette,
+    and for each of the two assert
+      a. exactly ONE corner. Decidable form: fit the outer silhouette from crotch
+         to boot cuff as a two-segment polyline; its maximum residual must be
+         within measurementUncertainty, and a three-segment fit must not reduce
+         that residual below it. No second corner, no arc transition.
+      b. the corner sits at the pant-leg crease height from landmarks.json,
+         within measurementUncertainty
+      c. both joins are C0 continuous: identical section sizes, ||delta|| < 1e-6,
+         no step
+      d. the calf segment is near-constant width: top-to-bottom difference within
+         measurementUncertainty
+
+5.8 forge/stage4_review/append_review.py ART/spec/object-sculpt-spec.json
+    --pass-id <pass> --fidelity <0-1> --action <continue|refine-spec|refine-code|
+    request-input|stop> --summary "..." --comparison-image <5.3's sheet>
+    --feature-reviews-json <file> --in-place
+    The per-feature scores go in --feature-reviews-json. Any one of these identity
+    features being wrong is a FAIL even when the overall score passes:
+      handedness; the kite hip profile; the single pant-leg corner; the forward-
+      broken elbow (fists ahead of the hip line); the forward-extending trapezoid
+      sole wedge; the boot cuff being wider in section than the pant tube; the
+      upper arm being thinner than both its neighbours; the two deltoid segments
+      meeting at the hexagonal waistline.
+    ⚠ --action is the AGENT's recorded reading, not permission to proceed. Rule
+      0.3 still applies: stop and wait for the user either way.
+
+5.9 The part is selectable and isolatable on its own. Load it in the §3.4
+    parts-gallery mode and confirm: partInspector lists it once, with the name and
+    module from §2; clicking it selects it; isolate hides everything else; and the
+    explode slider is present (which requires the setExplode forwarding in §3.4).
+
+5.10 MIRROR-CONSISTENCY ASSERTION (only for the 8 pure mirror pairs listed in
+     §1.5): negate the R part's vertex x coordinates and compare against the L
+     part point by point, ||delta|| < 1e-6; compare the sockets too.
+     Passing it means the R part does NOT need a second §5.3 visual comparison —
+     that is the entire point of this gate.
+     5.1 and 5.2 renders still run on both sides, to prove each really builds.
+     Does not apply to frontArm (the sides differ by the bracer width factor);
+     both sides need looking at.
+
+5.11 PASS BOOKKEEPING, required by SKILL.md steps 8 and 11 and not optional:
+
+       python3 forge/stage3_build/orchestrate_passes.py check ART/spec/object-sculpt-spec.json \
+         --pass-id <pass>
+
+     `check` is the thing that actually refuses to advance a pass, and it refuses
+     when the Tier 1 result of §5.1 was not recorded. Run it AFTER 5.1-5.10, and
+     treat its refusal as a §5 failure, not as a script error.
+     Then `orchestrate_passes.py sync --in-place` on the same spec, and re-run
+     `forge/next.py` (§0.1) to pick up the new state before handing over.
+
+
+═══════════════════════════════════════════════
+§6 STAGE 1B — ASSEMBLY (all 23 parts passed AND the user has said go)
+═══════════════════════════════════════════════
+
+src/utils/cloudStrifeFigure/createCloudStrifePolygonFigure.ts, pure assembly:
+import the 14 factories, build the group nodes from §2's table, place each part by
+translating it onto the socket named in §4's ledger.
+
+  ⚠ The pose is already baked into the parts (§1.4), so this file performs NO
+    rotations — translation only.
+  ⚠ NO GEOMETRY may be authored in this file. A shape change goes back to its
+    part file.
+  ⚠ Constant ownership: the assembly file owns only socket positions and the
+    group node names.
+
+Gate: front / back / left / right silhouette IoU against the four orthographic
+references.
+  - Build a blockout version (each part as its bounding prism) and measure its IoU
+    in all four views first. That is the FLOOR: the assembled figure must score
+    HIGHER than the blockout in every view, by more than measurementUncertainty
+    (§3.1). Scoring at or below the blockout means the detail is not earning its
+    triangles.
+  - Mask the clipped columns and rows recorded in landmarks.json (§3.1 (2)) out of
+    BOTH images before computing IoU. Without the mask, a limb that runs off the
+    frame scores as a miss the model cannot fix.
+
+6.4 WIRING, once the gate above passes and not before. This is the first moment a
+    finished model exists, so this is where the fifth wiring point gets closed
+    (§3.4): add the ff7-cloud-strife-polygon-figure entry to heroEntries() in
+    src/components/home/heroStage.ts, with
+    `build: () => createCloudStrifePolygonFigure()`.
+    Note the constraint in that file's own comment: src/utils/exhibits.ts is
+    imported by vite.config.ts to enumerate SSG routes and must stay free of
+    three.js — which is why the hero list is separate. Do not "simplify" it by
+    moving the build functions into the exhibit registry.
+
+
+═══════════════════════════════════════════════
+§7 STAGE 2 — FACE AND HAIR (Stage 1B passed AND the user has said go)
+═══════════════════════════════════════════════
+
+7.1 earL / earR — createEar(side): a triangular prism extending laterally out of
+    the face's side, grown on head's `ear` face group. A small wedge is exposed in
+    the front and back views; the side views have it almost fully covered by hair.
+
+7.2 faceDecal — createFaceDecal: the eyes, brows and mouth are PRINTED FLAT ART,
+    not geometry. Build a CanvasTexture (colorSpace = SRGBColorSpace) mapped onto
+    head's `face` face group. Do not model eyeballs. Do not model pupil slivers.
+    Set userData.explodeWithParent = true ON THE MESH, not on the wrapping Group —
+    partInspector reads the flag off the meshes (§1.6). Set on the Group alone,
+    faceDecal is classified as a part and flies out on explode.
+
+    ⚠ IN STAGE 2 THE TEXTURE IS A GREYSCALE PLACEHOLDER, not the real face.
+      A texture is material, and material belongs to Stage 3 — but Stage 2 needs a
+      texture to prove the UV registration lands on head's `face` face group. So
+      Stage 2 draws a neutral-grey registration pattern (eye boxes, brow strokes,
+      mouth line, plus a border on the UV island edge) and gates on POSITION only.
+      Stage 3 (§8) swaps it for the real coloured art. Building the coloured face
+      here would put colour on a still-grey head.
+
+    7.2a Registration gate: render front and 3/4 views, and confirm at >=6x that
+         the eye line sits at the measured eye-line Y from landmarks.json, that the
+         pattern is bounded by the `face` face group with no bleed onto `jaw` or
+         `scalp`, and that the UV island border is not clipped at any edge.
+
+7.3 hairCap — createHairCap: a faceted dome conforming to head's `scalp` face
+    group. The back view shows a radial facet fan converging at the occiput with a
+    shallow V crease down the centre-back, and it terminates at a hard horizontal
+    line at the nape.
+    ⚠ Its boundary is exactly head's `scalp` face group and nothing else. §4[14]
+      is the authority: the EARS SIT OUTSIDE THE CAP, with a skin wedge exposed on
+      each side in the back view. The cap sweeps past the ears in the side views —
+      which is why they look covered there — but it must not enclose them.
+      See guess-list item 4 (§11).
+
+7.4 HAIR SPIKES: 9 spikes, 13 triangular prisms, NOT mirror-symmetric. Orientation
+    uses the figure's own left/right. Follow the table; do not scatter them
+    procedurally. One table row = one part.
+
+      part name              prisms  growth direction
+      ──────────────────────────────────────────────────────────────────────
+      crownSpikeFront          1     up, leaning forward; the model's
+                                     highest point, Y=1.000
+      crownSpikeRear           1     up, shorter, behind the front one
+      fringeRightOuter         2     over the forehead then sweeping out
+                                     right-forward; reaches furthest laterally
+      fringeRightMid           2     right-forward, slightly lower
+      fringeRightInner         2     down-forward along the temple, tip
+                                     landing outboard of the right eye
+      sideburnRight            1     DOWN, hugging the cheek, cutting to
+                                     the cheekbone
+      fringeLeft               2     over the forehead then sweeping
+                                     forward-down; KINKED mid-length (that
+                                     kink is where its two prisms join);
+                                     tip reaches eye height
+      sideburnLeftUpper        1     ALONG THE SKULL SURFACE NORMAL, out to
+                                     the figure's left, angled slightly up
+      sideburnLeftLower        1     ALONG THE SKULL SURFACE NORMAL, out to
+                                     the figure's left, angled slightly down
+      ──────────────────────────────────────────────────────────────────────
+      9 parts, 13 prisms. The two left sideburns are 1 prism each per guess-list
+      item 2 (§11); taking its Reading B instead makes the total 15, and the
+      triWedge count in §2 changes with it.
+
+    ⚠ How the sideburns were identified: a spike growing along the surface normal
+      appears, from the SAME-SIDE profile view, as a FORESHORTENED QUADRILATERAL
+      end face — not a triangle. The two quadrilateral patches floating in front
+      of the cranium in left.webp ARE sideburnLeftUpper/Lower.
+      Verify the build with the same test: render from left.webp's camera angle;
+      those two must also read as squashed quadrilaterals. If they read as
+      triangles, their direction is wrong.
+
+7.5 Lock the topology before touching material — material cannot rescue wrong
+    hair-card topology.
+
+7.6 Stage 2 hard condition: skull + hairCap + spikes must reproduce back.webp's
+    outer silhouette, masked per §6.
+
+
+═══════════════════════════════════════════════
+§8 STAGE 3 — MATERIAL, COLOUR, AND ONE DECORATION PART
+═══════════════════════════════════════════════
+
+⚠ This stage does not only paint — IT ALSO ADDS GEOMETRY. The user explicitly
+  assigned the pauldron to Stage 3. In the references it is a separate shell with
+  real thickness and a visible gap line, not a printed marking. Therefore Stage
+  3's gate must include a SILHOUETTE RE-CHECK, not only a colour delta-E check.
+
+⚠ The two chest straps and the diagonal back panel are UNSCHEDULED. Do not build
+  them here as a convenience, and do not assign them to any other stage. They
+  require a separate user order.
+
+8.1 pauldronL — createPauldron: the black shoulder cap. A chunky chamfered
+    quadrilateral shell floating a hair above upperDeltoidL with a visible gap
+    line; its lower edge lands on the hexagonal waistline. In the back view it
+    wraps onto the upper back.
+
+8.2 Whole model: MeshStandardMaterial, flatShading: true, metalness: 0,
+    roughness 0.80-0.90. No gloss, no clearcoat, no normal maps. The only textured
+    surface in the model is faceDecal.
+
+8.2a Replace Stage 2's greyscale registration placeholder (§7.2) with the real
+     coloured face art, reusing the SAME UV layout — the registration was already
+     gated in §7.2a and must not shift. Re-run §7.2a's position check after the
+     swap; a texture swap that moves the eye line is a FAIL, not a colour question.
+
+8.3 Use the already-measured values in §2's colour table, and re-run
+    spec/sample_palette.py once to verify them; where the script disagrees, the
+    script wins (§0.6). Do NOT copy any existing json and do NOT eye-dropper by
+    hand. Adopt the cool 4-view column; the reasoning is in §2. Switching to the
+    warm column is a user decision and must be justified in the spec. Never mix
+    the two.
+
+8.4 Colour assignments known now: both gloves C-07; the figure's LEFT wrist C-08
+    (bracer grey); the figure's RIGHT wrist C-01 (skin); pauldron C-07; belt C-05;
+    boots C-05b; shirt C-03; pants C-04; hair C-02; faceDecal C-09.
+    ⚠ THAT LIST IS NOT COMPLETE. Before 8.5a can run, EVERY one of the 37 parts
+      must carry a colour code, and every code must name the palette.json cluster
+      it came from. Parts with no assignment above (head, neck, both deltoid
+      segments, backArm, the forearm segments, the soles) and the unused code
+      C-01s must be resolved against palette.json and the assignment listed in the
+      spec. Report the list you settled on; do not guess silently.
+
+8.5 Gates:
+    a. Colour: for every part, sampled colour vs rendered colour within a CIELAB
+       delta-E threshold, the threshold pinned with a deliberately miscoloured
+       fake frame (a frame with a known delta-E offset must FAIL before the
+       threshold is considered set).
+    b. Silhouette re-check: after adding pauldronL, front/back/left/right IoU,
+       masked per §6, must be no lower than at Stage 1B.
+
+
+═══════════════════════════════════════════════
+§9 STAGE 5 — FULL INTEGRATION AND REFINEMENT (Stage 3 complete AND the user
+   has said go)
+═══════════════════════════════════════════════
+
+This stage receives the assembled, coloured model and fixes what only assembly can
+reveal. It ADDS NOTHING.
+
+9.1 Scope. Permitted work, and nothing else:
+    - close visible gaps and interpenetrations at joints
+    - remove z-fighting between coplanar faces of adjacent parts
+    - correct socket positions in the integration file
+    - correct a part's shape BY EDITING ITS PART FILE (never the integration file)
+    Forbidden here: new parts, new shape codes, new colour codes, new material
+    codes. Anything that would add one of those re-enters at the stage that owns
+    it and needs a fresh user order.
+
+9.2 Method. Walk the joints in the order the sockets chain (§4's socket ledger),
+    one joint per turn, each inspected at >=6x NEAREST against the matching
+    reference crop. §0.3's one-item-per-turn cadence applies to joints here exactly
+    as it applies to parts in Stage 1.
+
+9.3 Gates:
+    a. Four-view silhouette IoU, masked per §6, must EXCEED the Stage 1B result by
+       more than measurementUncertainty. Equal is not passing — this stage exists
+       to improve it.
+    b. Every identity feature in §5.8 re-confirmed at >=6x on the assembled model.
+       They were verified per part; assembly can break them.
+    c. Total triangle count within the model budget recorded in the spec.
+    d. §5.4's facet assertion re-run on the assembled model. Joint repair is where
+       smoothing accidentally creeps in.
+
+
+═══════════════════════════════════════════════
+§10 STAGE 6 — DETAIL ITERATION (Stage 5 complete AND the user has said go)
+═══════════════════════════════════════════════
+
+10.1 This stage has no automatic end and no completion condition. It runs ONE
+     user-directed change at a time and stops after each one. It is finished when
+     the user says it is.
+
+10.2 Each iteration is one turn:
+     - the user names one change
+     - you state which part files and which gates it touches, BEFORE editing
+     - you make it, re-run every gate it touches, and hand over the numbers
+     - you stop
+
+10.3 The correction budget (§0.1) still applies and still counts. If an iteration
+     is the third correction on the same part, that is the §0.1 signal: the reading
+     is wrong, not the code. Go back to the reference before editing again.
+
+10.4 Anything proposed here that would add a part, a shape code, a colour code or a
+     material code is NOT a stage 6 change. Say so and route it back to the stage
+     that owns it.
+
+
+═══════════════════════════════════════════════
+§11 GUESS LIST (deliver in the first reply; these five are already known)
+═══════════════════════════════════════════════
+
+1. FOREHEAD HAIRLINE POSITION. Completely hidden by the fringe; unmeasurable.
+   Reading A: inset from the side-view hair-cap thickness — the hairline sits
+     roughly one hair thickness above the brow
+   Reading B: the hair-cap front edge cuts straight to the brow line
+   Default A. The "skull + hairCap = back.webp outline" condition (§7.6) brackets it.
+
+2. TRIANGULAR-PRISM COUNT FOR THE LEFT SIDEBURNS. The user wrote "two spikes ...
+   appears to use two prisms".
+   Reading A: 1 prism each, 2 total (consistent with the right sideburn)
+   Reading B: 2 prisms each, 4 total
+   Default A. §7.4's table and its 13-prism total assume A.
+
+3. HEIGHT OF THE knee SEGMENT. The crease is a line in the reference; its
+   gathered height is not readable.
+   Reading A: a short segment, roughly 8-12% of the pant-leg length, with the
+     taper-to-vertical turn concentrated there
+   Reading B: the crease is a zero-height edge and knee degenerates to a
+     transition ring
+   Default A (follow the user's three-part spec). Either way §5.7's "exactly one
+   corner, both joins C0 continuous" must hold.
+
+4. WHETHER THE HAIR CAP ENCLOSES THE EARS. §4[14] reads the back view as showing
+   an exposed skin wedge beside each ear; §7.1 reads the side views as showing the
+   ears almost fully covered.
+   Reading A: the ears sit outside the cap; the cap sweeps past them and the side
+     views only look covered because of overlap in projection
+   Reading B: the cap encloses the ears and the back-view wedges are the ear
+     lobes protruding below its edge
+   Default A (§4[14] is measured off back.webp, which is the head-shape authority).
+   Zoom the ear region in back.webp and left.webp at >=6x before building §7.3 and
+   report which reading survived.
+
+5. HAIR THICKNESS AT THE OCCIPUT. §4[14] insets back.webp's outline by one hair
+   thickness to get the skull, but thickness is only measurable at the FACE, from
+   the left/right views. Hair over the back of a head is usually thicker than over
+   the brow.
+   Reading A: thickness is uniform — use the face measurement everywhere
+   Reading B: the occiput is thicker; the skull must be inset more at the back
+   Default A. This is the highest-leverage guess in the list: `head` is the last
+   part built and Stage 2's hairCap and all nine spikes sit on it, so an error here
+   propagates into thirteen parts. The §7.6 condition
+   ("skull + hairCap = back.webp outline") is what brackets it — if §7.6 fails by
+   more than measurementUncertainty and the cap itself is correct, the inset was
+   wrong and Reading B is the cause. Say so rather than thickening the cap to hide
+   it.
+
+
+═══════════════════════════════════════════════
+§12 HARD STOPS
+═══════════════════════════════════════════════
+
+- forge/next.py exits 3 or reports status=stopped
+- the correction budget tops out (3 per pass / 60 total)
+- still unreadable after 8x zoom AND the region affects an identity feature
+- §5.4's threshold cannot be pinned with fake frames (the gate itself is invalid;
+  do not proceed carrying it)
+- a Stage 0 script cannot reproduce a number this document asserts, and the gap is
+  larger than measurementUncertainty (§0.6)
+
+On any of these: stop, and write down where you are stuck, what you saw, and what
+input you need.
+
+A forge script exiting 2 is NOT a hard stop — it is a bad invocation or a bad
+path (§0.0, §0.1). Fix the command and re-run.
