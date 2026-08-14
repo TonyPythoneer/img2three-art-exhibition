@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { ArcballControls } from "three/examples/jsm/controls/ArcballControls.js";
-import { createUltimaWeaponV2LookDevLights } from "./ultimaWeaponV2/createUltimaWeaponV2LookDev";
+import { createCloudStrifeLookDevLights } from "./cloudStrifeFigure/lookDev";
 import { createPartInspector, readProvenance, type StageViewer } from "./partInspector";
 import { STAGE1_PARTS } from "./cloudStrifeFigure/parts";
 import { SOCKET_Y, SOLE_CENTRE_X } from "./cloudStrifeFigure/measurements";
@@ -238,7 +238,7 @@ export function mountCloudStrifeViewer(
     ? new THREE.Sphere(new THREE.Vector3(), 1)
     : box.getBoundingSphere(new THREE.Sphere());
 
-  const rig = createUltimaWeaponV2LookDevLights("referenceLighting", bounds);
+  const rig = createCloudStrifeLookDevLights();
   const lights = rig.lights;
   scene.add(lights);
   scene.environment = rig.createEnvironment(renderer);

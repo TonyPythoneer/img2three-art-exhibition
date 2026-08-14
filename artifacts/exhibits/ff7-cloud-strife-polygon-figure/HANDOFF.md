@@ -84,6 +84,55 @@ Rerun: `python3 spec/emit_colors.py` after any `sample_palette.py` change, then
 `node tools/capture_parts.mjs --assembled --out /tmp/x --views front,back,left,right` and
 the five gates above against `/tmp/x/*.json` / `/tmp/x/*.png`.
 
+## Stage 3 addendum, a later session — the "half brightness" gap above is now closed
+
+The owner flagged the 3D preview's colour not matching the reference art. Wiring was never
+the problem (`gate_color.py` still 23/23 the whole time) — it was exactly the lookdev-tone
+gap this doc already named and deferred to "Stage 5 territory" above. Closed now rather than
+left open, since fixing it turned out not to need a formal ΔE gate, just the light rig:
+
+- **Root cause, confirmed**: `mountCloudStrifeViewer.ts` called
+  `createUltimaWeaponV2LookDevLights("referenceLighting", bounds)` — Ultima Weapon's OWN rig,
+  shared as-is. That rig's energy (key 0.22 / hemisphere 0.62 / ambient 0.42) is tuned to sum
+  to ≈1.0 against a material left WHITE, whose shading is baked into vertex colour. Cloud
+  Strife's `materials.ts` puts the measured C-xx hex straight into `material.color` with no
+  vertex colour, so the same energy under-lit it.
+- **Fix**: a new file, `src/utils/cloudStrifeFigure/lookDev.ts`,
+  `createCloudStrifeLookDevLights()` — NOT a shared instance. It calls the Ultima Weapon
+  function once to reuse its environment/background/tone-mapping (those were never the bug),
+  then replaces only `.lights` with the same three light types at ≈3.7× the original
+  intensity (key 0.81, hemisphere 2.27, ambient 1.55). The Ultima Weapon file itself is
+  untouched — its own colour/silhouette/ΔE baselines stay byte-for-byte what they were.
+- **Why 3.7×, not the ≈1.9× the raw sRGB numbers below suggest**: `renderer.outputColorSpace`
+  is sRGB but the lighting math runs in linear space. An sRGB-space ratio of ≈0.52 decodes to
+  a *linear* ratio of ≈0.28 — a first pass at 1.9× (verified by remeasuring, not assumed) only
+  moved the linear ratio to ≈0.52, exactly 1.9× the start, just from a lower true baseline
+  than the sRGB numbers implied. `1 / 0.28 ≈ 3.7×` closed the rest of the gap.
+- **Measured, median over a >3000px box per region (never a single point — see AGENTS.md's
+  colour-sampling rule), on `front.png`**:
+
+  | region | before (sRGB) | authored | before ratio | after (sRGB) | after ratio |
+  |---|---|---|---|---|---|
+  | shirt C-03 | (38,36,63) | (75,72,115) | 0.50-0.55× | (75,72,118) | 1.00-1.03× |
+  | pants C-04 | (39,38,70) | (77,75,125) | 0.51-0.56× | (78,76,130) | 1.01-1.04× |
+  | skin C-01 | (128,112,110) | (219,192,184) | 0.58-0.60× | (230,202,200) | 1.05-1.09× |
+
+  No clipping (skin's brightest channel is 230/255 after the fix).
+- **Re-verified after the fix, fresh capture**: `gate_color.py` 23/23 (unaffected, as
+  expected — it reads `material.color`, never a pixel). `gate_silhouette.py` mean IoU 0.740
+  (front 0.792 · back 0.785 · left 0.717 · right 0.668) — unchanged from this doc's own
+  baseline above within noise, confirming a lighting-only change moved no geometry.
+  `vue-tsc --noEmit` clean.
+- **Still open, on purpose**: this was a targeted fix plus a throwaway spot-measurement
+  (a hand-picked box, median-sampled, in scratch — not committed), not a new pinned-threshold
+  photometric gate. A real Stage 5 lighting/ΔE fidelity gate is still a future item if wanted;
+  this addendum only closes "does it look right", not "is it gated".
+
+Rerun: `node tools/capture_parts.mjs --assembled --out /tmp/x --views front,back,left,right`,
+then `python3 $S/gate_color.py /tmp/x/meshes.json` and the `gate_silhouette.py` command above
+against `/tmp/x/*.png`. `src/utils/cloudStrifeFigure/lookDev.ts`'s docstring carries the same
+numbers as this section — keep them in sync if the rig is retuned again.
+
 ## Where the work actually stands
 
 **Stage 1 PASSES and Stage 1B is CLOSED.** 23 of 23 parts exist, the socket chain is
@@ -103,7 +152,7 @@ carried over from before the fix.
 | socket joints verified in the render | 21, at 0.000e+00 (`gate_assembly.py` 26/26) |
 | part gates | arm 56/56 · sole 18/18 · ankle 20/20 · pant-leg 42/42 · pelvis 16/16 · waist 14/14 · chest 15/15 · neck 12/12 · head 11/11 · naming 24/24 · facet 23 of 23 |
 | whole-figure Tier 1 (`gate_silhouette.py`, this project's own fair instrument) | **mean IoU 0.740** (front 0.792 · back 0.785 · left 0.717 · right 0.664) against a pinned 0.6 threshold — **PASS** |
-| verdict | **Stage 1 PASS. Stage 1B PASS. Stage 3 PASS for the 23 built parts** (`gate_color.py` 23/23, new this session — see "Stage 3 (colour)" above). Stage 2 (face, hair, ears, decoration) is still not started — the colour work jumped ahead of it on an explicit owner order, with the exception's compensating obligation recorded above. |
+| verdict | **Stage 1 PASS. Stage 1B PASS. Stage 3 PASS for the 23 built parts** (`gate_color.py` 23/23, new this session — see "Stage 3 (colour)" above). Stage 2 (face, hair, ears, decoration) is still not started — the colour work jumped ahead of it on an explicit owner order, with the exception's compensating obligation recorded above. The lookdev-tone gap this table's own row used to point at is closed — see "Stage 3 addendum" above. |
 
 Baseline this session started from: 0.201 FAIL (`ac33665`), then 0.720 (an earlier
 in-session fix to the shoulder socket + camera framing, commit `2364fbe`, not yet reconciled
