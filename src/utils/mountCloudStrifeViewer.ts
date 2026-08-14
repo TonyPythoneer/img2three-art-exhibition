@@ -422,6 +422,20 @@ export function mountCloudStrifeViewer(
       /** Where this part's own frame sits in the figure, so a gate can check placement. */
       world: number[];
     }> = [];
+    // frontArm carries an ARRAY of materials (§4[12]'s three colour bands on one mesh —
+    // forearm skin, wrist grey-or-skin, glove black); every other part still carries one.
+    // Normalise to an array so both shapes read the same way below, and never silently
+    // pick the first entry: if the bands ever disagreed on flatShading that would be a
+    // real defect, so the per-mesh record only reports a single value when ALL of a
+    // mesh's materials agree on it — same "fails loudly rather than guesses" rule §5.4's
+    // history already established for the single-material case.
+    const materialsOf = (object: THREE.Mesh): THREE.MeshStandardMaterial[] =>
+      (Array.isArray(object.material)
+        ? object.material
+        : [object.material]) as THREE.MeshStandardMaterial[];
+    const agreeingOrUndefined = <T>(values: T[]): T | undefined =>
+      new Set(values).size === 1 ? values[0] : undefined;
+
     model.updateMatrixWorld(true);
     model.traverse((object) => {
       if (!(object instanceof THREE.Mesh)) return;
@@ -438,15 +452,17 @@ export function mountCloudStrifeViewer(
       // one, got None, and its `flat is not False` test passed — the assertion was there
       // and measured nothing. Carried per-mesh and typed `unknown` so a material that is
       // not a MeshStandardMaterial arrives as whatever it really is and fails loudly.
-      const material = object.material as THREE.MeshStandardMaterial;
+      const mats = materialsOf(object);
       meshes.push({
         name: object.parent?.name || object.name || "mesh",
         vertices,
         indices: index ? Array.from(index.array) : [],
         material: {
-          type: material?.type ?? "none",
-          flatShading: material?.flatShading,
-          color: material?.color ? `#${material.color.getHexString()}` : "none",
+          type: agreeingOrUndefined(mats.map((m) => m?.type)) ?? "none",
+          flatShading: agreeingOrUndefined(mats.map((m) => m?.flatShading)),
+          color: mats.every((m) => m?.color)
+            ? mats.map((m) => `#${m.color.getHexString()}`).join(",")
+            : "none",
         },
         // The part GROUP's world origin, not the mesh's. Vertex data is local, so without
         // this an assembled capture cannot answer the one question the assembled view
@@ -513,8 +529,8 @@ export function mountCloudStrifeViewer(
                 const seen: string[] = [];
                 model.traverse((object) => {
                   if (!(object instanceof THREE.Mesh)) return;
-                  const m = object.material as THREE.MeshStandardMaterial;
-                  seen.push(`${m.type}:flatShading=${m.flatShading}`);
+                  for (const m of materialsOf(object))
+                    seen.push(`${m.type}:flatShading=${m.flatShading}`);
                 });
                 return seen;
               })(),

@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import { MANNEQUIN } from "./parts";
 import { ARM } from "./measurements";
 
 /**
@@ -40,14 +39,22 @@ export function ngon(
  *
  * §2's sharing rule is satisfied: three shape codes use this, and no option was added to
  * make that happen.
+ *
+ * `material` is either one M-01 instance for the whole prism, or one PER BAND (one fewer
+ * than `rings.length`) for a part like frontArm whose three sub-segments — forearm, wrist,
+ * glove — carry three different colour codes on ONE mesh (§4[12]: the sub-segments stay
+ * unnamed, so this is geometry GROUPS on one BufferGeometry, not three named parts). Each
+ * end cap takes its adjacent band's material.
  */
 export function loft(
   name: string,
   side: "L" | "R",
   rings: Array<Array<[number, number, number]>>,
+  material: THREE.Material | THREE.Material[],
 ): THREE.Group {
   const positions: number[] = [];
   const indices: number[] = [];
+  const bandRanges: Array<[number, number]> = [];
   const push = (p: [number, number, number]): number => {
     const i = positions.length / 3;
     positions.push(p[0], p[1], p[2]);
@@ -56,6 +63,7 @@ export function loft(
   const base = rings.map((r) => r.map(push));
 
   for (let k = 0; k < rings.length - 1; k += 1) {
+    const bandStart = indices.length;
     const a = base[k]!;
     const b = base[k + 1]!;
     // Rings may differ in vertex count (§4[9]: hexagon -> quadrilateral). Walk the LONGER
@@ -75,11 +83,16 @@ export function loft(
         indices.push(...(flip ? [q, lo[j0]!, lo[j1]!] : [q, lo[j1]!, lo[j0]!]));
       }
     }
+    bandRanges.push([bandStart, indices.length - bandStart]);
   }
+  const topCapStart = indices.length;
   const t = base[0]!;
-  const bt = base[base.length - 1]!;
   for (let i = 1; i < t.length - 1; i += 1) indices.push(t[0]!, t[i]!, t[i + 1]!);
+  const topCapRange: [number, number] = [topCapStart, indices.length - topCapStart];
+  const bottomCapStart = indices.length;
+  const bt = base[base.length - 1]!;
   for (let i = 1; i < bt.length - 1; i += 1) indices.push(bt[0]!, bt[i + 1]!, bt[i]!);
+  const bottomCapRange: [number, number] = [bottomCapStart, indices.length - bottomCapStart];
 
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
@@ -96,9 +109,21 @@ export function loft(
   }
   geometry.computeVertexNormals();
 
+  const materials = Array.isArray(material) ? material : [material];
+  if (materials.length > 1) {
+    if (materials.length !== bandRanges.length) {
+      throw new Error(
+        `loft("${name}"): ${materials.length} materials for ${bandRanges.length} bands`,
+      );
+    }
+    bandRanges.forEach(([start, count], i) => geometry.addGroup(start, count, i));
+    geometry.addGroup(topCapRange[0], topCapRange[1], 0);
+    geometry.addGroup(bottomCapRange[0], bottomCapRange[1], materials.length - 1);
+  }
+
   const group = new THREE.Group();
   group.name = name;
-  group.add(new THREE.Mesh(geometry, MANNEQUIN));
+  group.add(new THREE.Mesh(geometry, materials.length > 1 ? materials : materials[0]!));
   return group;
 }
 

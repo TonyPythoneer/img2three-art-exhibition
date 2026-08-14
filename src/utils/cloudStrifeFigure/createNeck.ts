@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import { MANNEQUIN } from "./parts";
 import { NECK, SOCKET_Y } from "./measurements";
+import { MAT_SKIN } from "./materials";
 
 /**
  * S-14 neckColumn — prompt §4[13], a faceted cylinder.
@@ -23,7 +23,7 @@ export function createNeck(): THREE.Group {
 
   const group = new THREE.Group();
   group.name = "neck";
-  group.add(new THREE.Mesh(geometry, MANNEQUIN));
+  group.add(new THREE.Mesh(geometry, MAT_SKIN));
 
   // Sockets: the bottom face emits neckBase for the chest to connect to.
   // §4 fixes the shape as `{ <name>: THREE.Vector3 }` — a bare vector, no rotation.

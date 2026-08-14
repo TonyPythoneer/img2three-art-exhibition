@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import { MANNEQUIN } from "./parts";
 import { ANKLE } from "./measurements";
+import { MAT_BOOT } from "./materials";
 
 /**
  * A-01 ankleCuff — prompt §4[2], a rectangular prism boot cuff.
@@ -93,7 +93,7 @@ export function createAnkle(side: "L" | "R"): THREE.Group {
 
   const group = new THREE.Group();
   group.name = `ankle${side}`;
-  group.add(new THREE.Mesh(geometry, MANNEQUIN));
+  group.add(new THREE.Mesh(geometry, MAT_BOOT));
 
   // Sockets: the bottom face emits soleTop for the sole to hang from. §4 fixes the shape as
   // `{ <name>: THREE.Vector3 }` — a bare vector, no rotation. §1.4 bakes the pose into the

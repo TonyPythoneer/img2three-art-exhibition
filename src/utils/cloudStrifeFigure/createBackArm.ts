@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { ARM } from "./measurements";
 import { loft, ngon, poseOffset } from "./armSegment";
+import { MAT_SKIN } from "./materials";
 
 /**
  * S-11 upperArm — prompt §4[11]. "A very slender rectangular prism, near-square section
@@ -21,10 +22,15 @@ import { loft, ngon, poseOffset } from "./armSegment";
 export function createBackArm(side: "L" | "R"): THREE.Group {
   const h = ARM.backArmHeight;
   const off = poseOffset(h);
-  const group = loft(`backArm${side}`, side, [
-    ngon(4, ARM.backArmWidth, ARM.backArmDepth, 0, 0),
-    ngon(4, ARM.backArmWidth, ARM.backArmDepth, -h, off.z),
-  ]);
+  const group = loft(
+    `backArm${side}`,
+    side,
+    [
+      ngon(4, ARM.backArmWidth, ARM.backArmDepth, 0, 0),
+      ngon(4, ARM.backArmWidth, ARM.backArmDepth, -h, off.z),
+    ],
+    MAT_SKIN,
+  );
   group.userData.sockets = {
     elbow: new THREE.Vector3(off.x * (side === "L" ? 1 : -1), -h, off.z),
   };

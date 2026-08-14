@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { ARM } from "./measurements";
 import { loft, ngon, poseOffset } from "./armSegment";
+import { MAT_SKIN } from "./materials";
 
 /**
  * S-09 deltoidLower — prompt §4[9]. Loft: TOP HEXAGON -> BOTTOM QUADRILATERAL. §4[9] says
@@ -13,10 +14,15 @@ import { loft, ngon, poseOffset } from "./armSegment";
 export function createLowerDeltoid(side: "L" | "R"): THREE.Group {
   const h = ARM.lowerDeltoidHeight;
   const off = poseOffset(h);
-  const group = loft(`lowerDeltoid${side}`, side, [
-    ngon(6, ARM.deltoidWaistWidth, ARM.deltoidWaistDepth, 0, 0),
-    ngon(4, ARM.backArmWidth, ARM.backArmDepth, -h, off.z),
-  ]);
+  const group = loft(
+    `lowerDeltoid${side}`,
+    side,
+    [
+      ngon(6, ARM.deltoidWaistWidth, ARM.deltoidWaistDepth, 0, 0),
+      ngon(4, ARM.backArmWidth, ARM.backArmDepth, -h, off.z),
+    ],
+    MAT_SKIN,
+  );
   group.userData.sockets = {
     backArmTop: new THREE.Vector3(off.x * (side === "L" ? 1 : -1), -h, off.z),
   };

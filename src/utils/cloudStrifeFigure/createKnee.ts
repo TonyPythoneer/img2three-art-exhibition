@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { PANT_LEG } from "./measurements";
 import { pantSegment } from "./pantSegment";
+import { MAT_PANTS } from "./materials";
 
 /**
  * S-04 pantGather — prompt §4[4], the middle of the three pant-leg segments.
@@ -25,7 +26,7 @@ import { pantSegment } from "./pantSegment";
  * origin: kneeTop / emits: calfTop
  */
 export function createKnee(side: "L" | "R"): THREE.Group {
-  const group = pantSegment(`knee${side}`, side, PANT_LEG.kneeHeight);
+  const group = pantSegment(`knee${side}`, side, PANT_LEG.kneeHeight, MAT_PANTS);
   group.userData.sockets = {
     calfTop: new THREE.Vector3(0, -PANT_LEG.kneeHeight, 0),
   };

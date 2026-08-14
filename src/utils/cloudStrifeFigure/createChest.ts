@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import { MANNEQUIN } from "./parts";
 import { CHEST } from "./measurements";
+import { MAT_SHIRT } from "./materials";
 
 /**
  * S-08 chestSlab — prompt §4[8], and the hub of §4's whole socket ledger: it is the only
@@ -98,7 +98,7 @@ export function createChest(): THREE.Group {
 
   const group = new THREE.Group();
   group.name = "chest";
-  group.add(new THREE.Mesh(geometry, MANNEQUIN));
+  group.add(new THREE.Mesh(geometry, MAT_SHIRT));
   // §4's ledger. `neckBase` is one of the two UPWARD mates — the neck sits ON the chest,
   // so both parts emit the same name and §5.5 compares them directly. The chest's own
   // neckBase is its top face, i.e. its origin, so the vector is zero and that is correct

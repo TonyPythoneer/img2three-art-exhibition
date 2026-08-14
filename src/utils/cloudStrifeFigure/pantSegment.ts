@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import { MANNEQUIN } from "./parts";
 import { PANT_LEG } from "./measurements";
 
 /**
@@ -23,7 +22,12 @@ import { PANT_LEG } from "./measurements";
  * Frame: the local origin is the segment's own upper socket (§1.4), so the top face sits
  * on y=0 and the bottom on y=-height.
  */
-export function pantSegment(name: string, side: "L" | "R", height: number): THREE.Group {
+export function pantSegment(
+  name: string,
+  side: "L" | "R",
+  height: number,
+  material: THREE.Material,
+): THREE.Group {
   const sideSign = side === "L" ? 1 : -1;
   const { widthX, depthZ } = PANT_LEG;
 
@@ -102,6 +106,6 @@ export function pantSegment(name: string, side: "L" | "R", height: number): THRE
 
   const group = new THREE.Group();
   group.name = name;
-  group.add(new THREE.Mesh(geometry, MANNEQUIN));
+  group.add(new THREE.Mesh(geometry, material));
   return group;
 }

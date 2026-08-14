@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import { MANNEQUIN } from "./parts";
 import { PELVIS, PANT_LEG } from "./measurements";
+import { MAT_PANTS } from "./materials";
 
 /**
  * S-06 pelvisKite — prompt §4[6], the bloomer pants' main volume.
@@ -102,7 +102,7 @@ export function createPelvis(): THREE.Group {
 
   const group = new THREE.Group();
   group.name = "pelvis";
-  group.add(new THREE.Mesh(geometry, MANNEQUIN));
+  group.add(new THREE.Mesh(geometry, MAT_PANTS));
   // §4's ledger: pelvis emits hipL and hipR, one per leg, and a sided emitter carries the
   // suffix. thighL's origin is `hip`, so `hipL` is what it hangs from (§1.2: +X is the
   // figure's LEFT).

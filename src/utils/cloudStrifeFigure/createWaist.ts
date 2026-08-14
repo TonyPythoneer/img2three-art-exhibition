@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import { MANNEQUIN } from "./parts";
 import { WAIST } from "./measurements";
+import { MAT_BELT } from "./materials";
 
 /**
  * S-07 belt — prompt §4[7], a flat band wrapping all the way round.
@@ -80,7 +80,7 @@ export function createWaist(): THREE.Group {
 
   const group = new THREE.Group();
   group.name = "waist";
-  group.add(new THREE.Mesh(geometry, MANNEQUIN));
+  group.add(new THREE.Mesh(geometry, MAT_BELT));
 
   // Sockets: the bottom face emits pelvisTop for the pelvis to connect from below.
   // §4 fixes the shape as `{ <name>: THREE.Vector3 }` — a bare vector, no rotation.

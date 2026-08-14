@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { ARM } from "./measurements";
 import { loft, ngon, poseOffset } from "./armSegment";
+import { MAT_BLACK, MAT_GREY, MAT_SKIN } from "./materials";
 
 /**
  * S-12 / S-13 forearm + wrist + glove — prompt §4[12]. ONE part, three sub-segments, and
@@ -48,12 +49,19 @@ export function createFrontArm(side: "L" | "R"): THREE.Group {
   const z2 = z1 + oW.z;
   const z3 = z2 + oG.z;
 
-  const group = loft(`frontArm${side}`, side, [
-    ngon(4, ARM.backArmWidth, ARM.backArmDepth, 0, 0),
-    ngon(4, ARM.elbowWidth, ARM.elbowDepth, y1, z1),
-    ngon(4, wristW, ARM.elbowDepth * wristFactor, y2, z2),
-    ngon(4, ARM.gloveWidth, ARM.gloveWidth, y3, z3),
-  ]);
+  // §4[12]'s three sub-segments, three colour codes on the one mesh: forearm skin, wrist
+  // grey ONLY on the figure's left (the bracer), glove near-black on both.
+  const group = loft(
+    `frontArm${side}`,
+    side,
+    [
+      ngon(4, ARM.backArmWidth, ARM.backArmDepth, 0, 0),
+      ngon(4, ARM.elbowWidth, ARM.elbowDepth, y1, z1),
+      ngon(4, wristW, ARM.elbowDepth * wristFactor, y2, z2),
+      ngon(4, ARM.gloveWidth, ARM.gloveWidth, y3, z3),
+    ],
+    [MAT_SKIN, side === "L" ? MAT_GREY : MAT_SKIN, MAT_BLACK],
+  );
   const sign = side === "L" ? 1 : -1;
   group.userData.sockets = {
     fist: new THREE.Vector3((oF.x + oW.x + oG.x) * sign, y3, z3),

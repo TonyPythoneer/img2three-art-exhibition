@@ -16,6 +16,74 @@ http://localhost:3000/img2three-art-exhibition/ff7-cloud-strife-polygon-figure
 
 Opens on the assembled figure. No query string.
 
+## Stage 3 (colour) — closed for Stage 1's 23 parts, out of AGENTS.md's normal order
+
+**The owner explicitly ordered this** ("你先做上色的 stage") before Stage 2 (hair/face/ears)
+existed. AGENTS.md's Hard Rule #1 ("all geometry finished before any colour") has a named
+exception for exactly this — owner says so, decoration deferred, compensating gate owed —
+and this is that exception, used rather than silently worked around:
+
+- **Coloured**: all 23 Stage 1 parts, using prompt.txt §2's already-measured C-xx codes
+  (`spec/palette.json`, sampled by clustering in an earlier session — nothing was
+  re-sampled or guessed this session).
+- **NOT coloured, because NOT BUILT**: hair (C-02), the two ears, faceDecal (C-09) — all
+  Stage 2 — and pauldronL, the two chest straps, the diagonal back panel — decoration,
+  prompt.txt schedules pauldronL at "S3" but it does not exist as geometry yet, so there is
+  nothing to colour. C-06 (strap brown) and C-02/C-09 are absent from the generated
+  `colors.ts` for the same reason: an unused colour constant is not evidence of anything.
+- **Compensating obligation, owed and not yet paid**: prompt.txt's exception clause requires
+  a full four-view silhouette re-check against the pre-exception baseline once the deferred
+  geometry lands. That baseline is THIS session's `gate_silhouette.py` mean IoU **0.740**
+  (front 0.792 · back 0.785 · left 0.717 · right 0.664) — record it before building hair,
+  ears, faceDecal or the pauldron, and diff against it once any of them exist.
+
+### What changed and how it was verified
+
+- `spec/emit_colors.py` (new) reproduces prompt.txt §2's colour table from
+  `spec/palette.json` as generated TypeScript — `src/utils/cloudStrifeFigure/colors.ts` —
+  same discipline `emit_measurements.py` already applies to dimensions: a factory may not
+  type a hex literal, it imports the generated module.
+- `src/utils/cloudStrifeFigure/materials.ts` (new): one M-01 matte-vinyl
+  `MeshStandardMaterial` singleton per colour code actually in use (`MAT_SKIN`,
+  `MAT_SHIRT`, `MAT_PANTS`, `MAT_BELT`, `MAT_BOOT`, `MAT_BLACK`, `MAT_GREY`) — same "one
+  shared instance" discipline `MANNEQUIN` used for M-00, now retired (M-00 "is the Stage 1
+  stand-in and is gone by Stage 3", prompt.txt §2 — it is; `MANNEQUIN` is deleted from
+  `parts.ts`, not just unused).
+- 14 factory files updated to import a colour material instead of `MANNEQUIN`. `frontArm`
+  is the one multi-colour part (§4[12]'s forearm/wrist/glove) and needed a real change:
+  `armSegment.ts`'s shared `loft()` now takes either one material (13 other callers,
+  unchanged behaviour) or one material PER BAND, using `BufferGeometry.addGroup` so it
+  stays ONE mesh with the sub-segments unnamed (§1.6), not three named parts.
+- **`gate_color.py` (new)** — a WIRING gate, not a photometric one: it compares each
+  mesh's exported `material.color` (the authored hex, read off `THREE.Color`, never a
+  rendered pixel) against `palette.json`'s adopted value for the C-xx code prompt.txt §2
+  assigns that part. 23/23 pass. Proven non-vacuous with a fake-frame negative control (a
+  synthetic capture with `chest` coloured `#FF0000` and `waist` missing its colour — both
+  FAIL, exit 1). Deliberately NOT a rendered-pixel ΔE gate: sampling actual pixels under
+  this scene's `referenceLighting` rig (borrowed from the Ultima Weapon prop) showed every
+  material rendering at roughly HALF its authored brightness, uniformly regardless of hue
+  (measured directly — chest pixel (38,36,63) vs authored (75,72,115), boot pixel
+  (33,31,25) vs authored (64,61,47), ~0.51-0.52x both times). That is the lookdev
+  lighting's tone response, not a colour-authoring bug, and a pixel-vs-hex gate would fail
+  every part identically and prove nothing about wiring — a lighting/tone-mapping fidelity
+  gate is a real but SEPARATE, later concern (Stage 5 territory).
+- A real gap the colour work surfaced and fixed, not swept under the multi-material change:
+  `mountCloudStrifeViewer.ts`'s mesh-export code assumed `object.material` was always one
+  material. `frontArm`'s new 3-material array made it export `type: undefined,
+  flatShading: undefined` for both `frontArmL`/`frontArmR`, and `gate_facets.py` correctly
+  FAILED both (`no flatShading in the capture`) rather than silently passing — exactly the
+  gate behaviour §5.4's own history documents. Fixed by normalising to an array and only
+  reporting a field when every material on the mesh agrees on it; re-captured and
+  `gate_facets.py` is back to 23/23.
+- Full gate sweep re-run on the fresh coloured capture (`/tmp/color2`, not reused from
+  before the fix): `gate_assembly.py` 26/26, `gate_naming.py` 24/24, `gate_facets.py`
+  23/23, `gate_color.py` 23/23, `gate_silhouette.py` mean IoU 0.740 (unchanged from the
+  Stage 1B baseline, as expected — colour does not move geometry).
+
+Rerun: `python3 spec/emit_colors.py` after any `sample_palette.py` change, then
+`node tools/capture_parts.mjs --assembled --out /tmp/x --views front,back,left,right` and
+the five gates above against `/tmp/x/*.json` / `/tmp/x/*.png`.
+
 ## Where the work actually stands
 
 **Stage 1 PASSES and Stage 1B is CLOSED.** 23 of 23 parts exist, the socket chain is
@@ -35,7 +103,7 @@ carried over from before the fix.
 | socket joints verified in the render | 21, at 0.000e+00 (`gate_assembly.py` 26/26) |
 | part gates | arm 56/56 · sole 18/18 · ankle 20/20 · pant-leg 42/42 · pelvis 16/16 · waist 14/14 · chest 15/15 · neck 12/12 · head 11/11 · naming 24/24 · facet 23 of 23 |
 | whole-figure Tier 1 (`gate_silhouette.py`, this project's own fair instrument) | **mean IoU 0.740** (front 0.792 · back 0.785 · left 0.717 · right 0.664) against a pinned 0.6 threshold — **PASS** |
-| verdict | **Stage 1 PASS. Stage 1B PASS** (re-confirmed on a fresh capture: `gate_assembly.py` 26/26, `gate_naming.py` 24/24, `gate_facets.py` 23/23, `gate_silhouette.py` mean IoU 0.740 — all against `/tmp/asm1b`, same numbers as Stage 1's). Ready for Stage 2 (surface geometry: face, hair, ears, decoration) — not started this session, out of the scope that was asked for. |
+| verdict | **Stage 1 PASS. Stage 1B PASS. Stage 3 PASS for the 23 built parts** (`gate_color.py` 23/23, new this session — see "Stage 3 (colour)" above). Stage 2 (face, hair, ears, decoration) is still not started — the colour work jumped ahead of it on an explicit owner order, with the exception's compensating obligation recorded above. |
 
 Baseline this session started from: 0.201 FAIL (`ac33665`), then 0.720 (an earlier
 in-session fix to the shoulder socket + camera framing, commit `2364fbe`, not yet reconciled
@@ -122,6 +190,10 @@ python3 $S/measure_neck.py ; python3 $S/measure_waist.py
 python3 $S/author_spec.py              # -> object-sculpt-spec.json + build-constants.json
 python3 $S/emit_measurements.py        # -> src/utils/cloudStrifeFigure/measurements.ts
 
+# colour -> palette.json (§2's table, sampled by clustering) -> colors.ts
+python3 $S/sample_palette.py           # rewrites palette.json if it needs re-sampling
+python3 $S/emit_colors.py              # -> src/utils/cloudStrifeFigure/colors.ts
+
 # capture
 node tools/capture_parts.mjs --part <name> --out /tmp/<name>
 node tools/capture_parts.mjs --assembled --out /tmp/asm --views front,back,left,right
@@ -136,6 +208,9 @@ python3 $S/gate_head.py /tmp/head/meshes.json
 python3 $S/gate_pant_leg.py <six> ; python3 $S/gate_pelvis.py <one>
 python3 $S/gate_sole.py <two> ; python3 $S/gate_ankle.py <two>
 python3 $S/gate_neck.py <one> ; python3 $S/gate_waist.py <one> ; python3 $S/gate_chest.py <one>
+
+# Stage 3's wiring gate — does the right C-xx code sit on the right part
+python3 $S/gate_color.py /tmp/asm/meshes.json
 
 # the whole-figure Tier 1 instrument (Phase 0's replacement for the excluded generic gate)
 python3 $S/gate_silhouette.py --ref-dir src/assets/exhibits/ff7-cloud-strife-polygon-figure \
@@ -152,6 +227,8 @@ python3 $S/zoom.py <view> <x0> <y0> <x1> <y1> <scale> /tmp/crop.png   # 6-8x, th
 
 ⚠ A factory's ONLY number source is the generated
 `src/utils/cloudStrifeFigure/measurements.ts`. Never type a number into a `create*.ts`.
+Same rule for colour: the only hex source is generated `colors.ts`, via a
+`src/utils/cloudStrifeFigure/materials.ts` singleton — never a literal hex in a `create*.ts`.
 
 ⚠ A stale capture FAILS the facet gate by design — it carries no `flatShading`. Recapture
 after every change rather than reusing a directory.
@@ -202,3 +279,7 @@ still bite:
   from the exposed skin column instead of comparing two landmarks to themselves).
 - ~~**#17** §5.7(d)'s lower reading measures the visible fabric, not the tube.~~ **CLOSED**
   this session — sampled above `bootCuffTopHighest` instead of at `pantHem`.
+- **#18 NEW** the compensating silhouette re-check owed by Stage 3's out-of-order colour
+  exception (see "Stage 3 (colour)" at the top). Not closeable yet — it only fires once
+  Stage 2 or the pauldron adds geometry. Diff against `gate_silhouette.py` mean IoU 0.740
+  when that happens; do not skip it because colour already looks done.

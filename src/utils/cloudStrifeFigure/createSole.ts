@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import { MANNEQUIN } from "./parts";
 import { SOLE } from "./measurements";
+import { MAT_BOOT } from "./materials";
 
 /**
  * S-01 soleSlab — prompt §4[1], the first Stage 1 part.
@@ -121,7 +121,7 @@ export function createSole(side: "L" | "R"): THREE.Group {
 
   const group = new THREE.Group();
   group.name = `sole${side}`;
-  group.add(new THREE.Mesh(geometry, MANNEQUIN));
+  group.add(new THREE.Mesh(geometry, MAT_BOOT));
   // Emits nothing: the sole is the bottom of the chain and its own origin is the only
   // mating point it has (§4's socket ledger).
   group.userData.sockets = {};

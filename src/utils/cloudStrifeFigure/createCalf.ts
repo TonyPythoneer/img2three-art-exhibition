@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { PANT_LEG } from "./measurements";
 import { pantSegment } from "./pantSegment";
+import { MAT_PANTS } from "./materials";
 
 /**
  * S-03 pantTube — prompt §4[3], the bottom of the three pant-leg segments.
@@ -22,7 +23,7 @@ import { pantSegment } from "./pantSegment";
  * origin: calfTop / emits: ankleTop (mates with the boot cuff's own origin)
  */
 export function createCalf(side: "L" | "R"): THREE.Group {
-  const group = pantSegment(`calf${side}`, side, PANT_LEG.calfHeight);
+  const group = pantSegment(`calf${side}`, side, PANT_LEG.calfHeight, MAT_PANTS);
   group.userData.sockets = {
     ankleTop: new THREE.Vector3(0, -PANT_LEG.calfHeight, 0),
   };

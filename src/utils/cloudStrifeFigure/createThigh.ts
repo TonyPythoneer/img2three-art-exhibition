@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { PANT_LEG } from "./measurements";
 import { pantSegment } from "./pantSegment";
+import { MAT_PANTS } from "./materials";
 
 /**
  * S-05 pantTaper — prompt §4[5], the topmost of the three pant-leg segments.
@@ -23,7 +24,7 @@ import { pantSegment } from "./pantSegment";
  * origin: hip (mates with pelvis's hipL / hipR) / emits: kneeTop
  */
 export function createThigh(side: "L" | "R"): THREE.Group {
-  const group = pantSegment(`thigh${side}`, side, PANT_LEG.thighHeight);
+  const group = pantSegment(`thigh${side}`, side, PANT_LEG.thighHeight, MAT_PANTS);
   group.userData.sockets = {
     kneeTop: new THREE.Vector3(0, -PANT_LEG.thighHeight, 0),
   };

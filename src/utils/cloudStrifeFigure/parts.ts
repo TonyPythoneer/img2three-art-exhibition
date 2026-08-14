@@ -15,7 +15,7 @@ import { createFrontArm } from "./createFrontArm";
 import { createHead } from "./createHead";
 
 /**
- * The Stage 1 part registry, and the one material every Stage 1 part shares.
+ * The Stage 1 part registry.
  *
  * §1.6 of the model's prompt makes the OBJECT TREE the part table — `partInspector`
  * reads the graph, not a registry — so this list is not an authority on what a part
@@ -23,19 +23,11 @@ import { createHead } from "./createHead";
  * side BEFORE any assembly exists, and something has to enumerate them.
  *
  * One factory = one part = one entry. Sub-segments inside a factory stay unnamed.
+ *
+ * Materials: each factory now colours itself from `./materials`'s M-01 singletons (§2's
+ * colour table) instead of the M-00 mannequin grey this registry used to hand out — M-00
+ * is "the Stage 1 stand-in, gone by Stage 3" (prompt.txt §2), and Stage 3 has landed.
  */
-
-/**
- * M-00 mannequin grey. Stage 1 carries no colour and no material of its own, so every
- * part shares this ONE instance — a `new` per part is waste, and it turns a later
- * material change into a 23-file edit.
- */
-export const MANNEQUIN = new THREE.MeshStandardMaterial({
-  color: 0xb0b0b0,
-  flatShading: true,
-  metalness: 0,
-  roughness: 0.85,
-});
 
 export type PartEntry = {
   /** Exactly the `group.name` the factory sets — §2's part table. */
@@ -60,9 +52,6 @@ export type PartEntry = {
  *
  * A part appears here in the same turn its factory lands, and not before: an entry
  * whose factory does not exist yet would make the gallery lie about what is built.
- *
- * The import cycle with the factories is fine: they only dereference MANNEQUIN inside a
- * function body, which cannot run before this module has finished evaluating.
  */
 export const STAGE1_PARTS: PartEntry[] = [
   { name: "soleL", module: "legLeft", origin: "soleTop", build: () => createSole("L") },

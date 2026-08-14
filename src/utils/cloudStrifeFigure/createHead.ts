@@ -1,11 +1,17 @@
 import * as THREE from "three";
-import { MANNEQUIN } from "./parts";
 import { HEAD, SOCKET_Y } from "./measurements";
 import { loft, ngon } from "./armSegment";
+import { MAT_SKIN } from "./materials";
 
 /**
  * S-15 skull — prompt §4[14]. Faceted skull and face. NO hair, NO ears, NO eyes: the hair
  * cap and its nine spikes, the two ears and the printed face are all Stage 2.
+ *
+ * Coloured C-01 skin over its WHOLE surface, scalp and nape included — Stage 2's hairCap
+ * has not landed, so the crown reads bald rather than blond until it does. That is the
+ * correct Stage 3 state, not a bug: colouring only the `face` faceGroup and leaving
+ * scalp/nape grey would be inventing a two-tone head the reference does not have anywhere
+ * in Stage 1/3's scope.
  *
  * WHERE THE SHAPE COMES FROM, AND WHY NOT FROM §4[14]'s RECIPE
  *
@@ -36,11 +42,16 @@ export function createHead(): THREE.Group {
   // Cranium depth: the face's own depth again behind it (parts.head.craniumBehindFace).
   const depth = exposedDepth * 2;
 
-  const group = loft("head", "L", [
-    ngon(6, cheekboneWidth * 0.55, depth * 0.55, 0, 0),
-    ngon(6, cheekboneWidth, depth, -cheekDrop, 0),
-    ngon(6, chinWidth, depth * 0.6, -height, 0),
-  ]);
+  const group = loft(
+    "head",
+    "L",
+    [
+      ngon(6, cheekboneWidth * 0.55, depth * 0.55, 0, 0),
+      ngon(6, cheekboneWidth, depth, -cheekDrop, 0),
+      ngon(6, chinWidth, depth * 0.6, -height, 0),
+    ],
+    MAT_SKIN,
+  );
 
   const mesh = group.children[0] as THREE.Mesh;
   const geometry = mesh.geometry as THREE.BufferGeometry;
@@ -85,6 +96,5 @@ export function createHead(): THREE.Group {
   }
   group.userData.faceGroups = groups;
   group.userData.sockets = { neckTop: new THREE.Vector3(0, -height, 0) };
-  void MANNEQUIN;
   return group;
 }
