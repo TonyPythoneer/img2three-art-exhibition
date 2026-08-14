@@ -297,7 +297,40 @@ def main() -> int:
         }
 
     calf_top = sections["calfTop"]
-    calf_bot = sections["ankleTop"]
+    # NOT sections["ankleTop"]. ankleTop sits at pantHem (row 691 front), but the boot
+    # cuff's highest reach (bootCuffTopHighest, row 683 front) is ABOVE that — 8px of the
+    # "ankleTop" row is already behind the cuff. §5.7(d) wants the calf TUBE's own width
+    # near its bottom, not the sliver of fabric still visible once the cuff has started
+    # occluding it, so this samples one RMS above bootCuffTopHighest instead: high enough
+    # to clear the cuff (per view) in every FRONTAL reference, still deep in the calf zone.
+    boot_cuff_top = sum(
+        lm["normalization"]["sole->chin"]["perView"][k]["bootCuffTopHighest"] for k in FRONTAL
+    ) / len(FRONTAL)
+    rms = lm["normalization"]["sole->chin"]["measurementUncertaintyRms"]
+    calf_bot_height = boot_cuff_top + rms
+    w, d = {}, {}
+    for k in FRONTAL:
+        u = unit(lm, k)
+        row = int(round(lm["views"][k]["landmarksPx"]["sole"] - calf_bot_height * u))
+        m = band_width(views[k], row)
+        if m:
+            w[k] = m["widest"] / u
+    for k in PROFILE:
+        u = unit(lm, k)
+        row = int(round(lm["views"][k]["landmarksPx"]["sole"] - calf_bot_height * u))
+        m = band_width(views[k], row)
+        if m:
+            d[k] = m["widest"] / u
+    calf_bot = {
+        "height": calf_bot_height,
+        "widthPerView": w,
+        "depthPerView": d,
+        "width": sum(w.values()) / len(w) if w else None,
+        "depth": sum(d.values()) / len(d) if d else None,
+        "note": "sampled 1 RMS above bootCuffTopHighest, not at ankleTop/pantHem -- see "
+        "the comment above this block. HANDOFF.md carried-over todo #17.",
+    }
+    sections["calfNearBoot_5_7d"] = calf_bot
     calf_delta = (
         abs((calf_top["width"] or 0) - (calf_bot["width"] or 0)) if calf_top["width"] else None
     )

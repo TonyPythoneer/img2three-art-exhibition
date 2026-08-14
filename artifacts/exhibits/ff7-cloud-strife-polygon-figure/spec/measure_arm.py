@@ -172,8 +172,20 @@ def main() -> int:
             run = outer_run(views[k], row_of(lm, k, h), band, k == "back")
             if run:
                 w[k] = (run[1] - run[0] + 1) / unit(lm, k)
+        # DEPTH: right.webp ONLY for shoulder/deltoidWaist, not averaged with left.webp.
+        # Same occlusion this file already excludes for WIDTH (comment above) applies here
+        # too, and worse: left.webp is a PROFILE of the pauldron-covered side, so at
+        # shoulder/deltoidWaist height its skin band returns 1-4px slivers around the
+        # pauldron's edge, not an arm reading at all. Averaging that against right.webp's
+        # clean 54px run at deltoidWaist pulled depth from 0.0714 to 0.0369 -- roughly HALF
+        # -- and built an arm that reads as a flat wedge from the side instead of the
+        # chunky forward-projecting shape the reference actually shows (right.webp profile:
+        # the deltoid alone spans ~41% of the image width).
+        # backArmTop/elbow/fist are BELOW the pauldron -- left is a clean read there, so
+        # those keep trying both views, same as before this fix.
         d: dict[str, float] = {}
-        for k in PROFILE:
+        depth_views = ("right",) if label in ("shoulder", "deltoidWaist") else PROFILE
+        for k in depth_views:
             runs = arm_runs(views[k], row_of(lm, k, h), band)
             if runs:
                 d[k] = max(r[1] - r[0] + 1 for r in runs) / unit(lm, k)
@@ -237,20 +249,42 @@ def main() -> int:
     }
 
     # ---- the glove, found the same way the bracer was ----
-    # `fist` is the socket at the BOTTOM of frontArm, so measuring the black band AT that
-    # height lands below the glove and returns nothing — which it did. The glove's own
-    # section is its widest black row between the elbow and the fist.
-    gbest = (0.0, row_of(lm, "front", chain["fist"]))
-    for row in range(row_of(lm, "front", chain["elbow"]), row_of(lm, "front", chain["fist"])):
+    # `fist` is the socket at the BOTTOM of frontArm. The OLD ledger value (F["widestHip"],
+    # a proxy borrowed from the hip's own widest point, not a glove measurement at all) put
+    # it at row 558 — 42px below where the black band's glove segment actually ends (row
+    # 516, from spec/refmask.split_rows("black") on front.webp: a clean isolated segment at
+    # rows 453-516, height 0.4649->0.3849, with the next black segment not until row 685).
+    # Scan a generous window (elbow to well past the old fist row, since the old row is not
+    # trustworthy as an upper scan bound either) for the glove's widest row, THEN walk
+    # downward from that row until the run's width drops under a noise floor — that last row
+    # still above the floor is the glove's true bottom edge.
+    scan_lo = row_of(lm, "front", chain["elbow"])
+    scan_hi = row_of(lm, "front", chain["fist"]) + 80
+    gbest = (0.0, scan_lo)
+    for row in range(scan_lo, scan_hi):
         run = outer_run(fv, row, "black", False)
         if run and (run[1] - run[0] + 1) > gbest[0]:
             gbest = (float(run[1] - run[0] + 1), row)
+    bottom_row = gbest[1]
+    row = gbest[1]
+    while row < scan_hi:
+        row += 1
+        run = outer_run(fv, row, "black", False)
+        run_w = float(run[1] - run[0] + 1) if run else 0.0
+        if run_w < gbest[0] * 0.15:
+            break
+        bottom_row = row
     glove = {
         "atHeight": (lm["views"]["front"]["landmarksPx"]["sole"] - gbest[1]) / u,
         "width": gbest[0] / u,
-        "fistLandmarkHeight": chain["fist"],
-        "note": "measured at the glove's widest black row, not at the `fist` socket height "
-        "— that socket is the BOTTOM of the part and the band is empty there.",
+        "bottomRowPx": bottom_row,
+        "bottomHeight": (lm["views"]["front"]["landmarksPx"]["sole"] - bottom_row) / u,
+        "fistLandmarkHeightOld": chain["fist"],
+        "note": "atHeight/width are the glove's widest black row, not the `fist` socket "
+        "height — that socket is the BOTTOM of the part and the OLD ledger value's row was "
+        "past the band entirely. bottomHeight is the true measurement: walk down from the "
+        "widest row until the run narrows under 15% of its max width, i.e. the glove's own "
+        "silhouette bottom. author_spec.py's Y['fist'] must read this, not F['widestHip'].",
     }
 
     out = {

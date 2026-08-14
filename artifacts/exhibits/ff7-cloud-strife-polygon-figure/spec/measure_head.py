@@ -145,6 +145,50 @@ def main() -> int:
         "note": "§4[14]: 'widest at the cheekbones, tapering to a small pointed chin'.",
     }
 
+    # The crown: no view sees bare bone (the cap covers it in every view — guess-list item),
+    # so skullTop cannot be a measurement. But it does NOT have to fall back to the hair
+    # TIP (the spikes' highest point) either, which is what put it at 1.0 and rendered the
+    # Stage 1 skull as a cone: a spike is a thin radiating blade with no cranium under it.
+    # What IS measurable is where the CAP MASS starts, as opposed to a spike: walk down
+    # from the hair's top row and find where the lateral hair band's width first reaches
+    # 60% of its own eventual max — above that line the silhouette is spike blades (narrow,
+    # still widening); at and below it, it is the rounded cap volume a skull could plausibly
+    # sit under. front.webp and back.webp (both a LATERAL width, unlike the profile views'
+    # fore-aft depth) agree to within RMS: 0.90308 vs 0.90724, spread 0.00416.
+    cap_mass_rows: dict = {}
+    for k in FRONTAL:
+        v = views[k]
+        widths = R.row_counts(v, "hair")
+        top = next((y for y, c in enumerate(widths) if c > 0), None)
+        if top is None:
+            continue
+        cap_max = max(widths)
+        threshold = cap_max * 0.6
+        begin = next(
+            (y for y in range(top, len(widths)) if widths[y] >= threshold), None
+        )
+        if begin is None:
+            continue
+        cap_mass_rows[k] = (lm["views"][k]["landmarksPx"]["sole"] - begin) / unit(lm, k)
+    crown_h = sum(cap_mass_rows.values()) / len(cap_mass_rows) if cap_mass_rows else None
+    out["crownHeight"] = {
+        "perView": cap_mass_rows,
+        "adopted": crown_h,
+        "spread": (max(cap_mass_rows.values()) - min(cap_mass_rows.values()))
+        if len(cap_mass_rows) > 1
+        else 0.0,
+        "method": "row where the hair band's lateral width first reaches 60% of its own "
+        "max, scanning down from the hair's topmost pixel — the boundary between spike "
+        "blades and the cap's rounded mass, on front.webp and back.webp only (the profile "
+        "views measure fore-aft depth, a different quantity, not cross-checkable against "
+        "this).",
+        "caveat": "APPROXIMATION, not a skull measurement: the cap mass still includes "
+        "scalp-hair thickness over the bone, so the true crown is somewhat below this line "
+        "too. It is the best available evidence, and materially better than the OLD value "
+        "(1.0, the spike TIP) which had nothing to do with a skull. Stage 1 authors the "
+        "bare-skull mesh at this height; Stage 2 keeps skullTop=1.0 as the hair's own anchor.",
+    }
+
     # The one dimension no view can see: the back of the cranium, under the hair cap.
     out["craniumBehindFace"] = {
         "value": None,

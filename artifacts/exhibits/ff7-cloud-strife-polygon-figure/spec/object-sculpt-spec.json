@@ -83,13 +83,13 @@
         "fixed-pose"
       ],
       "motionPotential": [
-        "none — the pose is baked into every part (prompt §1.4)"
+        "none \u2014 the pose is baked into every part (prompt \u00a71.4)"
       ],
       "materialFamilies": [
         "matte vinyl",
         "printed decal"
       ],
-      "notes": "A physical polygon figure photographed flat-lit from four orthographic sides plus one three-quarter. The subject is the TOY, not the game character: its identity is facet angles and hard creases, which is why the projection route is refused (spec/character-contracts.md §4)."
+      "notes": "A physical polygon figure photographed flat-lit from four orthographic sides plus one three-quarter. The subject is the TOY, not the game character: its identity is facet angles and hard creases, which is why the projection route is refused (spec/character-contracts.md \u00a74)."
     },
     "complexity": {
       "tier": "ultra-complex",
@@ -111,9 +111,9 @@
         "repetitionSystems": 2
       },
       "reasoning": [
-        "37 parts across 8 groups, but only 15 Stage 1 shape codes and 3 shared generators — repetition density is high and that is what keeps the workload finite.",
+        "37 parts across 8 groups, but only 15 Stage 1 shape codes and 3 shared generators \u2014 repetition density is high and that is what keeps the workload finite.",
         "Occlusion risk is LOW for a four-view orthographic set: every side is observed. What is not observed is the crown, clipped in all four views.",
-        "Only two material codes in the finished model, so material is folded into the colour stage and stage 4 is skipped (prompt §0.7).",
+        "Only two material codes in the finished model, so material is folded into the colour stage and stage 4 is skipped (prompt \u00a70.7).",
         "Every tolerance in the build derives from measurementUncertainty=0.05447 (spec/landmarks.json), not from a guessed threshold."
       ]
     },
@@ -189,7 +189,7 @@
             "left",
             "right"
           ],
-          "description": "The boot cuff's section is LARGER than the straight pant tube it swallows, with a hard step all round — not a taper.",
+          "description": "The boot cuff's section is LARGER than the straight pant tube it swallows, with a hard step all round \u2014 not a taper.",
           "mapsTo": {
             "ref": "bootcuff-step",
             "kind": "component.localFeatures"
@@ -339,7 +339,7 @@
             "left",
             "right"
           ],
-          "description": "The forearm THICKENS as it descends — the opposite of human anatomy. Toy styling, not an error to be corrected.",
+          "description": "The forearm THICKENS as it descends \u2014 the opposite of human anatomy. Toy styling, not an error to be corrected.",
           "mapsTo": {
             "ref": "forearm-widens-downward",
             "kind": "component.localFeatures"
@@ -401,7 +401,7 @@
             "back",
             "left"
           ],
-          "description": "A black shoulder cap sits on the figure's LEFT deltoid only; the right deltoid is bare. Handedness carrier — the grey bracer is on the same side.",
+          "description": "A black shoulder cap sits on the figure's LEFT deltoid only; the right deltoid is bare. Handedness carrier \u2014 the grey bracer is on the same side.",
           "mapsTo": {
             "ref": "pauldron-left-only",
             "kind": "component.localFeatures"
@@ -418,7 +418,7 @@
             "left",
             "right"
           ],
-          "description": "Nine hair spikes, NOT left/right mirrored — the head+hair band scores mirrorIoU 0.657 against a 0.858 whole-figure noise floor.",
+          "description": "Nine hair spikes, NOT left/right mirrored \u2014 the head+hair band scores mirrorIoU 0.657 against a 0.858 whole-figure noise floor.",
           "mapsTo": {
             "ref": "hair-spikes-not-mirrored",
             "kind": "component.localFeatures"
@@ -460,7 +460,7 @@
           "zones": [
             "front"
           ],
-          "description": "The printed face carries blue irises with dark pupils, white sclera, a black upper lash line, and brows — and NOTHING else. No printed nose, no printed mouth.",
+          "description": "The printed face carries blue irises with dark pupils, white sclera, a black upper lash line, and brows \u2014 and NOTHING else. No printed nose, no printed mouth.",
           "mapsTo": {
             "ref": "face-print-eyes-brows-only",
             "kind": "component.localFeatures"
@@ -514,7 +514,7 @@
         "hipWidth": 0.28324517801918436
       },
       "pose": {
-        "type": "fixed, baked into every part (prompt §1.4) — no skeleton",
+        "type": "fixed, baked into every part (prompt \u00a71.4) \u2014 no skeleton",
         "jointAngles": {
           "upperArmAbductionL": 18.666533479048187,
           "upperArmAbductionR": 16.10603222270949,
@@ -561,8 +561,8 @@
           "eyeSpacing": 0.1685823754789272,
           "note": "eyeLine is normalized down the head bounding box, eyeSpacing across it, per grimoire/character/reconstruction.md. The head box here is the head band of the silhouette (hair included), not the skull."
         },
-        "noseBase": "NOT OBSERVABLE — the reference has no printed nose. Zero here means absent, not unmeasured.",
-        "mouthLine": "NOT OBSERVABLE — the reference has no printed mouth.",
+        "noseBase": "NOT OBSERVABLE \u2014 the reference has no printed nose. Zero here means absent, not unmeasured.",
+        "mouthLine": "NOT OBSERVABLE \u2014 the reference has no printed mouth.",
         "hairline": "NOT OBSERVABLE from the front: the fringe covers it entirely. Derived at Stage 2 from the side-view hair-cap thickness."
       },
       "features": [
@@ -573,7 +573,7 @@
         "jaw-chamfer-pointed-chin"
       ],
       "confidence": 0.72,
-      "confidenceNote": "0.72, not higher: four orthographic views cover every side, but the crown is clipped in all four and the forehead hairline is unobservable, so the adopted tolerance is measurementUncertainty=0.05447 — about 43px of front.webp, far above the 0.0137 RMS."
+      "confidenceNote": "0.72, not higher: four orthographic views cover every side, but the crown is clipped in all four and the forehead hairline is unobservable, so the adopted tolerance is measurementUncertainty=0.05447 \u2014 about 43px of front.webp, far above the 0.0137 RMS."
     },
     "sourceImage": "/Users/tonyyang/git/personal/img2three-art-exhibition/src/assets/exhibits/ff7-cloud-strife-polygon-figure/front.webp",
     "pipelineRouting": {
@@ -603,12 +603,12 @@
   "qualityContract": {
     "qualityBar": "ultra-complex",
     "definitionOfDone": [
-      "Every Stage 1 part passes its own gates before Stage 1B starts; no part is self-certified and no two parts are built in one turn (prompt §0.3).",
+      "Every Stage 1 part passes its own gates before Stage 1B starts; no part is self-certified and no two parts are built in one turn (prompt \u00a70.3).",
       "Facet gate: adjacent-normal fraction at 42.0 degrees is at least 0.3357142857142857, with both fake frames failing and all three controls passing.",
       "Socket alignment under 1e-06 for every mating name in the ledger.",
       "Stage 1B four-view IoU beats the blockout floor by more than 0.05447382376324872 in every view.",
-      "All geometry is finished before any colour, with pauldronL the single recorded exception and §8.5b's four-view re-check as its compensating gate.",
-      "Every figure in this spec traces to an artefact under artifacts/exhibits/ff7-cloud-strife-polygon-figure/ — spec/audit_records.py is what checks it."
+      "All geometry is finished before any colour, with pauldronL the single recorded exception and \u00a78.5b's four-view re-check as its compensating gate.",
+      "Every figure in this spec traces to an artefact under artifacts/exhibits/ff7-cloud-strife-polygon-figure/ \u2014 spec/audit_records.py is what checks it."
     ],
     "minimumSpecDepth": {
       "macroComponents": 5,
@@ -743,7 +743,7 @@
   "qualityTargets": {
     "targetFidelity": 0.75,
     "mustMatch": [
-      "hard flat facets and visible edge creases — the faceting IS the identity",
+      "hard flat facets and visible edge creases \u2014 the faceting IS the identity",
       "the baked pose: forward-broken elbows, abducted upper arms, splayed feet",
       "handedness: black pauldron and grey bracer both on the figure's LEFT",
       "the four-view silhouette, with the clipped rows and columns masked out"
@@ -1026,43 +1026,37 @@
     ],
     "currentPass": "blockout",
     "completedPasses": [],
-    "lastCompletedPass": "",
+    "lastCompletedPass": null,
     "blockedReason": "",
     "nextRequiredEvidence": [
-      "Every part passes the facet gate: fraction of adjacent face pairs at or above 42.0 degrees is at least 0.3357142857142857, pinned by the smooth sphere and the lofted egg both failing (spec/facet-gate.json).",
-      "flatShading is true and the triangle count is inside the part's own budget.",
-      "Socket alignment: every mating name in the ledger agrees from both sides to under 1e-06.",
-      "partInspector reports each part once, with the name and module from prompt §2.",
-      "The 8 pure mirror pairs match point for point after negating x.",
-      "browser render screenshot from your agent's browser/screenshot tool",
-      "single side-by-side full reference/render comparison sheet",
-      "all critical semantic feature scores at or above their thresholds",
-      "self-correction review appended with action=continue before the next pass"
+      "per-part render and orbit renders",
+      "reference crop and render side by side at 6-8x NEAREST",
+      "every gate's number, marked PASS or FAIL"
     ],
     "stageMap": [
       {
         "passId": "blockout",
-        "promptStage": "prompt Stage 1 — 23 monochrome structural parts, each gated on its own"
+        "promptStage": "prompt Stage 1 \u2014 23 monochrome structural parts, each gated on its own"
       },
       {
         "passId": "structural-pass",
-        "promptStage": "prompt Stage 1B — rough assembly, socket placement only"
+        "promptStage": "prompt Stage 1B \u2014 rough assembly, socket placement only"
       },
       {
         "passId": "form-refinement",
-        "promptStage": "prompt Stage 2 — surface geometry: face, hair, ears"
+        "promptStage": "prompt Stage 2 \u2014 surface geometry: face, hair, ears"
       },
       {
         "passId": "material-pass",
-        "promptStage": "prompt Stage 3 — colour applied, material folded in (2 codes)"
+        "promptStage": "prompt Stage 3 \u2014 colour applied, material folded in (2 codes)"
       },
       {
         "passId": "surface-pass",
-        "promptStage": "prompt Stage 5 — full integration and refinement"
+        "promptStage": "prompt Stage 5 \u2014 full integration and refinement"
       },
       {
         "passId": "interaction-pass",
-        "promptStage": "prompt Stage 6 — detail iteration and part exposure"
+        "promptStage": "prompt Stage 6 \u2014 detail iteration and part exposure"
       },
       {
         "passId": "optimization-pass",
@@ -1077,7 +1071,7 @@
       0.75,
       0.56
     ],
-    "note": "Flat product-shot lighting. The subject carries no maps of any kind, so there is no reference-PBR extraction target to hit: prompt §2 fixes the finished model at two material codes and puts every variation on the colour axis."
+    "note": "Flat product-shot lighting. The subject carries no maps of any kind, so there is no reference-PBR extraction target to hit: prompt \u00a72 fixes the finished model at two material codes and puts every variation on the colour axis."
   },
   "actionReadiness": {
     "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
@@ -1117,12 +1111,12 @@
     }
   },
   "assumptions": [
-    "Sole plan aspect L/W = 2.4 — adopted, not measured.",
-    "Sole toe taper 0.72 — §4[1] says narrow at the toe but no view measures how much.",
+    "Sole plan aspect L/W = 2.4 \u2014 adopted, not measured.",
+    "Sole toe taper 0.72 \u2014 \u00a74[1] says narrow at the toe but no view measures how much.",
     "Sole end chamfer 0.34 of thickness, read off front.webp x5..165 y700..821 at 8x where the corner cut reads as its own facet.",
-    "The hair cap does not cover the ears (guess list §11.4, reading A): back.webp at 5-6x shows a skin wedge exposed left and right below the cap edge.",
+    "The hair cap does not cover the ears (guess list \u00a711.4, reading A): back.webp at 5-6x shows a skin wedge exposed left and right below the cap edge.",
     "The knee segment's height is floored at the measurement RMS; its own height is not measured and the crease it contains is a single row.",
-    "The sole's socket sits over the middle of its own footprint, so the slab reaches as far back as it does forward. §4[1] says it should extend a long way FORWARD and only slightly back — that is a statement about where the LEG stands on the foot, and the ledger puts that offset in ankle's own `soleTop` socket vector, not in the sole. It is measured on ankle's turn, from the boot cuff's fore-aft position against the sole's span in left.webp/right.webp. Until then the assembled foot will sit centred, and Stage 1B is where that would show."
+    "The sole's socket sits over the middle of its own footprint, so the slab reaches as far back as it does forward. \u00a74[1] says it should extend a long way FORWARD and only slightly back \u2014 that is a statement about where the LEG stands on the foot, and the ledger puts that offset in ankle's own `soleTop` socket vector, not in the sole. It is measured on ankle's turn, from the boot cuff's fore-aft position against the sole's span in left.webp/right.webp. Until then the assembled foot will sit centred, and Stage 1B is where that would show."
   ],
   "coordinateFrame": {
     "front": "camera-facing side in the reference image",
@@ -1300,7 +1294,7 @@
       "details": [],
       "fidelityTier": "hero",
       "triangleBudget": 160,
-      "notes": "Assembly root. Authors no geometry itself (prompt §6)."
+      "notes": "Assembly root. Authors no geometry itself (prompt \u00a76)."
     },
     {
       "id": "headGroup",
@@ -1372,7 +1366,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.094945,
         "endRadius": 0.094945,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -1492,7 +1486,7 @@
       "details": [],
       "fidelityTier": "hero",
       "triangleBudget": 160,
-      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt §1.6)."
+      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt \u00a71.6)."
     },
     {
       "id": "armLeftGroup",
@@ -1564,7 +1558,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.094945,
         "endRadius": 0.094945,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -1684,7 +1678,7 @@
       "details": [],
       "fidelityTier": "hero",
       "triangleBudget": 160,
-      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt §1.6)."
+      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt \u00a71.6)."
     },
     {
       "id": "armRightGroup",
@@ -1756,7 +1750,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.094945,
         "endRadius": 0.094945,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -1876,7 +1870,7 @@
       "details": [],
       "fidelityTier": "hero",
       "triangleBudget": 160,
-      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt §1.6)."
+      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt \u00a71.6)."
     },
     {
       "id": "torsoGroup",
@@ -1948,7 +1942,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.094945,
         "endRadius": 0.094945,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -2068,7 +2062,7 @@
       "details": [],
       "fidelityTier": "hero",
       "triangleBudget": 160,
-      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt §1.6)."
+      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt \u00a71.6)."
     },
     {
       "id": "legLeftGroup",
@@ -2140,7 +2134,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.094945,
         "endRadius": 0.094945,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -2260,7 +2254,7 @@
       "details": [],
       "fidelityTier": "hero",
       "triangleBudget": 160,
-      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt §1.6)."
+      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt \u00a71.6)."
     },
     {
       "id": "legRightGroup",
@@ -2332,7 +2326,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.094945,
         "endRadius": 0.094945,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -2452,7 +2446,7 @@
       "details": [],
       "fidelityTier": "hero",
       "triangleBudget": 160,
-      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt §1.6)."
+      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt \u00a71.6)."
     },
     {
       "id": "hairGroup",
@@ -2524,7 +2518,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.094945,
         "endRadius": 0.094945,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -2644,7 +2638,7 @@
       "details": [],
       "fidelityTier": "hero",
       "triangleBudget": 160,
-      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt §1.6)."
+      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt \u00a71.6)."
     },
     {
       "id": "faceGroup",
@@ -2716,7 +2710,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.094945,
         "endRadius": 0.094945,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -2836,7 +2830,7 @@
       "details": [],
       "fidelityTier": "hero",
       "triangleBudget": 160,
-      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt §1.6)."
+      "notes": "Container node. partInspector descends through it because it holds named, mesh-bearing children (prompt \u00a71.6)."
     },
     {
       "id": "pelvis",
@@ -2908,7 +2902,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.141623,
         "endRadius": 0.141623,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -3071,7 +3065,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 160,
-      "notes": "stage 1 · shape S-06 · createPelvis · generator one-off · colour C-04 · The largest volume in the model: pentagon in front, front/back-symmetric kite in profile."
+      "notes": "stage 1 \u00b7 shape S-06 \u00b7 createPelvis \u00b7 generator one-off \u00b7 colour C-04 \u00b7 The largest volume in the model: pentagon in front, front/back-symmetric kite in profile."
     },
     {
       "id": "waist",
@@ -3143,7 +3137,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.099072,
         "endRadius": 0.099072,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -3285,7 +3279,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 160,
-      "notes": "stage 1 · shape S-07 · createWaist · generator one-off · colour C-05 · Belt: a flat band standing proud of both the chest above and the pelvis below."
+      "notes": "stage 1 \u00b7 shape S-07 \u00b7 createWaist \u00b7 generator one-off \u00b7 colour C-05 \u00b7 Belt: a flat band standing proud of both the chest above and the pelvis below."
     },
     {
       "id": "chest",
@@ -3357,7 +3351,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.099072,
         "endRadius": 0.099072,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -3538,7 +3532,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-08 · createChest · generator loftPrism · colour C-03 · Flat faceted slab, near-hexagonal in front, widest at the shoulder line."
+      "notes": "stage 1 \u00b7 shape S-08 \u00b7 createChest \u00b7 generator loftPrism \u00b7 colour C-03 \u00b7 Flat faceted slab, near-hexagonal in front, widest at the shoulder line."
     },
     {
       "id": "neck",
@@ -3610,7 +3604,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.019688,
         "endRadius": 0.019688,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -3743,7 +3737,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-14 · createNeck · generator loftPrism · colour C-01 · Short faceted column, 8 radial segments, flat shaded."
+      "notes": "stage 1 \u00b7 shape S-14 \u00b7 createNeck \u00b7 generator loftPrism \u00b7 colour C-01 \u00b7 Short faceted column, 8 radial segments, flat shaded."
     },
     {
       "id": "head",
@@ -3802,7 +3796,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.283631,
+          -0.18879,
           0.0
         ],
         "contactNormal": [
@@ -3815,14 +3809,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.145009,
         "endRadius": 0.145009,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.290018,
-        "height": 0.283631,
+        "height": 0.18879,
         "depth": 0.290018,
         "units": "relative",
         "confidence": 0.2,
@@ -3831,7 +3825,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -3889,7 +3883,7 @@
             "id": "neckTop",
             "localPosition": [
               0.0,
-              -0.283631,
+              -0.18879,
               0.0
             ],
             "localRotation": [
@@ -3908,7 +3902,7 @@
           ],
           "scale": [
             0.290018,
-            0.283631,
+            0.18879,
             0.290018
           ],
           "isTrigger": false,
@@ -3957,7 +3951,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 160,
-      "notes": "stage 1 · shape S-15 · createHead · generator one-off · colour C-01 · Faceted skull and face, no hair, no ears, no eyes; carries the five faceGroups."
+      "notes": "stage 1 \u00b7 shape S-15 \u00b7 createHead \u00b7 generator one-off \u00b7 colour C-01 \u00b7 Faceted skull and face, no hair, no ears, no eyes; carries the five faceGroups."
     },
     {
       "id": "hairCap",
@@ -4016,7 +4010,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.283631,
+          -0.18879,
           0.0
         ],
         "contactNormal": [
@@ -4029,14 +4023,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.145009,
         "endRadius": 0.145009,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.290018,
-        "height": 0.283631,
+        "height": 0.18879,
         "depth": 0.290018,
         "units": "relative",
         "confidence": 0.2,
@@ -4045,7 +4039,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -4109,7 +4103,7 @@
           ],
           "scale": [
             0.290018,
-            0.283631,
+            0.18879,
             0.290018
           ],
           "isTrigger": false,
@@ -4166,7 +4160,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 160,
-      "notes": "stage 2 · shape S-17 · createHairCap · generator one-off · colour C-02 · Faceted dome conforming to head's scalp faceGroup; the ears stay outside it."
+      "notes": "stage 2 \u00b7 shape S-17 \u00b7 createHairCap \u00b7 generator one-off \u00b7 colour C-02 \u00b7 Faceted dome conforming to head's scalp faceGroup; the ears stay outside it."
     },
     {
       "id": "earL",
@@ -4238,7 +4232,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.019314,
         "endRadius": 0.019314,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -4254,7 +4248,7 @@
       "transform": {
         "position": [
           0.145009,
-          0.858184,
+          0.810764,
           0.0
         ],
         "rotation": [
@@ -4367,7 +4361,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-16 · createEar · generator triWedge · colour C-01 · Triangular prism growing laterally out of head's ear faceGroup."
+      "notes": "stage 2 \u00b7 shape S-16 \u00b7 createEar \u00b7 generator triWedge \u00b7 colour C-01 \u00b7 Triangular prism growing laterally out of head's ear faceGroup."
     },
     {
       "id": "earR",
@@ -4439,7 +4433,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.019314,
         "endRadius": 0.019314,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -4455,7 +4449,7 @@
       "transform": {
         "position": [
           -0.145009,
-          0.858184,
+          0.810764,
           0.0
         ],
         "rotation": [
@@ -4559,7 +4553,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-16 · createEar · generator triWedge · colour C-01 · Mirror of earL; the pair is one shape code."
+      "notes": "stage 2 \u00b7 shape S-16 \u00b7 createEar \u00b7 generator triWedge \u00b7 colour C-01 \u00b7 Mirror of earL; the pair is one shape code."
     },
     {
       "id": "faceDecal",
@@ -4618,7 +4612,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -4631,14 +4625,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.072504,
         "endRadius": 0.072504,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.145009,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.0,
         "units": "relative",
         "confidence": 0.2,
@@ -4647,7 +4641,7 @@
       "transform": {
         "position": [
           0.0,
-          0.858184,
+          0.810764,
           0.145009
         ],
         "rotation": [
@@ -4711,7 +4705,7 @@
           ],
           "scale": [
             0.145009,
-            0.141816,
+            0.094395,
             0.0
           ],
           "isTrigger": false,
@@ -4768,7 +4762,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 2,
-      "notes": "stage 2 · shape S-27 · createFaceDecal · generator plane · colour C-09 · Eyes, brows and lash line as ONE CanvasTexture plane; a detail, not a part."
+      "notes": "stage 2 \u00b7 shape S-27 \u00b7 createFaceDecal \u00b7 generator plane \u00b7 colour C-09 \u00b7 Eyes, brows and lash line as ONE CanvasTexture plane; a detail, not a part."
     },
     {
       "id": "soleL",
@@ -4840,7 +4834,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.099072,
         "endRadius": 0.099072,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -4985,7 +4979,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 160,
-      "notes": "stage 1 · shape S-01 · createSole · generator one-off · colour C-05b · Flat trapezoid slab, wide at the heel and narrow at the toe, splay baked in."
+      "notes": "stage 1 \u00b7 shape S-01 \u00b7 createSole \u00b7 generator one-off \u00b7 colour C-05b \u00b7 Flat trapezoid slab, wide at the heel and narrow at the toe, splay baked in."
     },
     {
       "id": "ankleL",
@@ -5057,7 +5051,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.030484,
         "endRadius": 0.030484,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -5207,7 +5201,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 64,
-      "notes": "stage 1 · shape S-02 · createAnkle · generator chamferedBox · colour C-05b · Boot cuff: a prism whose section is LARGER than the pant tube it swallows."
+      "notes": "stage 1 \u00b7 shape S-02 \u00b7 createAnkle \u00b7 generator chamferedBox \u00b7 colour C-05b \u00b7 Boot cuff: a prism whose section is LARGER than the pant tube it swallows."
     },
     {
       "id": "calfL",
@@ -5279,7 +5273,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.030484,
         "endRadius": 0.030484,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -5421,7 +5415,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 64,
-      "notes": "stage 1 · shape S-03 · createCalf · generator chamferedBox · colour C-04 · Straight pant tube, near-constant width, one vertical front crease."
+      "notes": "stage 1 \u00b7 shape S-03 \u00b7 createCalf \u00b7 generator chamferedBox \u00b7 colour C-04 \u00b7 Straight pant tube, near-constant width, one vertical front crease."
     },
     {
       "id": "kneeL",
@@ -5493,7 +5487,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.030484,
         "endRadius": 0.030484,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -5635,7 +5629,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-04 · createKnee · generator loftPrism · colour C-04 · The pant-leg gather: the one corner that turns the taper above into the tube below."
+      "notes": "stage 1 \u00b7 shape S-04 \u00b7 createKnee \u00b7 generator loftPrism \u00b7 colour C-04 \u00b7 The pant-leg gather: the one corner that turns the taper above into the tube below."
     },
     {
       "id": "thighL",
@@ -5707,7 +5701,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.030484,
         "endRadius": 0.030484,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -5840,7 +5834,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-05 · createThigh · generator loftPrism · colour C-04 · Bloomer taper from the crotch down; NOT the widest point, the pelvis is."
+      "notes": "stage 1 \u00b7 shape S-05 \u00b7 createThigh \u00b7 generator loftPrism \u00b7 colour C-04 \u00b7 Bloomer taper from the crotch down; NOT the widest point, the pelvis is."
     },
     {
       "id": "soleR",
@@ -5912,7 +5906,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.099072,
         "endRadius": 0.099072,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -6032,7 +6026,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 160,
-      "notes": "stage 1 · shape S-01 · createSole · generator one-off · colour C-05b · Flat trapezoid slab, wide at the heel and narrow at the toe, splay baked in."
+      "notes": "stage 1 \u00b7 shape S-01 \u00b7 createSole \u00b7 generator one-off \u00b7 colour C-05b \u00b7 Flat trapezoid slab, wide at the heel and narrow at the toe, splay baked in."
     },
     {
       "id": "ankleR",
@@ -6104,7 +6098,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.029213,
         "endRadius": 0.029213,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -6237,7 +6231,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 64,
-      "notes": "stage 1 · shape S-02 · createAnkle · generator chamferedBox · colour C-05b · Boot cuff: a prism whose section is LARGER than the pant tube it swallows."
+      "notes": "stage 1 \u00b7 shape S-02 \u00b7 createAnkle \u00b7 generator chamferedBox \u00b7 colour C-05b \u00b7 Boot cuff: a prism whose section is LARGER than the pant tube it swallows."
     },
     {
       "id": "calfR",
@@ -6309,7 +6303,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.029213,
         "endRadius": 0.029213,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -6442,7 +6436,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 64,
-      "notes": "stage 1 · shape S-03 · createCalf · generator chamferedBox · colour C-04 · Straight pant tube, near-constant width, one vertical front crease."
+      "notes": "stage 1 \u00b7 shape S-03 \u00b7 createCalf \u00b7 generator chamferedBox \u00b7 colour C-04 \u00b7 Straight pant tube, near-constant width, one vertical front crease."
     },
     {
       "id": "kneeR",
@@ -6514,7 +6508,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.029213,
         "endRadius": 0.029213,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -6647,7 +6641,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-04 · createKnee · generator loftPrism · colour C-04 · The pant-leg gather: the one corner that turns the taper above into the tube below."
+      "notes": "stage 1 \u00b7 shape S-04 \u00b7 createKnee \u00b7 generator loftPrism \u00b7 colour C-04 \u00b7 The pant-leg gather: the one corner that turns the taper above into the tube below."
     },
     {
       "id": "thighR",
@@ -6719,7 +6713,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.029213,
         "endRadius": 0.029213,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -6852,7 +6846,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-05 · createThigh · generator loftPrism · colour C-04 · Bloomer taper from the crotch down; NOT the widest point, the pelvis is."
+      "notes": "stage 1 \u00b7 shape S-05 \u00b7 createThigh \u00b7 generator loftPrism \u00b7 colour C-04 \u00b7 Bloomer taper from the crotch down; NOT the widest point, the pelvis is."
     },
     {
       "id": "upperDeltoidL",
@@ -6924,7 +6918,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.045408,
         "endRadius": 0.045408,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -7066,7 +7060,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-10 · createUpperDeltoid · generator loftPrism · colour C-01 · Loft quad -> hexagon; its bottom hexagon is lowerDeltoid's top."
+      "notes": "stage 1 \u00b7 shape S-10 \u00b7 createUpperDeltoid \u00b7 generator loftPrism \u00b7 colour C-01 \u00b7 Loft quad -> hexagon; its bottom hexagon is lowerDeltoid's top."
     },
     {
       "id": "lowerDeltoidL",
@@ -7138,7 +7132,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.045408,
         "endRadius": 0.045408,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -7271,7 +7265,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-09 · createLowerDeltoid · generator loftPrism · colour C-01 · Loft hexagon -> quad, so it mates with the upper arm's rectangular section."
+      "notes": "stage 1 \u00b7 shape S-09 \u00b7 createLowerDeltoid \u00b7 generator loftPrism \u00b7 colour C-01 \u00b7 Loft hexagon -> quad, so it mates with the upper arm's rectangular section."
     },
     {
       "id": "backArmL",
@@ -7343,7 +7337,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.020323,
         "endRadius": 0.020323,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -7485,7 +7479,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 64,
-      "notes": "stage 1 · shape S-11 · createBackArm · generator chamferedBox · colour C-01 · Slender upper arm, thinner than both the deltoid above and the forearm below."
+      "notes": "stage 1 \u00b7 shape S-11 \u00b7 createBackArm \u00b7 generator chamferedBox \u00b7 colour C-01 \u00b7 Slender upper arm, thinner than both the deltoid above and the forearm below."
     },
     {
       "id": "frontArmL",
@@ -7544,7 +7538,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.198145,
+          -0.143528,
           0.0
         ],
         "contactNormal": [
@@ -7557,14 +7551,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.020323,
         "endRadius": 0.020323,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.040645,
-        "height": 0.198145,
+        "height": 0.143528,
         "depth": 0.040645,
         "units": "relative",
         "confidence": 0.2,
@@ -7631,7 +7625,7 @@
             "id": "fist",
             "localPosition": [
               0.0,
-              -0.198145,
+              -0.143528,
               0.0
             ],
             "localRotation": [
@@ -7650,7 +7644,7 @@
           ],
           "scale": [
             0.040645,
-            0.198145,
+            0.143528,
             0.040645
           ],
           "isTrigger": false,
@@ -7723,7 +7717,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-12 · createFrontArm · generator loftPrism · colour C-01 · Forearm + wrist + glove as ONE part; the elbow break puts the fist ahead of the hip."
+      "notes": "stage 1 \u00b7 shape S-12 \u00b7 createFrontArm \u00b7 generator loftPrism \u00b7 colour C-01 \u00b7 Forearm + wrist + glove as ONE part; the elbow break puts the fist ahead of the hip."
     },
     {
       "id": "pauldronL",
@@ -7795,7 +7789,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.045408,
         "endRadius": 0.045408,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -7924,7 +7918,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 160,
-      "notes": "stage 3 · shape S-28 · createPauldron · generator one-off · colour C-07 · Black shoulder cap over the LEFT upperDeltoid; its lower edge lands on the hexagonal waistline. Stage 3 by the user's recorded exception (§0.7)."
+      "notes": "stage 3 \u00b7 shape S-28 \u00b7 createPauldron \u00b7 generator one-off \u00b7 colour C-07 \u00b7 Black shoulder cap over the LEFT upperDeltoid; its lower edge lands on the hexagonal waistline. Stage 3 by the user's recorded exception (\u00a70.7)."
     },
     {
       "id": "upperDeltoidR",
@@ -7996,7 +7990,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.045408,
         "endRadius": 0.045408,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -8129,7 +8123,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-10 · createUpperDeltoid · generator loftPrism · colour C-01 · Loft quad -> hexagon; its bottom hexagon is lowerDeltoid's top."
+      "notes": "stage 1 \u00b7 shape S-10 \u00b7 createUpperDeltoid \u00b7 generator loftPrism \u00b7 colour C-01 \u00b7 Loft quad -> hexagon; its bottom hexagon is lowerDeltoid's top."
     },
     {
       "id": "lowerDeltoidR",
@@ -8201,7 +8195,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.045408,
         "endRadius": 0.045408,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -8334,7 +8328,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-09 · createLowerDeltoid · generator loftPrism · colour C-01 · Loft hexagon -> quad, so it mates with the upper arm's rectangular section."
+      "notes": "stage 1 \u00b7 shape S-09 \u00b7 createLowerDeltoid \u00b7 generator loftPrism \u00b7 colour C-01 \u00b7 Loft hexagon -> quad, so it mates with the upper arm's rectangular section."
     },
     {
       "id": "backArmR",
@@ -8406,7 +8400,7 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.020323,
         "endRadius": 0.020323,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
@@ -8539,7 +8533,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 64,
-      "notes": "stage 1 · shape S-11 · createBackArm · generator chamferedBox · colour C-01 · Slender upper arm, thinner than both the deltoid above and the forearm below."
+      "notes": "stage 1 \u00b7 shape S-11 \u00b7 createBackArm \u00b7 generator chamferedBox \u00b7 colour C-01 \u00b7 Slender upper arm, thinner than both the deltoid above and the forearm below."
     },
     {
       "id": "frontArmR",
@@ -8598,7 +8592,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.198145,
+          -0.143528,
           0.0
         ],
         "contactNormal": [
@@ -8611,14 +8605,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.020323,
         "endRadius": 0.020323,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.040645,
-        "height": 0.198145,
+        "height": 0.143528,
         "depth": 0.040645,
         "units": "relative",
         "confidence": 0.2,
@@ -8685,7 +8679,7 @@
             "id": "fist",
             "localPosition": [
               0.0,
-              -0.198145,
+              -0.143528,
               0.0
             ],
             "localRotation": [
@@ -8704,7 +8698,7 @@
           ],
           "scale": [
             0.040645,
-            0.198145,
+            0.143528,
             0.040645
           ],
           "isTrigger": false,
@@ -8744,7 +8738,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 96,
-      "notes": "stage 1 · shape S-13 · createFrontArm · generator loftPrism · colour C-01 · Forearm + wrist + glove as ONE part; the elbow break puts the fist ahead of the hip."
+      "notes": "stage 1 \u00b7 shape S-13 \u00b7 createFrontArm \u00b7 generator loftPrism \u00b7 colour C-01 \u00b7 Forearm + wrist + glove as ONE part; the elbow break puts the fist ahead of the hip."
     },
     {
       "id": "crownSpikeFront",
@@ -8803,7 +8797,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -8816,14 +8810,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.036252,
         "endRadius": 0.036252,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -8832,7 +8826,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -8896,7 +8890,7 @@
           ],
           "scale": [
             0.072504,
-            0.141816,
+            0.094395,
             0.072504
           ],
           "isTrigger": false,
@@ -8936,7 +8930,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-18 · createHairSpike · generator triWedge · colour C-02 · One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
+      "notes": "stage 2 \u00b7 shape S-18 \u00b7 createHairSpike \u00b7 generator triWedge \u00b7 colour C-02 \u00b7 One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
     },
     {
       "id": "crownSpikeRear",
@@ -8995,7 +8989,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -9008,14 +9002,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.036252,
         "endRadius": 0.036252,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -9024,7 +9018,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -9088,7 +9082,7 @@
           ],
           "scale": [
             0.072504,
-            0.141816,
+            0.094395,
             0.072504
           ],
           "isTrigger": false,
@@ -9128,7 +9122,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-19 · createHairSpike · generator triWedge · colour C-02 · One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
+      "notes": "stage 2 \u00b7 shape S-19 \u00b7 createHairSpike \u00b7 generator triWedge \u00b7 colour C-02 \u00b7 One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
     },
     {
       "id": "fringeRightOuter",
@@ -9187,7 +9181,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -9200,14 +9194,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.036252,
         "endRadius": 0.036252,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -9216,7 +9210,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -9280,7 +9274,7 @@
           ],
           "scale": [
             0.072504,
-            0.141816,
+            0.094395,
             0.072504
           ],
           "isTrigger": false,
@@ -9320,7 +9314,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-20 · createHairSpike · generator triWedge · colour C-02 · One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
+      "notes": "stage 2 \u00b7 shape S-20 \u00b7 createHairSpike \u00b7 generator triWedge \u00b7 colour C-02 \u00b7 One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
     },
     {
       "id": "fringeRightMid",
@@ -9379,7 +9373,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -9392,14 +9386,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.036252,
         "endRadius": 0.036252,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -9408,7 +9402,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -9472,7 +9466,7 @@
           ],
           "scale": [
             0.072504,
-            0.141816,
+            0.094395,
             0.072504
           ],
           "isTrigger": false,
@@ -9512,7 +9506,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-21 · createHairSpike · generator triWedge · colour C-02 · One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
+      "notes": "stage 2 \u00b7 shape S-21 \u00b7 createHairSpike \u00b7 generator triWedge \u00b7 colour C-02 \u00b7 One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
     },
     {
       "id": "fringeRightInner",
@@ -9571,7 +9565,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -9584,14 +9578,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.036252,
         "endRadius": 0.036252,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -9600,7 +9594,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -9664,7 +9658,7 @@
           ],
           "scale": [
             0.072504,
-            0.141816,
+            0.094395,
             0.072504
           ],
           "isTrigger": false,
@@ -9704,7 +9698,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-22 · createHairSpike · generator triWedge · colour C-02 · One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
+      "notes": "stage 2 \u00b7 shape S-22 \u00b7 createHairSpike \u00b7 generator triWedge \u00b7 colour C-02 \u00b7 One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
     },
     {
       "id": "sideburnRight",
@@ -9763,7 +9757,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -9776,14 +9770,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.036252,
         "endRadius": 0.036252,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -9792,7 +9786,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -9856,7 +9850,7 @@
           ],
           "scale": [
             0.072504,
-            0.141816,
+            0.094395,
             0.072504
           ],
           "isTrigger": false,
@@ -9896,7 +9890,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-23 · createHairSpike · generator triWedge · colour C-02 · One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
+      "notes": "stage 2 \u00b7 shape S-23 \u00b7 createHairSpike \u00b7 generator triWedge \u00b7 colour C-02 \u00b7 One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
     },
     {
       "id": "fringeLeft",
@@ -9955,7 +9949,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -9968,14 +9962,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.036252,
         "endRadius": 0.036252,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -9984,7 +9978,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -10048,7 +10042,7 @@
           ],
           "scale": [
             0.072504,
-            0.141816,
+            0.094395,
             0.072504
           ],
           "isTrigger": false,
@@ -10088,7 +10082,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-24 · createHairSpike · generator triWedge · colour C-02 · One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
+      "notes": "stage 2 \u00b7 shape S-24 \u00b7 createHairSpike \u00b7 generator triWedge \u00b7 colour C-02 \u00b7 One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
     },
     {
       "id": "sideburnLeftUpper",
@@ -10147,7 +10141,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -10160,14 +10154,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.036252,
         "endRadius": 0.036252,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -10176,7 +10170,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -10240,7 +10234,7 @@
           ],
           "scale": [
             0.072504,
-            0.141816,
+            0.094395,
             0.072504
           ],
           "isTrigger": false,
@@ -10280,7 +10274,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-25 · createHairSpike · generator triWedge · colour C-02 · One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
+      "notes": "stage 2 \u00b7 shape S-25 \u00b7 createHairSpike \u00b7 generator triWedge \u00b7 colour C-02 \u00b7 One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
     },
     {
       "id": "sideburnLeftLower",
@@ -10339,7 +10333,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -10352,14 +10346,14 @@
         "gapTolerance": 1e-06,
         "baseRadius": 0.036252,
         "endRadius": 0.036252,
-        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt §1.4).",
+        "notes": "Stage 1B assembly is pure translation: the pose is baked into the part, so the local origin IS this socket (prompt \u00a71.4).",
         "evidenceRefs": [
           "full-object"
         ]
       },
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -10368,7 +10362,7 @@
       "transform": {
         "position": [
           0.0,
-          1.0,
+          0.905159,
           0.0
         ],
         "rotation": [
@@ -10432,7 +10426,7 @@
           ],
           "scale": [
             0.072504,
-            0.141816,
+            0.094395,
             0.072504
           ],
           "isTrigger": false,
@@ -10472,7 +10466,7 @@
       "details": [],
       "fidelityTier": "detail",
       "triangleBudget": 48,
-      "notes": "stage 2 · shape S-26 · createHairSpike · generator triWedge · colour C-02 · One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
+      "notes": "stage 2 \u00b7 shape S-26 \u00b7 createHairSpike \u00b7 generator triWedge \u00b7 colour C-02 \u00b7 One hair spike; the nine are NOT mirror symmetric and their shape codes collapse only where they measure the same."
     }
   ],
   "materials": [
@@ -10573,11 +10567,11 @@
       },
       "localOverrides": [],
       "shaderNotes": [
-        "Stage 1 stand-in. ONE instance shared by all 23 parts; a second colour constant or any texture inside a Stage 1 part file is a FAIL (prompt §4).",
+        "Stage 1 stand-in. ONE instance shared by all 23 parts; a second colour constant or any texture inside a Stage 1 part file is a FAIL (prompt \u00a74).",
         "flatShading is true on every material; it is the object's identity, not a style.",
         "No normal, bump or displacement map: the subject is smooth vinyl with hard creases."
       ],
-      "notes": "Stage 1 stand-in. ONE instance shared by all 23 parts; a second colour constant or any texture inside a Stage 1 part file is a FAIL (prompt §4)."
+      "notes": "Stage 1 stand-in. ONE instance shared by all 23 parts; a second colour constant or any texture inside a Stage 1 part file is a FAIL (prompt \u00a74)."
     },
     {
       "id": "matteVinyl",
@@ -10766,11 +10760,11 @@
         }
       ],
       "shaderNotes": [
-        "The whole finished figure is this one material. All the variation lives on the COLOUR axis, so Stage 3's job is sampling colour, not tuning material (prompt §2).",
+        "The whole finished figure is this one material. All the variation lives on the COLOUR axis, so Stage 3's job is sampling colour, not tuning material (prompt \u00a72).",
         "flatShading is true on every material; it is the object's identity, not a style.",
         "No normal, bump or displacement map: the subject is smooth vinyl with hard creases."
       ],
-      "notes": "The whole finished figure is this one material. All the variation lives on the COLOUR axis, so Stage 3's job is sampling colour, not tuning material (prompt §2)."
+      "notes": "The whole finished figure is this one material. All the variation lives on the COLOUR axis, so Stage 3's job is sampling colour, not tuning material (prompt \u00a72)."
     },
     {
       "id": "printedFace",
@@ -10887,11 +10881,11 @@
         }
       ],
       "shaderNotes": [
-        "M-01 plus one map: the only textured surface in the model. Eyes, pupils, sclera, lash line and brows are PRINTED, never geometry (prompt §2c).",
+        "M-01 plus one map: the only textured surface in the model. Eyes, pupils, sclera, lash line and brows are PRINTED, never geometry (prompt \u00a72c).",
         "flatShading is true on every material; it is the object's identity, not a style.",
         "No normal, bump or displacement map: the subject is smooth vinyl with hard creases."
       ],
-      "notes": "M-01 plus one map: the only textured surface in the model. Eyes, pupils, sclera, lash line and brows are PRINTED, never geometry (prompt §2c)."
+      "notes": "M-01 plus one map: the only textured surface in the model. Eyes, pupils, sclera, lash line and brows are PRINTED, never geometry (prompt \u00a72c)."
     }
   ],
   "repetitionSystems": [
@@ -10942,7 +10936,7 @@
   "buildPasses": [
     {
       "id": "blockout",
-      "goal": "prompt Stage 1 — 23 monochrome structural parts, each gated on its own",
+      "goal": "prompt Stage 1 \u2014 23 monochrome structural parts, each gated on its own",
       "componentRefs": [
         "cloudStrifeFigure",
         "headGroup",
@@ -10981,13 +10975,13 @@
         "Every part passes the facet gate: fraction of adjacent face pairs at or above 42.0 degrees is at least 0.3357142857142857, pinned by the smooth sphere and the lofted egg both failing (spec/facet-gate.json).",
         "flatShading is true and the triangle count is inside the part's own budget.",
         "Socket alignment: every mating name in the ledger agrees from both sides to under 1e-06.",
-        "partInspector reports each part once, with the name and module from prompt §2.",
+        "partInspector reports each part once, with the name and module from prompt \u00a72.",
         "The 8 pure mirror pairs match point for point after negating x."
       ]
     },
     {
       "id": "structural-pass",
-      "goal": "prompt Stage 1B — rough assembly, socket placement only",
+      "goal": "prompt Stage 1B \u2014 rough assembly, socket placement only",
       "componentRefs": [
         "cloudStrifeFigure",
         "headGroup",
@@ -11030,7 +11024,7 @@
     },
     {
       "id": "form-refinement",
-      "goal": "prompt Stage 2 — surface geometry: face, hair, ears",
+      "goal": "prompt Stage 2 \u2014 surface geometry: face, hair, ears",
       "componentRefs": [
         "cloudStrifeFigure",
         "hairGroup",
@@ -11058,7 +11052,7 @@
     },
     {
       "id": "material-pass",
-      "goal": "prompt Stage 3 — colour applied, material folded in (2 codes)",
+      "goal": "prompt Stage 3 \u2014 colour applied, material folded in (2 codes)",
       "componentRefs": [
         "cloudStrifeFigure",
         "pelvis",
@@ -11102,12 +11096,12 @@
       "acceptance": [
         "Every colour code lands within the delta-E budget of its cluster centroid in spec/palette.json; the cool four-view set is the adopted source.",
         "Only two material codes exist in the finished model: matte vinyl and the printed face.",
-        "pauldronL's arrival is re-checked against Stage 1B's four-view IoU (prompt §8.5b), which is what licenses its deferral past Stage 2."
+        "pauldronL's arrival is re-checked against Stage 1B's four-view IoU (prompt \u00a78.5b), which is what licenses its deferral past Stage 2."
       ]
     },
     {
       "id": "surface-pass",
-      "goal": "prompt Stage 5 — full integration and refinement",
+      "goal": "prompt Stage 5 \u2014 full integration and refinement",
       "componentRefs": [
         "cloudStrifeFigure",
         "pelvis",
@@ -11154,7 +11148,7 @@
     },
     {
       "id": "interaction-pass",
-      "goal": "prompt Stage 6 — detail iteration and part exposure",
+      "goal": "prompt Stage 6 \u2014 detail iteration and part exposure",
       "componentRefs": [
         "cloudStrifeFigure",
         "headGroup",
@@ -11292,65 +11286,7 @@
       "aiVisionNotes": ""
     }
   ],
-  "reviewHistory": [
-    {
-      "timestamp": "2026-08-13T02:52:12.071754+00:00",
-      "passId": "blockout",
-      "estimatedFidelity": 0.75,
-      "aiVisionScore": null,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {},
-      "featureReviews": [
-        {
-          "id": "sole-forward-wedge",
-          "score": 0.9,
-          "notes": "The slab extends far forward and only slightly back, and the plan is wide at the heel and narrow at the toe: heel-quarter width 0.06843 against toe-quarter 0.04932 on the built geometry (spec/gate_sole.py)."
-        },
-        {
-          "id": "faceted-identity",
-          "score": 1.0,
-          "notes": "Facet gate 0.524 at 42 degrees against a pinned 0.336, mean adjacent-normal angle 42.9 degrees, flatShading true, 28 triangles against a 160 budget."
-        },
-        {
-          "id": "pose-silhouette",
-          "score": 0.85,
-          "notes": "The splay is baked into the vertices and solved from the measured extents, not read off the bounding-box diagonal: 45.381 degrees. The mirror pair matches to 0.0."
-        },
-        {
-          "id": "anatomy-proportion",
-          "score": 1.0,
-          "notes": "All three measured extents reproduce exactly: A 0.19814, B 0.19674, T 0.05556, each delta 0.00000 against RMS 0.01374."
-        }
-      ],
-      "action": "request-input",
-      "summary": "soleL/soleR built. All 13 part gates PASS (extents exact, taper 0.720, mirror 0.0, facet 0.524 at 42 deg, 28 tris). Tier 1 silhouette IoU 0.720 FAILS its 0.85 threshold: the reference is an elevated product shot whose silhouette includes the sole's top face, the render is an orthographic front elevation that cannot show it. Aspect and scale deltas are 0.0045, so the residual is the camera, not the shape - the photo-vs-procedural miscalibration grimoire/review/self_correction.md documents.",
-      "matched": [
-        "uniform-thickness slab",
-        "wide heel, narrow toe at the adopted 0.72",
-        "two blunt end chamfers",
-        "splay baked into the vertices",
-        "mirror pair exact"
-      ],
-      "mismatches": [
-        "Tier 1 silhouette IoU 0.720 below 0.85",
-        "colour deltaE 45.5 (Stage 1 is monochrome by design, prompt 4)"
-      ],
-      "specFixes": [],
-      "codeFixes": [
-        "optional: solve a review camera with the product shot's elevation so the front comparison is like-for-like"
-      ],
-      "evidence": [],
-      "mapStrippedRender": "/private/tmp/claude-501/-Users-tonyyang-git-personal-img2three-art-exhibition/395070c4-80c2-4172-a042-ad5a3c6a0a39/scratchpad/soleL/front-tight.png",
-      "visualEvidence": {
-        "referenceScreenshot": "/private/tmp/claude-501/-Users-tonyyang-git-personal-img2three-art-exhibition/395070c4-80c2-4172-a042-ad5a3c6a0a39/scratchpad/ref-soleL-tight.png",
-        "renderScreenshot": "/private/tmp/claude-501/-Users-tonyyang-git-personal-img2three-art-exhibition/395070c4-80c2-4172-a042-ad5a3c6a0a39/scratchpad/soleL/front-tight.png",
-        "comparisonImage": "/private/tmp/claude-501/-Users-tonyyang-git-personal-img2three-art-exhibition/395070c4-80c2-4172-a042-ad5a3c6a0a39/scratchpad/soleL-review.png",
-        "cameraView": "front",
-        "notes": "",
-        "aiVisionNotes": ""
-      }
-    }
-  ],
+  "reviewHistory": [],
   "lodPlan": [
     {
       "tier": "near",
@@ -11402,7 +11338,7 @@
     {
       "role": "rendering",
       "exposure": 1.0,
-      "toneMapping": "LinearToneMapping — ACES filmic would desaturate the purple shirt and pants, which are the two colours the palette gate turns on",
+      "toneMapping": "LinearToneMapping \u2014 ACES filmic would desaturate the purple shirt and pants, which are the two colours the palette gate turns on",
       "background": "#FFFFFF to match the product shots",
       "note": "Ambient occlusion and contact shadow stay on the contacts only: the boot-cuff step, the belt's two edges, the deltoid waistline, the hair-cap edge. No ground shadow; the references float on white."
     }
@@ -11424,8 +11360,8 @@
     "component seams and sockets define plausible break points instead of random explosions"
   ],
   "risks": [
-    "PANTS SEGMENTATION IS UNRESOLVED. front.webp puts the pant-leg crease at row 604 and the crotch-notch apex at row 605 — one pixel apart — so the thigh segment §4[5] describes has no height to occupy (back.webp gives it 0.018, still inside measurementUncertaintyRms). Either the crease is being found at the crotch or the four-segment split is wrong. thigh/knee/calf must be re-measured together before thigh is authored; the sole, ankle and calf are unaffected.",
-    "self-check A (hip wider than the shoulder LINE) FAILS by 0.0965 while A1 (hip wider than the chest SLAB) passes by 0.0851. §4[6]'s 'wider than the shoulders' therefore means the chest slab. Recorded in landmarks.json promptDisagreements.",
+    "PANTS SEGMENTATION IS UNRESOLVED. front.webp puts the pant-leg crease at row 604 and the crotch-notch apex at row 605 \u2014 one pixel apart \u2014 so the thigh segment \u00a74[5] describes has no height to occupy (back.webp gives it 0.018, still inside measurementUncertaintyRms). Either the crease is being found at the crotch or the four-segment split is wrong. thigh/knee/calf must be re-measured together before thigh is authored; the sole, ankle and calf are unaffected.",
+    "self-check A (hip wider than the shoulder LINE) FAILS by 0.0965 while A1 (hip wider than the chest SLAB) passes by 0.0851. \u00a74[6]'s 'wider than the shoulders' therefore means the chest slab. Recorded in landmarks.json promptDisagreements.",
     "The sole's plan outline (L/W, toe taper, end chamfer) is unobservable from four orthographic views: A, B and T fix all four silhouettes identically for every (L, W, theta). Only the three-quarter orbit render can falsify the adopted values, so the orthographic IoU must never be reported as confirming the plan shape.",
     "measurementUncertainty is a cross-view landmark tolerance, not a per-part shape tolerance: at 0.05447 it is about 43px of front.webp against a 4.7px reference fit residual, which would make the shape gates vacuous. Part-shape assertions use the RMS instead.",
     "Every component except the two soles carries dimensions.pending: its box is the enclosing landmark span, which bounds the part without measuring it."
@@ -11507,7 +11443,7 @@
         "key_path": "categories.rendering_shader_mapping[3]",
         "score": 5.559577334162,
         "snippets": [
-          "Constructive solid geometry (union/subtract/intersect) for combining or cutting weapon/knife sub-meshes procedurally instead of hand-modeling every variant. Hình học rắn cấu trúc (hợp/trừ/giao) để kết hợp hoặc cắt các sub-mesh vũ khí/dao theo ..."
+          "Constructive solid geometry (union/subtract/intersect) for combining or cutting weapon/knife sub-meshes procedurally instead of hand-modeling every variant. H\u00ecnh h\u1ecdc r\u1eafn c\u1ea5u tr\u00fac (h\u1ee3p/tr\u1eeb/giao) \u0111\u1ec3 k\u1ebft h\u1ee3p ho\u1eb7c c\u1eaft c\u00e1c sub-mesh v\u0169 kh\u00ed/dao theo ..."
         ],
         "source_refs": [
           {
@@ -11544,7 +11480,7 @@
   },
   "rig": {
     "skeleton": "none",
-    "why": "prompt §1.4: the pose is baked into every part and there is no animation requirement, so a skeleton would be a rig nothing drives. spec/character-contracts.md carries the full argument.",
+    "why": "prompt \u00a71.4: the pose is baked into every part and there is no animation requirement, so a skeleton would be a rig nothing drives. spec/character-contracts.md carries the full argument.",
     "bones": []
   },
   "tier1Results": [

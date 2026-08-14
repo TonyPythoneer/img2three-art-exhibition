@@ -3639,78 +3639,6 @@
         }
       }
     },
-    "neck": {
-      "generatedBy": "spec/measure_neck.py",
-      "widthX": {
-        "normalized": 0.03951773,
-        "perView": {
-          "front": 0.03937489,
-          "back": 0.03966057
-        }
-      },
-      "depthZ": {
-        "normalized": 0.03951773,
-        "note": "cylinder symmetry: depth = width"
-      },
-      "heightY": {
-        "normalized": 0.01905237,
-        "socketChainGap": 0.01016126,
-        "perView": {
-          "front": 0.01905237
-        },
-        "crossViewSpread": 0.0,
-        "independent": "measured from the exposed skin column, NOT from (shoulderLine - chin); those two are the landmarks the socket gap is made of, so the old check compared a number to itself",
-        "gapDifference": 0.0088911
-      },
-      "cylinderRadius": 0.01975886,
-      "crossViewSpread": {
-        "width": 0.00028568,
-        "depth": 0.00028568
-      }
-    },
-    "waist": {
-      "generatedBy": "spec/measure_waist.py",
-      "widthX": {
-        "normalized": 0.13209641,
-        "perView": {
-          "front": 0.13209641
-        },
-        "frontTop": 0.13463672,
-        "frontBottom": 0.01016126
-      },
-      "depthZ": {
-        "normalized": 0.06270151,
-        "perView": {
-          "left": 0.08310816,
-          "right": 0.04229485
-        }
-      },
-      "heightY": -0.04318536,
-      "proudMargins": {
-        "perView": {
-          "front": {
-            "chestWidth": 0.10923357,
-            "pelvisWidth": 0.14606814,
-            "beltWidth": 0.13209641,
-            "proudOfChest": 0.02286284,
-            "proudOfPelvis": -0.01397174
-          },
-          "back": {
-            "chestWidth": 0.14005137,
-            "pelvisWidth": 0.11278473,
-            "beltWidth": 0.14005137,
-            "proudOfChest": 0.0,
-            "proudOfPelvis": 0.02726664
-          }
-        },
-        "avgProudOfChest": 0.01143142,
-        "avgProudOfPelvis": 0.00664745
-      },
-      "crossViewSpread": {
-        "width": 0.0,
-        "depth": 0.04081332
-      }
-    },
     "pantLeg": {
       "generatedBy": "spec/measure_pant_leg.py",
       "outerLine": {
@@ -4550,12 +4478,26 @@
               ]
             }
           }
+        },
+        "calfNearBoot_5_7d": {
+          "height": 0.17199667507429153,
+          "widthPerView": {
+            "front": 0.05842725645238781,
+            "back": 0.058251456071908236
+          },
+          "depthPerView": {
+            "left": 0.051503651467833755,
+            "right": 0.0013217139675576258
+          },
+          "width": 0.05833935626214802,
+          "depth": 0.02641268271769569,
+          "note": "sampled 1 RMS above bootCuffTopHighest, not at ankleTop/pantHem -- see the comment above this block. HANDOFF.md carried-over todo #17."
         }
       },
       "calfNearConstantWidth_5_7d": {
         "topWidth": 0.05706919851318307,
-        "bottomWidth": 0.0323011224083665,
-        "difference": 0.024768076104816565,
+        "bottomWidth": 0.05833935626214802,
+        "difference": 0.0012701577489649535,
         "measurementUncertainty": 0.05447382376324872,
         "verdict": "PASS",
         "crossCheckStraightPantTubeWidth": {
@@ -4763,8 +4705,10 @@
       "glove": {
         "atHeight": 0.43947458114187354,
         "width": 0.08764088467858172,
-        "fistLandmarkHeight": 0.331511,
-        "note": "measured at the glove's widest black row, not at the `fist` socket height \u2014 that socket is the BOTTOM of the part and the band is empty there."
+        "bottomRowPx": 515,
+        "bottomHeight": 0.3861279556853455,
+        "fistLandmarkHeightOld": 0.386128,
+        "note": "atHeight/width are the glove's widest black row, not the `fist` socket height \u2014 that socket is the BOTTOM of the part and the OLD ledger value's row was past the band entirely. bottomHeight is the true measurement: walk down from the widest row until the run narrows under 15% of its max width, i.e. the glove's own silhouette bottom. author_spec.py's Y['fist'] must read this, not F['widestHip']."
       },
       "mirror_1_4_vs_1_5": {
         "forwardLeanDifferenceDeg": 8.79755931339435,
@@ -4797,11 +4741,10 @@
             "back": 0.03346360242428771
           },
           "depthPerView": {
-            "left": 0.004682150133439433,
             "right": 0.08987654979391854
           },
           "width": 0.03641924632110062,
-          "depth": 0.04727934996367899,
+          "depth": 0.08987654979391854,
           "widthSpread": 0.005911287793625812
         },
         "deltoidWaist": {
@@ -4811,11 +4754,10 @@
             "back": 0.09791202190810107
           },
           "depthPerView": {
-            "left": 0.0023410750667197163,
             "right": 0.07137255424811179
           },
           "width": 0.09595184766575376,
-          "depth": 0.03685681465741575,
+          "depth": 0.07137255424811179,
           "widthSpread": 0.003920348484694594
         },
         "backArmTop": {
@@ -4847,12 +4789,17 @@
           "widthSpread": 0.0006680414458223871
         },
         "fist": {
-          "height": 0.331511,
-          "widthPerView": {},
-          "depthPerView": {},
-          "width": null,
-          "depth": null,
-          "widthSpread": 0.0
+          "height": 0.386128,
+          "widthPerView": {
+            "front": 0.02540315497929905,
+            "back": 0.07932113167238568
+          },
+          "depthPerView": {
+            "left": 0.059697414201352765
+          },
+          "width": 0.05236214332584237,
+          "depth": 0.059697414201352765,
+          "widthSpread": 0.05391797669308663
         }
       },
       "upperArmIsThinnest_5_8": {
@@ -4910,6 +4857,16 @@
         "verdict": "PASS (the chin is narrower than the cheekbones)",
         "note": "\u00a74[14]: 'widest at the cheekbones, tapering to a small pointed chin'."
       },
+      "crownHeight": {
+        "perView": {
+          "front": 0.9030821595140811,
+          "back": 0.9072354435029112
+        },
+        "adopted": 0.9051588015084961,
+        "spread": 0.004153283988830081,
+        "method": "row where the hair band's lateral width first reaches 60% of its own max, scanning down from the hair's topmost pixel \u2014 the boundary between spike blades and the cap's rounded mass, on front.webp and back.webp only (the profile views measure fore-aft depth, a different quantity, not cross-checkable against this).",
+        "caveat": "APPROXIMATION, not a skull measurement: the cap mass still includes scalp-hair thickness over the bone, so the true crown is somewhat below this line too. It is the best available evidence, and materially better than the OLD value (1.0, the spike TIP) which had nothing to do with a skull. Stage 1 authors the bare-skull mesh at this height; Stage 2 keeps skullTop=1.0 as the hair's own anchor."
+      },
       "craniumBehindFace": {
         "value": null,
         "why": "UNMEASURABLE. \u00a74[14] offers 'back.webp's silhouette inset by one hair thickness', but landmarks.json's hairThickness is a FRINGE DEPTH measured forward from the face plane \u2014 0.03863 left against 0.07137 right, a 1.85x disagreement between two views of one quantity \u2014 not the cap's shell thickness. Insetting by it overshoots, which is how the previous attempt at this part came out all-green and egg-shaped.",
@@ -4917,6 +4874,78 @@
       },
       "tolerances": {
         "measurementUncertainty": 0.05447382376324872
+      }
+    },
+    "neck": {
+      "generatedBy": "spec/measure_neck.py",
+      "widthX": {
+        "normalized": 0.03951773,
+        "perView": {
+          "front": 0.03937489,
+          "back": 0.03966057
+        }
+      },
+      "depthZ": {
+        "normalized": 0.03951773,
+        "note": "cylinder symmetry: depth = width"
+      },
+      "heightY": {
+        "normalized": 0.01905237,
+        "socketChainGap": 0.01016126,
+        "perView": {
+          "front": 0.01905237
+        },
+        "crossViewSpread": 0.0,
+        "independent": "measured from the exposed skin column, NOT from (shoulderLine - chin); those two are the landmarks the socket gap is made of, so the old check compared a number to itself",
+        "gapDifference": 0.0088911
+      },
+      "cylinderRadius": 0.01975886,
+      "crossViewSpread": {
+        "width": 0.00028568,
+        "depth": 0.00028568
+      }
+    },
+    "waist": {
+      "generatedBy": "spec/measure_waist.py",
+      "widthX": {
+        "normalized": 0.13209641,
+        "perView": {
+          "front": 0.13209641
+        },
+        "frontTop": 0.13463672,
+        "frontBottom": 0.01016126
+      },
+      "depthZ": {
+        "normalized": 0.06270151,
+        "perView": {
+          "left": 0.08310816,
+          "right": 0.04229485
+        }
+      },
+      "heightY": -0.04318536,
+      "proudMargins": {
+        "perView": {
+          "front": {
+            "chestWidth": 0.10923357,
+            "pelvisWidth": 0.14606814,
+            "beltWidth": 0.13209641,
+            "proudOfChest": 0.02286284,
+            "proudOfPelvis": -0.01397174
+          },
+          "back": {
+            "chestWidth": 0.14005137,
+            "pelvisWidth": 0.11278473,
+            "beltWidth": 0.14005137,
+            "proudOfChest": 0.0,
+            "proudOfPelvis": 0.02726664
+          }
+        },
+        "avgProudOfChest": 0.01143142,
+        "avgProudOfPelvis": 0.00664745
+      },
+      "crossViewSpread": {
+        "width": 0.0,
+        "depth": 0.04081332
       }
     }
   }

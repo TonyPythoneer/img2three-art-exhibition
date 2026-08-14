@@ -45,9 +45,9 @@ export const SOCKET_Y = {
   deltoidWaist: 0.674454,
   backArmTop: 0.593164,
   elbow: 0.529656,
-  fist: 0.331511,
+  fist: 0.386128,
   neckTop: 0.716369,
-  skullTop: 1.0,
+  skullTop: 0.905159,
 } as const;
 
 /** Half the gap between the two feet plus half a foot's width: where a sole sits in X. */
@@ -139,9 +139,9 @@ export const CHEST = {
  */
 export const ARM = {
   shoulderWidth: 0.03641925,
-  shoulderDepth: 0.04727935,
+  shoulderDepth: 0.08987655,
   deltoidWaistWidth: 0.09595185,
-  deltoidWaistDepth: 0.03685681,
+  deltoidWaistDepth: 0.07137255,
   backArmWidth: 0.04263159,
   backArmDepth: 0.03980044,
   elbowWidth: 0.07841576,
@@ -153,7 +153,7 @@ export const ARM = {
   upperDeltoidHeight: 0.031754,
   lowerDeltoidHeight: 0.08129,
   backArmHeight: 0.063508,
-  frontArmHeight: 0.198145,
+  frontArmHeight: 0.143528,
   abductionDeg: 17.38628285,
   forwardLeanDeg: 6.02733273,
   elbowBreakDeg: 16.43405722,

@@ -97,11 +97,13 @@ DELTOID_W = derive(
     "(landmarks.dimensions.shoulderWidth - chestWidth) / 2 — one deltoid is half of what "
     "the shoulder line adds to the chest slab",
 )
+CROWN_Y = LM["parts"]["head"]["crownHeight"]["adopted"]
 HEAD_H = derive(
     "headHeight",
-    1.0 - F["chin"],
-    "1.000 - landmarks.normalization['sole->chin'].perView.front.chin; the whole head "
-    "band including hair, so the skull alone is smaller",
+    CROWN_Y - F["chin"],
+    "landmarks.parts.head.crownHeight.adopted - normalization['sole->chin'].perView.front."
+    "chin. crownHeight is the cap-MASS boundary (front/back agree to 0.00415), not the "
+    "spike tip (the old 1.0): Stage 1's bare skull, not the hair. See crownHeight.caveat.",
 )
 KNEE_H = derive(
     "kneeHeight",
@@ -124,9 +126,9 @@ Y = {
     "deltoidWaist": F["deltoidWaistline"],
     "backArmTop": F["upperArmNarrowest"],
     "elbow": ELBOW_Y,
-    "fist": F["widestHip"],
+    "fist": LM["parts"]["arm"]["glove"]["bottomHeight"],
     "neckTop": F["chin"],
-    "skullTop": 1.0,
+    "skullTop": CROWN_Y,
 }
 
 # The pants conflict, recorded rather than smoothed over: the front view puts the pant-leg

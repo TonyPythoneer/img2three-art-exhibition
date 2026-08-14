@@ -20,8 +20,8 @@
       "source": "(landmarks.dimensions.shoulderWidth - chestWidth) / 2 \u2014 one deltoid is half of what the shoulder line adds to the chest slab"
     },
     "headHeight": {
-      "value": 0.28363102958376685,
-      "source": "1.000 - landmarks.normalization['sole->chin'].perView.front.chin; the whole head band including hair, so the skull alone is smaller"
+      "value": 0.188789831092263,
+      "source": "landmarks.parts.head.crownHeight.adopted - normalization['sole->chin'].perView.front.chin. crownHeight is the cap-MASS boundary (front/back agree to 0.00415), not the spike tip (the old 1.0): Stage 1's bare skull, not the hair. See crownHeight.caveat."
     },
     "kneeHeight": {
       "value": 0.01374117256657524,
@@ -114,9 +114,9 @@
     "deltoidWaist": 0.674454,
     "backArmTop": 0.593164,
     "elbow": 0.529656,
-    "fist": 0.331511,
+    "fist": 0.386128,
     "neckTop": 0.716369,
-    "skullTop": 1.0
+    "skullTop": 0.905159
   },
   "unitPxFront": 787.3037823962393,
   "triangleBudgetTotal": 4626,
@@ -932,7 +932,7 @@
       "id": "head",
       "dimensions": {
         "width": 0.290018,
-        "height": 0.283631,
+        "height": 0.18879,
         "depth": 0.290018,
         "units": "relative",
         "confidence": 0.2,
@@ -940,7 +940,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -961,7 +961,7 @@
           "id": "neckTop",
           "localPosition": [
             0.0,
-            -0.283631,
+            -0.18879,
             0.0
           ],
           "localRotation": [
@@ -979,7 +979,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.283631,
+          -0.18879,
           0.0
         ],
         "contactNormal": [
@@ -1002,7 +1002,7 @@
       "id": "hairCap",
       "dimensions": {
         "width": 0.290018,
-        "height": 0.283631,
+        "height": 0.18879,
         "depth": 0.290018,
         "units": "relative",
         "confidence": 0.2,
@@ -1010,7 +1010,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -1036,7 +1036,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.283631,
+          -0.18879,
           0.0
         ],
         "contactNormal": [
@@ -1067,7 +1067,7 @@
       },
       "position": [
         0.145009,
-        0.858184,
+        0.810764,
         0.0
       ],
       "sockets": [
@@ -1124,7 +1124,7 @@
       },
       "position": [
         -0.145009,
-        0.858184,
+        0.810764,
         0.0
       ],
       "sockets": [
@@ -1173,7 +1173,7 @@
       "id": "faceDecal",
       "dimensions": {
         "width": 0.145009,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.0,
         "units": "relative",
         "confidence": 0.2,
@@ -1181,7 +1181,7 @@
       },
       "position": [
         0.0,
-        0.858184,
+        0.810764,
         0.145009
       ],
       "sockets": [
@@ -1207,7 +1207,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -2114,7 +2114,7 @@
       "id": "frontArmL",
       "dimensions": {
         "width": 0.040645,
-        "height": 0.198145,
+        "height": 0.143528,
         "depth": 0.040645,
         "units": "relative",
         "confidence": 0.2,
@@ -2143,7 +2143,7 @@
           "id": "fist",
           "localPosition": [
             0.0,
-            -0.198145,
+            -0.143528,
             0.0
           ],
           "localRotation": [
@@ -2161,7 +2161,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.198145,
+          -0.143528,
           0.0
         ],
         "contactNormal": [
@@ -2451,7 +2451,7 @@
       "id": "frontArmR",
       "dimensions": {
         "width": 0.040645,
-        "height": 0.198145,
+        "height": 0.143528,
         "depth": 0.040645,
         "units": "relative",
         "confidence": 0.2,
@@ -2480,7 +2480,7 @@
           "id": "fist",
           "localPosition": [
             0.0,
-            -0.198145,
+            -0.143528,
             0.0
           ],
           "localRotation": [
@@ -2498,7 +2498,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.198145,
+          -0.143528,
           0.0
         ],
         "contactNormal": [
@@ -2521,7 +2521,7 @@
       "id": "crownSpikeFront",
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -2529,7 +2529,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -2555,7 +2555,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -2578,7 +2578,7 @@
       "id": "crownSpikeRear",
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -2586,7 +2586,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -2612,7 +2612,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -2635,7 +2635,7 @@
       "id": "fringeRightOuter",
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -2643,7 +2643,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -2669,7 +2669,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -2692,7 +2692,7 @@
       "id": "fringeRightMid",
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -2700,7 +2700,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -2726,7 +2726,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -2749,7 +2749,7 @@
       "id": "fringeRightInner",
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -2757,7 +2757,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -2783,7 +2783,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -2806,7 +2806,7 @@
       "id": "sideburnRight",
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -2814,7 +2814,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -2840,7 +2840,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -2863,7 +2863,7 @@
       "id": "fringeLeft",
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -2871,7 +2871,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -2897,7 +2897,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -2920,7 +2920,7 @@
       "id": "sideburnLeftUpper",
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -2928,7 +2928,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -2954,7 +2954,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [
@@ -2977,7 +2977,7 @@
       "id": "sideburnLeftLower",
       "dimensions": {
         "width": 0.072504,
-        "height": 0.141816,
+        "height": 0.094395,
         "depth": 0.072504,
         "units": "relative",
         "confidence": 0.2,
@@ -2985,7 +2985,7 @@
       },
       "position": [
         0.0,
-        1.0,
+        0.905159,
         0.0
       ],
       "sockets": [
@@ -3011,7 +3011,7 @@
         ],
         "localEnd": [
           0.0,
-          -0.141816,
+          -0.094395,
           0.0
         ],
         "contactNormal": [

@@ -26,7 +26,8 @@ import socket_gate  # noqa: E402
 HERE = Path(__file__).resolve().parent
 LM = json.loads((HERE / "landmarks.json").read_text())
 H = LM["parts"]["head"]["adopted"]
-BUD = json.loads((HERE / "build-constants.json").read_text())["authored"]["triangleBudget"]["value"]
+CONST = json.loads((HERE / "build-constants.json").read_text())
+BUD = CONST["authored"]["triangleBudget"]["value"]
 EPS = 1e-6
 
 
@@ -39,7 +40,10 @@ def main(argv: list[str]) -> int:
     vs = [(v[0], v[1], v[2]) for m in meshes for v in m["vertices"]]
     tris = sum(len(m.get("indices", [])) // 3 for m in meshes)
     ys = [v[1] for v in vs]
-    height = LM["parts"]["pantLeg"]["segmentHeights"]["chainY"] and (1.0 - H["chinHeight"])
+    # skullTop is Stage 1's bare-skull crown (the cap-mass boundary, NOT the hair spike
+    # tip) — read from the ledger, the same source author_spec.py used, not re-derived
+    # from a hardcoded 1.0 that stopped being true the day skullTop stopped being 1.0.
+    height = CONST["socketChainY"]["skullTop"] - CONST["socketChainY"]["neckTop"]
     checks: list[tuple[str, bool, str]] = []
     add = lambda l, ok, d: checks.append((l, ok, d))  # noqa: E731
 
@@ -49,7 +53,9 @@ def main(argv: list[str]) -> int:
     add(
         "§5.5 the neck mate is at -H",
         abs(min(ys) + height) < 1e-5,
-        f"bottom {min(ys):+.6f}, -H {-height:+.6f} (skullTop 1.0 - chin {H['chinHeight']:.6f})",
+        f"bottom {min(ys):+.6f}, -H {-height:+.6f} "
+        f"(skullTop {CONST['socketChainY']['skullTop']:.6f} - "
+        f"neckTop {CONST['socketChainY']['neckTop']:.6f})",
     )
 
     # §4[14] the taper: the widest ring must be above the bottom, and the bottom narrower

@@ -287,7 +287,8 @@ def scale_nn(mask, w, h, target_w, target_h):
 
 
 def compare(reference_mask, render_mask, *, w, ref_h, render_h, view,
-              chin_y_norm: float = 0.7164, mask_above_chin: bool = False):
+              chin_y_norm: float = 0.7164, model_top_norm: float = 1.0,
+              mask_above_chin: bool = False):
     """Per-view IoU after cropping both to figure bbox and matching aspect.
 
     The caller has ALREADY pre-masked the reference above the chin.  This
@@ -296,8 +297,17 @@ def compare(reference_mask, render_mask, *, w, ref_h, render_h, view,
     figure gets stripped from both sides.
 
     `chin_y_norm` is the chin's height in normalized figure units (0 = sole,
-    1 = skull tip).  Values from SOCKET_Y: chestTop=0.7062, neckTop=0.7164,
-    chinHeight=0.71637.
+    1 = the ORIGINAL hairtip anchor). Values from SOCKET_Y: chestTop=0.7062,
+    neckTop=0.7164, chinHeight=0.71637.
+
+    `model_top_norm` is what SOCKET_Y.skullTop is RIGHT NOW for the render
+    being scored — the render's own pixel bbox top is THIS height, not
+    necessarily 1.0. Stage 1 has no hair, so its visible top is the bare
+    skull's crown (< 1.0, e.g. 0.90516); only once hair exists again at Stage
+    2 does the render's top return to the 1.0 anchor chin_y_norm was measured
+    against. Dividing by it turns chin_y_norm into "chin as a fraction of
+    THIS render's own sole-to-top span" instead of assuming that span is
+    always the original hairtip-to-sole one.
     """
     rnd_for_chin = list(render_mask)
     if mask_above_chin:
@@ -306,7 +316,8 @@ def compare(reference_mask, render_mask, *, w, ref_h, render_h, view,
         if rnd_top is None or rnd_bot is None:
             return {"view": view, "iou": 0.0, "reason": "empty render bbox"}
         rnd_fig_h_px = rnd_bot - rnd_top + 1
-        rnd_chin_row = int(round(rnd_bot - chin_y_norm * (rnd_fig_h_px - 1)))
+        chin_frac = chin_y_norm / model_top_norm
+        rnd_chin_row = int(round(rnd_bot - chin_frac * (rnd_fig_h_px - 1)))
         for y in range(rnd_chin_row):
             for x in range(w):
                 if y * w + x < len(rnd_for_chin):
@@ -352,9 +363,16 @@ def main() -> int:
     here = Path(__file__).resolve().parent
     lm_path = here / "landmarks.json"
     lm = json.loads(lm_path.read_text())
+    const = json.loads((here / "build-constants.json").read_text())
 
     # SOCKET_Y.chinTop is 0.7164 — the chin height in normalized figure units.
     chin_y_norm = lm["parts"]["head"]["adopted"]["chinHeight"]  # 0.71637
+    # The render's OWN visible top is socketChainY.skullTop RIGHT NOW, not always 1.0:
+    # Stage 1 has no hair, so its top is the bare skull's crown (0.90516), not the
+    # hairtip anchor chin_y_norm was originally measured against. Dividing turns
+    # chin_y_norm into "chin as a fraction of THIS render's own sole-to-top span."
+    model_top_norm = const["socketChainY"]["skullTop"]
+    chin_frac = chin_y_norm / model_top_norm
 
     results: list[dict] = []
     for render_path, view in zip(args.render, args.view):
@@ -386,7 +404,7 @@ def main() -> int:
             if top is None or bot is None:
                 return False
             fig_h = bot - top + 1
-            chin_row = int(round(bot - chin_y_norm * (fig_h - 1)))
+            chin_row = int(round(bot - chin_frac * (fig_h - 1)))
             for y in range(chin_row):
                 for x in range(mask_w):
                     if y * mask_w + x < len(mask_to_mask):
