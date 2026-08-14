@@ -279,7 +279,16 @@ export function mountCloudStrifeViewer(
     controls.target.copy(sphere.center);
     if (fixedDir) {
       const cam = camera as THREE.OrthographicCamera;
-      const half = sphere.radius * 1.15;
+      // Frame the BOUNDING BOX, not the bounding sphere.  The figure is tall and
+      // skinny (1.0 x 0.4) and the bounding sphere is dominated by the head's
+      // depth (Z), which would otherwise balloon the camera frame and turn the
+      // front/back views into a tiny dot in the middle of a 700x700 frame.
+      // Box3 already gives us the right per-axis half-extents; +1.05 is the
+      // visual margin, no symmetry to break.
+      const half_x = b.isEmpty() ? 1 : ((b.max.x - b.min.x) / 2) * 1.05;
+      const half_y = b.isEmpty() ? 1 : ((b.max.y - b.min.y) / 2) * 1.05;
+      const half_z = b.isEmpty() ? 1 : ((b.max.z - b.min.z) / 2) * 1.05;
+      const half = Math.max(half_x, half_y, half_z);
       const aspect = (host.clientWidth || 1) / (host.clientHeight || 1);
       cam.left = -half * aspect;
       cam.right = half * aspect;

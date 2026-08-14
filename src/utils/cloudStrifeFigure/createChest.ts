@@ -103,11 +103,17 @@ export function createChest(): THREE.Group {
   // so both parts emit the same name and §5.5 compares them directly. The chest's own
   // neckBase is its top face, i.e. its origin, so the vector is zero and that is correct
   // rather than missing.
+  //
+  // shoulderL/R go on the chest's TOP FACE (local y=0), not on the widest ring
+  // (local y=-widestDrop).  In the reference, the SHOULDERS line up with the CHIN
+  // (rows 255 and 263, six pixels apart), so the shoulder socket must be at world
+  // y=chestTop, not at chestTop-widestDrop.  Emitting at -widestDrop put the entire
+  // arm chain 0.107 too low and missed the figure's shoulderWidth by 0.105 per side.
   group.userData.sockets = {
     waistTop: new THREE.Vector3(0, -height, 0),
     neckBase: new THREE.Vector3(0, 0, 0),
-    shoulderL: new THREE.Vector3(shoulderOffsetX, -widestDrop, 0),
-    shoulderR: new THREE.Vector3(-shoulderOffsetX, -widestDrop, 0),
+    shoulderL: new THREE.Vector3(shoulderOffsetX, 0, 0),
+    shoulderR: new THREE.Vector3(-shoulderOffsetX, 0, 0),
   };
   return group;
 }
