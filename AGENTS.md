@@ -53,6 +53,12 @@ Deliverables are always **files plus a rerunnable command**, never a conclusion 
 - Never stall when the user is away: pick a default and proceed, saying "I read this as X, it could
   be Y, going with X — tell me to change it."
 - Show, don't tell: reference zoom and render side by side.
+- **Any change to the 3D model must show up in the 3D preview.** A commit that touches geometry,
+  material, socket placement, or assembly code is not done until a fresh capture (or the live
+  exhibit page) shows the difference. If a model-code change produces no visible difference in a
+  fresh render, that is a signal to stop and check — either the change was a no-op, the capture is
+  stale, or the change never reached the code path the preview actually renders. Documentation and
+  gate numbers describing a change are not a substitute for the render; get the render first.
 - When a reading conflicts with the spec, **follow the spec and say so explicitly**. Do not paper
   over it with "can't tell".
 - Acceptance = mechanical gates (assertions, silhouette IoU, part coverage) **plus** a zoomed
