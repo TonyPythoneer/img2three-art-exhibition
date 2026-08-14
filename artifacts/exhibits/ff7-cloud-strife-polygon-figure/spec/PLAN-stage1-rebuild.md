@@ -117,6 +117,15 @@ nose is either built or written down as deliberately absent.
 2. `gate_silhouette.py` four views, against the Phase 0 baseline.
 3. Only then Stage 1B, whose integration file authors no geometry.
 
+**CLOSED.** `mountCloudStrifeViewer.ts`'s `buildAssembled()` — written earlier this phase to
+make the socket chain visible for Phase 0–3's own debugging — turned out to already BE
+Stage 1B's integration file: it authors zero geometry, places every Stage-1-built part by
+the §4 socket ledger, and the whole-figure `gate_silhouette.py` PASS above was measured
+against exactly its output. Re-confirmed on a fresh capture rather than trusted on the
+number already in hand: `gate_assembly.py` 26/26, `gate_naming.py` 24/24, `gate_facets.py`
+23/23, `gate_silhouette.py` mean IoU 0.740. See `HANDOFF.md` for the full table. Stage 2 is
+next and was not started — it is new scope (face/hair/ears/decoration), not this plan's.
+
 ---
 
 ## The rule this plan is really enforcing

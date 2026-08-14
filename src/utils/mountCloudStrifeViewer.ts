@@ -96,11 +96,13 @@ function buildGallery(): THREE.Group {
 /**
  * Every part that is built, standing where the socket ledger puts it.
  *
- * NOT the Stage 1B integration file. It authors no geometry, it is thrown away when the
- * real assembly lands, and it exists for one reason: a part you cannot see next to its
- * neighbour is a part whose joint nobody has checked. It is also §5.5's socket assertion
- * made visible — if an emitted socket and the ledger heights ever disagree, a part leaves
- * the ground here rather than at Stage 1B.
+ * This IS the Stage 1B integration file's assembly: monochrome, socket placement only, and
+ * it authors no geometry of its own — every mesh it places came out of a Stage 1 factory
+ * that already passed its own gates. `gate_assembly.py` confirms the socket chain (26/26,
+ * 21 joints at 0.000e+00) and `gate_silhouette.py` confirms the whole-figure Tier 1
+ * silhouette (mean IoU 0.740 against a 0.6 threshold) against exactly this function's
+ * output, so there is no separate "real" assembly waiting to replace it — Stage 5 refines
+ * this placement later, it does not start over.
  */
 function buildAssembled(): THREE.Group {
   const root = new THREE.Group();

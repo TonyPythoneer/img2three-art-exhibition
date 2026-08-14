@@ -18,9 +18,16 @@ Opens on the assembled figure. No query string.
 
 ## Where the work actually stands
 
-**Stage 1 is built and PASSES.** 23 of 23 parts exist, the socket chain is verified, every
-part gate is green, and the whole-figure Tier 1 silhouette instrument — the one number that
-was FAILING (0.201) at the last handoff — now clears its own pinned threshold with margin.
+**Stage 1 PASSES and Stage 1B is CLOSED.** 23 of 23 parts exist, the socket chain is
+verified, every part gate is green, and the whole-figure Tier 1 silhouette instrument — the
+one number that was FAILING (0.201) at the last handoff — now clears its own pinned
+threshold with margin. Stage 1B's own contract ("monochrome rough assembly: socket
+placement only, zero geometry in the integration file") turned out to already be satisfied
+by `buildAssembled()` in `mountCloudStrifeViewer.ts` — it was written this session to make
+Stage 1's socket chain visible, and it never authors a mesh, only positions Stage-1-built
+parts by the socket ledger. Nothing else needed building for 1B; this handoff re-ran every
+gate against a fresh capture to confirm that, rather than trust the number a docstring
+carried over from before the fix.
 
 | | |
 |---|---|
@@ -28,7 +35,7 @@ was FAILING (0.201) at the last handoff — now clears its own pinned threshold 
 | socket joints verified in the render | 21, at 0.000e+00 (`gate_assembly.py` 26/26) |
 | part gates | arm 56/56 · sole 18/18 · ankle 20/20 · pant-leg 42/42 · pelvis 16/16 · waist 14/14 · chest 15/15 · neck 12/12 · head 11/11 · naming 24/24 · facet 23 of 23 |
 | whole-figure Tier 1 (`gate_silhouette.py`, this project's own fair instrument) | **mean IoU 0.740** (front 0.792 · back 0.785 · left 0.717 · right 0.664) against a pinned 0.6 threshold — **PASS** |
-| verdict | **Stage 1 PASS.** Ready for Stage 1B (rough assembly, socket placement only — the integration file authors no geometry). |
+| verdict | **Stage 1 PASS. Stage 1B PASS** (re-confirmed on a fresh capture: `gate_assembly.py` 26/26, `gate_naming.py` 24/24, `gate_facets.py` 23/23, `gate_silhouette.py` mean IoU 0.740 — all against `/tmp/asm1b`, same numbers as Stage 1's). Ready for Stage 2 (surface geometry: face, hair, ears, decoration) — not started this session, out of the scope that was asked for. |
 
 Baseline this session started from: 0.201 FAIL (`ac33665`), then 0.720 (an earlier
 in-session fix to the shoulder socket + camera framing, commit `2364fbe`, not yet reconciled
