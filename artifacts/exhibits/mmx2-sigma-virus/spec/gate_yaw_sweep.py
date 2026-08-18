@@ -62,10 +62,13 @@ def main():
     a = ap.parse_args()
 
     # Reference side: the pure-yaw population.
-    frames = json.load(open(a.index))["frames"]
-    yaw = [f for f in frames if 68 <= f["h"] <= 70 and f["strokePx"] >= 600 and f["accents"]]
+    # Read the vetted pure-yaw set rather than re-deriving it from height alone. Height alone
+    # admitted six tumbled frames, and because they were the six WIDEST they set this gate's
+    # reference ratio single-handedly: 67/47 = 1.4255 against the true 62/47 = 1.319.
+    pure_path = pathlib.Path(a.index).with_name("pure-yaw.json")
+    yaw = json.load(open(pure_path))["pureYaw"]
     if not yaw:
-        raise SystemExit("no pure-yaw reference frames found — check the frame index")
+        raise SystemExit(f"{pure_path} is empty — run pure_yaw_set.py")
     ref_widths = sorted(f["w"] for f in yaw)
     ref_ratio = max(ref_widths) / FRONT_W
 

@@ -1,10 +1,10 @@
 {
  "render": "/tmp/sigma-renders/front.png",
  "headBBox": {
-  "x0": 129,
-  "y0": 115,
-  "w": 463,
-  "h": 659
+  "x0": 125,
+  "y0": 122,
+  "w": 470,
+  "h": 662
  },
  "eyeBand": {
   "reference": {
@@ -14,24 +14,24 @@
    "xRightFrac": 0.8043
   },
   "render": {
-   "yTopFrac": 0.4742,
-   "yBottomFrac": 0.5927,
-   "xLeftFrac": 0.1623,
-   "xRightFrac": 0.8355
+   "yTopFrac": 0.4644,
+   "yBottomFrac": 0.5764,
+   "xLeftFrac": 0.177,
+   "xRightFrac": 0.823
   },
   "delta": {
-   "yTopFrac": 0.0036,
-   "yBottomFrac": 0.0192,
-   "xLeftFrac": 0.0101,
-   "xRightFrac": 0.0312
+   "yTopFrac": 0.0062,
+   "yBottomFrac": 0.0029,
+   "xLeftFrac": 0.0248,
+   "xRightFrac": 0.0187
   },
   "tol": 0.06,
   "pass": true
  },
  "eyeArea": {
   "referenceFilledFrac": 0.04194,
-  "renderFrac": 0.0455,
-  "relError": 0.085,
+  "renderFrac": 0.03935,
+  "relError": 0.0616,
   "tol": 0.3,
   "pass": true
  },

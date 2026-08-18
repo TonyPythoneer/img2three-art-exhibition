@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
-import { FRAME_H, HALF_DEPTH, halfWidthAt, len } from "./measurements";
+import { FRAME_H, halfWidthAt, len } from "./measurements";
+import { halfDepthSolved } from "./section";
 
 /**
  * Drop the edge segments that are buried inside the skull.
@@ -33,7 +34,9 @@ function insideSkull(v: THREE.Vector3, margin: number): boolean {
   // Outside the skull's own row band there is nothing to be buried in.
   if (py < 4 || py > 52) return false;
   const hw = Math.min(halfWidthAt(py), SKULL_MAX_HALF) * margin;
-  const hd = HALF_DEPTH * (Math.min(halfWidthAt(py), SKULL_MAX_HALF) / halfWidthAt(37)) * margin;
+  // The same solved per-row depth the skull is built from, so the envelope tracks the shell
+  // instead of a constant that no longer describes it.
+  const hd = halfDepthSolved(py) * margin;
   return Math.abs(v.x) < hw && Math.abs(v.z) < hd;
 }
 

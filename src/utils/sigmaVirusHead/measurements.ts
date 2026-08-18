@@ -29,28 +29,28 @@ export const y = (py: number): number => (FRAME_H - 1 - py) * PX;
 export const len = (px: number): number => px * PX;
 
 /**
- * Head depth. This WAS guess list G1 at 1.25, read off a foreshortened crown-from-above crop.
- * It is now measured, and the measurement only became available once `compare_hue_groups.py`
- * established that the whole sheet is one mesh in six palettes — the six damage states the
- * published sources describe — so all 307 frames are evidence about this head rather than 113.
+ * Head depth, as ONE global ratio. Kept only as a record of how the number moved; the build no
+ * longer uses it — `section.ts` supplies a solved half-depth per row instead.
  *
- * Filter the index to frames whose height matches the front view's 68-70px and the rotation must
- * have stayed about the vertical axis: 87 frames, a pure yaw sweep, widths running 42 -> 67 with
- * the front view at 47 (`profile-width.json`).
+ * It has been wrong twice, both times for the same reason: the pure-yaw set was not pure.
  *
- * Width at the peak is not automatically the depth — for a rectangular cross-section the peak is
- * the diagonal at ~45 degrees, which would put depth at 1.02x instead of 1.43x. The model's own
- * captured sweep settles which: it runs 480, 478, 502, 534, 560, 581, 600, 603, 594, 606 across
- * 0..90 degrees, so this cross-section family peaks AT 90 degrees, where width IS depth.
+ * 1. **1.25** — read off the crown-from-above crops, which are foreshortened.
+ * 2. **1.4255** — 67 / 47, from the widest frame whose HEIGHT matched the front view's. Height
+ *    matching is necessary for a yaw and not sufficient: a head tumbling on three axes passes
+ *    through plenty of orientations that land on 68-70px. `pure_yaw_set.py` adds the missing
+ *    test — a yaw slides the eyes sideways and leaves their ROW alone — and the six frames it
+ *    rejects are the six WIDEST, so they had been setting this number by themselves. The frame
+ *    at (311, 694), 67x68, is rolled onto a diagonal with its eyes at 0.73 of the frame height
+ *    against the front view's 0.51.
+ * 3. **1.3191** — 62 / 47 over the 81 frames that survive both tests. That is the number
+ *    `gate_yaw_sweep.py` now holds the model to.
  *
- *   depth / width = 67 / 47 = 1.4255
- *
- * `gate_yaw_sweep.py` is the gate that holds it: it compares the model's own width ratio against
- * the reference's, pose-free, and it is the only gate here that can see depth at all.
+ * The narrowest surviving frame is 47px, exactly the front view's width, which is the check that
+ * the vetted set really is a yaw sweep: turning a head can only widen its silhouette from there.
  */
-export const DEPTH_OVER_WIDTH = 1.4255;
+export const DEPTH_OVER_WIDTH = 1.3191;
 
-/** Half-depth at the head's widest row. */
+/** Half-depth at the head's widest row, from the ratio above. Unused by the build; see above. */
 export const HALF_DEPTH = (len(FRAME_W) * DEPTH_OVER_WIDTH) / 2;
 
 /**

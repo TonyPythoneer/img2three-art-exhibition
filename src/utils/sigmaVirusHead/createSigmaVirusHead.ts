@@ -3,7 +3,8 @@ import * as THREE from "three";
 import { COLORS } from "./colors";
 import { cullBuriedEdges } from "./cullBuriedEdges";
 import { chamferedRing, loft, type Ring } from "./loft";
-import { BANDS, EYE_POLYGON, HALF_DEPTH, halfWidthAt, len, x, y } from "./measurements";
+import { BANDS, EYE_POLYGON, halfWidthAt, len, x, y } from "./measurements";
+import { halfDepthSolved } from "./section";
 
 /**
  * The MMX2 wireframe Sigma head, green variant.
@@ -37,12 +38,14 @@ const EDGE_ANGLE = 30;
 const SKULL_MAX_HALF = len(19);
 
 /**
- * Depth follows width: a row that is 80% of the widest row is 80% as deep.
+ * Half-depth at a row, now SOLVED per row from the sheet's yaw sweep (`section.ts`).
  *
- * ponytail: one global depth ratio, no per-row front/back taper. The upgrade path is a per-row
- * profile read off the yawed frames, which would need each frame's yaw solved first.
+ * It used to be `HALF_DEPTH * (halfWidthAt(py) / halfWidthAt(37))` — one global ratio, every row
+ * the same shape scaled. The solve says depth-over-width is 0.41 at the crown, 1.40 through the
+ * middle and 1.01 at the jaw, so that assumption was right in the middle of the head and wrong by
+ * more than 3x at the top of it.
  */
-const halfDepthAt = (py: number): number => HALF_DEPTH * (halfWidthAt(py) / halfWidthAt(37));
+const halfDepthAt = (py: number): number => halfDepthSolved(py);
 
 /**
  * The face plane: where the eyes and brow sit on the shell's front surface.
@@ -78,12 +81,20 @@ function bandRings(
   const hw = opts.halfWidth ?? halfWidthAt;
   const hd = opts.halfDepth ?? halfDepthAt;
   const rings: Ring[] = [];
+  // The ring keeps its AUTHORED faceted form and takes its DEPTH from the solve. Using the solved
+  // polygon as the ring itself was tried and reverted: a half-plane intersection over 12 sampled
+  // directions is a smoothing operator by construction, so the head lofted into a rounded egg —
+  // front IoU 0.9384 -> 0.8772, the crown band 0.916 -> 0.673 as the flat crest rounded off, and
+  // the wireframe density fell BELOW the reference's. The solve measures extents, which is
+  // exactly what the front view cannot see; it cannot measure facets, and the reference's whole
+  // identity is facets.
+  const ringAt = (py: number) => chamferedRing(hw(py), hd(py), chamfer);
   for (let py = from; py <= to; py += step) {
-    rings.push({ y: y(py), pts: chamferedRing(hw(py), hd(py), chamfer) });
+    rings.push({ y: y(py), pts: ringAt(py) });
   }
   const last = to;
   if (rings.length === 0 || (to - from) % step !== 0) {
-    rings.push({ y: y(last), pts: chamferedRing(hw(last), hd(last), chamfer) });
+    rings.push({ y: y(last), pts: ringAt(last) });
   }
   return rings;
 }

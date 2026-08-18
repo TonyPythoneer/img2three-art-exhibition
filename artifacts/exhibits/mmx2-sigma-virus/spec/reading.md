@@ -16,6 +16,9 @@ python3 spec/measure_landmarks.py   references/sigma-wireframe-sheet.png spec/la
 python3 spec/measure_eye_slant.py
 python3 spec/measure_profile_width.py references/sigma-wireframe-sheet.png spec/frame-index.json spec/profile-width.json
 python3 spec/measure_depth_bound.py   references/sigma-wireframe-sheet.png spec/frame-index.json spec/depth-bound.json
+python3 spec/pure_yaw_set.py        references/sigma-wireframe-sheet.png spec/frame-index.json spec/pure-yaw.json
+python3 spec/solve_cross_sections.py references/sigma-wireframe-sheet.png spec/frame-index.json spec/cross-sections.json \
+  --ts ../../../src/utils/sigmaVirusHead/crossSections.ts
 python3 spec/measure_eye_outline.py   references/sigma-wireframe-sheet.png spec/eye-outline.json
 python3 spec/find_back_frame.py     references/sigma-wireframe-sheet.png spec/frame-index.json spec/back-frame.json
 spec/run_gates.sh                       # fresh capture + every gate
@@ -145,26 +148,70 @@ first; if there are only one or two, fold them into the colour stage") there is 
 
 ## Guess list
 
-### G1 — Head depth. **RESOLVED at 1.4255 × width.** Was a guess at 1.25.
+### G1 — Head depth. **RESOLVED per row, not as one ratio.** It was wrong twice first.
 
-Once the sheet is one mesh, a pose-free measurement exists. Filter the index to frames whose
-height matches the front view's 68–70px and the rotation must have stayed about the vertical
-axis: **87 frames, a pure yaw sweep**, widths running **42 → 67** against a 47px front view
-(`profile-width.json`).
+The whole depth story turned on which frames count as a yaw sweep, and the first two answers both
+got that wrong.
 
-The peak alone does not finish it — for a rectangular cross-section the peak is the ~45° diagonal
-(depth 1.02×) and for an elliptical one it is the 90° view (depth 1.43×). The model's own captured
-sweep decides which family this is: across 0–90° it runs 480, 478, 502, 534, 560, 581, 600, 603,
-594, 606 — flat from 60° and peaking at 90°. Width at the peak IS depth, so
+**1.25** came from the crown-from-above crops, which are foreshortened.
 
-> depth / width = 67 / 47 = **1.4255**
+**1.4255** came from 67 / 47 — the widest frame whose HEIGHT matched the front view's 68-70px.
+Matching height is necessary for a rotation about the vertical axis and **not sufficient**: a head
+tumbling on three axes passes through plenty of orientations that happen to land on 68-70px.
+`pure_yaw_set.py` adds the test that was missing — a yaw slides the eyes sideways and leaves their
+ROW alone, so the accent's centre height must match the front view's 0.5125 — and of the 87 frames
+the height filter kept, **6 are tumbled and they are the 6 WIDEST**:
 
-Cross-check, `measure_depth_bound.py`: the largest silhouette chord over all frames is the mesh's
-own 3D caliper diameter regardless of pose, and against the front view's chord it puts a **lower**
-bound of 37.9px on the depth (0.81× width). 67px sits above that, consistently.
+| Frame | size | accent centre | vs front 0.5125 |
+| --- | --- | --- | --- |
+| (311, 694) | 67×68 | 0.7345 | 0.222 |
+| (529, 119) | 66×68 | 0.7261 | 0.214 |
+| (468, 2258) | 66×68 | 0.7158 | 0.203 |
+| (215, 1915) | 65×70 | 0.2780 | 0.235 |
+| (476, 1510) | 62×68 | 0.3056 | 0.207 |
 
-The old 1.25 came from the crown-from-above ovoids at (209,1508) 61×47 and (142,1505) 60×48 —
-foreshortened, and 11.4% low. `gate_yaw_sweep.py` now holds this at a 5% tolerance.
+At 10× the first one is lying on a diagonal with its eyes down near the bottom of the frame. Its
+width was setting the head's depth single-handedly.
+
+**1.3191** — 62 / 47 over the 81 frames that survive both tests. Two things say the vetted set is
+really a yaw sweep: the narrowest surviving frame is **47px, exactly the front view's width**
+(turning a head can only widen its silhouette from there), and the old set's unexplained 42px
+minimum is gone with the tumbled frames.
+
+But one ratio was the wrong shape of answer anyway. `solve_cross_sections.py` reconstructs the
+cross-section at **every row** from those 81 frames. For a frame at yaw t the image's horizontal
+axis measures the body's extent along u(t) = (cos t, 0, −sin t); that extent is the section's
+width, and width is registration-free, which matters because nothing knows where the model's axis
+projects to in a turned frame. Widths at many angles determine the section's central symmetral —
+the intersection of the half-planes p·u(t) ≤ w(t)/2 — one Sutherland–Hodgman clip per row.
+
+Yaw per frame is measured from the eyes: their 3D separation is fixed, so its projection scales as
+cos t, and the wireframe is see-through so the far eye keeps contributing instead of dropping out.
+Nothing in that consults the build, so it cannot launder the build's own guess back in as evidence.
+
+**The check** — and the only reason to believe any of it — is that the solved sections' X widths
+land on the front view's own measurements, which were never fed in as a constraint on x alone.
+Mean relative error **0.0197** across the head, exact at rows 0, 44 and 68.
+
+What it found, in reference pixels:
+
+| row | width | depth | depth/width |
+| --- | --- | --- | --- |
+| 0 | 20 | 7 | 0.35 — the crest is a thin slab |
+| 12 | 37 | 43 | 1.16 |
+| 20 | 37 | 52 | 1.41 — the deepest part of the skull |
+| 36 | 48 | 41 | 0.85 |
+| 44 | 47 | 50 | 1.06 |
+| 56 | 31 | 28 | 0.90 — the jaw is squarer than it is deep |
+| 68 | 13 | 3 | 0.23 |
+
+One global ratio was right in the middle of the head and wrong by 4× at the top of it.
+
+One correction is applied on top: a support-function reconstruction can only shrink, since every
+extra direction is another half-plane and none of them push outwards. Its widest section has a
+caliper of 55.3px against the vetted set's widest frame at 62, so depths carry a **×1.1212**
+undershoot correction. `gate_yaw_sweep.py` is what keeps that honest — model 1.2936 against the
+reference's 1.3191, 1.9% error.
 
 ### G2 — Back of the head. **Closed as unresolvable.** Default: the shells own rear.
 
@@ -212,17 +259,29 @@ medium. Faceted flat shading with a wireframe overlay is faithful here rather th
 
 | Gate | Number | Threshold | Verdict |
 | --- | --- | --- | --- |
-| Front silhouette IoU | **0.9384** | >= 0.90 | pass |
-| Aspect error | 0.0314 | <= 0.06 | pass |
-| Band IoU — crown / helmetSides / earPods / cheekTaper / jawBlock | 0.916 / 0.946 / 0.976 / 0.892 / 0.940 | — | pass |
+| Front silhouette IoU | **0.9347** | >= 0.90 | pass |
+| Aspect error | 0.0423 | <= 0.06 | pass |
+| Band IoU — crown / helmetSides / earPods / cheekTaper / jawBlock | 0.897 / 0.941 / 0.981 / 0.906 / 0.933 | — | pass |
 | Eye band edges (max delta) | 0.037 | <= 0.06 | pass |
-| Eye filled area | rel. error **0.085** | <= 0.30 | pass |
-| Depth, yaw-sweep width ratio | model 1.4147 vs reference 1.4255, rel. error **0.0076** | <= 0.05 | pass |
+| Eye filled area | rel. error **0.0616** | <= 0.30 | pass |
+| Depth, yaw-sweep width ratio | model 1.2936 vs reference 1.3191, rel. error **0.0194** | <= 0.05 | pass |
 | Structure | 13 named parts, 13 meshes, explode 0.49 -> 1.58 | 13 expected | pass |
-| Wireframe density | reference 11.93, full assembly 44.3, **skullShell alone 14.08** | <= 25% | **documented limitation** |
+| Wireframe density | reference 11.93, full assembly 41.6, **skullShell alone 17.7** | <= 25% | **documented limitation** |
 
 Verdict: **continue** — all five blocking gates pass; the sixth is a named limitation whose cause
 is measured, below.
+
+### The solved sections are extents, not facets — and that distinction cost a pass
+
+Feeding the solved polygons straight in as the loft's rings was tried and reverted. A half-plane
+intersection over a dozen sampled directions is a smoothing operator by construction, so the head
+lofted into a rounded egg: front IoU **0.9384 -> 0.8772**, the crown band **0.916 -> 0.673** as the
+flat crest rounded away, the eye area gate failed at 0.751, and the wireframe density fell BELOW
+the reference's. The render is in the history; it reads as an egg with slivers for eyes.
+
+The solve measures what the front view cannot see — extents — and cannot measure what the front
+view shows plainly, which is facets. So the rings keep their authored faceted form and take only
+their DEPTH from the solve. That is the whole integration.
 
 ### Three silhouette fixes, each traced to the band that exposed it
 

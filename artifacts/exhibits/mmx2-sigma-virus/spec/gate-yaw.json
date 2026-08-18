@@ -1,72 +1,72 @@
 {
  "reference": {
-  "pureYawFrames": 87,
+  "pureYawFrames": 81,
   "widthRange": [
-   42,
-   67
+   47,
+   62
   ],
   "frontWidth": 47,
-  "widthRatio": 1.4255
+  "widthRatio": 1.3191
  },
  "model": {
   "steps": 10,
-  "frontWidth": 463,
-  "widestWidth": 655,
-  "widthRatio": 1.4147,
+  "frontWidth": 470,
+  "widestWidth": 608,
+  "widthRatio": 1.2936,
   "sweep": [
    {
     "file": "yaw-000.png",
-    "w": 463,
-    "h": 659
+    "w": 470,
+    "h": 662
    },
    {
     "file": "yaw-010.png",
-    "w": 464,
-    "h": 666
+    "w": 467,
+    "h": 670
    },
    {
     "file": "yaw-020.png",
-    "w": 494,
-    "h": 671
-   },
-   {
-    "file": "yaw-030.png",
-    "w": 543,
-    "h": 675
-   },
-   {
-    "file": "yaw-040.png",
-    "w": 576,
+    "w": 482,
     "h": 677
    },
    {
+    "file": "yaw-030.png",
+    "w": 519,
+    "h": 684
+   },
+   {
+    "file": "yaw-040.png",
+    "w": 542,
+    "h": 691
+   },
+   {
     "file": "yaw-050.png",
-    "w": 611,
-    "h": 676
+    "w": 577,
+    "h": 695
    },
    {
     "file": "yaw-060.png",
-    "w": 636,
-    "h": 675
+    "w": 598,
+    "h": 699
    },
    {
     "file": "yaw-070.png",
-    "w": 644,
-    "h": 673
+    "w": 603,
+    "h": 700
    },
    {
     "file": "yaw-080.png",
-    "w": 642,
-    "h": 669
+    "w": 597,
+    "h": 699
    },
    {
     "file": "yaw-090.png",
-    "w": 655,
-    "h": 664
+    "w": 608,
+    "h": 696
    }
   ]
  },
- "relError": 0.0076,
+ "relError": 0.0194,
  "tol": 0.05,
  "pass": true
 }
