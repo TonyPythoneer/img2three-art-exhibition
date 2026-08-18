@@ -5,6 +5,7 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { createUltimaWeaponV2Model } from "~/utils/ultimaWeaponV2/createUltimaWeaponV2Model";
+import { createSigmaVirusHead } from "~/utils/sigmaVirusHead/createSigmaVirusHead";
 
 /**
  * Cinematic hero turntable, ported from img2threejs-showcase's hero-stage.ts.
@@ -291,6 +292,14 @@ export function heroEntries(): HeroEntry[] {
       slug: "ff7-cloud-strife-ultima-weapon",
       title: "Ultima Weapon",
       build: () => createUltimaWeaponV2Model({ detail: "full" }),
+    },
+    {
+      slug: "mmx2-sigma-virus",
+      title: "Sigma Virus",
+      // The head measures 1.0 tall in reference-frame units, which the hero's bounding-sphere
+      // framing would show at roughly a tenth of the weapon's size. Scaled up to sit in the
+      // same turntable rather than teaching the stage a per-entry camera.
+      build: () => createSigmaVirusHead({ scale: 3.2 }),
     },
   ];
 }

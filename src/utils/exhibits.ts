@@ -74,6 +74,14 @@ export const exhibits: Exhibit[] = [
     promptFile: "prompt.txt",
     ...veliteFields("ff7-cloud-strife-ultima-weapon"),
   },
+  {
+    slug: "mmx2-sigma-virus",
+    status: "building",
+    liveModel: true,
+    promptFile: "prompt.txt",
+    docs: [{ file: "spec/reading.md", label: "Reading + guess list" }],
+    ...veliteFields("mmx2-sigma-virus"),
+  },
 ];
 
 export const exhibitBySlug = (slug: string): Exhibit | undefined =>

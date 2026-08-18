@@ -1,0 +1,35 @@
+{
+ "render": "/tmp/sigma-renders/front.png",
+ "referenceFrame": {
+  "x0": 63,
+  "y0": 1811,
+  "w": 47,
+  "h": 69
+ },
+ "renderBBox": {
+  "x0": 120,
+  "y0": 101,
+  "w": 480,
+  "h": 693
+ },
+ "grid": [
+  94,
+  138
+ ],
+ "iou": 0.9188,
+ "minIou": 0.9,
+ "aspect": {
+  "reference": 0.6812,
+  "render": 0.6926,
+  "error": 0.0169,
+  "max": 0.06
+ },
+ "bandIou": {
+  "crown": 0.9161,
+  "helmetSides": 0.8832,
+  "earPods": 0.9615,
+  "jaw": 0.9255,
+  "neck": 0.9355
+ },
+ "pass": true
+}

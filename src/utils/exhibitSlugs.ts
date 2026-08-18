@@ -6,4 +6,4 @@
 // velite-free, and src/utils/exhibits.ts consumes `.velite` for client data instead.
 // Keep in sync with the `slug` values in src/utils/exhibits.ts and with the page
 // directories under src/pages/ — one exhibit is one route is one src/pages/<slug>/index.vue.
-export const exhibitSlugs = ["ff7-cloud-strife-ultima-weapon"];
+export const exhibitSlugs = ["ff7-cloud-strife-ultima-weapon", "mmx2-sigma-virus"];

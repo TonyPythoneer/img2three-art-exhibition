@@ -1,41 +1,60 @@
-"""Landmarks for the green Sigma-virus frame, in fractions of the frame's own bbox.
+"""Landmarks for one Sigma-virus frame, in fractions of the frame's own bbox.
 
-Front view only. The green frame is 48x69px with pixel-identical geometry to the other
-three palette frames (p0-triage.json: crossVariantSpread 0.0), so width and height carry
-no cross-view scale error at all. Depth does NOT come from here — the reference has no
-clean side view of this head; see reading.md's guess list.
+Front view only. Depth does NOT come from here — the reference has no clean side view of
+this head; see reading.md's guess list G1.
+
+Default frame is the GEOMETRY authority from front-frame.json, not the green one: the
+green palette frame is caught at a yaw (rowAsymmetry 0.0555 vs 0.0101). Pass
+`--frame x0 y0 w h` to measure a different one — `--frame 496 2573 48 69` is the green
+colour authority, which is where the eye band and the palette come from.
 
 Everything below is measured from the stroke mask, never eyeballed off a zoom:
   - per-row stroke extent  -> where the silhouette is widest, and where it steps in
-  - the orange cluster     -> eye band top/bottom/left/right
+  - the accent-hue cluster -> eye band top/bottom/left/right
   - the lowest closed box  -> the neck/collar block
 
 Usage: python3 measure_landmarks.py <sheet.png> <out.json>
 """
 import json
 import sys
+from collections import Counter
 
 from PIL import Image
 
 BG = (0, 0, 41)
 BG_TOL = 24
-FRAME = (496, 2573, 544, 2642)          # from p0-triage.json greenFrame, x1/y1 exclusive
+FRONT = (63, 1811, 47, 69)              # front-frame.json frontFrame — geometry authority
+GREEN = (496, 2573, 48, 69)             # p0-triage.json greenFrame — colour authority
 
 
 def is_bg(p):
     return all(abs(a - b) <= BG_TOL for a, b in zip(p, BG))
 
 
-def is_eye(p):
+def hue_family(p):
     r, g, b = p
-    return r > 150 and 30 < g < 140 and b < 60          # the #E05000 orange
+    if g > r + 40 and g > b + 40:
+        return "green"
+    if r > g + 40 and b > g + 40:
+        return "purple"
+    if r > g + 40 and r > b + 40:
+        return "orange" if g > 60 else "red"
+    if b > r + 40 and b > g + 20:
+        return "blue"
+    return "other"
 
 
 def main():
-    sheet, out = sys.argv[1], sys.argv[2]
+    argv = sys.argv[1:]
+    if "--frame" in argv:
+        i = argv.index("--frame")
+        x0, y0, W, H = map(int, argv[i + 1:i + 5])
+        del argv[i:i + 5]
+    else:
+        x0, y0, W, H = FRONT
+    sheet, out = argv[0], argv[1]
     px = Image.open(sheet).convert("RGB").load()
-    x0, y0, x1, y1 = FRAME
-    W, H = x1 - x0, y1 - y0
+    x1, y1 = x0 + W, y0 + H
 
     rows = []
     for y in range(y0, y1):
@@ -47,7 +66,16 @@ def main():
                      "count": len(xs)})
 
     widest = max(rows, key=lambda r: r["span"])
-    eye = [(x - x0, y - y0) for y in range(y0, y1) for x in range(x0, x1) if is_eye(px[x, y])]
+
+    # The eyes are the frame's ACCENT hue, whatever that hue happens to be: blue in the
+    # red geometry frame, orange in the green colour frame. Keying on one literal colour
+    # silently returns an empty eye band on the other frame, so key on "not the dominant
+    # stroke hue" instead.
+    hues = Counter(hue_family(px[x, y]) for y in range(y0, y1) for x in range(x0, x1)
+                   if not is_bg(px[x, y]))
+    dominant = hues.most_common(1)[0][0]
+    eye = [(x - x0, y - y0) for y in range(y0, y1) for x in range(x0, x1)
+           if not is_bg(px[x, y]) and hue_family(px[x, y]) not in (dominant, "other")]
     exs = [p[0] for p in eye]
     eys = [p[1] for p in eye]
 

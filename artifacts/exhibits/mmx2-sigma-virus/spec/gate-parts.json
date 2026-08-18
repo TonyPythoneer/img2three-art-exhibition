@@ -1,0 +1,107 @@
+{
+ "parts": [
+  {
+   "name": "skullShell",
+   "kind": "part",
+   "module": null,
+   "triangles": 400
+  },
+  {
+   "name": "crownPlate",
+   "kind": "part",
+   "module": null,
+   "triangles": 80
+  },
+  {
+   "name": "sidePanelL",
+   "kind": "part",
+   "module": null,
+   "triangles": 56
+  },
+  {
+   "name": "sidePanelR",
+   "kind": "part",
+   "module": null,
+   "triangles": 56
+  },
+  {
+   "name": "earPodL",
+   "kind": "part",
+   "module": null,
+   "triangles": 48
+  },
+  {
+   "name": "earPodR",
+   "kind": "part",
+   "module": null,
+   "triangles": 48
+  },
+  {
+   "name": "browRidgeL",
+   "kind": "part",
+   "module": null,
+   "triangles": 40
+  },
+  {
+   "name": "browRidgeR",
+   "kind": "part",
+   "module": null,
+   "triangles": 40
+  },
+  {
+   "name": "eyePlateL",
+   "kind": "part",
+   "module": null,
+   "triangles": 12
+  },
+  {
+   "name": "eyePlateR",
+   "kind": "part",
+   "module": null,
+   "triangles": 12
+  },
+  {
+   "name": "neckBlock",
+   "kind": "part",
+   "module": null,
+   "triangles": 112
+  },
+  {
+   "name": "neckFootL",
+   "kind": "part",
+   "module": null,
+   "triangles": 16
+  },
+  {
+   "name": "neckFootR",
+   "kind": "part",
+   "module": null,
+   "triangles": 16
+  }
+ ],
+ "toggleable": [
+  "skullShell",
+  "crownPlate",
+  "sidePanelL",
+  "sidePanelR",
+  "earPodL",
+  "earPodR",
+  "browRidgeL",
+  "browRidgeR",
+  "eyePlateL",
+  "eyePlateR",
+  "neckBlock",
+  "neckFootL",
+  "neckFootR"
+ ],
+ "stats": {
+  "meshes": 13,
+  "triangles": 936
+ },
+ "explode": {
+  "assembled": 0.49275362491607666,
+  "exploded": 1.5768115997314454
+ },
+ "failures": []
+}
+PASS: 13 parts, all named, explode separates

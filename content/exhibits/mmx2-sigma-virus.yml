@@ -1,0 +1,30 @@
+slug: mmx2-sigma-virus
+title: Sigma Virus
+subtitle: >-
+  The green one. A wireframe head ripped from Mega Man X2, rebuilt from the one
+  frame of 307 that measures most nearly symmetric
+source: >-
+  "Wireframe Sigma, Captured from Megaman X2 by Polar Koala" — a 610×2644 sprite
+  sheet carrying three different heads in four palettes
+images:
+  - file: green-colour-authority.png
+    caption: >-
+      The colour authority, at 14× NEAREST. Three colours and nothing else:
+      #10D830 on 656 pixels, #10B010 on 152, #E05000 on the 57 that are the eyes
+  - file: front-geometry-authority.png
+    caption: >-
+      The geometry authority — sheet frame (63, 1811). Its per-row silhouette
+      asymmetry is 0.0101 against the green frame's 0.0555, so the green frame
+      is caught at a yaw and only the palette comes from it
+  - file: palette-strip.png
+    caption: >-
+      Why the two can be split: all four frames measure 48×69 with 808 stroke
+      pixels each, identical to the pixel. A palette swap, not a redraw
+  - file: crown-from-above.png
+    caption: >-
+      The only direct depth evidence on the whole sheet, and it is
+      foreshortened — 1.25 depth-over-width is a lower bound, and guess G1
+  - file: reference-sprite-sheet.png
+    caption: >-
+      The full sheet. 307 segmented frames, three different heads: this one, a
+      grimacing skull with ear pods, and a third with a jutting chin

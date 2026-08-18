@@ -135,3 +135,53 @@ was detached from the body?) is not resolvable and does not change the build.
 Pass. Single subject, uniform ground, no compression noise, no clipping, and — unusually — the
 reference is itself a wireframe render of a low-poly mesh, so the target IS the reconstruction
 medium. Faceted flat shading with a wireframe overlay is faithful here rather than stylised.
+
+## Build record — Stage 1/2, first pass
+
+Rerun everything from a fresh capture:
+
+```bash
+artifacts/exhibits/mmx2-sigma-virus/spec/run_gates.sh
+python3 artifacts/exhibits/mmx2-sigma-virus/spec/make_comparison.py \
+  /tmp/sigma-renders/front.png references/sigma-wireframe-sheet.png /tmp/cmp.png --height 640
+```
+
+| Gate | Number | Threshold | Verdict |
+| --- | --- | --- | --- |
+| Front silhouette IoU | **0.9188** | ≥ 0.90 | pass |
+| Aspect error | 0.0169 | ≤ 0.06 | pass |
+| Band IoU — crown / helmetSides / earPods / jaw / neck | 0.916 / 0.883 / 0.962 / 0.926 / 0.936 | — | helmetSides is the weakest band |
+| Eye band edges (max Δ) | 0.0392 | ≤ 0.06 | pass |
+| Eye filled area | rel. error **0.2398** | ≤ 0.30 | pass |
+| Structure | 13 named parts, 13 meshes, 936 tris, explode 0.49 → 1.58 | 13 expected | pass |
+
+Verdict: **continue**.
+
+### Two instrument errors this pass, both caught before they became model errors
+
+1. **The feature gate's first version passed a wrong model.** It compared the render's FILLED
+   eyes against `landmarks.json.eyeBand.pixels`, which counts the reference's outline STROKES —
+   57 px. An eye at 44% of its reference size scored as 32% too *large*. Filling the reference
+   eye per row and per side (a single fill across the band would swallow the nose bridge) moved
+   the reference from 1.94% of the frame to 4.19%, and the same render then failed at 38.8%.
+   Fixing the instrument, not the threshold, is what turned the eyes into the right shape.
+2. **The render's eye slant looked inverted and was not.** `measure_eye_slant.py` takes column
+   means at each end of the accent cluster: both authorities put the OUTER end high and the
+   inner end low, by 0.75–1.30 reference rows. The build's 1.6-row drop was tightened to 1.1 on
+   that measurement rather than flipped on the impression.
+
+Both are the same shape as the project's standing lesson: the symptom was in the render, the
+cause was in the instrument.
+
+### What still does not match, named rather than claimed done
+
+- **Eye outline.** The reference eye is a chevron with a kink partway along; the build's is a
+  straight parallelogram in the right band, at the right slant, at the right area. The gates
+  score band and area, so they cannot see this, and the comparison sheet is the only evidence
+  for it.
+- **Edge density.** The loft steps every 2–3 reference rows, so the render carries more
+  horizontal rings than the reference's sparser wireframe. The silhouette is unaffected; the
+  render reads busier than the sprite.
+- **helmetSides is the weakest band at 0.883.** The side panels' thickness is authored (±2.5px)
+  rather than measured — the reference draws them as lines with no fillable width.
+- **The back of the head is guess G2** and no gate looks at it, because no reference frame does.
