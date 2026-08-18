@@ -10,54 +10,54 @@
  },
  "model": {
   "steps": 10,
-  "frontWidth": 462,
+  "frontWidth": 464,
   "widestWidth": 655,
-  "widthRatio": 1.4177,
+  "widthRatio": 1.4116,
   "sweep": [
    {
     "file": "yaw-000.png",
-    "w": 462,
-    "h": 667
+    "w": 464,
+    "h": 659
    },
    {
     "file": "yaw-010.png",
-    "w": 462,
-    "h": 673
+    "w": 464,
+    "h": 666
    },
    {
     "file": "yaw-020.png",
-    "w": 493,
-    "h": 676
+    "w": 501,
+    "h": 671
    },
    {
     "file": "yaw-030.png",
-    "w": 542,
-    "h": 677
+    "w": 543,
+    "h": 675
    },
    {
     "file": "yaw-040.png",
-    "w": 576,
+    "w": 583,
     "h": 677
    },
    {
     "file": "yaw-050.png",
     "w": 611,
-    "h": 675
+    "h": 676
    },
    {
     "file": "yaw-060.png",
     "w": 636,
-    "h": 674
+    "h": 675
    },
    {
     "file": "yaw-070.png",
     "w": 644,
-    "h": 672
+    "h": 673
    },
    {
     "file": "yaw-080.png",
     "w": 642,
-    "h": 668
+    "h": 669
    },
    {
     "file": "yaw-090.png",
@@ -66,7 +66,7 @@
    }
   ]
  },
- "relError": 0.0055,
+ "relError": 0.0097,
  "tol": 0.05,
  "pass": true
 }

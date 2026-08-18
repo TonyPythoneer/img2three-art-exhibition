@@ -2,7 +2,7 @@ import * as THREE from "three";
 
 import { COLORS } from "./colors";
 import { chamferedRing, loft, type Ring } from "./loft";
-import { BANDS, EYE, HALF_DEPTH, halfWidthAt, len, x, y } from "./measurements";
+import { BANDS, EYE_POLYGON, HALF_DEPTH, halfWidthAt, len, x, y } from "./measurements";
 
 /**
  * The MMX2 wireframe Sigma head, green variant.
@@ -14,6 +14,23 @@ import { BANDS, EYE, HALF_DEPTH, halfWidthAt, len, x, y } from "./measurements";
  * Eight shape codes, thirteen instances. Every mirror pair is authored once and negated in x,
  * which is also what the symmetry assertion checks.
  */
+
+/**
+ * How the wireframe is DRAWN, which on this subject is part of the subject.
+ *
+ * `gate_edge_density.py` measures total line length over head height: the reference carries 11.9
+ * head-heights of line, and the first build carried 59.8 — 5x, which reads as a mesh preview
+ * rather than as the sprite. Two causes, both here:
+ *
+ * - RING_STEP: a ring every 2 reference rows put 24 rings through the skull alone. The
+ *   silhouette table is dense enough that a ring every 7 rows still lands on measured extents;
+ *   only the segments BETWEEN rings straighten.
+ * - EDGE_ANGLE: `EdgesGeometry` at 1 degree draws every quad's triangulation diagonal, because a
+ *   lofted quad between two different rings is not planar and its two triangles never agree to
+ *   within a degree. Raising the threshold drops the diagonals and keeps the real creases.
+ */
+const RING_STEP = 7;
+const EDGE_ANGLE = 30;
 
 /** The widest the skull proper gets — rows 14..27 run px 3..41, so half-width 19px. */
 const SKULL_MAX_HALF = len(19);
@@ -55,7 +72,7 @@ function bandRings(
     halfDepth?: (py: number) => number;
   } = {},
 ): Ring[] {
-  const step = opts.step ?? 2;
+  const step = opts.step ?? RING_STEP;
   const chamfer = opts.chamfer ?? 0.35;
   const hw = opts.halfWidth ?? halfWidthAt;
   const hd = opts.halfDepth ?? halfDepthAt;
@@ -97,7 +114,7 @@ function part(name: string, geometry: THREE.BufferGeometry, opts: { eye?: boolea
   const mesh = new THREE.Mesh(geometry, fillMat(opts.eye ? COLORS.eye : COLORS.ground));
   mesh.name = name;
   const edges = new THREE.LineSegments(
-    new THREE.EdgesGeometry(geometry, 1),
+    new THREE.EdgesGeometry(geometry, EDGE_ANGLE),
     opts.eye ? eyeWireMat() : wireMat(),
   );
   edges.name = `${name}Edges`;
@@ -123,7 +140,11 @@ function createSkullShell() {
   return part(
     "skullShell",
     loft(
+      // The skull is the part that OWNS the silhouette, so it keeps a fine ring step while the
+      // rest of the assembly runs at RING_STEP. Coarsening this one alone cost 0.006 of front IoU
+      // and most of the crown band; coarsening the others cost nothing measurable.
       bandRings(from, to, {
+        step: 3,
         halfWidth: (py) => Math.min(halfWidthAt(py), SKULL_MAX_HALF),
       }),
       { capTop: true, capBottom: true },
@@ -135,7 +156,7 @@ function createCrownPlate() {
   const [from, to] = BANDS.crownPlate;
   return part(
     "crownPlate",
-    loft(bandRings(from, to, { step: 2, chamfer: 0.45 }), { capTop: true, capBottom: true }),
+    loft(bandRings(from, to, { step: 4, chamfer: 0.45 }), { capTop: true, capBottom: true }),
   );
 }
 
@@ -144,7 +165,7 @@ function createSidePanel() {
   const [from, to] = BANDS.sidePanel;
   const thickness = len(2.5);
   const rings: Ring[] = [];
-  for (let py = from; py <= to; py += 3) {
+  for (let py = from; py <= to; py += 6) {
     const outer = Math.min(halfWidthAt(py), SKULL_MAX_HALF);
     const d = halfDepthAt(py) * 0.62;
     rings.push({
@@ -164,7 +185,7 @@ function createSidePanel() {
 function createEarPod() {
   const [from, to] = BANDS.earPod;
   const rings: Ring[] = [];
-  for (let py = from; py <= to; py += 2) {
+  for (let py = from; py <= to; py += 5) {
     const outer = halfWidthAt(py);
     const inner = SKULL_MAX_HALF - len(1);
     const d = halfDepthAt(py) * 0.5;
@@ -216,8 +237,13 @@ function createBrowRidge() {
 
 /**
  * The eye: the one part that carries colour code C3, and the only interior feature the gates can
- * score. A slanted bar, not a ring loft — the slant runs along x, and a stack of xz rings can
- * only vary with y, which is what made the first pass's eye a 3px sliver.
+ * score. Traced straight from `EYE_OUTLINE` — the reference's own per-column top and bottom rows —
+ * rather than fitted to the eye's bounding box.
+ *
+ * The bounding-box version came first and passed every gate: right band, right slant, right
+ * filled area. It still read wrong next to the reference, because the eye is a leaf that tapers
+ * to a point at the bridge and cuts sharply up at the outer tip, not a bar. Gates that score a
+ * band and an area cannot tell those apart, so the outline is measured instead of inferred.
  *
  * Guess list G3 reads the eye as recessed into the face plane, so it is extruded backwards from
  * the brow's front face rather than standing proud of it.
@@ -228,23 +254,12 @@ function createEyePlate() {
   // area from 24.0% to 30.6% relative error — over the gate. 0.9 of the face plane is where it
   // passes.
   const zFront = FACE_Z * 0.9;
-  // Outer edge from `landmarks.json.eyeBand.xRightFrac` (0.8043 of frame width = 14px out from
-  // the axis); inner edge stops short of the axis to leave the nose bridge the reference draws.
-  const outer = len(14);
-  const inner = len(2.5);
-  const top = EYE.topPx;
-  const bottom = EYE.bottomPx;
-  // Slanted: the outer end rides high, the inner end drops toward the bridge. That direction is
-  // measured, not read off a zoom — the render looked inverted to the eye and was not.
-  // `measure_eye_slant.py` puts the drop at 0.75-1.30 reference rows across both authorities;
-  // 1.1 is the middle of that.
-  const drop = len(1.1);
 
   const shape = new THREE.Shape();
-  shape.moveTo(outer, y(top));
-  shape.lineTo(outer, y(bottom - 1.2));
-  shape.lineTo(inner, y(bottom) - drop);
-  shape.lineTo(inner, y(top + 1.2) - drop);
+  const first = EYE_POLYGON[0];
+  if (!first) throw new Error("EYE_POLYGON must not be empty");
+  shape.moveTo(len(first[0]), y(first[1]));
+  for (const [px, row] of EYE_POLYGON.slice(1)) shape.lineTo(len(px), y(row));
   shape.closePath();
 
   const g = new THREE.ExtrudeGeometry(shape, { depth: len(2), bevelEnabled: false });
@@ -256,7 +271,7 @@ function createJawBlock() {
   const [from, to] = BANDS.jawBlock;
   return part(
     "jawBlock",
-    loft(bandRings(from, to, { step: 3, chamfer: 0.15 }), { capTop: true, capBottom: true }),
+    loft(bandRings(from, to, { step: 6, chamfer: 0.15 }), { capTop: true, capBottom: true }),
   );
 }
 

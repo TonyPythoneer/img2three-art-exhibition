@@ -34,6 +34,18 @@ python3 "$SPEC/gate_yaw_sweep.py" "$RENDERS" "$SHEET" "$SPEC/frame-index.json" \
   --out "$SPEC/gate-yaw.json" || fail=1
 
 echo
+echo "== gate: wireframe density (informational — see reading.md's named limitation) =="
+node tools/capture_sigma.mjs --out "$RENDERS/shell-only" --views front --only-part skullShell \
+  >/dev/null || exit 2
+python3 "$SPEC/gate_edge_density.py" "$RENDERS/front.png" "$SHEET" \
+  --shell-render "$RENDERS/shell-only/front.png" --informational \
+  --out "$SPEC/gate-density.json" >/dev/null
+python3 -c "import json;d=json.load(open('$SPEC/gate-density.json'));print(
+  ' reference',d['reference']['lineDensity'],'| full assembly',d['render']['lineDensity'],
+  '| skullShell alone',d['skullShellOnly']['lineDensity'],
+  '| verdict',d['verdict'])"
+
+echo
 echo "== gate: structure (13 named parts, none fused, explode separates) =="
 node tools/verify_sigma_parts.mjs > "$SPEC/gate-parts.json" || fail=1
 tail -1 "$SPEC/gate-parts.json"

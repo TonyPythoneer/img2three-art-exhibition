@@ -4,37 +4,37 @@
    "name": "skullShell",
    "kind": "part",
    "module": null,
-   "triangles": 400
+   "triangles": 272
   },
   {
    "name": "crownPlate",
    "kind": "part",
    "module": null,
-   "triangles": 80
+   "triangles": 48
   },
   {
    "name": "sidePanelL",
    "kind": "part",
    "module": null,
-   "triangles": 56
+   "triangles": 32
   },
   {
    "name": "sidePanelR",
    "kind": "part",
    "module": null,
-   "triangles": 56
+   "triangles": 32
   },
   {
    "name": "earPodL",
    "kind": "part",
    "module": null,
-   "triangles": 48
+   "triangles": 24
   },
   {
    "name": "earPodR",
    "kind": "part",
    "module": null,
-   "triangles": 48
+   "triangles": 24
   },
   {
    "name": "browRidgeL",
@@ -52,19 +52,19 @@
    "name": "eyePlateL",
    "kind": "part",
    "module": null,
-   "triangles": 12
+   "triangles": 20
   },
   {
    "name": "eyePlateR",
    "kind": "part",
    "module": null,
-   "triangles": 12
+   "triangles": 20
   },
   {
    "name": "jawBlock",
    "kind": "part",
    "module": null,
-   "triangles": 112
+   "triangles": 64
   },
   {
    "name": "chinTabL",
@@ -96,7 +96,7 @@
  ],
  "stats": {
   "meshes": 13,
-  "triangles": 936
+  "triangles": 648
  },
  "explode": {
   "assembled": 0.49275362491607666,

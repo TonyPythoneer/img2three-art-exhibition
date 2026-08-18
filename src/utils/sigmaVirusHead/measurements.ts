@@ -54,29 +54,86 @@ export const DEPTH_OVER_WIDTH = 1.4255;
 export const HALF_DEPTH = (len(FRAME_W) * DEPTH_OVER_WIDTH) / 2;
 
 /**
- * The per-row silhouette from `landmarks.json.rows`, thinned to the rows where the profile
- * actually changes direction. Each entry is [frameRow, leftPx, rightPx]; the model's rings are
- * built by interpolating between them, so adding a row here refines the silhouette without
- * touching any factory.
+ * The head's silhouette, ALL 69 rows of it, straight from `landmarks.json.rows` — each entry is
+ * `[frameRow, leftPx, rightPx]` on the geometry authority.
+ *
+ * This started as a hand-thinned 17-row version keeping only the rows where the profile changes
+ * direction. That cost real IoU on the band where the outline steps most gently: `helmetSides`
+ * sat at 0.885 against 0.96 for the ear pods, because a linear interpolation across rows 14-33
+ * cuts the corner the reference actually turns. Thinning a table that the instrument already
+ * produced in full buys nothing — the loft samples it, so ring count is set by `step`, not by
+ * how many rows live here.
  */
 export const SILHOUETTE: readonly (readonly [number, number, number])[] = [
-  [0, 13, 32], // crown top edge, flat
+  [0, 13, 32],
+  [1, 13, 32],
+  [2, 12, 33],
+  [3, 11, 34],
+  [4, 10, 35],
+  [5, 10, 35],
   [6, 9, 36],
-  [13, 5, 42], // crown chamfer bottoms out
-  [14, 4, 41], // side panels take over the silhouette
-  [27, 3, 41],
-  [30, 3, 43],
-  [33, 1, 45],
-  [34, 0, 46], // ear pods reach full frame width
+  [7, 8, 37],
+  [8, 7, 38],
+  [9, 7, 38],
+  [10, 6, 39],
+  [11, 5, 40],
+  [12, 4, 41],
+  [13, 4, 42],
+  [14, 4, 41],
+  [15, 4, 41],
+  [16, 4, 41],
+  [17, 4, 41],
+  [18, 4, 41],
+  [19, 4, 41],
+  [20, 4, 41],
+  [21, 4, 41],
+  [22, 4, 41],
+  [23, 4, 41],
+  [24, 4, 41],
+  [25, 4, 41],
+  [26, 4, 41],
+  [27, 4, 41],
+  [28, 3, 42],
+  [29, 2, 43],
+  [30, 1, 44],
+  [31, 0, 45],
+  [32, 0, 46],
+  [33, 0, 46],
+  [34, 0, 46],
+  [35, 0, 46],
+  [36, 0, 46],
+  [37, 0, 46],
+  [38, 0, 46],
+  [39, 0, 46],
+  [40, 0, 46],
+  [41, 0, 46],
   [42, 0, 46],
-  [43, 1, 45],
-  [47, 3, 42],
-  [51, 7, 38], // cheeks close onto the jaw
-  [52, 8, 37], // jaw block, constant width
-  [58, 8, 37],
-  [62, 5, 37], // chin tabs flare
-  [67, 5, 33],
-  [68, 7, 21], // bottom notch
+  [43, 0, 46],
+  [44, 0, 46],
+  [45, 2, 44],
+  [46, 3, 43],
+  [47, 4, 42],
+  [48, 5, 41],
+  [49, 6, 40],
+  [50, 7, 39],
+  [51, 7, 38],
+  [52, 8, 38],
+  [53, 8, 38],
+  [54, 8, 38],
+  [55, 8, 38],
+  [56, 8, 38],
+  [57, 8, 38],
+  [58, 8, 38],
+  [59, 8, 38],
+  [60, 8, 38],
+  [61, 8, 38],
+  [62, 8, 38],
+  [63, 8, 38],
+  [64, 8, 38],
+  [65, 8, 38],
+  [66, 8, 38],
+  [67, 8, 38],
+  [68, 17, 29],
 ] as const;
 
 /** Part y-bands, in frame rows, read off the row table above. */
@@ -102,6 +159,64 @@ export const EYE = {
   outerPx: 0.1522 * (FRAME_W - 1),
   innerPx: 0.8043 * (FRAME_W - 1),
 } as const;
+
+/**
+ * The RIGHT eye's actual outline, column by column, from `eye-outline.json` — measured on the
+ * geometry authority, cross-checked against the colour authority wherever it has a stroke in the
+ * same column. `[xFromAxis, topRow, bottomRow]`, all in frame pixels.
+ *
+ * This replaced a parallelogram fitted to the eye's bounding box. That bar matched the reference
+ * on band position, slant AND filled area — all three gates green — and still read wrong beside
+ * it, because the shape is a leaf, not a bar:
+ *
+ *   - the TOP edge rises almost straight, row 36 at the bridge to row 32 at the outer end;
+ *   - the BOTTOM edge drops to row 39 by column 7, holds at 38 through column 12, then cuts
+ *     sharply up to 34 by column 14.
+ *
+ * So the eye is 1px tall at the bridge, 7px at its deepest around column 7, and 3px at the outer
+ * tip. The kink is on the bottom edge near the outer end — which is why looking for it on the top
+ * edge found nothing.
+ */
+export const EYE_OUTLINE: readonly (readonly [number, number, number])[] = [
+  [1, 36, 36],
+  [2, 35, 36],
+  [3, 35, 37],
+  [4, 34, 37],
+  [5, 34, 38],
+  [6, 34, 38],
+  [7, 33, 39],
+  [8, 33, 38],
+  [9, 33, 38],
+  [10, 33, 38],
+  [11, 33, 38],
+  [12, 33, 38],
+  [13, 32, 36],
+  [14, 32, 34],
+] as const;
+
+/**
+ * The eye as a POLYGON fitted to `EYE_OUTLINE`, walked anticlockwise from the bridge: along the
+ * top edge outward, then back along the bottom. `[xFromAxis, row]` in frame pixels.
+ *
+ * Tracing all 14 measured columns literally was tried first and rendered as a sawtooth — the
+ * columns are a 1px rasterisation of straight 3D edges, so following every step reproduces the
+ * raster instead of the edges it came from, and at render scale that reads as noise.
+ *
+ * Six vertices reproduce all 14 columns to within **0.6 reference pixels** at every column:
+ *   top    (1,36) -> (7,33): x=4 fits 34.5 vs 34 measured
+ *          (7,33) -> (14,32): x=11 fits 32.43 vs 33
+ *   bottom (1,36) -> (7,39): x=4 fits 37.5 vs 37
+ *          (7,39) -> (12,38): x=9 fits 38.6 vs 38
+ *          (12,38) -> (14,34): x=13 fits 36 vs 36 exactly
+ */
+export const EYE_POLYGON: readonly (readonly [number, number])[] = [
+  [1, 36],
+  [7, 33],
+  [14, 32],
+  [14, 34],
+  [12, 38],
+  [7, 39],
+] as const;
 
 /**
  * Half-width per frame row, in model units — `SILHOUETTE` linearly resampled onto every one of

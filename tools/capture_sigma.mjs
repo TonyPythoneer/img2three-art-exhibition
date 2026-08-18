@@ -38,6 +38,9 @@ function parseArgs(argv) {
     else if (argv[i] === "--explode") args.explode = Number(argv[(i += 1)]);
     // Yaw sweep for the depth gate: 0..90 degrees in this step, from the front camera.
     else if (argv[i] === "--yaw-sweep") args.yawStep = Number(argv[(i += 1)]);
+    // Hide every part but this one. Used by the edge-density diagnostic to show how much line a
+    // single shell already costs, before the mandated part decomposition adds any.
+    else if (argv[i] === "--only-part") args.onlyPart = argv[(i += 1)];
   }
   return args;
 }
@@ -90,6 +93,13 @@ async function main() {
     await page.setViewportSize({ width: SIZE[0], height: SIZE[1] });
     await page.goto(`${origin}${BASE}/${ROUTE}`, { waitUntil: "domcontentloaded" });
     await page.waitForFunction(() => window.__renderReady === true, null, { timeout: 30_000 });
+
+    if (args.onlyPart) {
+      await page.evaluate((keep) => {
+        const v = window.__sigmaViewer;
+        for (const id of v.toggleableParts) v.setPartVisible(id, id === keep);
+      }, args.onlyPart);
+    }
 
     if (args.yawStep > 0) {
       // The front camera stays fixed and the HEAD turns, which is what makes the width sweep
