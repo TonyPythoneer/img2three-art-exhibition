@@ -212,17 +212,33 @@ medium. Faceted flat shading with a wireframe overlay is faithful here rather th
 
 | Gate | Number | Threshold | Verdict |
 | --- | --- | --- | --- |
-| Front silhouette IoU | **0.9207** | >= 0.90 | pass |
-| Aspect error | 0.0337 | <= 0.06 | pass |
-| Band IoU — crown / helmetSides / earPods / cheekTaper / jawBlock | 0.914 / 0.902 / 0.958 / 0.908 / 0.931 | — | pass |
+| Front silhouette IoU | **0.9384** | >= 0.90 | pass |
+| Aspect error | 0.0314 | <= 0.06 | pass |
+| Band IoU — crown / helmetSides / earPods / cheekTaper / jawBlock | 0.916 / 0.946 / 0.976 / 0.892 / 0.940 | — | pass |
 | Eye band edges (max delta) | 0.037 | <= 0.06 | pass |
-| Eye filled area | rel. error **0.0815** | <= 0.30 | pass |
-| Depth, yaw-sweep width ratio | model 1.4116 vs reference 1.4255, rel. error **0.0097** | <= 0.05 | pass |
+| Eye filled area | rel. error **0.085** | <= 0.30 | pass |
+| Depth, yaw-sweep width ratio | model 1.4147 vs reference 1.4255, rel. error **0.0076** | <= 0.05 | pass |
 | Structure | 13 named parts, 13 meshes, explode 0.49 -> 1.58 | 13 expected | pass |
-| Wireframe density | reference 11.93, full assembly 48.9, **skullShell alone 14.28** | <= 25% | **documented limitation** |
+| Wireframe density | reference 11.93, full assembly 44.3, **skullShell alone 14.08** | <= 25% | **documented limitation** |
 
 Verdict: **continue** — all five blocking gates pass; the sixth is a named limitation whose cause
 is measured, below.
+
+### Three silhouette fixes, each traced to the band that exposed it
+
+- **`sidePanel` stood 2.5px proud of the head and should be flush.** Rows 14-27 measure px 4-41;
+  the skull alone gives 4-42; the proud panel pushed the render to 1.5-44.5. That was the whole of
+  the `helmetSides` error — 0.902 -> **0.946**. The plate reads as a plate because of its own
+  edges, not because it sticks out past the head.
+- **`SKULL_MAX_HALF` was capping rows it had no business capping.** The cap exists so the ear pods
+  stay separate protrusions across their own band; applying it everywhere made rows 45-46 render
+  at 4-42 where the reference measures 2-44. Restricting it to rows 30-44 took `cheekTaper` from
+  0.886 to **0.892** and the ear pods to **0.976**.
+- **`earPod`'s band end was swept, not guessed.** 43 against 44 is worth 0.0026 of front IoU in
+  one direction and 0.0016 of the `cheekTaper` band in the other; 43 wins on the whole-figure
+  number, which is the one the gate scores.
+
+Front IoU across the three: 0.9207 -> **0.9384**.
 
 ### The wireframe-density limitation, and why it is not a threshold being loosened
 
@@ -237,6 +253,21 @@ gate requires**: thirteen closed solids draw their full edge sets where the refe
 shell, including the edges buried inside their neighbours. Reconciling the two needs hidden-line
 removal between parts, which is the named upgrade path and is not done. `run_gates.sh` runs this
 gate with `--informational` so the number is recorded on every run rather than silently dropped.
+
+The upgrade path was then taken, and it is worth recording what it bought.
+`cullBuriedEdges.ts` drops every edge segment whose endpoints AND midpoint sit inside the skull's
+measured envelope — the test is against that envelope rather than against the other parts' meshes,
+because the skull is the volume everything is embedded in, its cross-section is already a function
+of the frame row, and a general mesh-vs-mesh containment test would need BVHs and a watertightness
+guarantee none of these shells offer. An edge that CROSSES the envelope stays, since dropping it
+would open a gap in the silhouette.
+
+That took density from 48.9 to 44.3 — **11%**, not the 4x that would close the gap. The reason is
+measurable too: the small parts mostly protrude by design, so there is little buried to cull. The
+residue is thirteen closed solids each drawing its own top, bottom and rear rims where the
+reference's single shell has none of those surfaces at all. Closing THAT means merging the parts,
+which the assembly gate forbids, so the limitation stands and is now bounded rather than merely
+asserted.
 
 Two cheaper reductions were taken along the way: `RING_STEP` 2 -> 7 (the skull stays at 3, since
 it owns the silhouette) and `EdgesGeometry` 1 degree -> 30, which stops every non-planar lofted
@@ -278,8 +309,11 @@ a rule the reference never licensed.
   `find_back_frame.py` scans all 263 full-scale frames for one whose accent has been occluded and
   finds **zero**: the eyes are visible in every frame on the sheet, so the animation never turns
   the head far enough to show its back.
-- **helmetSides remains the weakest band at 0.902.** The side panels' thickness is authored
-  (+/-2.5px); the reference draws them as lines with no fillable width.
+- **cheekTaper is now the weakest band at 0.892.** Rows 43-44 want the full 0-46 width that the
+  ear pods supply and rows 45-51 want a taper the skull supplies; the handover between them
+  lands one ring short of the reference's corner. Sweeping the two band ends against each other
+  trades 0.0016 of this band for 0.0026 of the whole figure, so it is left where the
+  whole-figure number is best.
 
 ## Sources
 

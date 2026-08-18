@@ -141,7 +141,7 @@ export const BANDS = {
   crownPlate: [0, 8],
   skullShell: [4, 52],
   sidePanel: [14, 33],
-  earPod: [33, 43],
+  earPod: [32, 43],
   browRidge: [22, 32],
   eyePlate: [32, 40],
   jawBlock: [51, 68],

@@ -13,18 +13,18 @@
  },
  "render": {
   "file": "/tmp/sigma-renders/front.png",
-  "strokePx": 32217,
+  "strokePx": 29204,
   "headHeight": 659,
   "lineWidthPx": 1,
-  "lineDensity": 48.888
+  "lineDensity": 44.316
  },
  "skullShellOnly": {
   "file": "/tmp/sigma-renders/shell-only/front.png",
-  "lineDensity": 14.278,
-  "relError": 0.1971,
+  "lineDensity": 14.077,
+  "relError": 0.1802,
   "pass": true
  },
- "relError": 3.0987,
+ "relError": 2.7154,
  "tol": 0.25,
  "pass": false,
  "verdict": "documented-limitation",

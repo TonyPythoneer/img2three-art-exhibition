@@ -7,29 +7,29 @@
   "h": 69
  },
  "renderBBox": {
-  "x0": 128,
+  "x0": 129,
   "y0": 115,
-  "w": 464,
+  "w": 463,
   "h": 659
  },
  "grid": [
   94,
   138
  ],
- "iou": 0.9207,
+ "iou": 0.9384,
  "minIou": 0.9,
  "aspect": {
   "reference": 0.6812,
-  "render": 0.7041,
-  "error": 0.0337,
+  "render": 0.7026,
+  "error": 0.0314,
   "max": 0.06
  },
  "bandIou": {
-  "crown": 0.9138,
-  "helmetSides": 0.9017,
-  "earPods": 0.9582,
-  "cheekTaper": 0.9075,
-  "jawBlock": 0.9313
+  "crown": 0.9155,
+  "helmetSides": 0.9461,
+  "earPods": 0.9764,
+  "cheekTaper": 0.8921,
+  "jawBlock": 0.9404
  },
  "pass": true
 }

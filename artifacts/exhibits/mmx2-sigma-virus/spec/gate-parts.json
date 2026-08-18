@@ -10,7 +10,7 @@
    "name": "crownPlate",
    "kind": "part",
    "module": null,
-   "triangles": 48
+   "triangles": 64
   },
   {
    "name": "sidePanelL",
@@ -96,7 +96,7 @@
  ],
  "stats": {
   "meshes": 13,
-  "triangles": 648
+  "triangles": 664
  },
  "explode": {
   "assembled": 0.49275362491607666,

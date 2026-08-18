@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import { COLORS } from "./colors";
+import { cullBuriedEdges } from "./cullBuriedEdges";
 import { chamferedRing, loft, type Ring } from "./loft";
 import { BANDS, EYE_POLYGON, HALF_DEPTH, halfWidthAt, len, x, y } from "./measurements";
 
@@ -109,12 +110,22 @@ const fillMat = (color: string) =>
     polygonOffsetUnits: 1,
   });
 
-/** A named part: a faceted fill plus the edge overlay that rides it. */
-function part(name: string, geometry: THREE.BufferGeometry, opts: { eye?: boolean } = {}) {
+/**
+ * A named part: a faceted fill plus the edge overlay that rides it.
+ *
+ * `keepBuried` is for the skull itself, whose surface IS the envelope every other part is culled
+ * against — culling it against itself would erase the whole model.
+ */
+function part(
+  name: string,
+  geometry: THREE.BufferGeometry,
+  opts: { eye?: boolean; keepBuried?: boolean } = {},
+) {
   const mesh = new THREE.Mesh(geometry, fillMat(opts.eye ? COLORS.eye : COLORS.ground));
   mesh.name = name;
+  const raw = new THREE.EdgesGeometry(geometry, EDGE_ANGLE);
   const edges = new THREE.LineSegments(
-    new THREE.EdgesGeometry(geometry, EDGE_ANGLE),
+    opts.keepBuried ? raw : cullBuriedEdges(raw),
     opts.eye ? eyeWireMat() : wireMat(),
   );
   edges.name = `${name}Edges`;
@@ -145,10 +156,15 @@ function createSkullShell() {
       // and most of the crown band; coarsening the others cost nothing measurable.
       bandRings(from, to, {
         step: 3,
-        halfWidth: (py) => Math.min(halfWidthAt(py), SKULL_MAX_HALF),
+        // The cap applies ONLY across the ear-pod band. Outside it the skull IS the silhouette,
+        // and capping there made rows 45-46 render at 4-42 where the reference measures 2-44 —
+        // the cheekTaper band sat at 0.886 for that reason alone.
+        halfWidth: (py) =>
+          py >= 30 && py <= 44 ? Math.min(halfWidthAt(py), SKULL_MAX_HALF) : halfWidthAt(py),
       }),
       { capTop: true, capBottom: true },
     ),
+    { keepBuried: true },
   );
 }
 
@@ -156,14 +172,23 @@ function createCrownPlate() {
   const [from, to] = BANDS.crownPlate;
   return part(
     "crownPlate",
-    loft(bandRings(from, to, { step: 4, chamfer: 0.45 }), { capTop: true, capBottom: true }),
+    loft(bandRings(from, to, { step: 3, chamfer: 0.45 }), { capTop: true, capBottom: true }),
   );
 }
 
-/** The tall vertical helmet plate on each side, sitting proud of the skull's outer face. */
+/**
+ * The tall vertical helmet plate on each side.
+ *
+ * Its outer face is FLUSH with the measured silhouette, not proud of it. Standing it 2.5px out
+ * from the skull was the whole of the `helmetSides` band error: rows 14-27 measure px 4-41 in the
+ * reference, the skull alone gives 4-42, and the proud panel pushed the render to 1.5-44.5 — 2.5px
+ * too wide on each side, across the band where the reference outline is dead flat and any excess
+ * shows immediately. The plate reads as a plate because of its own edges, not because it sticks
+ * out past the head.
+ */
 function createSidePanel() {
   const [from, to] = BANDS.sidePanel;
-  const thickness = len(2.5);
+  const thickness = len(5);
   const rings: Ring[] = [];
   for (let py = from; py <= to; py += 6) {
     const outer = Math.min(halfWidthAt(py), SKULL_MAX_HALF);
@@ -171,8 +196,8 @@ function createSidePanel() {
     rings.push({
       y: y(py),
       pts: [
-        [outer + thickness, d],
-        [outer + thickness, -d],
+        [outer, d],
+        [outer, -d],
         [outer - thickness, -d],
         [outer - thickness, d],
       ],
