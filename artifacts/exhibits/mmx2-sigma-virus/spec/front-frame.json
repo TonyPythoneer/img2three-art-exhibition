@@ -1,0 +1,96 @@
+{
+ "candidateCount": 30,
+ "greenColourFrame": {
+  "x0": 496,
+  "y0": 2573,
+  "w": 48,
+  "h": 69,
+  "rowAsymmetry": 0.0555
+ },
+ "frontFrame": {
+  "x0": 63,
+  "y0": 1811,
+  "w": 47,
+  "h": 69,
+  "strokePx": 823,
+  "aspect": 0.6812,
+  "hue": "red",
+  "accents": [
+   "blue"
+  ],
+  "rowAsymmetry": 0.0101,
+  "occupiedRows": 69
+ },
+ "runnersUp": [
+  {
+   "x0": 167,
+   "y0": 1814,
+   "w": 48,
+   "h": 69,
+   "strokePx": 873,
+   "aspect": 0.6957,
+   "hue": "red",
+   "accents": [
+    "blue"
+   ],
+   "rowAsymmetry": 0.0123,
+   "occupiedRows": 69
+  },
+  {
+   "x0": 280,
+   "y0": 1818,
+   "w": 48,
+   "h": 69,
+   "strokePx": 873,
+   "aspect": 0.6957,
+   "hue": "red",
+   "accents": [
+    "blue"
+   ],
+   "rowAsymmetry": 0.0123,
+   "occupiedRows": 69
+  },
+  {
+   "x0": 403,
+   "y0": 1657,
+   "w": 47,
+   "h": 69,
+   "strokePx": 713,
+   "aspect": 0.6812,
+   "hue": "red",
+   "accents": [
+    "blue"
+   ],
+   "rowAsymmetry": 0.0129,
+   "occupiedRows": 69
+  },
+  {
+   "x0": 117,
+   "y0": 1814,
+   "w": 47,
+   "h": 69,
+   "strokePx": 865,
+   "aspect": 0.6812,
+   "hue": "red",
+   "accents": [
+    "blue"
+   ],
+   "rowAsymmetry": 0.0129,
+   "occupiedRows": 69
+  }
+ ],
+ "worst": {
+  "x0": 109,
+  "y0": 1645,
+  "w": 48,
+  "h": 69,
+  "strokePx": 603,
+  "aspect": 0.6957,
+  "hue": "red",
+  "accents": [
+   "blue"
+  ],
+  "rowAsymmetry": 0.0947,
+  "occupiedRows": 69
+ }
+}

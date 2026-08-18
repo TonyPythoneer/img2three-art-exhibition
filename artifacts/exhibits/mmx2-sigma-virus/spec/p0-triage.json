@@ -1,0 +1,105 @@
+{
+  "sheet": "artifacts/exhibits/mmx2-sigma-virus/references/sigma-wireframe-sheet.png",
+  "sheetSize": [
+    610,
+    2644
+  ],
+  "measuredBackground": [
+    0,
+    0,
+    41
+  ],
+  "assumedBackground": [
+    16,
+    16,
+    64
+  ],
+  "backgroundMatches": true,
+  "greenFrame": {
+    "x0": 496,
+    "y0": 2573,
+    "x1": 543,
+    "y1": 2641,
+    "w": 48,
+    "h": 69,
+    "strokePx": 808
+  },
+  "greenFrameColours": [
+    {
+      "rgb": [
+        16,
+        216,
+        48
+      ],
+      "count": 656,
+      "family": "green"
+    },
+    {
+      "rgb": [
+        16,
+        176,
+        16
+      ],
+      "count": 152,
+      "family": "green"
+    },
+    {
+      "rgb": [
+        224,
+        80,
+        0
+      ],
+      "count": 57,
+      "family": "red-orange"
+    }
+  ],
+  "clipping": {
+    "top": false,
+    "bottom": false,
+    "left": false,
+    "right": false
+  },
+  "paletteVariants": {
+    "frame0-red-orange": {
+      "x0": 383,
+      "y0": 2573,
+      "x1": 430,
+      "y1": 2641,
+      "w": 48,
+      "h": 69,
+      "strokePx": 808
+    },
+    "frame1-purple": {
+      "x0": 441,
+      "y0": 2572,
+      "x1": 488,
+      "y1": 2640,
+      "w": 48,
+      "h": 69,
+      "strokePx": 808
+    },
+    "frame2-green": {
+      "x0": 496,
+      "y0": 2573,
+      "x1": 543,
+      "y1": 2641,
+      "w": 48,
+      "h": 69,
+      "strokePx": 808
+    },
+    "frame3-red-orange": {
+      "x0": 553,
+      "y0": 2573,
+      "x1": 600,
+      "y1": 2641,
+      "w": 48,
+      "h": 69,
+      "strokePx": 808
+    }
+  },
+  "crossVariantSpread": {
+    "height": 0.0,
+    "width": 0.0
+  },
+  "measurementUncertainty": 0.0
+}
