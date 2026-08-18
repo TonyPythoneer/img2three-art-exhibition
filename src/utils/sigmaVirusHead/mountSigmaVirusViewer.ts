@@ -20,6 +20,12 @@ export type SigmaPreset = "front" | "side" | "three-quarter" | "top";
 export type SigmaViewerApi = {
   setPreset: (preset: SigmaPreset) => void;
   setSpinning: (spinning: boolean) => void;
+  /**
+   * Yaw the head about its own vertical axis, in degrees, from the front view. Exists for the
+   * yaw-sweep gate: the reference's own width sweep across 87 pure-yaw frames is the only
+   * pose-free measurement of the head's depth, and the model has to reproduce its range.
+   */
+  setYaw: (degrees: number) => void;
   setExplode: (amount: number) => void;
   resetView: () => void;
   parts: PartInfo[];
@@ -139,6 +145,10 @@ export function mountSigmaVirusViewer(
     },
     setSpinning: (value) => {
       spinning = value;
+    },
+    setYaw: (degrees) => {
+      spinning = false;
+      model.rotation.set(0, (degrees * Math.PI) / 180, 0);
     },
     // Separate by SCALING the layout about the model centre. Pushing every part the same
     // distance translates the arrangement without opening any gap between neighbours.

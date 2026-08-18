@@ -8,7 +8,7 @@
  * at a small yaw, so measuring geometry off it would bake that yaw into the model.
  *
  * Units: the frame's height is 1.0. So one reference pixel is 1/69, the head is 47/69 = 0.681
- * wide, and y = 0 is the bottom of the neck block, y = 1 the top of the crown.
+ * wide, and y = 0 is the bottom of the jaw block, y = 1 the top of the crown.
  */
 
 /** Reference frame size, `landmarks.json.frame`. */
@@ -29,17 +29,28 @@ export const y = (py: number): number => (FRAME_H - 1 - py) * PX;
 export const len = (px: number): number => px * PX;
 
 /**
- * GUESS LIST G1 — head depth is NOT resolved by the reference.
+ * Head depth. This WAS guess list G1 at 1.25, read off a foreshortened crown-from-above crop.
+ * It is now measured, and the measurement only became available once `compare_hue_groups.py`
+ * established that the whole sheet is one mesh in six palettes — the six damage states the
+ * published sources describe — so all 307 frames are evidence about this head rather than 113.
  *
- * The 113 frames of this head all tumble on three axes while flying at the camera, so no frame
- * has a known pose to measure a profile against. The only direct depth evidence is the
- * crown-from-above ovoids near y=1500 on the sheet — (209,1508) 61x47 and (142,1505) 60x48,
- * i.e. 1.25-1.30 depth-over-width. Those are foreshortened, which makes 1.25 a LOWER bound
- * rather than a centre estimate; taken as the default anyway, and recorded in reading.md.
+ * Filter the index to frames whose height matches the front view's 68-70px and the rotation must
+ * have stayed about the vertical axis: 87 frames, a pure yaw sweep, widths running 42 -> 67 with
+ * the front view at 47 (`profile-width.json`).
+ *
+ * Width at the peak is not automatically the depth — for a rectangular cross-section the peak is
+ * the diagonal at ~45 degrees, which would put depth at 1.02x instead of 1.43x. The model's own
+ * captured sweep settles which: it runs 480, 478, 502, 534, 560, 581, 600, 603, 594, 606 across
+ * 0..90 degrees, so this cross-section family peaks AT 90 degrees, where width IS depth.
+ *
+ *   depth / width = 67 / 47 = 1.4255
+ *
+ * `gate_yaw_sweep.py` is the gate that holds it: it compares the model's own width ratio against
+ * the reference's, pose-free, and it is the only gate here that can see depth at all.
  */
-export const DEPTH_OVER_WIDTH = 1.25;
+export const DEPTH_OVER_WIDTH = 1.4255;
 
-/** Half-depth at the head's widest row, from the same guess. */
+/** Half-depth at the head's widest row. */
 export const HALF_DEPTH = (len(FRAME_W) * DEPTH_OVER_WIDTH) / 2;
 
 /**
@@ -60,10 +71,10 @@ export const SILHOUETTE: readonly (readonly [number, number, number])[] = [
   [42, 0, 46],
   [43, 1, 45],
   [47, 3, 42],
-  [51, 7, 38], // jaw closes onto the collar
-  [52, 8, 37], // neck block, constant width
+  [51, 7, 38], // cheeks close onto the jaw
+  [52, 8, 37], // jaw block, constant width
   [58, 8, 37],
-  [62, 5, 37], // neck feet flare
+  [62, 5, 37], // chin tabs flare
   [67, 5, 33],
   [68, 7, 21], // bottom notch
 ] as const;
@@ -76,8 +87,8 @@ export const BANDS = {
   earPod: [33, 43],
   browRidge: [22, 32],
   eyePlate: [32, 40],
-  neckBlock: [51, 68],
-  neckFoot: [62, 68],
+  jawBlock: [51, 68],
+  chinTab: [62, 68],
 } as const satisfies Record<string, readonly [number, number]>;
 
 /**

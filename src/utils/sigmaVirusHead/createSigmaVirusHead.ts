@@ -21,12 +21,28 @@ const SKULL_MAX_HALF = len(19);
 /**
  * Depth follows width: a row that is 80% of the widest row is 80% as deep.
  *
- * ponytail: one global depth ratio, no per-row front/back profile. The crown-from-above frames
- * do show the ovoid tapering toward the face, so a face-side flattening term is the upgrade
- * path — but depth itself is guess G1, and adding a second guessed term on top of a guessed
- * scalar buys precision the reference cannot back.
+ * ponytail: one global depth ratio, no per-row front/back taper. The upgrade path is a per-row
+ * profile read off the yawed frames, which would need each frame's yaw solved first.
  */
 const halfDepthAt = (py: number): number => HALF_DEPTH * (halfWidthAt(py) / halfWidthAt(37));
+
+/**
+ * The face plane: where the eyes and brow sit on the shell's front surface.
+ *
+ * The yawed frames — `profile-width.json.mostProfile` at (336, 1095) and (540, 957), both ~60°
+ * off frontal — put the eye accent hard against the leading edge with the whole faceted dome
+ * filling the frame behind it. Anchoring the face parts to the shell's front surface already
+ * satisfies that: the eyes end up with ~0.1 of the depth ahead of them and ~1.9 behind.
+ *
+ * A stronger reading was tried and REJECTED by its own render: giving every ring a per-row
+ * z-centre so all their FRONTS aligned on one plane. Narrow rows have shallow depth, so that
+ * rule pushed the crown and the chin tabs forward while the wide ear-pod rows stayed back —
+ * under perspective the near extremes magnified and the front view grew from 476x695 to
+ * 480x796, failing the aspect gate at 0.1147 against a 0.06 tolerance. The reference says the
+ * face is at the front; it says nothing about the crown's z-centre, and inventing a rule for it
+ * cost 11% of aspect. So the shells stay centred.
+ */
+const FACE_Z = halfDepthAt(36);
 
 /** Rings sampled every `step` frame rows through a band, with a per-row half-width override. */
 function bandRings(
@@ -178,7 +194,7 @@ function createBrowRidge() {
   const [from, to] = BANDS.browRidge;
   const outer = len(13);
   const inner = len(3);
-  const zFront = halfDepthAt(30) * 0.95;
+  const zFront = FACE_Z;
   const rings: Ring[] = [];
   for (let py = from + 2; py <= to; py += 2) {
     const t = (py - (from + 2)) / (to - (from + 2));
@@ -207,7 +223,11 @@ function createBrowRidge() {
  * the brow's front face rather than standing proud of it.
  */
 function createEyePlate() {
-  const zFront = halfDepthAt(36) * 0.9;
+  // Recessed, per guess G3: the eye sits BEHIND the brow front face, not flush with it. Moving
+  // it to within 0.4px of the face plane pushed it toward the camera and perspective grew its
+  // area from 24.0% to 30.6% relative error — over the gate. 0.9 of the face plane is where it
+  // passes.
+  const zFront = FACE_Z * 0.9;
   // Outer edge from `landmarks.json.eyeBand.xRightFrac` (0.8043 of frame width = 14px out from
   // the axis); inner edge stops short of the axis to leave the nose bridge the reference draws.
   const outer = len(14);
@@ -232,10 +252,10 @@ function createEyePlate() {
   return part("eyePlate", g.toNonIndexed(), { eye: true });
 }
 
-function createNeckBlock() {
-  const [from, to] = BANDS.neckBlock;
+function createJawBlock() {
+  const [from, to] = BANDS.jawBlock;
   return part(
-    "neckBlock",
+    "jawBlock",
     loft(bandRings(from, to, { step: 3, chamfer: 0.15 }), { capTop: true, capBottom: true }),
   );
 }
@@ -245,8 +265,8 @@ function createNeckBlock() {
  * frame at the same place, so they are geometry rather than one frame's rasterisation. What
  * they represent is not resolvable, and does not change the build.
  */
-function createNeckFoot() {
-  const [from, to] = BANDS.neckFoot;
+function createChinTab() {
+  const [from, to] = BANDS.chinTab;
   const outer = halfWidthAt(65);
   const inner = outer - len(5);
   const d = halfDepthAt(65) * 0.4;
@@ -270,7 +290,7 @@ function createNeckFoot() {
       ],
     },
   ];
-  return part("neckFoot", loft(rings, { capTop: true, capBottom: true }));
+  return part("chinTab", loft(rings, { capTop: true, capBottom: true }));
 }
 
 export type SigmaVirusHeadOptions = {
@@ -290,7 +310,7 @@ export function createSigmaVirusHead(opts: SigmaVirusHeadOptions = {}): THREE.Gr
   const [panelL, panelR] = mirrored("sidePanel", createSidePanel);
   const [browL, browR] = mirrored("browRidge", createBrowRidge);
   const [eyeL, eyeR] = mirrored("eyePlate", createEyePlate);
-  const [footL, footR] = mirrored("neckFoot", createNeckFoot);
+  const [footL, footR] = mirrored("chinTab", createChinTab);
 
   root.add(
     createSkullShell(),
@@ -303,7 +323,7 @@ export function createSigmaVirusHead(opts: SigmaVirusHeadOptions = {}): THREE.Gr
     browR,
     eyeL,
     eyeR,
-    createNeckBlock(),
+    createJawBlock(),
     footL,
     footR,
   );
@@ -332,9 +352,9 @@ export const SIGMA_VIRUS_PARTS = [
   "browRidgeR",
   "eyePlateL",
   "eyePlateR",
-  "neckBlock",
-  "neckFootL",
-  "neckFootR",
+  "jawBlock",
+  "chinTabL",
+  "chinTabR",
 ] as const;
 
 export { x as frameX, y as frameY };

@@ -36,9 +36,9 @@ const EXPECTED = [
   "browRidgeR",
   "eyePlateL",
   "eyePlateR",
-  "neckBlock",
-  "neckFootL",
-  "neckFootR",
+  "jawBlock",
+  "chinTabL",
+  "chinTabR",
 ];
 
 async function waitForServer(url, timeoutMs = 60_000) {

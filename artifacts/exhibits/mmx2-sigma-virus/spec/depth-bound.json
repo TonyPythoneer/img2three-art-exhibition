@@ -1,0 +1,57 @@
+{
+ "framesConsidered": 261,
+ "frontFrame": {
+  "x0": 63,
+  "y0": 1811,
+  "w": 47,
+  "h": 69,
+  "caliper": 71.512
+ },
+ "widestChord": {
+  "x0": 280,
+  "y0": 2616,
+  "w": 84,
+  "h": 20,
+  "caliper": 84.528
+ },
+ "top5Calipers": [
+  {
+   "x0": 280,
+   "y0": 2616,
+   "w": 84,
+   "h": 20,
+   "caliper": 84.528
+  },
+  {
+   "x0": 529,
+   "y0": 119,
+   "w": 66,
+   "h": 68,
+   "caliper": 80.92
+  },
+  {
+   "x0": 468,
+   "y0": 2258,
+   "w": 66,
+   "h": 68,
+   "caliper": 80.92
+  },
+  {
+   "x0": 473,
+   "y0": 2094,
+   "w": 53,
+   "h": 81,
+   "caliper": 80.399
+  },
+  {
+   "x0": 69,
+   "y0": 1331,
+   "w": 62,
+   "h": 71,
+   "caliper": 80.212
+  }
+ ],
+ "depthBoundPx": 45.066,
+ "depthOverWidth": 0.9589,
+ "note": "Bound, not a measurement: exact only if the chord achieving the maximum pairs a front-extreme point with a depth-extreme one. Compare against the previous G1 default of 1.25, which came from a foreshortened crown-from-above crop."
+}

@@ -15,18 +15,21 @@ export function chamferedRing(
   halfW: number,
   halfD: number,
   chamfer: number,
+  /** Shifts the whole ring along z. The head's rings are not centred on z = 0 — see `zCentreAt`. */
+  zCentre = 0,
 ): (readonly [number, number])[] {
   const cw = halfW * chamfer;
   const cd = halfD * chamfer;
+  const z = (v: number) => v + zCentre;
   return [
-    [halfW - cw, halfD],
-    [halfW, halfD - cd],
-    [halfW, -(halfD - cd)],
-    [halfW - cw, -halfD],
-    [-(halfW - cw), -halfD],
-    [-halfW, -(halfD - cd)],
-    [-halfW, halfD - cd],
-    [-(halfW - cw), halfD],
+    [halfW - cw, z(halfD)],
+    [halfW, z(halfD - cd)],
+    [halfW, z(-(halfD - cd))],
+    [halfW - cw, z(-halfD)],
+    [-(halfW - cw), z(-halfD)],
+    [-halfW, z(-(halfD - cd))],
+    [-halfW, z(halfD - cd)],
+    [-(halfW - cw), z(halfD)],
   ];
 }
 

@@ -110,8 +110,8 @@ def main():
         "crown": (0.00, 0.20),
         "helmetSides": (0.20, 0.48),
         "earPods": (0.48, 0.63),
-        "jaw": (0.63, 0.75),
-        "neck": (0.75, 1.00),
+        "cheekTaper": (0.63, 0.75),
+        "jawBlock": (0.75, 1.00),
     }.items():
         y0, y1 = int(lo * gh), int(hi * gh)
         i = sum(1 for y in range(y0, y1) for x in range(gw) if ref_mask[y][x] and ren_mask[y][x])

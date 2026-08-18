@@ -31,11 +31,13 @@ const ALL_VIEWS = ["front", "three-quarter", "side", "top"];
 const SIZE = [720, 900];
 
 function parseArgs(argv) {
-  const args = { out: "/tmp/sigma-renders", views: ALL_VIEWS, explode: null };
+  const args = { out: "/tmp/sigma-renders", views: ALL_VIEWS, explode: null, yawStep: 0 };
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === "--out") args.out = argv[(i += 1)];
     else if (argv[i] === "--views") args.views = argv[(i += 1)].split(",").map((v) => v.trim());
     else if (argv[i] === "--explode") args.explode = Number(argv[(i += 1)]);
+    // Yaw sweep for the depth gate: 0..90 degrees in this step, from the front camera.
+    else if (argv[i] === "--yaw-sweep") args.yawStep = Number(argv[(i += 1)]);
   }
   return args;
 }
@@ -88,6 +90,26 @@ async function main() {
     await page.setViewportSize({ width: SIZE[0], height: SIZE[1] });
     await page.goto(`${origin}${BASE}/${ROUTE}`, { waitUntil: "domcontentloaded" });
     await page.waitForFunction(() => window.__renderReady === true, null, { timeout: 30_000 });
+
+    if (args.yawStep > 0) {
+      // The front camera stays fixed and the HEAD turns, which is what makes the width sweep
+      // comparable to the reference's: those 87 frames are one mesh yawing in front of a fixed
+      // camera too. Orbiting the camera instead would add perspective the reference does not have.
+      await page.evaluate(() => window.__sigmaViewer.setPreset("front"));
+      await page.waitForTimeout(600);
+      for (let deg = 0; deg <= 90; deg += args.yawStep) {
+        await page.evaluate((d) => window.__sigmaViewer.setYaw(d), deg);
+        await page.waitForTimeout(120);
+        const file = `yaw-${String(deg).padStart(3, "0")}.png`;
+        await page
+          .locator("canvas")
+          .first()
+          .screenshot({ path: path.join(outDir, file) });
+        manifest.renders.push({ yaw: deg, file });
+        process.stdout.write(`captured ${file}\n`);
+      }
+      await page.evaluate(() => window.__sigmaViewer.setYaw(0));
+    }
 
     for (const view of args.views) {
       await page.evaluate(

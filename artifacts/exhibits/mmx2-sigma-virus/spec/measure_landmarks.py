@@ -11,7 +11,7 @@ colour authority, which is where the eye band and the palette come from.
 Everything below is measured from the stroke mask, never eyeballed off a zoom:
   - per-row stroke extent  -> where the silhouette is widest, and where it steps in
   - the accent-hue cluster -> eye band top/bottom/left/right
-  - the lowest closed box  -> the neck/collar block
+  - the lowest closed box  -> the jaw/chin block
 
 Usage: python3 measure_landmarks.py <sheet.png> <out.json>
 """

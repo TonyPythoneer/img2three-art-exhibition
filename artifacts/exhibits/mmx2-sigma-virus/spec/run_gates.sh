@@ -16,7 +16,7 @@ RENDERS=${RENDERS:-/tmp/sigma-renders}
 fail=0
 
 echo "== capture =="
-node tools/capture_sigma.mjs --out "$RENDERS" || exit 2
+node tools/capture_sigma.mjs --out "$RENDERS" --yaw-sweep 10 || exit 2
 
 echo
 echo "== gate: front silhouette (IoU vs the geometry-authority frame) =="
@@ -27,6 +27,11 @@ echo
 echo "== gate: interior features (eye band + filled eye area) =="
 python3 "$SPEC/gate_features.py" "$RENDERS/front.png" "$SHEET" "$SPEC/landmarks.json" \
   --out "$SPEC/gate-features.json" || fail=1
+
+echo
+echo "== gate: depth (yaw-sweep width ratio vs the reference's 87 pure-yaw frames) =="
+python3 "$SPEC/gate_yaw_sweep.py" "$RENDERS" "$SHEET" "$SPEC/frame-index.json" \
+  --out "$SPEC/gate-yaw.json" || fail=1
 
 echo
 echo "== gate: structure (13 named parts, none fused, explode separates) =="

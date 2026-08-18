@@ -61,19 +61,19 @@
    "triangles": 12
   },
   {
-   "name": "neckBlock",
+   "name": "jawBlock",
    "kind": "part",
    "module": null,
    "triangles": 112
   },
   {
-   "name": "neckFootL",
+   "name": "chinTabL",
    "kind": "part",
    "module": null,
    "triangles": 16
   },
   {
-   "name": "neckFootR",
+   "name": "chinTabR",
    "kind": "part",
    "module": null,
    "triangles": 16
@@ -90,9 +90,9 @@
   "browRidgeR",
   "eyePlateL",
   "eyePlateR",
-  "neckBlock",
-  "neckFootL",
-  "neckFootR"
+  "jawBlock",
+  "chinTabL",
+  "chinTabR"
  ],
  "stats": {
   "meshes": 13,

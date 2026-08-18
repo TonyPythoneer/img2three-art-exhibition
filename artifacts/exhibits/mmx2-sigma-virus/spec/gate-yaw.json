@@ -1,0 +1,72 @@
+{
+ "reference": {
+  "pureYawFrames": 87,
+  "widthRange": [
+   42,
+   67
+  ],
+  "frontWidth": 47,
+  "widthRatio": 1.4255
+ },
+ "model": {
+  "steps": 10,
+  "frontWidth": 462,
+  "widestWidth": 655,
+  "widthRatio": 1.4177,
+  "sweep": [
+   {
+    "file": "yaw-000.png",
+    "w": 462,
+    "h": 667
+   },
+   {
+    "file": "yaw-010.png",
+    "w": 462,
+    "h": 673
+   },
+   {
+    "file": "yaw-020.png",
+    "w": 493,
+    "h": 676
+   },
+   {
+    "file": "yaw-030.png",
+    "w": 542,
+    "h": 677
+   },
+   {
+    "file": "yaw-040.png",
+    "w": 576,
+    "h": 677
+   },
+   {
+    "file": "yaw-050.png",
+    "w": 611,
+    "h": 675
+   },
+   {
+    "file": "yaw-060.png",
+    "w": 636,
+    "h": 674
+   },
+   {
+    "file": "yaw-070.png",
+    "w": 644,
+    "h": 672
+   },
+   {
+    "file": "yaw-080.png",
+    "w": 642,
+    "h": 668
+   },
+   {
+    "file": "yaw-090.png",
+    "w": 655,
+    "h": 664
+   }
+  ]
+ },
+ "relError": 0.0055,
+ "tol": 0.05,
+ "pass": true
+}
