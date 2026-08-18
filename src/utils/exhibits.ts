@@ -74,14 +74,6 @@ export const exhibits: Exhibit[] = [
     promptFile: "prompt.txt",
     ...veliteFields("ff7-cloud-strife-ultima-weapon"),
   },
-  {
-    slug: "ff7-cloud-strife-polygon-figure",
-    status: "building",
-    // Head-bare mounted (skull, neck, choker). Hair, eyes, ears pending.
-    liveModel: true,
-    promptFile: "prompt.txt",
-    ...veliteFields("ff7-cloud-strife-polygon-figure"),
-  },
 ];
 
 export const exhibitBySlug = (slug: string): Exhibit | undefined =>
