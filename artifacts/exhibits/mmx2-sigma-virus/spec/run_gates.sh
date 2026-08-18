@@ -29,7 +29,7 @@ python3 "$SPEC/gate_features.py" "$RENDERS/front.png" "$SHEET" "$SPEC/landmarks.
   --out "$SPEC/gate-features.json" || fail=1
 
 echo
-echo "== gate: depth (yaw-sweep width ratio vs the reference's 87 pure-yaw frames) =="
+echo "== gate: depth (yaw-sweep width ratio vs the reference's vetted pure-yaw set) =="
 python3 "$SPEC/gate_yaw_sweep.py" "$RENDERS" "$SHEET" "$SPEC/frame-index.json" \
   --out "$SPEC/gate-yaw.json" || fail=1
 
@@ -47,8 +47,8 @@ python3 -c "import json;d=json.load(open('$SPEC/gate-density.json'));print(
 
 echo
 echo "== gate: structure (13 named parts, none fused, explode separates) =="
-node tools/verify_sigma_parts.mjs > "$SPEC/gate-parts.json" || fail=1
-tail -1 "$SPEC/gate-parts.json"
+node tools/verify_sigma_parts.mjs --out "$SPEC/gate-parts.json" || fail=1
+
 
 echo
 if [ "$fail" -ne 0 ]; then

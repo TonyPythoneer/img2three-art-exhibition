@@ -79,7 +79,10 @@ export const exhibits: Exhibit[] = [
     status: "building",
     liveModel: true,
     promptFile: "prompt.txt",
-    docs: [{ file: "spec/reading.md", label: "Reading + guess list" }],
+    docs: [
+      { file: "HANDOFF.md", label: "Handoff — what is left" },
+      { file: "spec/reading.md", label: "Reading + guess list" },
+    ],
     ...veliteFields("mmx2-sigma-virus"),
   },
 ];

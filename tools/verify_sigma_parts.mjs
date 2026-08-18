@@ -15,6 +15,7 @@
  */
 
 import { spawn } from "node:child_process";
+import { writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -128,7 +129,13 @@ async function main() {
       );
     }
 
-    process.stdout.write(`${JSON.stringify({ ...report, explode: grew, failures }, null, 1)}\n`);
+    // --out keeps the record and the human line apart. Redirecting all of stdout into the record
+    // instead left the trailing PASS line inside it, and gate-parts.json was not valid JSON for
+    // five commits — nothing read it back, so nothing complained.
+    const payload = `${JSON.stringify({ ...report, explode: grew, failures }, null, 1)}\n`;
+    const outIdx = process.argv.indexOf("--out");
+    if (outIdx !== -1) await writeFile(process.argv[outIdx + 1], payload);
+    else process.stdout.write(payload);
   } finally {
     await chrome?.close();
     server.kill("SIGTERM");
