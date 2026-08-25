@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "kind": "img2threejs.material-comparison",
+  "materialId": "wireBright",
+  "reference": {
+    "path": "/private/tmp/sigma-ref-wire-only.png",
+    "meanRgb": [
+      16,
+      209,
+      42
+    ],
+    "features": {
+      "meanLuma": 0.6103656476210555,
+      "lumaVariance": 0.0022127578267145853,
+      "horizontalGradient": 0.16756973995271787,
+      "verticalGradient": 0.13822258934779516,
+      "anisotropyProxy": 1.212318049773178
+    },
+    "width": 388,
+    "height": 556,
+    "foregroundCoverage": 0.2422,
+    "warnings": [],
+    "readback": true,
+    "diagnostics": {
+      "backgroundColor": "#FFFFFF",
+      "backgroundNoise": 0.0,
+      "transparentPixelFraction": 0.7603,
+      "foregroundCoverage": 0.2397
+    }
+  },
+  "render": {
+    "path": "/private/tmp/sigma-render-wire-only.png",
+    "meanRgb": [
+      11,
+      150,
+      46
+    ],
+    "features": {
+      "meanLuma": 0.44299381263616555,
+      "lumaVariance": 0.014867922333932339,
+      "horizontalGradient": 0.014482165206508127,
+      "verticalGradient": 0.014413553052426637,
+      "anisotropyProxy": 1.0047602526477633
+    },
+    "width": 266,
+    "height": 140,
+    "foregroundCoverage": 0.0195,
+    "warnings": [
+      "foreground mask is tiny; material extraction is likely unreliable"
+    ],
+    "readback": true,
+    "diagnostics": {
+      "backgroundColor": "#FFFFFF",
+      "backgroundNoise": 0.0,
+      "transparentPixelFraction": 0.9701,
+      "foregroundCoverage": 0.0299
+    }
+  },
+  "metrics": {
+    "deltaE00": 17.206,
+    "scores": {
+      "baseColor": 0.6558771384674127,
+      "meanLuma": 0.6280625889224668,
+      "microstructure": 0.8945402957731854,
+      "directionalResponse": 0.8962211014372926,
+      "overall": 0.746
+    }
+  },
+  "mismatches": [
+    "wrong-exposure-or-value"
+  ],
+  "passed": true,
+  "nextAction": "refine-code",
+  "limitation": "Deterministic crop metrics are evidence; material identity still requires vision review for ambiguous cases."
+}

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "kind": "img2threejs.chirality-gate",
+  "coordinateFrame": "lateral X, up Y, forward Z; character-left is +X",
+  "pairs": [
+    {
+      "right": "templeShellR",
+      "left": "templeShellL",
+      "rightPosition": [
+        0.26,
+        0.13,
+        -0.05
+      ],
+      "leftPosition": [
+        -0.26,
+        0.13,
+        -0.05
+      ],
+      "expectedLeft": [
+        -0.26,
+        0.13,
+        -0.05
+      ],
+      "passed": true,
+      "message": ""
+    },
+    {
+      "right": "cheekShellR",
+      "left": "cheekShellL",
+      "rightPosition": [
+        0.27,
+        -0.06,
+        -0.02
+      ],
+      "leftPosition": [
+        -0.27,
+        -0.06,
+        -0.02
+      ],
+      "expectedLeft": [
+        -0.27,
+        -0.06,
+        -0.02
+      ],
+      "passed": true,
+      "message": ""
+    },
+    {
+      "right": "eyePlateR",
+      "left": "eyePlateL",
+      "rightPosition": [
+        0.105,
+        0.01,
+        0.34
+      ],
+      "leftPosition": [
+        -0.105,
+        0.01,
+        0.34
+      ],
+      "expectedLeft": [
+        -0.105,
+        0.01,
+        0.34
+      ],
+      "passed": true,
+      "message": ""
+    },
+    {
+      "right": "chinTabR",
+      "left": "chinTabL",
+      "rightPosition": [
+        0.085,
+        -0.46,
+        0.05
+      ],
+      "leftPosition": [
+        -0.085,
+        -0.46,
+        0.05
+      ],
+      "expectedLeft": [
+        -0.085,
+        -0.46,
+        0.05
+      ],
+      "passed": true,
+      "message": ""
+    }
+  ],
+  "passed": true
+}

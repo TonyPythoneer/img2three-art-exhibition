@@ -1,0 +1,7 @@
+[
+  {"id":"silhouette-front-IoU","score":0.884,"notes":"Tier-1 filled-silhouette IoU is 0.8841; aspect and scale gates also pass."},
+  {"id":"eye-placement","score":0.82,"notes":"The connected bridge and recessed eye placement remain visible in the current source model."},
+  {"id":"cheek-lobe-width-band","score":0.82,"notes":"Cheek lobes retain the measured widest band."},
+  {"id":"crown-facet-ridge","score":0.80,"notes":"Raised crown ridge is present in the current source model and front/oblique captures."},
+  {"id":"jaw-taper","score":0.80,"notes":"Jaw taper, mouth strip, centre notch, and corner tabs are present."}
+]

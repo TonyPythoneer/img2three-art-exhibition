@@ -1,0 +1,95 @@
+{
+  "passed": false,
+  "checks": {
+    "silhouetteIoU": 0.0511,
+    "aspectRatioDelta": 0.4793,
+    "scaleDelta": 0.0486,
+    "bilateralSymmetryError": 0.0377,
+    "colorDelta": {
+      "checked": 17,
+      "maxDeltaE": 24.19,
+      "perComponent": [
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 2.57
+        },
+        {
+          "componentId": null,
+          "deltaE": 2.57
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        },
+        {
+          "componentId": null,
+          "deltaE": 24.19
+        }
+      ],
+      "gated": true
+    }
+  },
+  "failures": [
+    "silhouette IoU 0.051 is below threshold 0.85",
+    "aspect-ratio delta 0.479 exceeds threshold 0.05",
+    "max per-part color delta-E 24.19 exceeds threshold 20.0"
+  ],
+  "maskWarnings": [
+    "reference: 28.3% of foreground cells lie outside the largest connected blob and were excluded from the bounding box; if the subject really has separated parts in this projection, they are not being measured",
+    "render: 21.5% of foreground cells lie outside the largest connected blob and were excluded from the bounding box; if the subject really has separated parts in this projection, they are not being measured"
+  ],
+  "renderHash": "37a9e37015b8b81c",
+  "passId": "surface-pass"
+}

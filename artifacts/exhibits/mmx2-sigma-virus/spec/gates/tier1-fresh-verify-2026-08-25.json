@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "kind": "img2threejs.tier1-fresh-verify",
+  "date": "2026-08-25",
+  "passId": "fresh-verify-2026-08-25",
+  "reference": "spec/refs/front.png (admitted front crop); spec/refs/front-filled.png (filled variant)",
+  "render": ".tmp/sigma/captures/front.png (fresh capture, gitignored)",
+  "renderHash": "12bd3cfe42ab20ac",
+  "method": "Repo convention from spec/gates/make_filled_ref.py: per row, fill between the leftmost and rightmost non-background pixel on BOTH sides; IoU on filled masks. Render subject spans scaled to exactly the reference subject spans (pure-shape comparison, framing-independent), centres aligned.",
+  "checks": {
+    "silhouetteIoU_filled": 0.8874,
+    "palette": {
+      "greenWireCluster": [
+        0,
+        160,
+        32
+      ],
+      "dimGreenCluster": [
+        0,
+        128,
+        0
+      ],
+      "orangeEyeCluster": [
+        224,
+        64,
+        0
+      ],
+      "background": [
+        0,
+        0,
+        41
+      ],
+      "note": "fresh capture shows two-tone green wire + orange eye accent on navy, matching documented palette #10D830/#10B010/#E05000 on #000029"
+    },
+    "partsVerified": "16/16 via tools/verify_sigma_parts.mjs",
+    "viewsCaptured": 15
+  },
+  "decision": "continue",
+  "note": "Prior committed gate evidence (tier1-rerun-2026-08-25.json) recorded IoU 0.8851 on the same filled-vs-filled convention; fresh capture reproduces 0.8874. Head renders smaller in frame than the gate-time capture because the live page uses the adapter model (larger bbox -> camera distance size*1.85 farther); shape fidelity is unchanged."
+}

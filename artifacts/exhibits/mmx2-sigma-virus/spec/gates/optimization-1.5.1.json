@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "passId": "optimization-pass",
+  "passed": true,
+  "checks": {
+    "triangleCount": 4468,
+    "targetTriangles": 250000,
+    "triangleBudgetPassed": true,
+    "drawCallsUpperBound": 32,
+    "maxDrawCalls": 160,
+    "drawCallBudgetPassed": true,
+    "instancing": "not applicable: wire strokes follow named part edge topology and are intentionally not shared",
+    "lodStrategy": [
+      {
+        "tier": "near",
+        "distance": 0,
+        "strategy": "full component tree and material layers"
+      },
+      {
+        "tier": "far",
+        "distance": 30,
+        "strategy": "merge static components and reduce local feature geometry"
+      }
+    ],
+    "fpsTarget": 30,
+    "fpsTargetDocumented": true,
+    "repeatedDetail": "no repeated detachable micro-meshes; named edge topology retained for silhouette fidelity"
+  },
+  "evidence": [
+    "artifacts/exhibits/mmx2-sigma-virus/spec/gates/action-ready-1.5.1-interaction.json",
+    "artifacts/exhibits/mmx2-sigma-virus/spec/object-sculpt-spec.json"
+  ]
+}

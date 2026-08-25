@@ -1,0 +1,10 @@
+[
+  {"id":"silhouette-front-IoU","score":0.884,"notes":"Filled-reference Tier-1 IoU 0.8841."},
+  {"id":"eye-placement","score":0.82,"notes":"Connected recessed eye band and central bridge remain readable."},
+  {"id":"cheek-lobe-width-band","score":0.82,"notes":"Cheek lobes preserve the measured widest band."},
+  {"id":"crown-facet-ridge","score":0.80,"notes":"Crown ridge plate is present and readable from front/oblique views."},
+  {"id":"jaw-taper","score":0.80,"notes":"Jaw taper, mouth strip, centre notch, and tabs are present."},
+  {"id":"mouth-band","score":0.75,"notes":"Mouth seam strip is present at the recorded lower-face height."},
+  {"id":"chin-notch","score":0.75,"notes":"Centre notch is represented in the jaw profile."},
+  {"id":"wire-two-tone","score":0.78,"notes":"Bright/dim green wire depth cue is present in the rendered capture."}
+]

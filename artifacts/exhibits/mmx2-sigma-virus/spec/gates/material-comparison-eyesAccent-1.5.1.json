@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "kind": "img2threejs.material-comparison",
+  "materialId": "eyesAccent",
+  "reference": {
+    "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/refs/green-yaw.png",
+    "meanRgb": [
+      32,
+      199,
+      39
+    ],
+    "features": {
+      "meanLuma": 0.596107909265667,
+      "lumaVariance": 0.004844542825670212,
+      "horizontalGradient": 0.13600157279933187,
+      "verticalGradient": 0.135666194548741,
+      "anisotropyProxy": 1.0024720841599961
+    },
+    "width": 432,
+    "height": 600,
+    "foregroundCoverage": 0.2214,
+    "warnings": [],
+    "readback": true,
+    "diagnostics": {
+      "backgroundColor": "#FFFFFF",
+      "backgroundNoise": 0.0,
+      "transparentPixelFraction": 0.7864,
+      "foregroundCoverage": 0.2136
+    }
+  },
+  "render": {
+    "path": "/private/tmp/sigma-1.5.1-surface-pass-renders/three-quarter.png",
+    "meanRgb": [
+      1,
+      3,
+      27
+    ],
+    "features": {
+      "meanLuma": 0.017070398284313722,
+      "lumaVariance": 0.003935386447505461,
+      "horizontalGradient": 0.017768176887776384,
+      "verticalGradient": 0.018259615491586705,
+      "anisotropyProxy": 1.027658358362495
+    },
+    "width": 480,
+    "height": 690,
+    "foregroundCoverage": 1.0,
+    "warnings": [
+      "image is not clearly isolated from background; using most pixels as material evidence"
+    ],
+    "readback": true,
+    "diagnostics": {
+      "backgroundColor": "#000029",
+      "backgroundNoise": 0.0,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 1.0
+    }
+  },
+  "metrics": {
+    "deltaE00": 70.65,
+    "scores": {
+      "baseColor": 0.0,
+      "meanLuma": 0.0,
+      "microstructure": 0.9924236968486271,
+      "directionalResponse": 0.9874068628987506,
+      "overall": 0.3962
+    }
+  },
+  "mismatches": [
+    "wrong-base-color",
+    "wrong-exposure-or-value"
+  ],
+  "passed": false,
+  "nextAction": "refine-code",
+  "limitation": "Deterministic crop metrics are evidence; material identity still requires vision review for ambiguous cases."
+}

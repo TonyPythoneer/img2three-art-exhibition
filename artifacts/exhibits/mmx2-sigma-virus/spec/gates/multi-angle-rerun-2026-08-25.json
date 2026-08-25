@@ -1,0 +1,26 @@
+{
+  "referenceAreaFraction": 0.6195923913043478,
+  "angles": [
+    {
+      "path": ".tmp/sigma/norm3/three-quarter-norm.png",
+      "areaFraction": 0.7251449275362318,
+      "ratio": 1.1703580252328114,
+      "degenerate": false
+    },
+    {
+      "path": ".tmp/sigma/norm3/right-norm.png",
+      "areaFraction": 0.6817361111111111,
+      "ratio": 1.1002977452255993,
+      "degenerate": false
+    },
+    {
+      "path": ".tmp/sigma/norm3/rear-norm.png",
+      "areaFraction": 0.581905193236715,
+      "ratio": 0.9391742077589189,
+      "degenerate": false
+    }
+  ],
+  "degenerate": false,
+  "collapseRatio": 0.15,
+  "note": "deterministic; zero token; a flat-plane-faking-a-volume collapses in silhouette area when orbited"
+}

@@ -1,0 +1,34 @@
+FAIL
+warning: quality: preSpecAssessment.objectClass.primaryType is unassessed
+warning: quality: preSpecAssessment.objectClass.formLanguage is empty
+warning: quality: preSpecAssessment.objectClass.structureKind is empty
+warning: quality: preSpecAssessment.objectClass.motionPotential is empty
+warning: quality: preSpecAssessment.objectClass.materialFamilies is empty
+warning: quality: replace generic starter featureReviewTargets with object-specific identity-defining semantic systems before strict validation
+warning: quality: material-pass needs local overrides, AO, dirt, wear, stains, moss, chips, scratches, or equivalent masks
+warning: quality: material 'base' needs usable referencePbr extracted from source pixels
+warning: quality: lighting-pass needs concrete key/fill/rim or environment light entries
+warning: quality: component 'root' is missing colorMaterialRecipe
+warning: only one component found; this is likely still blockout quality
+warning: quality: macroComponents below qualityContract minimum (1 < 3)
+warning: quality: mesoComponents below qualityContract minimum (0 < 8)
+warning: quality: microFeatureGroups below qualityContract minimum (0 < 5)
+warning: quality: materialLayers below qualityContract minimum (1 < 3)
+warning: quality: repetitionSystems below qualityContract minimum (0 < 1)
+warning: quality: detailInventory has 0 details but targetMinDetails is 10; enumerate identity-defining details (gloss, bevel, fasteners, linework, stains) before code generation
+error: strict quality failure: preSpecAssessment.objectClass.primaryType is unassessed
+error: strict quality failure: preSpecAssessment.objectClass.formLanguage is empty
+error: strict quality failure: preSpecAssessment.objectClass.structureKind is empty
+error: strict quality failure: preSpecAssessment.objectClass.motionPotential is empty
+error: strict quality failure: preSpecAssessment.objectClass.materialFamilies is empty
+error: strict quality failure: replace generic starter featureReviewTargets with object-specific identity-defining semantic systems before strict validation
+error: strict quality failure: material-pass needs local overrides, AO, dirt, wear, stains, moss, chips, scratches, or equivalent masks
+error: strict quality failure: material 'base' needs usable referencePbr extracted from source pixels
+error: strict quality failure: lighting-pass needs concrete key/fill/rim or environment light entries
+error: strict quality failure: component 'root' is missing colorMaterialRecipe
+error: strict quality failure: macroComponents below qualityContract minimum (1 < 3)
+error: strict quality failure: mesoComponents below qualityContract minimum (0 < 8)
+error: strict quality failure: microFeatureGroups below qualityContract minimum (0 < 5)
+error: strict quality failure: materialLayers below qualityContract minimum (1 < 3)
+error: strict quality failure: repetitionSystems below qualityContract minimum (0 < 1)
+error: strict quality failure: detailInventory has 0 details but targetMinDetails is 10; enumerate identity-defining details (gloss, bevel, fasteners, linework, stains) before code generation

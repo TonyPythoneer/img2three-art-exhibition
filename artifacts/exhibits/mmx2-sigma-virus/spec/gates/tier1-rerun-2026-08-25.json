@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "checks": {
+    "silhouetteIoU": 0.8851,
+    "aspectRatioDelta": 0.0149,
+    "scaleDelta": 0.0046,
+    "bilateralSymmetryError": 0.022,
+    "colorDelta": {
+      "checked": 17,
+      "maxDeltaE": 12.09,
+      "perComponent": [
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.68
+        },
+        {
+          "componentId": null,
+          "deltaE": 1.68
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        },
+        {
+          "componentId": null,
+          "deltaE": 12.09
+        }
+      ],
+      "gated": false
+    }
+  },
+  "failures": [],
+  "maskWarnings": [],
+  "renderHash": "3a3de3a04f56f4cc",
+  "passId": "rerun-2026-08-25"
+}

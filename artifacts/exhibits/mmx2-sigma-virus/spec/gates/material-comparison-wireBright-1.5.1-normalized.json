@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "kind": "img2threejs.material-comparison",
+  "materialId": "wireBright",
+  "reference": {
+    "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/refs/green-yaw.png",
+    "meanRgb": [
+      32,
+      199,
+      39
+    ],
+    "features": {
+      "meanLuma": 0.596107909265667,
+      "lumaVariance": 0.004844542825670212,
+      "horizontalGradient": 0.13600157279933187,
+      "verticalGradient": 0.135666194548741,
+      "anisotropyProxy": 1.0024720841599961
+    },
+    "width": 432,
+    "height": 600,
+    "foregroundCoverage": 0.2214,
+    "warnings": [],
+    "readback": true,
+    "diagnostics": {
+      "backgroundColor": "#FFFFFF",
+      "backgroundNoise": 0.0,
+      "transparentPixelFraction": 0.7864,
+      "foregroundCoverage": 0.2136
+    }
+  },
+  "render": {
+    "path": "/private/tmp/sigma-material-views-normalized/three-quarter-norm.png",
+    "meanRgb": [
+      2,
+      10,
+      2
+    ],
+    "features": {
+      "meanLuma": 0.030229779274838428,
+      "lumaVariance": 0.010289161066851203,
+      "horizontalGradient": 0.032459121123626825,
+      "verticalGradient": 0.036658607286886476,
+      "anisotropyProxy": 1.1293776916283438
+    },
+    "width": 480,
+    "height": 690,
+    "foregroundCoverage": 0.6215,
+    "warnings": [],
+    "readback": true,
+    "diagnostics": {
+      "backgroundColor": "#FFFFFF",
+      "backgroundNoise": 0.0,
+      "transparentPixelFraction": 0.387,
+      "foregroundCoverage": 0.62
+    }
+  },
+  "metrics": {
+    "deltaE00": 63.567,
+    "scores": {
+      "baseColor": 0.0,
+      "meanLuma": 0.0,
+      "microstructure": 0.9546281813234917,
+      "directionalResponse": 0.9365471962658262,
+      "overall": 0.3791
+    }
+  },
+  "mismatches": [
+    "wrong-base-color",
+    "wrong-exposure-or-value"
+  ],
+  "passed": false,
+  "nextAction": "refine-code",
+  "limitation": "Deterministic crop metrics are evidence; material identity still requires vision review for ambiguous cases."
+}

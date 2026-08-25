@@ -1,0 +1,5 @@
+PIPELINE COMPLETE through optimization-pass.
+Target: Sigma Virus green head
+Completed passes: blockout, structural-pass, form-refinement, material-pass, surface-pass, lighting-pass, interaction-pass, optimization-pass
+Current pass: complete
+Review history entries: 9

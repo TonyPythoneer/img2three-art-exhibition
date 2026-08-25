@@ -1,0 +1,34 @@
+{
+  "ref": "artifacts/exhibits/mmx2-sigma-virus/spec/refs/front.png",
+  "refSize": [
+    432,
+    600
+  ],
+  "refSubjectPx": [
+    24,
+    24,
+    400,
+    576
+  ],
+  "frontSubjectPx": [
+    36,
+    40,
+    445,
+    667
+  ],
+  "uniformScale": 1.016951,
+  "scaledSize": [
+    488,
+    702
+  ],
+  "pasteOffset": [
+    -9,
+    -14
+  ],
+  "outputs": [
+    {
+      "source": "/tmp/sigma-green-renders-480/front.png",
+      "output": "/tmp/sigma-green-normalized-480/front-norm.png"
+    }
+  ]
+}

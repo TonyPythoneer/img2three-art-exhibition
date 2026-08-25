@@ -1,0 +1,26 @@
+{
+  "referenceAreaFraction": 0.6257910628019324,
+  "angles": [
+    {
+      "path": "/tmp/sigma-1.5.1-surface-pass-silhouette-normalized-fresh3/three-quarter-norm.png",
+      "areaFraction": 0.6964160628019324,
+      "ratio": 1.1128571566423173,
+      "degenerate": false
+    },
+    {
+      "path": "/tmp/sigma-1.5.1-surface-pass-silhouette-normalized-fresh3/right-norm.png",
+      "areaFraction": 0.6702445652173913,
+      "ratio": 1.0710356939525816,
+      "degenerate": false
+    },
+    {
+      "path": "/tmp/sigma-1.5.1-surface-pass-silhouette-normalized-fresh3/rear-norm.png",
+      "areaFraction": 0.5771890096618357,
+      "ratio": 0.9223350155841398,
+      "degenerate": false
+    }
+  ],
+  "degenerate": false,
+  "collapseRatio": 0.15,
+  "note": "deterministic; zero token; a flat-plane-faking-a-volume collapses in silhouette area when orbited"
+}

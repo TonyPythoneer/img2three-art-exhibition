@@ -1,0 +1,67 @@
+{
+  "route": "mmx2-sigma-virus",
+  "views": [
+    {
+      "view": "front",
+      "file": "front.png"
+    },
+    {
+      "view": "front-left-30",
+      "file": "front-left-30.png"
+    },
+    {
+      "view": "front-left-60",
+      "file": "front-left-60.png"
+    },
+    {
+      "view": "left",
+      "file": "left.png"
+    },
+    {
+      "view": "rear-left-60",
+      "file": "rear-left-60.png"
+    },
+    {
+      "view": "rear-left-30",
+      "file": "rear-left-30.png"
+    },
+    {
+      "view": "rear",
+      "file": "rear.png"
+    },
+    {
+      "view": "rear-right-30",
+      "file": "rear-right-30.png"
+    },
+    {
+      "view": "rear-right-60",
+      "file": "rear-right-60.png"
+    },
+    {
+      "view": "right",
+      "file": "right.png"
+    },
+    {
+      "view": "front-right-60",
+      "file": "front-right-60.png"
+    },
+    {
+      "view": "front-right-30",
+      "file": "front-right-30.png"
+    },
+    {
+      "view": "three-quarter",
+      "file": "three-quarter.png"
+    },
+    {
+      "view": "top",
+      "file": "top.png"
+    },
+    {
+      "view": "bottom",
+      "file": "bottom.png"
+    }
+  ],
+  "yaw": [],
+  "parts": []
+}

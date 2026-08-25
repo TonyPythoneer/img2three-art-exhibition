@@ -1,0 +1,866 @@
+{
+  "schemaVersion": 1,
+  "kind": "img2threejs.material-view-plan",
+  "componentId": "root",
+  "regionId": "wireBright",
+  "environment": {
+    "required": true,
+    "prefilter": "PMREMGenerator",
+    "workingColorSpace": "LinearSRGBColorSpace",
+    "displayColorSpace": "SRGBColorSpace",
+    "toneMapping": "ACESFilmicToneMapping",
+    "exposure": 1.0,
+    "stableHash": "img2threejs-material-neutral-studio-v1"
+  },
+  "views": [
+    {
+      "id": "wireBright-front-000",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "front",
+      "camera": {
+        "azimuthDegrees": 0.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-front-045",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "front",
+      "camera": {
+        "azimuthDegrees": 45.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-front-090",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "front",
+      "camera": {
+        "azimuthDegrees": 90.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-front-135",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "front",
+      "camera": {
+        "azimuthDegrees": 135.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-front-180",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "front",
+      "camera": {
+        "azimuthDegrees": 180.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-front-225",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "front",
+      "camera": {
+        "azimuthDegrees": 225.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-front-270",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "front",
+      "camera": {
+        "azimuthDegrees": 270.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-front-315",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "front",
+      "camera": {
+        "azimuthDegrees": 315.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-three-quarter-000",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "three-quarter",
+      "camera": {
+        "azimuthDegrees": 0.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-three-quarter-045",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "three-quarter",
+      "camera": {
+        "azimuthDegrees": 45.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-three-quarter-090",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "three-quarter",
+      "camera": {
+        "azimuthDegrees": 90.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-three-quarter-135",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "three-quarter",
+      "camera": {
+        "azimuthDegrees": 135.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-three-quarter-180",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "three-quarter",
+      "camera": {
+        "azimuthDegrees": 180.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-three-quarter-225",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "three-quarter",
+      "camera": {
+        "azimuthDegrees": 225.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-three-quarter-270",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "three-quarter",
+      "camera": {
+        "azimuthDegrees": 270.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-three-quarter-315",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "three-quarter",
+      "camera": {
+        "azimuthDegrees": 315.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-right-000",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "right",
+      "camera": {
+        "azimuthDegrees": 0.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-right-045",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "right",
+      "camera": {
+        "azimuthDegrees": 45.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-right-090",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "right",
+      "camera": {
+        "azimuthDegrees": 90.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-right-135",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "right",
+      "camera": {
+        "azimuthDegrees": 135.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-right-180",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "right",
+      "camera": {
+        "azimuthDegrees": 180.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-right-225",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "right",
+      "camera": {
+        "azimuthDegrees": 225.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-right-270",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "right",
+      "camera": {
+        "azimuthDegrees": 270.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-right-315",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "right",
+      "camera": {
+        "azimuthDegrees": 315.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-rear-000",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "rear",
+      "camera": {
+        "azimuthDegrees": 0.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-rear-045",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "rear",
+      "camera": {
+        "azimuthDegrees": 45.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-rear-090",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "rear",
+      "camera": {
+        "azimuthDegrees": 90.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-rear-135",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "rear",
+      "camera": {
+        "azimuthDegrees": 135.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-rear-180",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "rear",
+      "camera": {
+        "azimuthDegrees": 180.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-rear-225",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "rear",
+      "camera": {
+        "azimuthDegrees": 225.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-rear-270",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "rear",
+      "camera": {
+        "azimuthDegrees": 270.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    },
+    {
+      "id": "wireBright-rear-315",
+      "componentId": "root",
+      "regionId": "wireBright",
+      "view": "rear",
+      "camera": {
+        "azimuthDegrees": 315.0,
+        "elevationDegrees": 8.0,
+        "rollDegrees": 0.0,
+        "target": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "zoom": 2.5
+      },
+      "cropPolicy": {
+        "mode": "visible-footprint",
+        "paddingFraction": 0.12,
+        "minCoverage": 0.03,
+        "maxCoverage": 0.92,
+        "microscope": false
+      }
+    }
+  ],
+  "captureRequirements": [
+    "save PNG/JPEG to workspace",
+    "read the saved image back before scoring",
+    "record renderer version, environment hash and camera transform",
+    "compare the full visible component footprint, not an isolated hidden surface"
+  ],
+  "captureValidation": [
+    {
+      "path": "/private/tmp/sigma-1.5.1-surface-pass-renders/front.png",
+      "readable": true,
+      "width": 480,
+      "height": 690,
+      "foregroundCoverage": 1.0,
+      "diagnostics": {
+        "backgroundColor": "#000029",
+        "backgroundNoise": 0.0,
+        "transparentPixelFraction": 0.0,
+        "foregroundCoverage": 1.0
+      },
+      "warnings": [
+        "image is not clearly isolated from background; using most pixels as material evidence"
+      ],
+      "passed": true,
+      "failures": []
+    },
+    {
+      "path": "/private/tmp/sigma-1.5.1-surface-pass-renders/three-quarter.png",
+      "readable": true,
+      "width": 480,
+      "height": 690,
+      "foregroundCoverage": 1.0,
+      "diagnostics": {
+        "backgroundColor": "#000029",
+        "backgroundNoise": 0.0,
+        "transparentPixelFraction": 0.0,
+        "foregroundCoverage": 1.0
+      },
+      "warnings": [
+        "image is not clearly isolated from background; using most pixels as material evidence"
+      ],
+      "passed": true,
+      "failures": []
+    },
+    {
+      "path": "/private/tmp/sigma-1.5.1-surface-pass-renders/right.png",
+      "readable": true,
+      "width": 480,
+      "height": 690,
+      "foregroundCoverage": 1.0,
+      "diagnostics": {
+        "backgroundColor": "#000029",
+        "backgroundNoise": 0.0,
+        "transparentPixelFraction": 0.0,
+        "foregroundCoverage": 1.0
+      },
+      "warnings": [
+        "image is not clearly isolated from background; using most pixels as material evidence"
+      ],
+      "passed": true,
+      "failures": []
+    },
+    {
+      "path": "/private/tmp/sigma-1.5.1-surface-pass-renders/rear.png",
+      "readable": true,
+      "width": 480,
+      "height": 690,
+      "foregroundCoverage": 1.0,
+      "diagnostics": {
+        "backgroundColor": "#000029",
+        "backgroundNoise": 0.0,
+        "transparentPixelFraction": 0.0,
+        "foregroundCoverage": 1.0
+      },
+      "warnings": [
+        "image is not clearly isolated from background; using most pixels as material evidence"
+      ],
+      "passed": true,
+      "failures": []
+    }
+  ],
+  "capturePassed": true
+}

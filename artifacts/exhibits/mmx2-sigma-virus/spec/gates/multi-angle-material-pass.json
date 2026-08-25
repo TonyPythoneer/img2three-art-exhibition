@@ -1,0 +1,26 @@
+{
+  "referenceAreaFraction": 1.0,
+  "angles": [
+    {
+      "path": "/tmp/sigma-material-pass-renders/three-quarter.png",
+      "areaFraction": 1.0,
+      "ratio": 1.0,
+      "degenerate": false
+    },
+    {
+      "path": "/tmp/sigma-material-pass-renders/right.png",
+      "areaFraction": 1.0,
+      "ratio": 1.0,
+      "degenerate": false
+    },
+    {
+      "path": "/tmp/sigma-material-pass-renders/rear.png",
+      "areaFraction": 1.0,
+      "ratio": 1.0,
+      "degenerate": false
+    }
+  ],
+  "degenerate": false,
+  "collapseRatio": 0.15,
+  "note": "deterministic; zero token; a flat-plane-faking-a-volume collapses in silhouette area when orbited"
+}

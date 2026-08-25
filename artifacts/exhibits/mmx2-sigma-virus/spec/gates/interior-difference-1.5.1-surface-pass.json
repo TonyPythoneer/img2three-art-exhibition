@@ -1,0 +1,56 @@
+[
+  {
+    "schemaVersion": 1,
+    "kind": "interior-difference",
+    "baseline": "/tmp/sigma-1.5.1-surface-pass-renders/front.png",
+    "render": "/tmp/sigma-1.5.1-surface-pass-renders/three-quarter.png",
+    "band": {
+      "from": 0.0,
+      "to": 1.0
+    },
+    "grid": 192,
+    "cellsCompared": 36864,
+    "warnings": [
+      "image is not clearly isolated from background; using most pixels as material evidence",
+      "image is not clearly isolated from background; using most pixels as material evidence"
+    ],
+    "interiorDifference": 0.012653801403293441,
+    "status": "measured"
+  },
+  {
+    "schemaVersion": 1,
+    "kind": "interior-difference",
+    "baseline": "/tmp/sigma-1.5.1-surface-pass-renders/front.png",
+    "render": "/tmp/sigma-1.5.1-surface-pass-renders/right.png",
+    "band": {
+      "from": 0.0,
+      "to": 1.0
+    },
+    "grid": 192,
+    "cellsCompared": 36864,
+    "warnings": [
+      "image is not clearly isolated from background; using most pixels as material evidence",
+      "image is not clearly isolated from background; using most pixels as material evidence"
+    ],
+    "interiorDifference": 0.011984199986257363,
+    "status": "measured"
+  },
+  {
+    "schemaVersion": 1,
+    "kind": "interior-difference",
+    "baseline": "/tmp/sigma-1.5.1-surface-pass-renders/front.png",
+    "render": "/tmp/sigma-1.5.1-surface-pass-renders/rear.png",
+    "band": {
+      "from": 0.0,
+      "to": 1.0
+    },
+    "grid": 192,
+    "cellsCompared": 36864,
+    "warnings": [
+      "image is not clearly isolated from background; using most pixels as material evidence",
+      "image is not clearly isolated from background; using most pixels as material evidence"
+    ],
+    "interiorDifference": 0.008170996956604787,
+    "status": "measured"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "passId": "interaction-pass",
+  "passed": true,
+  "checks": {
+    "nodeCount": 16,
+    "meshCount": 16,
+    "socketCount": 16,
+    "colliderCount": 16,
+    "destructionGroupCount": 16,
+    "stablePivotSockets": 16,
+    "stats": {
+      "meshes": 16,
+      "triangles": 4468
+    }
+  }
+}

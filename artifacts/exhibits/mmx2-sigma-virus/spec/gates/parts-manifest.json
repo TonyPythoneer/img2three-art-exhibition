@@ -1,0 +1,85 @@
+{
+  "parts": [
+    {
+      "name": "crown",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "crownRidge",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "forehead",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "templeShellL",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "templeShellR",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "cheekShellL",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "cheekShellR",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "faceCavity",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "eyePlateL",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "eyePlateR",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "midFaceBridge",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "lowerFaceJaw",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "mouthSeam",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "chinTabL",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "chinTabR",
+      "kind": "part",
+      "triangles": 4468
+    },
+    {
+      "name": "rearShell",
+      "kind": "part",
+      "triangles": 4468
+    }
+  ],
+  "unnamedMeshes": 0
+}

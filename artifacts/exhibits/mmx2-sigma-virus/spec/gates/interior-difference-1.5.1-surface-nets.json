@@ -1,0 +1,47 @@
+[
+  {
+    "schemaVersion": 1,
+    "kind": "interior-difference",
+    "baseline": "/tmp/sigma-1.5.1-surface-nets-normalized/front-norm.png",
+    "render": "/tmp/sigma-1.5.1-surface-nets-normalized/three-quarter-norm.png",
+    "band": {
+      "from": 0.0,
+      "to": 1.0
+    },
+    "grid": 192,
+    "cellsCompared": 25922,
+    "warnings": [],
+    "interiorDifference": 0.013385322438462247,
+    "status": "measured"
+  },
+  {
+    "schemaVersion": 1,
+    "kind": "interior-difference",
+    "baseline": "/tmp/sigma-1.5.1-surface-nets-normalized/front-norm.png",
+    "render": "/tmp/sigma-1.5.1-surface-nets-normalized/right-norm.png",
+    "band": {
+      "from": 0.0,
+      "to": 1.0
+    },
+    "grid": 192,
+    "cellsCompared": 26511,
+    "warnings": [],
+    "interiorDifference": 0.010212358378417453,
+    "status": "measured"
+  },
+  {
+    "schemaVersion": 1,
+    "kind": "interior-difference",
+    "baseline": "/tmp/sigma-1.5.1-surface-nets-normalized/front-norm.png",
+    "render": "/tmp/sigma-1.5.1-surface-nets-normalized/rear-norm.png",
+    "band": {
+      "from": 0.0,
+      "to": 1.0
+    },
+    "grid": 192,
+    "cellsCompared": 27983,
+    "warnings": [],
+    "interiorDifference": 0.007990712978527709,
+    "status": "measured"
+  }
+]
