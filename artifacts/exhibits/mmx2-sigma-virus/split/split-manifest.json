@@ -1,0 +1,967 @@
+{
+  "sheet": {
+    "w": 610,
+    "h": 2644,
+    "bg": [
+      0,
+      0,
+      41
+    ]
+  },
+  "rows": [
+    {
+      "rowIndex": 0,
+      "y": [
+        10,
+        88
+      ],
+      "cells": [
+        {
+          "name": "sheet_row0c00.png",
+          "bboxInSheet": [
+            27,
+            13,
+            75,
+            85
+          ],
+          "size": [
+            48,
+            72
+          ]
+        },
+        {
+          "name": "sheet_row0c01.png",
+          "bboxInSheet": [
+            90,
+            10,
+            138,
+            82
+          ],
+          "size": [
+            48,
+            72
+          ]
+        },
+        {
+          "name": "sheet_row0c02.png",
+          "bboxInSheet": [
+            159,
+            14,
+            207,
+            86
+          ],
+          "size": [
+            48,
+            72
+          ]
+        },
+        {
+          "name": "sheet_row0c03.png",
+          "bboxInSheet": [
+            222,
+            15,
+            269,
+            87
+          ],
+          "size": [
+            47,
+            72
+          ]
+        },
+        {
+          "name": "sheet_row0c04.png",
+          "bboxInSheet": [
+            278,
+            13,
+            325,
+            85
+          ],
+          "size": [
+            47,
+            72
+          ]
+        },
+        {
+          "name": "sheet_row0c05.png",
+          "bboxInSheet": [
+            336,
+            13,
+            382,
+            85
+          ],
+          "size": [
+            46,
+            72
+          ]
+        },
+        {
+          "name": "sheet_row0c06.png",
+          "bboxInSheet": [
+            395,
+            12,
+            441,
+            84
+          ],
+          "size": [
+            46,
+            72
+          ]
+        },
+        {
+          "name": "sheet_row0c07.png",
+          "bboxInSheet": [
+            453,
+            12,
+            499,
+            84
+          ],
+          "size": [
+            46,
+            72
+          ]
+        },
+        {
+          "name": "sheet_row0c08.png",
+          "bboxInSheet": [
+            526,
+            11,
+            574,
+            88
+          ],
+          "size": [
+            48,
+            77
+          ]
+        }
+      ]
+    },
+    {
+      "rowIndex": 1,
+      "y": [
+        101,
+        186
+      ],
+      "cells": [
+        {
+          "name": "sheet_row1c09.png",
+          "bboxInSheet": [
+            11,
+            109,
+            79,
+            165
+          ],
+          "size": [
+            68,
+            56
+          ]
+        },
+        {
+          "name": "sheet_row1c10.png",
+          "bboxInSheet": [
+            96,
+            101,
+            157,
+            173
+          ],
+          "size": [
+            61,
+            72
+          ]
+        },
+        {
+          "name": "sheet_row1c11.png",
+          "bboxInSheet": [
+            171,
+            104,
+            229,
+            179
+          ],
+          "size": [
+            58,
+            75
+          ]
+        },
+        {
+          "name": "sheet_row1c12.png",
+          "bboxInSheet": [
+            240,
+            111,
+            301,
+            184
+          ],
+          "size": [
+            61,
+            73
+          ]
+        },
+        {
+          "name": "sheet_row1c13.png",
+          "bboxInSheet": [
+            351,
+            126,
+            422,
+            181
+          ],
+          "size": [
+            71,
+            55
+          ]
+        },
+        {
+          "name": "sheet_row1c14.png",
+          "bboxInSheet": [
+            442,
+            119,
+            508,
+            183
+          ],
+          "size": [
+            66,
+            64
+          ]
+        },
+        {
+          "name": "sheet_row1c15.png",
+          "bboxInSheet": [
+            529,
+            119,
+            594,
+            186
+          ],
+          "size": [
+            65,
+            67
+          ]
+        }
+      ]
+    },
+    {
+      "rowIndex": 2,
+      "y": [
+        193,
+        280
+      ],
+      "cells": [
+        {
+          "name": "sheet_row2c16.png",
+          "bboxInSheet": [
+            18,
+            195,
+            69,
+            274
+          ],
+          "size": [
+            51,
+            79
+          ]
+        },
+        {
+          "name": "sheet_row2c17.png",
+          "bboxInSheet": [
+            89,
+            193,
+            138,
+            272
+          ],
+          "size": [
+            49,
+            79
+          ]
+        },
+        {
+          "name": "sheet_row2c18.png",
+          "bboxInSheet": [
+            157,
+            198,
+            209,
+            277
+          ],
+          "size": [
+            52,
+            79
+          ]
+        },
+        {
+          "name": "sheet_row2c19.png",
+          "bboxInSheet": [
+            214,
+            196,
+            269,
+            274
+          ],
+          "size": [
+            55,
+            78
+          ]
+        },
+        {
+          "name": "sheet_row2c20.png",
+          "bboxInSheet": [
+            282,
+            200,
+            336,
+            278
+          ],
+          "size": [
+            54,
+            78
+          ]
+        },
+        {
+          "name": "sheet_row2c21.png",
+          "bboxInSheet": [
+            346,
+            198,
+            398,
+            275
+          ],
+          "size": [
+            52,
+            77
+          ]
+        },
+        {
+          "name": "sheet_row2c22.png",
+          "bboxInSheet": [
+            406,
+            197,
+            460,
+            275
+          ],
+          "size": [
+            54,
+            78
+          ]
+        },
+        {
+          "name": "sheet_row2c23.png",
+          "bboxInSheet": [
+            472,
+            198,
+            528,
+            276
+          ],
+          "size": [
+            56,
+            78
+          ]
+        },
+        {
+          "name": "sheet_row2c24.png",
+          "bboxInSheet": [
+            542,
+            201,
+            596,
+            280
+          ],
+          "size": [
+            54,
+            79
+          ]
+        }
+      ]
+    },
+    {
+      "rowIndex": 3,
+      "y": [
+        283,
+        1321
+      ],
+      "cells": [
+        {
+          "name": "sheet_row3c25.png",
+          "bboxInSheet": [
+            7,
+            283,
+            603,
+            1321
+          ],
+          "size": [
+            596,
+            1038
+          ]
+        }
+      ]
+    },
+    {
+      "rowIndex": 4,
+      "y": [
+        1331,
+        1408
+      ],
+      "cells": [
+        {
+          "name": "sheet_row4c26.png",
+          "bboxInSheet": [
+            3,
+            1331,
+            130,
+            1401
+          ],
+          "size": [
+            127,
+            70
+          ]
+        },
+        {
+          "name": "sheet_row4c27.png",
+          "bboxInSheet": [
+            134,
+            1334,
+            195,
+            1405
+          ],
+          "size": [
+            61,
+            71
+          ]
+        },
+        {
+          "name": "sheet_row4c28.png",
+          "bboxInSheet": [
+            199,
+            1334,
+            260,
+            1405
+          ],
+          "size": [
+            61,
+            71
+          ]
+        },
+        {
+          "name": "sheet_row4c29.png",
+          "bboxInSheet": [
+            266,
+            1338,
+            313,
+            1408
+          ],
+          "size": [
+            47,
+            70
+          ]
+        },
+        {
+          "name": "sheet_row4c30.png",
+          "bboxInSheet": [
+            331,
+            1345,
+            405,
+            1399
+          ],
+          "size": [
+            74,
+            54
+          ]
+        },
+        {
+          "name": "sheet_row4c31.png",
+          "bboxInSheet": [
+            411,
+            1346,
+            483,
+            1404
+          ],
+          "size": [
+            72,
+            58
+          ]
+        },
+        {
+          "name": "sheet_row4c32.png",
+          "bboxInSheet": [
+            490,
+            1341,
+            556,
+            1398
+          ],
+          "size": [
+            66,
+            57
+          ]
+        }
+      ]
+    },
+    {
+      "rowIndex": 5,
+      "y": [
+        1414,
+        1491
+      ],
+      "cells": [
+        {
+          "name": "sheet_row5c33.png",
+          "bboxInSheet": [
+            4,
+            1414,
+            66,
+            1484
+          ],
+          "size": [
+            62,
+            70
+          ]
+        },
+        {
+          "name": "sheet_row5c34.png",
+          "bboxInSheet": [
+            68,
+            1414,
+            129,
+            1485
+          ],
+          "size": [
+            61,
+            71
+          ]
+        },
+        {
+          "name": "sheet_row5c35.png",
+          "bboxInSheet": [
+            135,
+            1418,
+            182,
+            1485
+          ],
+          "size": [
+            47,
+            67
+          ]
+        },
+        {
+          "name": "sheet_row5c36.png",
+          "bboxInSheet": [
+            192,
+            1419,
+            240,
+            1486
+          ],
+          "size": [
+            48,
+            67
+          ]
+        },
+        {
+          "name": "sheet_row5c37.png",
+          "bboxInSheet": [
+            248,
+            1419,
+            309,
+            1490
+          ],
+          "size": [
+            61,
+            71
+          ]
+        },
+        {
+          "name": "sheet_row5c38.png",
+          "bboxInSheet": [
+            316,
+            1420,
+            377,
+            1491
+          ],
+          "size": [
+            61,
+            71
+          ]
+        },
+        {
+          "name": "sheet_row5c39.png",
+          "bboxInSheet": [
+            388,
+            1420,
+            435,
+            1487
+          ],
+          "size": [
+            47,
+            67
+          ]
+        },
+        {
+          "name": "sheet_row5c40.png",
+          "bboxInSheet": [
+            442,
+            1420,
+            490,
+            1487
+          ],
+          "size": [
+            48,
+            67
+          ]
+        },
+        {
+          "name": "sheet_row5c41.png",
+          "bboxInSheet": [
+            499,
+            1433,
+            574,
+            1484
+          ],
+          "size": [
+            75,
+            51
+          ]
+        }
+      ]
+    },
+    {
+      "rowIndex": 6,
+      "y": [
+        1499,
+        2560
+      ],
+      "cells": [
+        {
+          "name": "sheet_row6c42.png",
+          "bboxInSheet": [
+            3,
+            1499,
+            606,
+            2560
+          ],
+          "size": [
+            603,
+            1061
+          ]
+        }
+      ]
+    },
+    {
+      "rowIndex": 7,
+      "y": [
+        2564,
+        2643
+      ],
+      "cells": [
+        {
+          "name": "sheet_row7c43.png",
+          "bboxInSheet": [
+            11,
+            2569,
+            15,
+            2610
+          ],
+          "size": [
+            4,
+            41
+          ]
+        },
+        {
+          "name": "sheet_row7c44.png",
+          "bboxInSheet": [
+            17,
+            2569,
+            59,
+            2610
+          ],
+          "size": [
+            42,
+            41
+          ]
+        },
+        {
+          "name": "sheet_row7c45.png",
+          "bboxInSheet": [
+            61,
+            2569,
+            84,
+            2610
+          ],
+          "size": [
+            23,
+            41
+          ]
+        },
+        {
+          "name": "sheet_row7c46.png",
+          "bboxInSheet": [
+            86,
+            2572,
+            91,
+            2594
+          ],
+          "size": [
+            5,
+            22
+          ]
+        },
+        {
+          "name": "sheet_row7c47.png",
+          "bboxInSheet": [
+            93,
+            2588,
+            97,
+            2594
+          ],
+          "size": [
+            4,
+            6
+          ]
+        },
+        {
+          "name": "sheet_row7c48.png",
+          "bboxInSheet": [
+            99,
+            2588,
+            103,
+            2595
+          ],
+          "size": [
+            4,
+            7
+          ]
+        },
+        {
+          "name": "sheet_row7c49.png",
+          "bboxInSheet": [
+            105,
+            2588,
+            109,
+            2594
+          ],
+          "size": [
+            4,
+            6
+          ]
+        },
+        {
+          "name": "sheet_row7c50.png",
+          "bboxInSheet": [
+            111,
+            2588,
+            115,
+            2594
+          ],
+          "size": [
+            4,
+            6
+          ]
+        },
+        {
+          "name": "sheet_row7c51.png",
+          "bboxInSheet": [
+            117,
+            2588,
+            121,
+            2594
+          ],
+          "size": [
+            4,
+            6
+          ]
+        },
+        {
+          "name": "sheet_row7c52.png",
+          "bboxInSheet": [
+            123,
+            2588,
+            127,
+            2594
+          ],
+          "size": [
+            4,
+            6
+          ]
+        },
+        {
+          "name": "sheet_row7c53.png",
+          "bboxInSheet": [
+            132,
+            2585,
+            136,
+            2594
+          ],
+          "size": [
+            4,
+            9
+          ]
+        },
+        {
+          "name": "sheet_row7c54.png",
+          "bboxInSheet": [
+            138,
+            2584,
+            142,
+            2594
+          ],
+          "size": [
+            4,
+            10
+          ]
+        },
+        {
+          "name": "sheet_row7c55.png",
+          "bboxInSheet": [
+            147,
+            2585,
+            151,
+            2594
+          ],
+          "size": [
+            4,
+            9
+          ]
+        },
+        {
+          "name": "sheet_row7c56.png",
+          "bboxInSheet": [
+            153,
+            2588,
+            157,
+            2593
+          ],
+          "size": [
+            4,
+            5
+          ]
+        },
+        {
+          "name": "sheet_row7c57.png",
+          "bboxInSheet": [
+            280,
+            2619,
+            296,
+            2634
+          ],
+          "size": [
+            16,
+            15
+          ]
+        },
+        {
+          "name": "sheet_row7c58.png",
+          "bboxInSheet": [
+            298,
+            2619,
+            314,
+            2634
+          ],
+          "size": [
+            16,
+            15
+          ]
+        },
+        {
+          "name": "sheet_row7c59.png",
+          "bboxInSheet": [
+            316,
+            2619,
+            332,
+            2634
+          ],
+          "size": [
+            16,
+            15
+          ]
+        },
+        {
+          "name": "sheet_row7c60.png",
+          "bboxInSheet": [
+            334,
+            2616,
+            348,
+            2631
+          ],
+          "size": [
+            14,
+            15
+          ]
+        },
+        {
+          "name": "sheet_row7c61.png",
+          "bboxInSheet": [
+            350,
+            2620,
+            363,
+            2635
+          ],
+          "size": [
+            13,
+            15
+          ]
+        },
+        {
+          "name": null,
+          "skipped": true,
+          "bboxInSheet": [
+            381,
+            2565,
+            381,
+            2565
+          ],
+          "size": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "sheet_row7c62_red.png",
+          "bboxInSheet": [
+            383,
+            2564,
+            431,
+            2641
+          ],
+          "size": [
+            48,
+            77
+          ],
+          "paletteVariant": "red",
+          "notGreen": true
+        },
+        {
+          "name": "sheet_row7c63_purple.png",
+          "bboxInSheet": [
+            441,
+            2572,
+            489,
+            2640
+          ],
+          "size": [
+            48,
+            68
+          ],
+          "paletteVariant": "purple",
+          "notGreen": true,
+          "note": "Trimmed 2026-08-25: 8px of dead navy above the sprite removed; crop is now the 48x68 sprite content."
+        },
+        {
+          "name": "sheet_row7c64.png",
+          "bboxInSheet": [
+            496,
+            2573,
+            544,
+            2642
+          ],
+          "size": [
+            48,
+            69
+          ],
+          "paletteVariant": "green",
+          "notGreen": false,
+          "note": "Re-cut 2026-08-25: first bbox captured 9px of palette-swatch bleed at top and clipped 6px on the right; then trimmed 6px of dead navy right + 6px bottom. The 54x75 crop (spec/green-breakdown/manifest.json::sheet_green_yaw_full) remains the pipeline authority; this split crop is the 48x69 sprite content."
+        },
+        {
+          "name": "sheet_row7c65_red.png",
+          "bboxInSheet": [
+            553,
+            2573,
+            600,
+            2641
+          ],
+          "size": [
+            47,
+            68
+          ],
+          "paletteVariant": "red",
+          "notGreen": true
+        }
+      ]
+    }
+  ]
+}
