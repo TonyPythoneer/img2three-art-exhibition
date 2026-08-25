@@ -1,0 +1,78 @@
+{
+  "front": {
+    "sheetBox": [
+      60,
+      1808,
+      114,
+      1883
+    ],
+    "nativeSize": [
+      54,
+      75
+    ],
+    "size": [
+      432,
+      600
+    ],
+    "scale": 8,
+    "bgPixelsCleared": 3227,
+    "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/refs/front.png"
+  },
+  "top": {
+    "sheetBox": [
+      9,
+      2244,
+      81,
+      2290
+    ],
+    "nativeSize": [
+      72,
+      46
+    ],
+    "size": [
+      576,
+      368
+    ],
+    "scale": 8,
+    "bgPixelsCleared": 2504,
+    "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/refs/top.png"
+  },
+  "side": {
+    "sheetBox": [
+      139,
+      1502,
+      205,
+      1555
+    ],
+    "nativeSize": [
+      66,
+      53
+    ],
+    "size": [
+      528,
+      424
+    ],
+    "scale": 8,
+    "bgPixelsCleared": 2745,
+    "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/refs/side.png"
+  },
+  "green-yaw": {
+    "sheetBox": [
+      493,
+      2570,
+      547,
+      2645
+    ],
+    "nativeSize": [
+      54,
+      75
+    ],
+    "size": [
+      432,
+      600
+    ],
+    "scale": 8,
+    "bgPixelsCleared": 3131,
+    "path": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/refs/green-yaw.png"
+  }
+}

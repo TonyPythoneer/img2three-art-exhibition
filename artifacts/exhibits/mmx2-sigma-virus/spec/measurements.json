@@ -1,0 +1,42 @@
+{
+  "source": "artifacts/exhibits/mmx2-sigma-virus/references/sigma-wireframe-sheet.png",
+  "geometryCrop": "src/assets/exhibits/mmx2-sigma-virus/front-geometry-authority.png",
+  "frame": { "widthPx": 47, "heightPx": 69 },
+  "normalization": { "headHeight": 1.0, "pixel": 0.0144927536 },
+  "silhouetteRows": [
+    [0, 13, 32], [4, 10, 35], [8, 7, 38], [12, 4, 41],
+    [16, 4, 41], [20, 4, 41], [24, 4, 41], [28, 3, 42],
+    [32, 0, 46], [36, 0, 46], [40, 0, 46], [44, 0, 46],
+    [48, 5, 41], [52, 8, 38], [56, 8, 38], [60, 8, 38],
+    [64, 8, 38], [68, 17, 29]
+  ],
+  "regions": {
+    "crown": [0, 12],
+    "forehead": [8, 31],
+    "temple": [14, 32],
+    "cheek": [30, 44],
+    "faceCavity": [28, 43],
+    "jaw": [45, 67],
+    "chin": [62, 68]
+  },
+  "eyeOutlinePx": [
+    [1, 36, 36], [2, 35, 36], [3, 35, 37], [4, 34, 37],
+    [5, 34, 38], [6, 34, 38], [7, 33, 39], [8, 33, 38],
+    [9, 33, 38], [10, 33, 38], [11, 33, 38], [12, 33, 38],
+    [13, 32, 36], [14, 32, 34]
+  ],
+  "depthProfile": {
+    "crown": 0.10,
+    "forehead": 0.34,
+    "temple": 0.62,
+    "cheek": 0.70,
+    "jaw": 0.42,
+    "chin": 0.16
+  },
+  "yawReference": { "frontWidthPx": 47, "widestObservedPx": 62, "widthRatio": 1.3191 },
+  "uncertainty": {
+    "rearTopology": "unresolved after multi-view reading; simplest continuation selected",
+    "cameraLabels": "not supplied; canonical probes are qualitative",
+    "originalTopology": "not identifiable from raster wireframe"
+  }
+}

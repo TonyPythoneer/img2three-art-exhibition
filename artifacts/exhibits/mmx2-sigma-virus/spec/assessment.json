@@ -1,0 +1,519 @@
+{
+  "targetName": "Sigma Virus green head",
+  "sourceImage": "artifacts/exhibits/mmx2-sigma-virus/references/sigma-front-green-ostation.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized low-poly helmet-like head rendered as wireframe line art",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "faceted planar shell segments",
+        "angular cheek lobes forming the widest band",
+        "recessed eye pockets under a brow ledge"
+      ],
+      "structureKind": [
+        "hard-surface blockout",
+        "low-poly prop"
+      ],
+      "motionPotential": [
+        "explode view by part scaling",
+        "click-to-isolate parts"
+      ],
+      "materialFamilies": [
+        "emissive-style flat wire colour on navy fill",
+        "no PBR texture projection"
+      ],
+      "notes": "Read from the admitted front, top, side, and green-yaw authority crops at 8x NEAREST; the green palette is colour authority and non-green views are structural supplements."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 2,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 1,
+        "mesoComponents": 14,
+        "microFeatureGroups": 7,
+        "materialLayers": 3,
+        "repetitionSystems": 1
+      },
+      "reasoning": [
+        "Assess 'Sigma Virus green head' from the image before finalizing componentTree/materials."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3 over full sheet + 8x NEAREST authority-frame reading",
+      "targetMinDetails": 10,
+      "note": "Sheet grid zones each hold dozens of tiny sprites, so per-zone isolation of single-head details is not meaningful; the seven authoritative details were read from the admitted authority frames (spec/refs/*) at 8x NEAREST and map to spec component/material entries.",
+      "details": [
+        {
+          "id": "detail-eye-outlines",
+          "kind": "linework",
+          "description": "Two slanted leaf/almond eye outlines in accent colour #E05000, angled down toward centre, joined near a central bridge, ~45-50% down the frame, recessed inside face planes.",
+          "region": {
+            "x": 0.15,
+            "y": 0.42,
+            "width": 0.7,
+            "height": 0.18,
+            "units": "frame-normalized"
+          },
+          "scale": "meso",
+          "affects": "silhouette negative space and feature placement",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "eyeOutline"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/zoom/geom_63_1811.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "detail-crown-ridge-seam",
+          "kind": "seam",
+          "description": "Internal facet lines converge to a short front-to-back ridge peak on the crown dome; visible as a peaked seam from oblique angles.",
+          "region": {
+            "x": 0.35,
+            "y": 0.02,
+            "width": 0.3,
+            "height": 0.25,
+            "units": "frame-normalized"
+          },
+          "scale": "meso",
+          "affects": "form readability of the crown volume",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "ridgeSeam"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/zoom/wide0.png",
+          "confidence": 0.85
+        },
+        {
+          "id": "detail-cheek-lobe-overlap-seam",
+          "kind": "seam",
+          "description": "Cheek lobe reads as its own shell plate overlapping the cranial shell; seam visible where the lobe crosses the temple shell.",
+          "region": {
+            "x": 0.0,
+            "y": 0.35,
+            "width": 1.0,
+            "height": 0.3,
+            "units": "frame-normalized"
+          },
+          "scale": "meso",
+          "affects": "widest silhouette band and part separation",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "overlapSeam"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/zoom/green_zone.png",
+          "confidence": 0.85
+        },
+        {
+          "id": "detail-nose-ridge",
+          "kind": "ridge",
+          "description": "Single centre vertical line below the eye bridge ending in a small triangular tip around 70% height; reads from above as brow bar plus forward nose.",
+          "region": {
+            "x": 0.44,
+            "y": 0.5,
+            "width": 0.12,
+            "height": 0.24,
+            "units": "frame-normalized"
+          },
+          "scale": "micro",
+          "affects": "front identity feature placement",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "noseRidge"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/zoom/geom_63_1811.png",
+          "confidence": 0.8
+        },
+        {
+          "id": "detail-chin-notch",
+          "kind": "groove",
+          "description": "Small centre notch in the bottom edge of the trapezoid chin plate.",
+          "region": {
+            "x": 0.4,
+            "y": 0.92,
+            "width": 0.2,
+            "height": 0.08,
+            "units": "frame-normalized"
+          },
+          "scale": "micro",
+          "affects": "lower-face silhouette termination",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "chinNotch"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/zoom/geom_63_1811.png",
+          "confidence": 0.8
+        },
+        {
+          "id": "detail-mouth-band",
+          "kind": "seam",
+          "description": "Horizontal seam ~75-80% height between nose tip and chin plate.",
+          "region": {
+            "x": 0.2,
+            "y": 0.74,
+            "width": 0.6,
+            "height": 0.06,
+            "units": "frame-normalized"
+          },
+          "scale": "micro",
+          "affects": "lower-face segmentation readability",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "mouthBand"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/zoom/geom_63_1811.png",
+          "confidence": 0.75
+        },
+        {
+          "id": "detail-wire-two-tone",
+          "kind": "emissive",
+          "description": "Structural wire uses bright front-facing #10D830 and dim far-facing #10B010 strokes; eye outlines use accent #E05000 on ground #000029 fills.",
+          "region": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 1.0,
+            "height": 1.0,
+            "units": "frame-normalized"
+          },
+          "scale": "global",
+          "affects": "whole-model material response",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "brightDimOverride"
+          },
+          "evidenceRef": "/Users/tonyyang/git/personal/img2three-art-exhibition/artifacts/exhibits/mmx2-sigma-virus/spec/refs/green-yaw.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "detail-brow-double-rim",
+          "kind": "linework",
+          "description": "The brow/eye system has an outer angular bracket rim and an inner rim around each recessed eye pocket.",
+          "region": {
+            "x": 0.18,
+            "y": 0.42,
+            "width": 0.64,
+            "height": 0.18,
+            "units": "frame-normalized"
+          },
+          "scale": "meso",
+          "affects": "eye-pocket depth cue and facial identity",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "browDoubleRim"
+          },
+          "evidenceRef": "spec/zoom-v2/front_brow-band-eyes.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "detail-crown-cornice",
+          "kind": "linework",
+          "description": "A horizontal cornice beam separates the flat crown top panel from the forehead plane.",
+          "region": {
+            "x": 0.27,
+            "y": 0.02,
+            "width": 0.46,
+            "height": 0.16,
+            "units": "frame-normalized"
+          },
+          "scale": "meso",
+          "affects": "crown silhouette and planar hierarchy",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "corniceBeam"
+          },
+          "evidenceRef": "spec/zoom-v2/front_crown.png",
+          "confidence": 0.86
+        },
+        {
+          "id": "detail-cheek-diagonal-facets",
+          "kind": "linework",
+          "description": "Each cheek lobe contains diagonal facet lines between its vertical outer edge and inner overlap seam.",
+          "region": {
+            "x": 0.05,
+            "y": 0.34,
+            "width": 0.9,
+            "height": 0.32,
+            "units": "frame-normalized"
+          },
+          "scale": "micro",
+          "affects": "cheek-lobe planar readability",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "diagonalFacets"
+          },
+          "evidenceRef": "spec/green-breakdown/ost_front_cheek-lobe-left.png",
+          "confidence": 0.84
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [],
+      "confidence": 0.0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "artifacts/exhibits/mmx2-sigma-virus/references/sigma-front-green-ostation.png"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "The rendered model matches the reference silhouette, primary proportions, visible component hierarchy, material response, and most recognizable local features for the selected fidelity tier."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 1,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "Sigma Virus green head",
+    "index": {
+      "status": "hit",
+      "reason": "current",
+      "fingerprint": "6857e5ab528b42ac12f4f411f862610a0bffce8e47aee3610a7603c318072fe8"
+    },
+    "matches": [
+      {
+        "record_id": "core.pbr-tangent-space-normal-encoding-directx-vs-opengl",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[13]",
+        "score": 4.031370797161,
+        "snippets": [
+          "Convention difference in the green (Y) channel of tangent-space normal maps between DirectX-style and OpenGL-style encoding. S\u1ef1 kh\u00e1c bi\u1ec7t quy \u01b0\u1edbc \u1edf k\u00eanh xanh l\u00e1 (Y) c\u1ee7a normal map kh\u00f4ng gian ti\u1ebfp tuy\u1ebfn gi\u1eefa m\u00e3 h\u00f3a ki\u1ec3u DirectX v\u00e0 ki\u1ec3u OpenGL. ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[13]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.pbr-roughness",
+        "file_path": "grimoire/glossary/3d_vocabulary.md",
+        "heading": "Material And PBR",
+        "key_path": null,
+        "score": 2.662326710191,
+        "snippets": [
+          "... = \u0111i\u1ec3m s\u00e1ng m\u1edd, r\u1ed9ng, t\u1ed1i, b\u1ec1 m\u1eb7t tr\u00f4ng m\u1edd \u0111\u1ee5c; v\u00f9ng b\u1ecb m\u00f2n/tr\u1ea7y c\u00f3 h\u00ecnh d\u1ea1ng \u0111i\u1ec3m s\u00e1ng v\u1ee1 v\u1ee5n so v\u1edbi v\u00f9ng nguy\u00ean v\u1eb9n. Three.js target: MeshPhysicalMaterial.roughness (scalar) + .roughnessMap (green channel of packed ORM texture, NoColorSpace)."
+        ],
+        "source_refs": [
+          {
+            "path": "grimoire/glossary/3d_vocabulary.md",
+            "heading": "Material And PBR",
+            "key_path": null
+          },
+          {
+            "path": "grimoire/intake/image_analysis.md",
+            "heading": "Layer 5 \u2014 Materials & surface (PBR)",
+            "key_path": null
+          },
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[1]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "grimoire/glossary/3d_vocabulary.md"
+          },
+          {
+            "kind": "notebooklm-research",
+            "ref": "notebooklm:4b03c2f9-8393-411f-b5b4-039ab9532843",
+            "note": "Validated generic schema vocabulary; numeric claims remain backed by local source_refs."
+          },
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation \u2014 merged recognition cues + Three.js target instead of duplicating this entity."
+          }
+        ]
+      },
+      {
+        "record_id": "core.pbr-normal-map",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[2]",
+        "score": 2.225226876542,
+        "snippets": [
+          "... c\u00f3 tr\u00ean \u0111\u01b0\u1eddng vi\u1ec1n h\u00ecnh h\u1ecdc; Th\u01b0\u1eddng l\u01b0u d\u01b0\u1edbi d\u1ea1ng k\u1ebft c\u1ea5u c\u00f3 t\u00f4ng m\u00e0u xanh d\u01b0\u01a1ng/t\u00edm trong c\u00f4ng c\u1ee5 tr\u00edch xu\u1ea5t Three.js target: MeshPhysicalMaterial.normalMap (RGB, NoColorSpace); invert green (Y) channel if source is OpenGL vs DirectX convention"
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[2]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

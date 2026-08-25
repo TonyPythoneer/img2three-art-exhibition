@@ -1,0 +1,242 @@
+{
+  "front_full": {
+    "file": "zoom-v2/front_full.png",
+    "sourceBox": [
+      117,
+      1,
+      426,
+      358
+    ],
+    "outSize": [
+      2472,
+      2856
+    ],
+    "source": "references/sigma-front-green-ostation.png",
+    "angle": "front",
+    "note": "whole head; silhouette profile cross-checks sheet front within ~1%"
+  },
+  "front_crown": {
+    "file": "zoom-v2/front_crown.png",
+    "sourceBox": [
+      154,
+      1,
+      389,
+      94
+    ],
+    "outSize": [
+      1880,
+      744
+    ],
+    "source": "references/sigma-front-green-ostation.png",
+    "angle": "front",
+    "note": "quad-grid dome; facet lines converge to a short ridge at top centre"
+  },
+  "front_brow-band-eyes": {
+    "file": "zoom-v2/front_brow-band-eyes.png",
+    "sourceBox": [
+      148,
+      144,
+      395,
+      222
+    ],
+    "outSize": [
+      1976,
+      624
+    ],
+    "source": "references/sigma-front-green-ostation.png",
+    "angle": "front",
+    "note": "angular eye band: two lenses joined by a centre crossing; double-line rims = recessed pocket rim"
+  },
+  "front_nose-column": {
+    "file": "zoom-v2/front_nose-column.png",
+    "sourceBox": [
+      228,
+      158,
+      315,
+      265
+    ],
+    "outSize": [
+      696,
+      856
+    ],
+    "source": "references/sigma-front-green-ostation.png",
+    "angle": "front",
+    "note": "rectangular column descending from between the eyes to the mouth bar"
+  },
+  "front_mouth-chin": {
+    "file": "zoom-v2/front_mouth-chin.png",
+    "sourceBox": [
+      160,
+      237,
+      383,
+      315
+    ],
+    "outSize": [
+      1784,
+      624
+    ],
+    "source": "references/sigma-front-green-ostation.png",
+    "angle": "front",
+    "note": "horizontal mouth bar with centre notch below it on the chin plate"
+  },
+  "front_jaw-chintabs": {
+    "file": "zoom-v2/front_jaw-chintabs.png",
+    "sourceBox": [
+      142,
+      294,
+      401,
+      358
+    ],
+    "outSize": [
+      2072,
+      512
+    ],
+    "source": "references/sigma-front-green-ostation.png",
+    "angle": "front",
+    "note": "constant-width jaw column ending in two square feet (chin tabs) with centre gap"
+  },
+  "front_cheek-lobe-left": {
+    "file": "zoom-v2/front_cheek-lobe-left.png",
+    "sourceBox": [
+      117,
+      122,
+      210,
+      244
+    ],
+    "outSize": [
+      744,
+      976
+    ],
+    "source": "references/sigma-front-green-ostation.png",
+    "angle": "front",
+    "note": "left lobe plate: angular shell with diagonal facet strokes, vertical outer edge"
+  },
+  "front_cheek-lobe-right": {
+    "file": "zoom-v2/front_cheek-lobe-right.png",
+    "sourceBox": [
+      333,
+      122,
+      426,
+      244
+    ],
+    "outSize": [
+      744,
+      976
+    ],
+    "source": "references/sigma-front-green-ostation.png",
+    "angle": "front",
+    "note": "right lobe plate (mirror)"
+  },
+  "front_temple-left": {
+    "file": "zoom-v2/front_temple-left.png",
+    "sourceBox": [
+      123,
+      58,
+      216,
+      151
+    ],
+    "outSize": [
+      744,
+      744
+    ],
+    "source": "references/sigma-front-green-ostation.png",
+    "angle": "front",
+    "note": "left temple shell inside the silhouette band above the lobe"
+  },
+  "front_temple-right": {
+    "file": "zoom-v2/front_temple-right.png",
+    "sourceBox": [
+      327,
+      58,
+      420,
+      151
+    ],
+    "outSize": [
+      744,
+      744
+    ],
+    "source": "references/sigma-front-green-ostation.png",
+    "angle": "front",
+    "note": "right temple shell (mirror)"
+  },
+  "front-red_full": {
+    "file": "zoom-v2/front-red_full.png",
+    "sourceBox": [
+      63,
+      1811,
+      111,
+      1880
+    ],
+    "outSize": [
+      384,
+      552
+    ],
+    "source": "references/sigma-wireframe-sheet.png",
+    "angle": "front (red palette)",
+    "note": "geometry authority used before the OSTation front was admitted; identical proportions"
+  },
+  "top-down_full": {
+    "file": "zoom-v2/top-down_full.png",
+    "sourceBox": [
+      12,
+      2247,
+      78,
+      2287
+    ],
+    "outSize": [
+      528,
+      320
+    ],
+    "source": "references/sigma-wireframe-sheet.png",
+    "angle": "top-down",
+    "note": "depth guess G1 evidence: elongated outline, quad crown facets either side of centre seam"
+  },
+  "rear-oblique-side_full": {
+    "file": "zoom-v2/rear-oblique-side_full.png",
+    "sourceBox": [
+      142,
+      1505,
+      202,
+      1552
+    ],
+    "outSize": [
+      480,
+      376
+    ],
+    "source": "references/sigma-wireframe-sheet.png",
+    "angle": "side / rear-oblique",
+    "note": "plain faceted rear continuation, no decorated mechanism (G4)"
+  },
+  "three-quarter-yaw_full": {
+    "file": "zoom-v2/three-quarter-yaw_full.png",
+    "sourceBox": [
+      496,
+      2573,
+      550,
+      2648
+    ],
+    "outSize": [
+      432,
+      600
+    ],
+    "source": "references/sigma-wireframe-sheet.png",
+    "angle": "three-quarter yaw (green)",
+    "note": "one dominant eye per side + far lobe behind; ridge seam visible peaked"
+  },
+  "three-quarter-yaw_eyes": {
+    "file": "zoom-v2/three-quarter-yaw_eyes.png",
+    "sourceBox": [
+      496,
+      2601,
+      550,
+      2625
+    ],
+    "outSize": [
+      432,
+      192
+    ],
+    "source": "references/sigma-wireframe-sheet.png",
+    "angle": "three-quarter yaw (green)",
+    "note": "eye pocket depth cue: lens sits INSIDE the face planes"
+  }
+}

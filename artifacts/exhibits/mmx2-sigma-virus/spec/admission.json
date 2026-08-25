@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "check_reference_admission.py over refs/ produced by make_alpha_refs.py",
+  "reference": "artifacts/exhibits/mmx2-sigma-virus/references/sigma-wireframe-sheet.png",
+  "methodology": {
+    "problem": "The raw sheet has no alpha channel and background #000029 is saturated dark, so build_foreground_mask's non-alpha branch clause (sat > 0.16 and luma < 0.94) classifies every background pixel as foreground: coverage 1.000 -> REJECTED.",
+    "fix": "Exact-background pixels (colour distance <= 12 from #000029) are converted to alpha=0 per frame crop; subject pixels untouched. This routes the mask primitive through its transparency branch (mask = alpha > 24), which yields the true silhouette.",
+    "resolutionFloor": "Native sprite frames are 48x69-class, below the admission 64px short-side floor. Refs are upscaled x8 NEAREST: pure repetition of pixels, silhouette and colours preserved exactly; no information invented. Manifest records scale=8.",
+    "coherenceNote": "At native scale the coherence pass downsampled the 48-75px frames onto a <=96-cell grid (~1px cells), preserving 1px wire gaps: largest-blob fraction read as low as 0.572 for the green-yaw frame (101 wire fragments measured). After x8 NEAREST the same fixed 96x96 grid maps ~5-6 native px per cell and wires merge into one head-shaped cell blob: coherence >= 0.995 for all four refs. Thresholds were not modified; only the input pixel scale, recorded here."
+  },
+  "sheetLevel": {
+    "verdict": "REJECTED",
+    "reason": "foreground coverage 1.000 > 0.97 (no background to segment against - silhouette not isolable)",
+    "pHash": 18440411517736231284
+  },
+  "refs": {
+    "front": {
+      "admitted": true,
+      "viewpoint": "front",
+      "path": "artifacts/exhibits/mmx2-sigma-virus/spec/refs/front.png",
+      "width": 432,
+      "height": 600,
+      "foregroundCoverage": 0.2032,
+      "largestComponentFraction": 1.0,
+      "pHash": 18413740774666052102,
+      "role": "geometry authority (63,1811); Tier-1 silhouette-front-IoU ground truth"
+    },
+    "top": {
+      "admitted": true,
+      "viewpoint": "top",
+      "path": "artifacts/exhibits/mmx2-sigma-virus/spec/refs/top.png",
+      "width": 576,
+      "height": 368,
+      "foregroundCoverage": 0.244,
+      "largestComponentFraction": 0.9956,
+      "pHash": 13659596258135486642,
+      "role": "depth guess G1 evidence (12,2247)"
+    },
+    "side": {
+      "admitted": true,
+      "viewpoint": "side",
+      "path": "artifacts/exhibits/mmx2-sigma-virus/spec/refs/side.png",
+      "width": 528,
+      "height": 424,
+      "foregroundCoverage": 0.2153,
+      "largestComponentFraction": 1.0,
+      "pHash": 17169123866113274528,
+      "role": "side/rear-oblique shell authority (142,1505)"
+    },
+    "green-yaw": {
+      "admitted": true,
+      "viewpoint": "green-yaw",
+      "path": "artifacts/exhibits/mmx2-sigma-virus/spec/refs/green-yaw.png",
+      "width": 432,
+      "height": 600,
+      "foregroundCoverage": 0.2136,
+      "largestComponentFraction": 1.0,
+      "pHash": 18136275658459291680,
+      "role": "colour authority + qualitative yaw cross-check (496,2573)"
+    },
+    "ostation-front": {
+      "admitted": true,
+      "viewpoint": "front",
+      "path": "artifacts/exhibits/mmx2-sigma-virus/references/sigma-front-green-ostation.png",
+      "width": 480,
+      "height": 360,
+      "foregroundCoverage": 0.4038,
+      "largestComponentFraction": 0.9997,
+      "pHash": 12345122642832532646,
+      "role": "hi-res front detail authority (green palette); cross-validates sheet front within ~1% on row extents",
+      "addedBy": "user directive 2026-08-22 (from-scratch rescan)"
+    }
+  }
+}

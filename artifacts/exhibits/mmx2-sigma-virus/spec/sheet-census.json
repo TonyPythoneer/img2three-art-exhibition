@@ -1,0 +1,6087 @@
+{
+  "sheet": {
+    "path": "artifacts/exhibits/mmx2-sigma-virus/references/sigma-wireframe-sheet.png",
+    "size": [
+      610,
+      2644
+    ],
+    "bg": [
+      0,
+      0,
+      41
+    ]
+  },
+  "topColours": [
+    {
+      "rgb": [
+        0,
+        0,
+        41
+      ],
+      "hex": "#000029",
+      "px": 1360642,
+      "family": "blue"
+    },
+    {
+      "rgb": [
+        66,
+        181,
+        255
+      ],
+      "hex": "#42B5FF",
+      "px": 74562,
+      "family": "blue"
+    },
+    {
+      "rgb": [
+        189,
+        0,
+        8
+      ],
+      "hex": "#BD0008",
+      "px": 65661,
+      "family": "red"
+    },
+    {
+      "rgb": [
+        222,
+        115,
+        57
+      ],
+      "hex": "#DE7339",
+      "px": 30689,
+      "family": "orange"
+    },
+    {
+      "rgb": [
+        231,
+        57,
+        24
+      ],
+      "hex": "#E73918",
+      "px": 20853,
+      "family": "red"
+    },
+    {
+      "rgb": [
+        49,
+        140,
+        231
+      ],
+      "hex": "#318CE7",
+      "px": 15455,
+      "family": "blue"
+    },
+    {
+      "rgb": [
+        140,
+        0,
+        8
+      ],
+      "hex": "#8C0008",
+      "px": 13117,
+      "family": "red"
+    },
+    {
+      "rgb": [
+        189,
+        90,
+        24
+      ],
+      "hex": "#BD5A18",
+      "px": 7013,
+      "family": "orange"
+    },
+    {
+      "rgb": [
+        181,
+        41,
+        8
+      ],
+      "hex": "#B52908",
+      "px": 5571,
+      "family": "red"
+    },
+    {
+      "rgb": [
+        66,
+        33,
+        214
+      ],
+      "hex": "#4221D6",
+      "px": 5403,
+      "family": "blue"
+    },
+    {
+      "rgb": [
+        198,
+        41,
+        8
+      ],
+      "hex": "#C62908",
+      "px": 4767,
+      "family": "red"
+    },
+    {
+      "rgb": [
+        132,
+        33,
+        115
+      ],
+      "hex": "#842173",
+      "px": 2050,
+      "family": "purple"
+    },
+    {
+      "rgb": [
+        99,
+        33,
+        165
+      ],
+      "hex": "#6321A5",
+      "px": 1475,
+      "family": "blue"
+    },
+    {
+      "rgb": [
+        255,
+        255,
+        255
+      ],
+      "hex": "#FFFFFF",
+      "px": 800,
+      "family": "other"
+    }
+  ],
+  "componentCount": 307,
+  "heightCensus": {
+    "69": 82,
+    "73": 42,
+    "79": 23,
+    "78": 17,
+    "77": 12,
+    "74": 11,
+    "68": 10,
+    "72": 10,
+    "76": 7,
+    "80": 7,
+    "71": 7,
+    "75": 6,
+    "62": 5,
+    "26": 5,
+    "48": 4,
+    "54": 3,
+    "49": 3,
+    "66": 3,
+    "58": 3,
+    "59": 3,
+    "52": 3,
+    "28": 3,
+    "56": 2,
+    "47": 2,
+    "61": 2,
+    "67": 2,
+    "60": 2,
+    "55": 2,
+    "53": 2,
+    "45": 2,
+    "20": 2,
+    "11": 2,
+    "57": 1,
+    "65": 1,
+    "63": 1,
+    "41": 1,
+    "23": 1,
+    "70": 1,
+    "51": 1,
+    "81": 1,
+    "40": 1,
+    "39": 1,
+    "38": 1,
+    "33": 1,
+    "31": 1,
+    "18": 1,
+    "16": 1,
+    "13": 1,
+    "8": 1,
+    "10": 1
+  },
+  "widthCensus": {
+    "48": 74,
+    "47": 28,
+    "49": 27,
+    "62": 19,
+    "53": 14,
+    "52": 13,
+    "54": 8,
+    "50": 7,
+    "61": 7,
+    "60": 7,
+    "58": 6,
+    "69": 5,
+    "67": 5,
+    "72": 5,
+    "55": 5,
+    "57": 5,
+    "56": 4,
+    "64": 4,
+    "70": 4,
+    "66": 3,
+    "51": 3,
+    "76": 3,
+    "39": 3,
+    "37": 3,
+    "59": 2,
+    "73": 2,
+    "63": 2,
+    "46": 2,
+    "42": 2,
+    "40": 2,
+    "44": 2,
+    "41": 2,
+    "38": 2,
+    "71": 2,
+    "17": 2,
+    "16": 2,
+    "12": 2,
+    "78": 1,
+    "68": 1,
+    "74": 1,
+    "75": 1,
+    "21": 1,
+    "43": 1,
+    "65": 1,
+    "34": 1,
+    "29": 1,
+    "27": 1,
+    "28": 1,
+    "24": 1,
+    "23": 1,
+    "20": 1,
+    "19": 1,
+    "10": 1,
+    "8": 1,
+    "22": 1,
+    "84": 1
+  },
+  "aspectCensus": {
+    "0.571": 1,
+    "0.58": 2,
+    "0.595": 2,
+    "0.6": 3,
+    "0.603": 2,
+    "0.604": 1,
+    "0.605": 1,
+    "0.606": 1,
+    "0.607": 3,
+    "0.608": 4,
+    "0.609": 1,
+    "0.611": 1,
+    "0.613": 1,
+    "0.615": 5,
+    "0.617": 1,
+    "0.618": 4,
+    "0.62": 1,
+    "0.622": 1,
+    "0.623": 4,
+    "0.625": 2,
+    "0.627": 2,
+    "0.628": 5,
+    "0.629": 1,
+    "0.632": 2,
+    "0.633": 3,
+    "0.636": 2,
+    "0.64": 3,
+    "0.641": 1,
+    "0.644": 6,
+    "0.649": 7,
+    "0.65": 1,
+    "0.654": 2,
+    "0.658": 19,
+    "0.662": 2,
+    "0.667": 1,
+    "0.671": 15,
+    "0.675": 4,
+    "0.676": 1,
+    "0.679": 4,
+    "0.681": 12,
+    "0.684": 4,
+    "0.688": 3,
+    "0.692": 2,
+    "0.696": 36,
+    "0.699": 1,
+    "0.7": 1,
+    "0.706": 3,
+    "0.709": 1,
+    "0.71": 4,
+    "0.721": 2,
+    "0.722": 1,
+    "0.725": 1,
+    "0.743": 1,
+    "0.754": 3,
+    "0.758": 1,
+    "0.768": 2,
+    "0.776": 1,
+    "0.78": 1,
+    "0.783": 2,
+    "0.803": 1,
+    "0.806": 2,
+    "0.808": 1,
+    "0.811": 3,
+    "0.812": 2,
+    "0.813": 1,
+    "0.826": 3,
+    "0.836": 1,
+    "0.838": 1,
+    "0.841": 5,
+    "0.849": 4,
+    "0.861": 6,
+    "0.87": 3,
+    "0.873": 1,
+    "0.875": 1,
+    "0.884": 4,
+    "0.887": 1,
+    "0.897": 2,
+    "0.899": 6,
+    "0.901": 4,
+    "0.912": 1,
+    "0.913": 1,
+    "0.929": 1,
+    "0.971": 2,
+    "0.985": 2,
+    "1.0": 2,
+    "1.031": 1,
+    "1.045": 2,
+    "1.129": 2,
+    "1.131": 1,
+    "1.133": 1,
+    "1.136": 1,
+    "1.155": 1,
+    "1.163": 1,
+    "1.211": 1,
+    "1.225": 1,
+    "1.237": 1,
+    "1.25": 1,
+    "1.286": 1,
+    "1.291": 1,
+    "1.298": 1,
+    "1.346": 1,
+    "1.358": 1,
+    "1.364": 1,
+    "1.37": 1,
+    "1.385": 1,
+    "1.393": 1,
+    "1.407": 1,
+    "1.408": 1,
+    "1.412": 1,
+    "1.423": 1,
+    "1.434": 1,
+    "1.444": 1,
+    "1.458": 1,
+    "1.462": 3,
+    "1.479": 1,
+    "1.49": 1,
+    "1.5": 1,
+    "1.532": 1,
+    "2.125": 1,
+    "2.2": 1,
+    "3.727": 1,
+    "4.182": 1,
+    "4.2": 1
+  },
+  "familyCensus": {
+    "blue": 107,
+    "red": 149,
+    "orange": 45,
+    "other": 4,
+    "green": 1,
+    "purple": 1
+  },
+  "layoutRows": [
+    {
+      "sheetRow": 10,
+      "count": 1,
+      "x0s": [
+        90
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 11,
+      "count": 1,
+      "x0s": [
+        526
+      ],
+      "sizes": [
+        [
+          49,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.628,
+      "aspMax": 0.628,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 12,
+      "count": 2,
+      "x0s": [
+        395,
+        453
+      ],
+      "sizes": [
+        [
+          47,
+          73
+        ]
+      ],
+      "heights": [
+        73,
+        73
+      ],
+      "aspMin": 0.644,
+      "aspMax": 0.644,
+      "families": {
+        "blue": 2
+      }
+    },
+    {
+      "sheetRow": 13,
+      "count": 3,
+      "x0s": [
+        27,
+        278,
+        336
+      ],
+      "sizes": [
+        [
+          47,
+          73
+        ],
+        [
+          48,
+          73
+        ],
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73,
+        73,
+        73
+      ],
+      "aspMin": 0.644,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 3
+      }
+    },
+    {
+      "sheetRow": 14,
+      "count": 1,
+      "x0s": [
+        159
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 15,
+      "count": 1,
+      "x0s": [
+        222
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 101,
+      "count": 1,
+      "x0s": [
+        96
+      ],
+      "sizes": [
+        [
+          62,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.849,
+      "aspMax": 0.849,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 104,
+      "count": 1,
+      "x0s": [
+        171
+      ],
+      "sizes": [
+        [
+          59,
+          76
+        ]
+      ],
+      "heights": [
+        76
+      ],
+      "aspMin": 0.776,
+      "aspMax": 0.776,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 109,
+      "count": 1,
+      "x0s": [
+        11
+      ],
+      "sizes": [
+        [
+          69,
+          57
+        ]
+      ],
+      "heights": [
+        57
+      ],
+      "aspMin": 1.211,
+      "aspMax": 1.211,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 111,
+      "count": 1,
+      "x0s": [
+        240
+      ],
+      "sizes": [
+        [
+          62,
+          74
+        ]
+      ],
+      "heights": [
+        74
+      ],
+      "aspMin": 0.838,
+      "aspMax": 0.838,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 119,
+      "count": 2,
+      "x0s": [
+        442,
+        529
+      ],
+      "sizes": [
+        [
+          66,
+          68
+        ],
+        [
+          67,
+          65
+        ]
+      ],
+      "heights": [
+        65,
+        68
+      ],
+      "aspMin": 0.971,
+      "aspMax": 1.031,
+      "families": {
+        "blue": 2
+      }
+    },
+    {
+      "sheetRow": 126,
+      "count": 1,
+      "x0s": [
+        351
+      ],
+      "sizes": [
+        [
+          72,
+          56
+        ]
+      ],
+      "heights": [
+        56
+      ],
+      "aspMin": 1.286,
+      "aspMax": 1.286,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 193,
+      "count": 1,
+      "x0s": [
+        89
+      ],
+      "sizes": [
+        [
+          50,
+          80
+        ]
+      ],
+      "heights": [
+        80
+      ],
+      "aspMin": 0.625,
+      "aspMax": 0.625,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 195,
+      "count": 1,
+      "x0s": [
+        18
+      ],
+      "sizes": [
+        [
+          52,
+          80
+        ]
+      ],
+      "heights": [
+        80
+      ],
+      "aspMin": 0.65,
+      "aspMax": 0.65,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 196,
+      "count": 1,
+      "x0s": [
+        214
+      ],
+      "sizes": [
+        [
+          56,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.709,
+      "aspMax": 0.709,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 197,
+      "count": 1,
+      "x0s": [
+        406
+      ],
+      "sizes": [
+        [
+          55,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 198,
+      "count": 3,
+      "x0s": [
+        157,
+        346,
+        472
+      ],
+      "sizes": [
+        [
+          53,
+          78
+        ],
+        [
+          53,
+          80
+        ],
+        [
+          57,
+          79
+        ]
+      ],
+      "heights": [
+        80,
+        78,
+        79
+      ],
+      "aspMin": 0.662,
+      "aspMax": 0.722,
+      "families": {
+        "blue": 3
+      }
+    },
+    {
+      "sheetRow": 200,
+      "count": 1,
+      "x0s": [
+        282
+      ],
+      "sizes": [
+        [
+          55,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 201,
+      "count": 1,
+      "x0s": [
+        542
+      ],
+      "sizes": [
+        [
+          55,
+          80
+        ]
+      ],
+      "heights": [
+        80
+      ],
+      "aspMin": 0.688,
+      "aspMax": 0.688,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 283,
+      "count": 1,
+      "x0s": [
+        17
+      ],
+      "sizes": [
+        [
+          52,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 284,
+      "count": 1,
+      "x0s": [
+        391
+      ],
+      "sizes": [
+        [
+          52,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 285,
+      "count": 1,
+      "x0s": [
+        274
+      ],
+      "sizes": [
+        [
+          50,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.633,
+      "aspMax": 0.633,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 286,
+      "count": 6,
+      "x0s": [
+        81,
+        148,
+        213,
+        333,
+        455,
+        523
+      ],
+      "sizes": [
+        [
+          49,
+          79
+        ],
+        [
+          50,
+          79
+        ],
+        [
+          53,
+          79
+        ],
+        [
+          54,
+          79
+        ]
+      ],
+      "heights": [
+        79,
+        79,
+        79,
+        79,
+        79,
+        79
+      ],
+      "aspMin": 0.62,
+      "aspMax": 0.684,
+      "families": {
+        "blue": 6
+      }
+    },
+    {
+      "sheetRow": 365,
+      "count": 1,
+      "x0s": [
+        18
+      ],
+      "sizes": [
+        [
+          61,
+          75
+        ]
+      ],
+      "heights": [
+        75
+      ],
+      "aspMin": 0.813,
+      "aspMax": 0.813,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 369,
+      "count": 1,
+      "x0s": [
+        97
+      ],
+      "sizes": [
+        [
+          54,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.684,
+      "aspMax": 0.684,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 373,
+      "count": 1,
+      "x0s": [
+        156
+      ],
+      "sizes": [
+        [
+          61,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.884,
+      "aspMax": 0.884,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 376,
+      "count": 1,
+      "x0s": [
+        286
+      ],
+      "sizes": [
+        [
+          57,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.826,
+      "aspMax": 0.826,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 377,
+      "count": 1,
+      "x0s": [
+        224
+      ],
+      "sizes": [
+        [
+          58,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.841,
+      "aspMax": 0.841,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 379,
+      "count": 1,
+      "x0s": [
+        355
+      ],
+      "sizes": [
+        [
+          56,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.812,
+      "aspMax": 0.812,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 381,
+      "count": 1,
+      "x0s": [
+        419
+      ],
+      "sizes": [
+        [
+          54,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.783,
+      "aspMax": 0.783,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 382,
+      "count": 1,
+      "x0s": [
+        481
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 383,
+      "count": 1,
+      "x0s": [
+        532
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 448,
+      "count": 1,
+      "x0s": [
+        15
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 453,
+      "count": 2,
+      "x0s": [
+        70,
+        240
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ],
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69,
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.696,
+      "families": {
+        "blue": 2
+      }
+    },
+    {
+      "sheetRow": 454,
+      "count": 3,
+      "x0s": [
+        126,
+        182,
+        299
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ],
+        [
+          49,
+          69
+        ],
+        [
+          49,
+          78
+        ]
+      ],
+      "heights": [
+        69,
+        69,
+        78
+      ],
+      "aspMin": 0.628,
+      "aspMax": 0.71,
+      "families": {
+        "blue": 3
+      }
+    },
+    {
+      "sheetRow": 455,
+      "count": 1,
+      "x0s": [
+        357
+      ],
+      "sizes": [
+        [
+          49,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.628,
+      "aspMax": 0.628,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 457,
+      "count": 1,
+      "x0s": [
+        413
+      ],
+      "sizes": [
+        [
+          48,
+          74
+        ]
+      ],
+      "heights": [
+        74
+      ],
+      "aspMin": 0.649,
+      "aspMax": 0.649,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 458,
+      "count": 1,
+      "x0s": [
+        473
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 459,
+      "count": 1,
+      "x0s": [
+        534
+      ],
+      "sizes": [
+        [
+          47,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.644,
+      "aspMax": 0.644,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 526,
+      "count": 1,
+      "x0s": [
+        15
+      ],
+      "sizes": [
+        [
+          47,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.644,
+      "aspMax": 0.644,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 527,
+      "count": 1,
+      "x0s": [
+        70
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 528,
+      "count": 1,
+      "x0s": [
+        126
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 529,
+      "count": 1,
+      "x0s": [
+        180
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 531,
+      "count": 1,
+      "x0s": [
+        238
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 536,
+      "count": 1,
+      "x0s": [
+        297
+      ],
+      "sizes": [
+        [
+          47,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.644,
+      "aspMax": 0.644,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 538,
+      "count": 2,
+      "x0s": [
+        353,
+        409
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ],
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73,
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 2
+      }
+    },
+    {
+      "sheetRow": 539,
+      "count": 1,
+      "x0s": [
+        524
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 540,
+      "count": 1,
+      "x0s": [
+        463
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 604,
+      "count": 2,
+      "x0s": [
+        129,
+        182
+      ],
+      "sizes": [
+        [
+          47,
+          75
+        ],
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73,
+        75
+      ],
+      "aspMin": 0.627,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 2
+      }
+    },
+    {
+      "sheetRow": 605,
+      "count": 1,
+      "x0s": [
+        72
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 606,
+      "count": 1,
+      "x0s": [
+        15
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 607,
+      "count": 1,
+      "x0s": [
+        235
+      ],
+      "sizes": [
+        [
+          47,
+          75
+        ]
+      ],
+      "heights": [
+        75
+      ],
+      "aspMin": 0.627,
+      "aspMax": 0.627,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 612,
+      "count": 1,
+      "x0s": [
+        292
+      ],
+      "sizes": [
+        [
+          47,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.603,
+      "aspMax": 0.603,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 615,
+      "count": 1,
+      "x0s": [
+        350
+      ],
+      "sizes": [
+        [
+          52,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 632,
+      "count": 1,
+      "x0s": [
+        408
+      ],
+      "sizes": [
+        [
+          78,
+          54
+        ]
+      ],
+      "heights": [
+        54
+      ],
+      "aspMin": 1.444,
+      "aspMax": 1.444,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 633,
+      "count": 1,
+      "x0s": [
+        489
+      ],
+      "sizes": [
+        [
+          73,
+          49
+        ]
+      ],
+      "heights": [
+        49
+      ],
+      "aspMin": 1.49,
+      "aspMax": 1.49,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 685,
+      "count": 1,
+      "x0s": [
+        17
+      ],
+      "sizes": [
+        [
+          72,
+          47
+        ]
+      ],
+      "heights": [
+        47
+      ],
+      "aspMin": 1.532,
+      "aspMax": 1.532,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 686,
+      "count": 1,
+      "x0s": [
+        172
+      ],
+      "sizes": [
+        [
+          60,
+          74
+        ]
+      ],
+      "heights": [
+        74
+      ],
+      "aspMin": 0.811,
+      "aspMax": 0.811,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 687,
+      "count": 1,
+      "x0s": [
+        97
+      ],
+      "sizes": [
+        [
+          69,
+          61
+        ]
+      ],
+      "heights": [
+        61
+      ],
+      "aspMin": 1.131,
+      "aspMax": 1.131,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 690,
+      "count": 1,
+      "x0s": [
+        239
+      ],
+      "sizes": [
+        [
+          64,
+          71
+        ]
+      ],
+      "heights": [
+        71
+      ],
+      "aspMin": 0.901,
+      "aspMax": 0.901,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 694,
+      "count": 1,
+      "x0s": [
+        311
+      ],
+      "sizes": [
+        [
+          67,
+          68
+        ]
+      ],
+      "heights": [
+        68
+      ],
+      "aspMin": 0.985,
+      "aspMax": 0.985,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 698,
+      "count": 1,
+      "x0s": [
+        389
+      ],
+      "sizes": [
+        [
+          66,
+          67
+        ]
+      ],
+      "heights": [
+        67
+      ],
+      "aspMin": 0.985,
+      "aspMax": 0.985,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 699,
+      "count": 1,
+      "x0s": [
+        465
+      ],
+      "sizes": [
+        [
+          67,
+          67
+        ]
+      ],
+      "heights": [
+        67
+      ],
+      "aspMin": 1.0,
+      "aspMax": 1.0,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 702,
+      "count": 1,
+      "x0s": [
+        535
+      ],
+      "sizes": [
+        [
+          69,
+          66
+        ]
+      ],
+      "heights": [
+        66
+      ],
+      "aspMin": 1.045,
+      "aspMax": 1.045,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 743,
+      "count": 1,
+      "x0s": [
+        19
+      ],
+      "sizes": [
+        [
+          69,
+          66
+        ]
+      ],
+      "heights": [
+        66
+      ],
+      "aspMin": 1.045,
+      "aspMax": 1.045,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 747,
+      "count": 1,
+      "x0s": [
+        93
+      ],
+      "sizes": [
+        [
+          59,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.808,
+      "aspMax": 0.808,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 753,
+      "count": 1,
+      "x0s": [
+        162
+      ],
+      "sizes": [
+        [
+          60,
+          74
+        ]
+      ],
+      "heights": [
+        74
+      ],
+      "aspMin": 0.811,
+      "aspMax": 0.811,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 768,
+      "count": 1,
+      "x0s": [
+        239
+      ],
+      "sizes": [
+        [
+          62,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.849,
+      "aspMax": 0.849,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 770,
+      "count": 1,
+      "x0s": [
+        381
+      ],
+      "sizes": [
+        [
+          62,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.849,
+      "aspMax": 0.849,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 771,
+      "count": 1,
+      "x0s": [
+        454
+      ],
+      "sizes": [
+        [
+          60,
+          74
+        ]
+      ],
+      "heights": [
+        74
+      ],
+      "aspMin": 0.811,
+      "aspMax": 0.811,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 773,
+      "count": 1,
+      "x0s": [
+        312
+      ],
+      "sizes": [
+        [
+          58,
+          72
+        ]
+      ],
+      "heights": [
+        72
+      ],
+      "aspMin": 0.806,
+      "aspMax": 0.806,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 779,
+      "count": 1,
+      "x0s": [
+        522
+      ],
+      "sizes": [
+        [
+          68,
+          60
+        ]
+      ],
+      "heights": [
+        60
+      ],
+      "aspMin": 1.133,
+      "aspMax": 1.133,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 822,
+      "count": 1,
+      "x0s": [
+        13
+      ],
+      "sizes": [
+        [
+          51,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.699,
+      "aspMax": 0.699,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 823,
+      "count": 1,
+      "x0s": [
+        76
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 827,
+      "count": 1,
+      "x0s": [
+        134
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 833,
+      "count": 1,
+      "x0s": [
+        188
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.681,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 844,
+      "count": 1,
+      "x0s": [
+        248
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 849,
+      "count": 1,
+      "x0s": [
+        305
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 854,
+      "count": 1,
+      "x0s": [
+        367
+      ],
+      "sizes": [
+        [
+          48,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.608,
+      "aspMax": 0.608,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 860,
+      "count": 1,
+      "x0s": [
+        425
+      ],
+      "sizes": [
+        [
+          48,
+          80
+        ]
+      ],
+      "heights": [
+        80
+      ],
+      "aspMin": 0.6,
+      "aspMax": 0.6,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 866,
+      "count": 1,
+      "x0s": [
+        481
+      ],
+      "sizes": [
+        [
+          49,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.628,
+      "aspMax": 0.628,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 868,
+      "count": 1,
+      "x0s": [
+        542
+      ],
+      "sizes": [
+        [
+          48,
+          74
+        ]
+      ],
+      "heights": [
+        74
+      ],
+      "aspMin": 0.649,
+      "aspMax": 0.649,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 904,
+      "count": 1,
+      "x0s": [
+        19
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 909,
+      "count": 1,
+      "x0s": [
+        141
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 910,
+      "count": 1,
+      "x0s": [
+        84
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 911,
+      "count": 1,
+      "x0s": [
+        195
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 918,
+      "count": 1,
+      "x0s": [
+        249
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 926,
+      "count": 1,
+      "x0s": [
+        304
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 940,
+      "count": 1,
+      "x0s": [
+        365
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 946,
+      "count": 1,
+      "x0s": [
+        426
+      ],
+      "sizes": [
+        [
+          49,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.671,
+      "aspMax": 0.671,
+      "families": {
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 955,
+      "count": 1,
+      "x0s": [
+        484
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 957,
+      "count": 1,
+      "x0s": [
+        540
+      ],
+      "sizes": [
+        [
+          62,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.899,
+      "aspMax": 0.899,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 990,
+      "count": 1,
+      "x0s": [
+        17
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 992,
+      "count": 1,
+      "x0s": [
+        75
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 996,
+      "count": 1,
+      "x0s": [
+        130
+      ],
+      "sizes": [
+        [
+          61,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.884,
+      "aspMax": 0.884,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 997,
+      "count": 1,
+      "x0s": [
+        196
+      ],
+      "sizes": [
+        [
+          62,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.899,
+      "aspMax": 0.899,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1004,
+      "count": 1,
+      "x0s": [
+        267
+      ],
+      "sizes": [
+        [
+          52,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.754,
+      "aspMax": 0.754,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1010,
+      "count": 1,
+      "x0s": [
+        323
+      ],
+      "sizes": [
+        [
+          50,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.725,
+      "aspMax": 0.725,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1022,
+      "count": 1,
+      "x0s": [
+        377
+      ],
+      "sizes": [
+        [
+          60,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.87,
+      "aspMax": 0.87,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1028,
+      "count": 1,
+      "x0s": [
+        440
+      ],
+      "sizes": [
+        [
+          61,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.884,
+      "aspMax": 0.884,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1032,
+      "count": 1,
+      "x0s": [
+        511
+      ],
+      "sizes": [
+        [
+          58,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.841,
+      "aspMax": 0.841,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1069,
+      "count": 1,
+      "x0s": [
+        12
+      ],
+      "sizes": [
+        [
+          53,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.768,
+      "aspMax": 0.768,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1077,
+      "count": 1,
+      "x0s": [
+        75
+      ],
+      "sizes": [
+        [
+          62,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.899,
+      "aspMax": 0.899,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1078,
+      "count": 1,
+      "x0s": [
+        144
+      ],
+      "sizes": [
+        [
+          57,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.826,
+      "aspMax": 0.826,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1080,
+      "count": 1,
+      "x0s": [
+        274
+      ],
+      "sizes": [
+        [
+          62,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.899,
+      "aspMax": 0.899,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1081,
+      "count": 1,
+      "x0s": [
+        213
+      ],
+      "sizes": [
+        [
+          56,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.812,
+      "aspMax": 0.812,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1095,
+      "count": 1,
+      "x0s": [
+        336
+      ],
+      "sizes": [
+        [
+          61,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.884,
+      "aspMax": 0.884,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1102,
+      "count": 1,
+      "x0s": [
+        401
+      ],
+      "sizes": [
+        [
+          58,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.841,
+      "aspMax": 0.841,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1107,
+      "count": 1,
+      "x0s": [
+        467
+      ],
+      "sizes": [
+        [
+          60,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.87,
+      "aspMax": 0.87,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1110,
+      "count": 1,
+      "x0s": [
+        541
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1149,
+      "count": 1,
+      "x0s": [
+        8
+      ],
+      "sizes": [
+        [
+          62,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.899,
+      "aspMax": 0.899,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1153,
+      "count": 1,
+      "x0s": [
+        73
+      ],
+      "sizes": [
+        [
+          62,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.899,
+      "aspMax": 0.899,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1156,
+      "count": 1,
+      "x0s": [
+        138
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1157,
+      "count": 2,
+      "x0s": [
+        193,
+        253
+      ],
+      "sizes": [
+        [
+          53,
+          69
+        ],
+        [
+          60,
+          69
+        ]
+      ],
+      "heights": [
+        69,
+        69
+      ],
+      "aspMin": 0.768,
+      "aspMax": 0.87,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1173,
+      "count": 1,
+      "x0s": [
+        321
+      ],
+      "sizes": [
+        [
+          57,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.826,
+      "aspMax": 0.826,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1176,
+      "count": 1,
+      "x0s": [
+        390
+      ],
+      "sizes": [
+        [
+          52,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.754,
+      "aspMax": 0.754,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1178,
+      "count": 1,
+      "x0s": [
+        451
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.681,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1182,
+      "count": 1,
+      "x0s": [
+        506
+      ],
+      "sizes": [
+        [
+          54,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.783,
+      "aspMax": 0.783,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1233,
+      "count": 2,
+      "x0s": [
+        7,
+        70
+      ],
+      "sizes": [
+        [
+          48,
+          68
+        ],
+        [
+          58,
+          69
+        ]
+      ],
+      "heights": [
+        69,
+        68
+      ],
+      "aspMin": 0.706,
+      "aspMax": 0.841,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1239,
+      "count": 1,
+      "x0s": [
+        208
+      ],
+      "sizes": [
+        [
+          70,
+          62
+        ]
+      ],
+      "heights": [
+        62
+      ],
+      "aspMin": 1.129,
+      "aspMax": 1.129,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1244,
+      "count": 1,
+      "x0s": [
+        128
+      ],
+      "sizes": [
+        [
+          74,
+          54
+        ]
+      ],
+      "heights": [
+        54
+      ],
+      "aspMin": 1.37,
+      "aspMax": 1.37,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1246,
+      "count": 1,
+      "x0s": [
+        281
+      ],
+      "sizes": [
+        [
+          61,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.836,
+      "aspMax": 0.836,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1253,
+      "count": 1,
+      "x0s": [
+        350
+      ],
+      "sizes": [
+        [
+          53,
+          66
+        ]
+      ],
+      "heights": [
+        66
+      ],
+      "aspMin": 0.803,
+      "aspMax": 0.803,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1260,
+      "count": 1,
+      "x0s": [
+        405
+      ],
+      "sizes": [
+        [
+          53,
+          63
+        ]
+      ],
+      "heights": [
+        63
+      ],
+      "aspMin": 0.841,
+      "aspMax": 0.841,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1263,
+      "count": 2,
+      "x0s": [
+        467,
+        529
+      ],
+      "sizes": [
+        [
+          52,
+          58
+        ]
+      ],
+      "heights": [
+        58,
+        58
+      ],
+      "aspMin": 0.897,
+      "aspMax": 0.897,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1331,
+      "count": 1,
+      "x0s": [
+        69
+      ],
+      "sizes": [
+        [
+          62,
+          71
+        ]
+      ],
+      "heights": [
+        71
+      ],
+      "aspMin": 0.873,
+      "aspMax": 0.873,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1334,
+      "count": 2,
+      "x0s": [
+        134,
+        199
+      ],
+      "sizes": [
+        [
+          62,
+          72
+        ]
+      ],
+      "heights": [
+        72,
+        72
+      ],
+      "aspMin": 0.861,
+      "aspMax": 0.861,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1338,
+      "count": 1,
+      "x0s": [
+        266
+      ],
+      "sizes": [
+        [
+          48,
+          71
+        ]
+      ],
+      "heights": [
+        71
+      ],
+      "aspMin": 0.676,
+      "aspMax": 0.676,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1340,
+      "count": 1,
+      "x0s": [
+        3
+      ],
+      "sizes": [
+        [
+          67,
+          59
+        ]
+      ],
+      "heights": [
+        59
+      ],
+      "aspMin": 1.136,
+      "aspMax": 1.136,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1341,
+      "count": 1,
+      "x0s": [
+        490
+      ],
+      "sizes": [
+        [
+          67,
+          58
+        ]
+      ],
+      "heights": [
+        58
+      ],
+      "aspMin": 1.155,
+      "aspMax": 1.155,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1345,
+      "count": 1,
+      "x0s": [
+        331
+      ],
+      "sizes": [
+        [
+          75,
+          55
+        ]
+      ],
+      "heights": [
+        55
+      ],
+      "aspMin": 1.364,
+      "aspMax": 1.364,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1346,
+      "count": 1,
+      "x0s": [
+        411
+      ],
+      "sizes": [
+        [
+          73,
+          59
+        ]
+      ],
+      "heights": [
+        59
+      ],
+      "aspMin": 1.237,
+      "aspMax": 1.237,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1414,
+      "count": 2,
+      "x0s": [
+        4,
+        68
+      ],
+      "sizes": [
+        [
+          62,
+          72
+        ],
+        [
+          63,
+          71
+        ]
+      ],
+      "heights": [
+        71,
+        72
+      ],
+      "aspMin": 0.861,
+      "aspMax": 0.887,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1418,
+      "count": 1,
+      "x0s": [
+        135
+      ],
+      "sizes": [
+        [
+          48,
+          68
+        ]
+      ],
+      "heights": [
+        68
+      ],
+      "aspMin": 0.706,
+      "aspMax": 0.706,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1419,
+      "count": 2,
+      "x0s": [
+        192,
+        248
+      ],
+      "sizes": [
+        [
+          49,
+          68
+        ],
+        [
+          62,
+          72
+        ]
+      ],
+      "heights": [
+        68,
+        72
+      ],
+      "aspMin": 0.721,
+      "aspMax": 0.861,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1420,
+      "count": 3,
+      "x0s": [
+        316,
+        388,
+        442
+      ],
+      "sizes": [
+        [
+          48,
+          68
+        ],
+        [
+          49,
+          68
+        ],
+        [
+          62,
+          72
+        ]
+      ],
+      "heights": [
+        72,
+        68,
+        68
+      ],
+      "aspMin": 0.706,
+      "aspMax": 0.861,
+      "families": {
+        "red": 3
+      }
+    },
+    {
+      "sheetRow": 1433,
+      "count": 1,
+      "x0s": [
+        499
+      ],
+      "sizes": [
+        [
+          76,
+          52
+        ]
+      ],
+      "heights": [
+        52
+      ],
+      "aspMin": 1.462,
+      "aspMax": 1.462,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1499,
+      "count": 1,
+      "x0s": [
+        5
+      ],
+      "sizes": [
+        [
+          70,
+          62
+        ]
+      ],
+      "heights": [
+        62
+      ],
+      "aspMin": 1.129,
+      "aspMax": 1.129,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1500,
+      "count": 1,
+      "x0s": [
+        279
+      ],
+      "sizes": [
+        [
+          64,
+          71
+        ]
+      ],
+      "heights": [
+        71
+      ],
+      "aspMin": 0.901,
+      "aspMax": 0.901,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1502,
+      "count": 2,
+      "x0s": [
+        346,
+        413
+      ],
+      "sizes": [
+        [
+          62,
+          72
+        ],
+        [
+          63,
+          72
+        ]
+      ],
+      "heights": [
+        72,
+        72
+      ],
+      "aspMin": 0.861,
+      "aspMax": 0.875,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1504,
+      "count": 1,
+      "x0s": [
+        82
+      ],
+      "sizes": [
+        [
+          57,
+          49
+        ]
+      ],
+      "heights": [
+        49
+      ],
+      "aspMin": 1.163,
+      "aspMax": 1.163,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1505,
+      "count": 1,
+      "x0s": [
+        142
+      ],
+      "sizes": [
+        [
+          60,
+          48
+        ]
+      ],
+      "heights": [
+        48
+      ],
+      "aspMin": 1.25,
+      "aspMax": 1.25,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1506,
+      "count": 1,
+      "x0s": [
+        542
+      ],
+      "sizes": [
+        [
+          47,
+          62
+        ]
+      ],
+      "heights": [
+        62
+      ],
+      "aspMin": 0.758,
+      "aspMax": 0.758,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1508,
+      "count": 1,
+      "x0s": [
+        209
+      ],
+      "sizes": [
+        [
+          61,
+          47
+        ]
+      ],
+      "heights": [
+        47
+      ],
+      "aspMin": 1.298,
+      "aspMax": 1.298,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1510,
+      "count": 1,
+      "x0s": [
+        476
+      ],
+      "sizes": [
+        [
+          62,
+          68
+        ]
+      ],
+      "heights": [
+        68
+      ],
+      "aspMin": 0.912,
+      "aspMax": 0.912,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1571,
+      "count": 1,
+      "x0s": [
+        5
+      ],
+      "sizes": [
+        [
+          46,
+          59
+        ]
+      ],
+      "heights": [
+        59
+      ],
+      "aspMin": 0.78,
+      "aspMax": 0.78,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1582,
+      "count": 1,
+      "x0s": [
+        461
+      ],
+      "sizes": [
+        [
+          42,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.609,
+      "aspMax": 0.609,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1583,
+      "count": 1,
+      "x0s": [
+        517
+      ],
+      "sizes": [
+        [
+          40,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.58,
+      "aspMax": 0.58,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1586,
+      "count": 1,
+      "x0s": [
+        364
+      ],
+      "sizes": [
+        [
+          39,
+          62
+        ]
+      ],
+      "heights": [
+        62
+      ],
+      "aspMin": 0.629,
+      "aspMax": 0.629,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1588,
+      "count": 1,
+      "x0s": [
+        411
+      ],
+      "sizes": [
+        [
+          44,
+          62
+        ]
+      ],
+      "heights": [
+        62
+      ],
+      "aspMin": 0.71,
+      "aspMax": 0.71,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1590,
+      "count": 1,
+      "x0s": [
+        108
+      ],
+      "sizes": [
+        [
+          41,
+          41
+        ]
+      ],
+      "heights": [
+        41
+      ],
+      "aspMin": 1.0,
+      "aspMax": 1.0,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1602,
+      "count": 1,
+      "x0s": [
+        63
+      ],
+      "sizes": [
+        [
+          39,
+          28
+        ]
+      ],
+      "heights": [
+        28
+      ],
+      "aspMin": 1.393,
+      "aspMax": 1.393,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1603,
+      "count": 1,
+      "x0s": [
+        161
+      ],
+      "sizes": [
+        [
+          39,
+          26
+        ]
+      ],
+      "heights": [
+        26
+      ],
+      "aspMin": 1.5,
+      "aspMax": 1.5,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1605,
+      "count": 2,
+      "x0s": [
+        211,
+        262
+      ],
+      "sizes": [
+        [
+          38,
+          26
+        ]
+      ],
+      "heights": [
+        26,
+        26
+      ],
+      "aspMin": 1.462,
+      "aspMax": 1.462,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1607,
+      "count": 1,
+      "x0s": [
+        319
+      ],
+      "sizes": [
+        [
+          21,
+          23
+        ]
+      ],
+      "heights": [
+        23
+      ],
+      "aspMin": 0.913,
+      "aspMax": 0.913,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1623,
+      "count": 1,
+      "x0s": [
+        313
+      ],
+      "sizes": [
+        [
+          37,
+          26
+        ]
+      ],
+      "heights": [
+        26
+      ],
+      "aspMin": 1.423,
+      "aspMax": 1.423,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1640,
+      "count": 1,
+      "x0s": [
+        56
+      ],
+      "sizes": [
+        [
+          43,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.623,
+      "aspMax": 0.623,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1642,
+      "count": 1,
+      "x0s": [
+        5
+      ],
+      "sizes": [
+        [
+          40,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.58,
+      "aspMax": 0.58,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1645,
+      "count": 1,
+      "x0s": [
+        109
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1647,
+      "count": 1,
+      "x0s": [
+        228
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.681,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1649,
+      "count": 1,
+      "x0s": [
+        168
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.681,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1653,
+      "count": 1,
+      "x0s": [
+        287
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1654,
+      "count": 1,
+      "x0s": [
+        346
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1657,
+      "count": 3,
+      "x0s": [
+        403,
+        458,
+        518
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ],
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69,
+        69,
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.696,
+      "families": {
+        "red": 3
+      }
+    },
+    {
+      "sheetRow": 1719,
+      "count": 1,
+      "x0s": [
+        5
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1720,
+      "count": 1,
+      "x0s": [
+        62
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1721,
+      "count": 2,
+      "x0s": [
+        115,
+        167
+      ],
+      "sizes": [
+        [
+          47,
+          78
+        ],
+        [
+          48,
+          77
+        ]
+      ],
+      "heights": [
+        77,
+        78
+      ],
+      "aspMin": 0.603,
+      "aspMax": 0.623,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1722,
+      "count": 1,
+      "x0s": [
+        222
+      ],
+      "sizes": [
+        [
+          48,
+          75
+        ]
+      ],
+      "heights": [
+        75
+      ],
+      "aspMin": 0.64,
+      "aspMax": 0.64,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1729,
+      "count": 1,
+      "x0s": [
+        282
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1730,
+      "count": 1,
+      "x0s": [
+        337
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.681,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1732,
+      "count": 1,
+      "x0s": [
+        447
+      ],
+      "sizes": [
+        [
+          48,
+          74
+        ]
+      ],
+      "heights": [
+        74
+      ],
+      "aspMin": 0.649,
+      "aspMax": 0.649,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1733,
+      "count": 1,
+      "x0s": [
+        393
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1735,
+      "count": 1,
+      "x0s": [
+        504
+      ],
+      "sizes": [
+        [
+          48,
+          74
+        ]
+      ],
+      "heights": [
+        74
+      ],
+      "aspMin": 0.649,
+      "aspMax": 0.649,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1739,
+      "count": 1,
+      "x0s": [
+        558
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1804,
+      "count": 1,
+      "x0s": [
+        5
+      ],
+      "sizes": [
+        [
+          48,
+          77
+        ]
+      ],
+      "heights": [
+        77
+      ],
+      "aspMin": 0.623,
+      "aspMax": 0.623,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1811,
+      "count": 1,
+      "x0s": [
+        63
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.681,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1814,
+      "count": 2,
+      "x0s": [
+        117,
+        167
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ],
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69,
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.696,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1816,
+      "count": 1,
+      "x0s": [
+        223
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 1818,
+      "count": 2,
+      "x0s": [
+        280,
+        337
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ],
+        [
+          48,
+          75
+        ]
+      ],
+      "heights": [
+        69,
+        75
+      ],
+      "aspMin": 0.64,
+      "aspMax": 0.696,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 1820,
+      "count": 4,
+      "x0s": [
+        394,
+        448,
+        502,
+        558
+      ],
+      "sizes": [
+        [
+          47,
+          76
+        ],
+        [
+          48,
+          78
+        ],
+        [
+          48,
+          79
+        ]
+      ],
+      "heights": [
+        76,
+        78,
+        79,
+        78
+      ],
+      "aspMin": 0.608,
+      "aspMax": 0.618,
+      "families": {
+        "red": 4
+      }
+    },
+    {
+      "sheetRow": 1897,
+      "count": 1,
+      "x0s": [
+        3
+      ],
+      "sizes": [
+        [
+          54,
+          80
+        ]
+      ],
+      "heights": [
+        80
+      ],
+      "aspMin": 0.675,
+      "aspMax": 0.675,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 1902,
+      "count": 1,
+      "x0s": [
+        64
+      ],
+      "sizes": [
+        [
+          56,
+          80
+        ]
+      ],
+      "heights": [
+        80
+      ],
+      "aspMin": 0.7,
+      "aspMax": 0.7,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 1915,
+      "count": 2,
+      "x0s": [
+        215,
+        513
+      ],
+      "sizes": [
+        [
+          50,
+          79
+        ],
+        [
+          65,
+          70
+        ]
+      ],
+      "heights": [
+        70,
+        79
+      ],
+      "aspMin": 0.633,
+      "aspMax": 0.929,
+      "families": {
+        "orange": 2
+      }
+    },
+    {
+      "sheetRow": 1920,
+      "count": 1,
+      "x0s": [
+        290
+      ],
+      "sizes": [
+        [
+          64,
+          71
+        ]
+      ],
+      "heights": [
+        71
+      ],
+      "aspMin": 0.901,
+      "aspMax": 0.901,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 1924,
+      "count": 1,
+      "x0s": [
+        139
+      ],
+      "sizes": [
+        [
+          69,
+          49
+        ]
+      ],
+      "heights": [
+        49
+      ],
+      "aspMin": 1.408,
+      "aspMax": 1.408,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 1932,
+      "count": 1,
+      "x0s": [
+        359
+      ],
+      "sizes": [
+        [
+          72,
+          52
+        ]
+      ],
+      "heights": [
+        52
+      ],
+      "aspMin": 1.385,
+      "aspMax": 1.385,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 1934,
+      "count": 1,
+      "x0s": [
+        437
+      ],
+      "sizes": [
+        [
+          72,
+          51
+        ]
+      ],
+      "heights": [
+        51
+      ],
+      "aspMin": 1.412,
+      "aspMax": 1.412,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 1988,
+      "count": 1,
+      "x0s": [
+        7
+      ],
+      "sizes": [
+        [
+          49,
+          77
+        ]
+      ],
+      "heights": [
+        77
+      ],
+      "aspMin": 0.636,
+      "aspMax": 0.636,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 1990,
+      "count": 2,
+      "x0s": [
+        59,
+        116
+      ],
+      "sizes": [
+        [
+          49,
+          78
+        ],
+        [
+          55,
+          79
+        ]
+      ],
+      "heights": [
+        78,
+        79
+      ],
+      "aspMin": 0.628,
+      "aspMax": 0.696,
+      "families": {
+        "orange": 2
+      }
+    },
+    {
+      "sheetRow": 1991,
+      "count": 1,
+      "x0s": [
+        178
+      ],
+      "sizes": [
+        [
+          54,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.692,
+      "aspMax": 0.692,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 1995,
+      "count": 1,
+      "x0s": [
+        238
+      ],
+      "sizes": [
+        [
+          54,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.692,
+      "aspMax": 0.692,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2000,
+      "count": 1,
+      "x0s": [
+        301
+      ],
+      "sizes": [
+        [
+          51,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.654,
+      "aspMax": 0.654,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2001,
+      "count": 1,
+      "x0s": [
+        363
+      ],
+      "sizes": [
+        [
+          50,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.641,
+      "aspMax": 0.641,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2004,
+      "count": 1,
+      "x0s": [
+        426
+      ],
+      "sizes": [
+        [
+          53,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.679,
+      "aspMax": 0.679,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2007,
+      "count": 1,
+      "x0s": [
+        489
+      ],
+      "sizes": [
+        [
+          53,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.679,
+      "aspMax": 0.679,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2010,
+      "count": 1,
+      "x0s": [
+        544
+      ],
+      "sizes": [
+        [
+          53,
+          78
+        ]
+      ],
+      "heights": [
+        78
+      ],
+      "aspMin": 0.679,
+      "aspMax": 0.679,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2081,
+      "count": 2,
+      "x0s": [
+        8,
+        69
+      ],
+      "sizes": [
+        [
+          49,
+          77
+        ],
+        [
+          52,
+          77
+        ]
+      ],
+      "heights": [
+        77,
+        77
+      ],
+      "aspMin": 0.636,
+      "aspMax": 0.675,
+      "families": {
+        "orange": 2
+      }
+    },
+    {
+      "sheetRow": 2088,
+      "count": 1,
+      "x0s": [
+        122
+      ],
+      "sizes": [
+        [
+          52,
+          77
+        ]
+      ],
+      "heights": [
+        77
+      ],
+      "aspMin": 0.675,
+      "aspMax": 0.675,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2089,
+      "count": 1,
+      "x0s": [
+        181
+      ],
+      "sizes": [
+        [
+          52,
+          77
+        ]
+      ],
+      "heights": [
+        77
+      ],
+      "aspMin": 0.675,
+      "aspMax": 0.675,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2090,
+      "count": 2,
+      "x0s": [
+        238,
+        295
+      ],
+      "sizes": [
+        [
+          51,
+          77
+        ],
+        [
+          53,
+          77
+        ]
+      ],
+      "heights": [
+        77,
+        77
+      ],
+      "aspMin": 0.662,
+      "aspMax": 0.688,
+      "families": {
+        "orange": 2
+      }
+    },
+    {
+      "sheetRow": 2092,
+      "count": 1,
+      "x0s": [
+        353
+      ],
+      "sizes": [
+        [
+          50,
+          77
+        ]
+      ],
+      "heights": [
+        77
+      ],
+      "aspMin": 0.649,
+      "aspMax": 0.649,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2094,
+      "count": 1,
+      "x0s": [
+        473
+      ],
+      "sizes": [
+        [
+          53,
+          81
+        ]
+      ],
+      "heights": [
+        81
+      ],
+      "aspMin": 0.654,
+      "aspMax": 0.654,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2095,
+      "count": 2,
+      "x0s": [
+        412,
+        530
+      ],
+      "sizes": [
+        [
+          52,
+          76
+        ],
+        [
+          53,
+          77
+        ]
+      ],
+      "heights": [
+        77,
+        76
+      ],
+      "aspMin": 0.684,
+      "aspMax": 0.688,
+      "families": {
+        "orange": 2
+      }
+    },
+    {
+      "sheetRow": 2162,
+      "count": 2,
+      "x0s": [
+        3,
+        63
+      ],
+      "sizes": [
+        [
+          55,
+          74
+        ],
+        [
+          58,
+          72
+        ]
+      ],
+      "heights": [
+        74,
+        72
+      ],
+      "aspMin": 0.743,
+      "aspMax": 0.806,
+      "families": {
+        "orange": 2
+      }
+    },
+    {
+      "sheetRow": 2168,
+      "count": 1,
+      "x0s": [
+        184
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.681,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2169,
+      "count": 1,
+      "x0s": [
+        126
+      ],
+      "sizes": [
+        [
+          52,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.754,
+      "aspMax": 0.754,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2170,
+      "count": 1,
+      "x0s": [
+        239
+      ],
+      "sizes": [
+        [
+          49,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.71,
+      "aspMax": 0.71,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2172,
+      "count": 2,
+      "x0s": [
+        294,
+        346
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69,
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "orange": 2
+      }
+    },
+    {
+      "sheetRow": 2191,
+      "count": 1,
+      "x0s": [
+        399
+      ],
+      "sizes": [
+        [
+          70,
+          52
+        ]
+      ],
+      "heights": [
+        52
+      ],
+      "aspMin": 1.346,
+      "aspMax": 1.346,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2202,
+      "count": 1,
+      "x0s": [
+        474
+      ],
+      "sizes": [
+        [
+          71,
+          48
+        ]
+      ],
+      "heights": [
+        48
+      ],
+      "aspMin": 1.479,
+      "aspMax": 1.479,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2241,
+      "count": 1,
+      "x0s": [
+        84
+      ],
+      "sizes": [
+        [
+          62,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.849,
+      "aspMax": 0.849,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2245,
+      "count": 1,
+      "x0s": [
+        8
+      ],
+      "sizes": [
+        [
+          70,
+          48
+        ]
+      ],
+      "heights": [
+        48
+      ],
+      "aspMin": 1.458,
+      "aspMax": 1.458,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2258,
+      "count": 2,
+      "x0s": [
+        151,
+        468
+      ],
+      "sizes": [
+        [
+          66,
+          68
+        ],
+        [
+          71,
+          55
+        ]
+      ],
+      "heights": [
+        55,
+        68
+      ],
+      "aspMin": 0.971,
+      "aspMax": 1.291,
+      "families": {
+        "orange": 2
+      }
+    },
+    {
+      "sheetRow": 2260,
+      "count": 1,
+      "x0s": [
+        537
+      ],
+      "sizes": [
+        [
+          64,
+          71
+        ]
+      ],
+      "heights": [
+        71
+      ],
+      "aspMin": 0.901,
+      "aspMax": 0.901,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2262,
+      "count": 1,
+      "x0s": [
+        230
+      ],
+      "sizes": [
+        [
+          72,
+          53
+        ]
+      ],
+      "heights": [
+        53
+      ],
+      "aspMin": 1.358,
+      "aspMax": 1.358,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2264,
+      "count": 1,
+      "x0s": [
+        304
+      ],
+      "sizes": [
+        [
+          76,
+          54
+        ]
+      ],
+      "heights": [
+        54
+      ],
+      "aspMin": 1.407,
+      "aspMax": 1.407,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2266,
+      "count": 1,
+      "x0s": [
+        384
+      ],
+      "sizes": [
+        [
+          76,
+          53
+        ]
+      ],
+      "heights": [
+        53
+      ],
+      "aspMin": 1.434,
+      "aspMax": 1.434,
+      "families": {
+        "orange": 1
+      }
+    },
+    {
+      "sheetRow": 2327,
+      "count": 1,
+      "x0s": [
+        62
+      ],
+      "sizes": [
+        [
+          48,
+          73
+        ]
+      ],
+      "heights": [
+        73
+      ],
+      "aspMin": 0.658,
+      "aspMax": 0.658,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2330,
+      "count": 1,
+      "x0s": [
+        4
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2331,
+      "count": 1,
+      "x0s": [
+        117
+      ],
+      "sizes": [
+        [
+          48,
+          75
+        ]
+      ],
+      "heights": [
+        75
+      ],
+      "aspMin": 0.64,
+      "aspMax": 0.64,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2334,
+      "count": 1,
+      "x0s": [
+        169
+      ],
+      "sizes": [
+        [
+          48,
+          74
+        ]
+      ],
+      "heights": [
+        74
+      ],
+      "aspMin": 0.649,
+      "aspMax": 0.649,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2338,
+      "count": 1,
+      "x0s": [
+        283
+      ],
+      "sizes": [
+        [
+          47,
+          76
+        ]
+      ],
+      "heights": [
+        76
+      ],
+      "aspMin": 0.618,
+      "aspMax": 0.618,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2339,
+      "count": 1,
+      "x0s": [
+        223
+      ],
+      "sizes": [
+        [
+          49,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.71,
+      "aspMax": 0.71,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2340,
+      "count": 1,
+      "x0s": [
+        338
+      ],
+      "sizes": [
+        [
+          47,
+          76
+        ]
+      ],
+      "heights": [
+        76
+      ],
+      "aspMin": 0.618,
+      "aspMax": 0.618,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2342,
+      "count": 1,
+      "x0s": [
+        394
+      ],
+      "sizes": [
+        [
+          48,
+          76
+        ]
+      ],
+      "heights": [
+        76
+      ],
+      "aspMin": 0.632,
+      "aspMax": 0.632,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2348,
+      "count": 2,
+      "x0s": [
+        455,
+        559
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ],
+        [
+          48,
+          74
+        ]
+      ],
+      "heights": [
+        69,
+        74
+      ],
+      "aspMin": 0.649,
+      "aspMax": 0.696,
+      "families": {
+        "red": 2
+      }
+    },
+    {
+      "sheetRow": 2349,
+      "count": 1,
+      "x0s": [
+        508
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2404,
+      "count": 1,
+      "x0s": [
+        3
+      ],
+      "sizes": [
+        [
+          47,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.681,
+      "aspMax": 0.681,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2407,
+      "count": 1,
+      "x0s": [
+        56
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2412,
+      "count": 1,
+      "x0s": [
+        116
+      ],
+      "sizes": [
+        [
+          48,
+          76
+        ]
+      ],
+      "heights": [
+        76
+      ],
+      "aspMin": 0.632,
+      "aspMax": 0.632,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2414,
+      "count": 1,
+      "x0s": [
+        175
+      ],
+      "sizes": [
+        [
+          48,
+          77
+        ]
+      ],
+      "heights": [
+        77
+      ],
+      "aspMin": 0.623,
+      "aspMax": 0.623,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2416,
+      "count": 1,
+      "x0s": [
+        230
+      ],
+      "sizes": [
+        [
+          48,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.608,
+      "aspMax": 0.608,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2418,
+      "count": 1,
+      "x0s": [
+        285
+      ],
+      "sizes": [
+        [
+          47,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.595,
+      "aspMax": 0.595,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2421,
+      "count": 1,
+      "x0s": [
+        338
+      ],
+      "sizes": [
+        [
+          48,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.608,
+      "aspMax": 0.608,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2426,
+      "count": 1,
+      "x0s": [
+        393
+      ],
+      "sizes": [
+        [
+          47,
+          79
+        ]
+      ],
+      "heights": [
+        79
+      ],
+      "aspMin": 0.595,
+      "aspMax": 0.595,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2427,
+      "count": 1,
+      "x0s": [
+        446
+      ],
+      "sizes": [
+        [
+          44,
+          72
+        ]
+      ],
+      "heights": [
+        72
+      ],
+      "aspMin": 0.611,
+      "aspMax": 0.611,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2429,
+      "count": 1,
+      "x0s": [
+        495
+      ],
+      "sizes": [
+        [
+          42,
+          68
+        ]
+      ],
+      "heights": [
+        68
+      ],
+      "aspMin": 0.618,
+      "aspMax": 0.618,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2433,
+      "count": 1,
+      "x0s": [
+        540
+      ],
+      "sizes": [
+        [
+          37,
+          61
+        ]
+      ],
+      "heights": [
+        61
+      ],
+      "aspMin": 0.607,
+      "aspMax": 0.607,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2487,
+      "count": 1,
+      "x0s": [
+        4
+      ],
+      "sizes": [
+        [
+          37,
+          60
+        ]
+      ],
+      "heights": [
+        60
+      ],
+      "aspMin": 0.617,
+      "aspMax": 0.617,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2493,
+      "count": 1,
+      "x0s": [
+        46
+      ],
+      "sizes": [
+        [
+          34,
+          56
+        ]
+      ],
+      "heights": [
+        56
+      ],
+      "aspMin": 0.607,
+      "aspMax": 0.607,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2501,
+      "count": 1,
+      "x0s": [
+        86
+      ],
+      "sizes": [
+        [
+          29,
+          48
+        ]
+      ],
+      "heights": [
+        48
+      ],
+      "aspMin": 0.604,
+      "aspMax": 0.604,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2505,
+      "count": 1,
+      "x0s": [
+        153
+      ],
+      "sizes": [
+        [
+          27,
+          45
+        ]
+      ],
+      "heights": [
+        45
+      ],
+      "aspMin": 0.6,
+      "aspMax": 0.6,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2506,
+      "count": 1,
+      "x0s": [
+        118
+      ],
+      "sizes": [
+        [
+          28,
+          45
+        ]
+      ],
+      "heights": [
+        45
+      ],
+      "aspMin": 0.622,
+      "aspMax": 0.622,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2510,
+      "count": 1,
+      "x0s": [
+        183
+      ],
+      "sizes": [
+        [
+          49,
+          40
+        ]
+      ],
+      "heights": [
+        40
+      ],
+      "aspMin": 1.225,
+      "aspMax": 1.225,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2513,
+      "count": 1,
+      "x0s": [
+        237
+      ],
+      "sizes": [
+        [
+          24,
+          39
+        ]
+      ],
+      "heights": [
+        39
+      ],
+      "aspMin": 0.615,
+      "aspMax": 0.615,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2514,
+      "count": 1,
+      "x0s": [
+        265
+      ],
+      "sizes": [
+        [
+          23,
+          38
+        ]
+      ],
+      "heights": [
+        38
+      ],
+      "aspMin": 0.605,
+      "aspMax": 0.605,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2520,
+      "count": 1,
+      "x0s": [
+        292
+      ],
+      "sizes": [
+        [
+          20,
+          33
+        ]
+      ],
+      "heights": [
+        33
+      ],
+      "aspMin": 0.606,
+      "aspMax": 0.606,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2522,
+      "count": 1,
+      "x0s": [
+        314
+      ],
+      "sizes": [
+        [
+          19,
+          31
+        ]
+      ],
+      "heights": [
+        31
+      ],
+      "aspMin": 0.613,
+      "aspMax": 0.613,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2526,
+      "count": 1,
+      "x0s": [
+        339
+      ],
+      "sizes": [
+        [
+          17,
+          28
+        ]
+      ],
+      "heights": [
+        28
+      ],
+      "aspMin": 0.607,
+      "aspMax": 0.607,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2528,
+      "count": 1,
+      "x0s": [
+        361
+      ],
+      "sizes": [
+        [
+          16,
+          28
+        ]
+      ],
+      "heights": [
+        28
+      ],
+      "aspMin": 0.571,
+      "aspMax": 0.571,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2531,
+      "count": 1,
+      "x0s": [
+        379
+      ],
+      "sizes": [
+        [
+          16,
+          26
+        ]
+      ],
+      "heights": [
+        26
+      ],
+      "aspMin": 0.615,
+      "aspMax": 0.615,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2538,
+      "count": 1,
+      "x0s": [
+        398
+      ],
+      "sizes": [
+        [
+          12,
+          20
+        ]
+      ],
+      "heights": [
+        20
+      ],
+      "aspMin": 0.6,
+      "aspMax": 0.6,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2542,
+      "count": 1,
+      "x0s": [
+        414
+      ],
+      "sizes": [
+        [
+          12,
+          18
+        ]
+      ],
+      "heights": [
+        18
+      ],
+      "aspMin": 0.667,
+      "aspMax": 0.667,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2544,
+      "count": 1,
+      "x0s": [
+        431
+      ],
+      "sizes": [
+        [
+          10,
+          16
+        ]
+      ],
+      "heights": [
+        16
+      ],
+      "aspMin": 0.625,
+      "aspMax": 0.625,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2547,
+      "count": 1,
+      "x0s": [
+        445
+      ],
+      "sizes": [
+        [
+          8,
+          13
+        ]
+      ],
+      "heights": [
+        13
+      ],
+      "aspMin": 0.615,
+      "aspMax": 0.615,
+      "families": {
+        "red": 1
+      }
+    },
+    {
+      "sheetRow": 2572,
+      "count": 2,
+      "x0s": [
+        74,
+        441
+      ],
+      "sizes": [
+        [
+          17,
+          8
+        ],
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        8,
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 2.125,
+      "families": {
+        "other": 1,
+        "blue": 1
+      }
+    },
+    {
+      "sheetRow": 2573,
+      "count": 3,
+      "x0s": [
+        383,
+        496,
+        553
+      ],
+      "sizes": [
+        [
+          48,
+          69
+        ]
+      ],
+      "heights": [
+        69,
+        69,
+        69
+      ],
+      "aspMin": 0.696,
+      "aspMax": 0.696,
+      "families": {
+        "red": 2,
+        "green": 1
+      }
+    },
+    {
+      "sheetRow": 2585,
+      "count": 3,
+      "x0s": [
+        11,
+        61,
+        87
+      ],
+      "sizes": [
+        [
+          22,
+          10
+        ],
+        [
+          41,
+          11
+        ],
+        [
+          46,
+          11
+        ]
+      ],
+      "heights": [
+        11,
+        10,
+        11
+      ],
+      "aspMin": 2.2,
+      "aspMax": 4.182,
+      "families": {
+        "other": 3
+      }
+    },
+    {
+      "sheetRow": 2616,
+      "count": 1,
+      "x0s": [
+        280
+      ],
+      "sizes": [
+        [
+          84,
+          20
+        ]
+      ],
+      "heights": [
+        20
+      ],
+      "aspMin": 4.2,
+      "aspMax": 4.2,
+      "families": {
+        "purple": 1
+      }
+    }
+  ]
+}

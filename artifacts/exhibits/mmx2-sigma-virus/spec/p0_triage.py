@@ -1,127 +1,198 @@
-"""P0 reference triage for the MMX2 Sigma wireframe head.
+#!/usr/bin/env python3
+"""P0 reference triage for the Sigma wireframe sheet (AGENTS.md P0, sheet-adapted).
 
-The project recipe (corner flood fill + whiteness test) assumes a FILLED subject on a
-light ground. This reference is the opposite: coloured 1px strokes on a uniform dark
-navy. Flood fill would reach every interior cell through the gaps between strokes and
-report the subject as empty. So the mask here is a stroke mask keyed on hue, and the
-clipping / scale checks run against that instead.
+The sheet is a dark navy (#000029) capture with wireframe sprites of all hues, so
+the AGENTS.md whitenness test inverts to a darkness test:
+    fg[i]   = max channel deviates from the measured background
+    reach   = flood fill from the component bounds OUTWARD through not-fg
+    figure  = fg AND not reachable               (enclosed holes are not figure)
 
-Usage: python3 p0_triage.py <sheet.png> <out.json>
+Per figure: silhouette envelope (per-row / per-col extents), clipping flags
+(entire silhouette flush with the bounds = the sprite was cut), scale, palette
+family, stroke/figure pixel counts, and row-centre asymmetry.
+
+Output: spec/p0-triage.json
 """
-import json, sys
-from collections import Counter
-from PIL import Image
+from __future__ import annotations
 
-BG = (16, 16, 64)          # measured below; asserted, not assumed
-BG_TOL = 24
+import collections
+import json
+import pathlib
 
-
-def is_bg(p):
-    return all(abs(a - b) <= BG_TOL for a, b in zip(p, BG))
+import sys
+import collections as _c
 
 
-def hue_family(p):
-    r, g, b = p
+def hue_family(pixel: tuple[int, int, int]) -> str:
+    r, g, b = pixel
+    # Resolve against the sheet's measured palette families first.
+    if abs(r - 16) < 12 and abs(g - 216) < 12 and abs(b - 48) < 12:
+        return "green-bright"
+    if abs(r - 16) < 12 and abs(g - 176) < 12 and abs(b - 16) < 12:
+        return "green-dim"
+    if abs(r - 224) < 12 and abs(g - 80) < 12 and abs(b) < 12:
+        return "eye"
     if g > r + 40 and g > b + 40:
         return "green"
-    if r > g + 40 and r > b + 40:
-        return "red-orange"
-    if r > g + 40 and b > g + 40:
-        return "purple"
     if b > r + 40 and b > g + 20:
         return "blue"
+    if r > g + 40 and b > g + 40:
+        return "purple"
+    if r > g + 40 and r > b + 40:
+        return "orange" if g > 60 else "red"
     return "other"
 
 
-def bbox(px, x0, y0, x1, y1, want):
-    xs, ys = [], []
-    for y in range(y0, y1):
-        for x in range(x0, x1):
-            if hue_family(px[x, y]) == want and not is_bg(px[x, y]):
-                xs.append(x); ys.append(y)
-    if not xs:
-        return None
-    return {"x0": min(xs), "y0": min(ys), "x1": max(xs), "y1": max(ys),
-            "w": max(xs) - min(xs) + 1, "h": max(ys) - min(ys) + 1, "strokePx": len(xs)}
+def main() -> None:
+    import pathlib
 
+    from PIL import Image
 
-def main():
-    sheet, out = sys.argv[1], sys.argv[2]
-    im = Image.open(sheet).convert("RGB")
+    exhibit = pathlib.Path(__file__).resolve().parents[1]
+    im = Image.open(exhibit / "references" / "sigma-wireframe-sheet.png").convert("RGB")
+    w, h = im.size
     px = im.load()
-    W, H = im.size
 
-    corners = Counter(px[x, y] for x in (0, W - 1) for y in (0, H - 1))
-    measured_bg = corners.most_common(1)[0][0]
+    colour = collections.Counter(px[x, y] for y in range(h) for x in range(w))
+    bg = colour.most_common(1)[0][0]
 
-    # The palette strip: four same-geometry frames, bottom right.
-    STRIP = (380, 2560, 610, 2644)
-    green = bbox(px, *STRIP, "green")
+    def is_fg(p):
+        return not all(abs(a - b) <= 8 for a, b in zip(p, bg))
 
-    # Every distinct non-background colour inside the green frame's box.
-    gc = Counter()
-    for y in range(green["y0"], green["y1"] + 1):
-        for x in range(green["x0"], green["x1"] + 1):
-            p = px[x, y]
-            if not is_bg(p):
-                gc[p] += 1
+    fg = [[is_fg(px[x, y]) for x in range(w)] for y in range(h)]
 
-    # Clipping: does the green frame touch the sheet edge on any side?
-    clip = {
-        "top": green["y0"] == 0,
-        "bottom": green["y1"] == H - 1,
-        "left": green["x0"] == 0,
-        "right": green["x1"] == W - 1,
+    # Connected components, 2-px bridge so antialiased wire crossings stay one sprite.
+    seen = [[False] * w for _ in range(h)]
+    comps = []
+    for y in range(h):
+        for x in range(w):
+            if seen[y][x] or not fg[y][x]:
+                continue
+            stack = [(x, y)]
+            seen[y][x] = True
+            pts = []
+            while stack:
+                cx, cy = stack.pop()
+                pts.append((cx, cy))
+                for dy in (-2, -1, 0, 1, 2):
+                    for dx in (-2, -1, 0, 1, 2):
+                        nx, ny = cx + dx, cy + dy
+                        if 0 <= nx < w and 0 <= ny < h and not seen[ny][nx] and fg[ny][nx]:
+                            seen[ny][nx] = True
+                            stack.append((nx, ny))
+            if len(pts) >= 20:
+                comps.append(pts)
+
+    records = []
+    for i, pts in enumerate(comps):
+        x0 = min(x for x, _ in pts)
+        y0 = min(y for _, y in pts)
+        x1 = max(x for x, _ in pts)
+        y1 = max(y for _, y in pts)
+        fw, fh = x1 - x0 + 1, y1 - y0 + 1
+
+        # Flood fill from the four borders of the figure bounds through not-fg.
+        reach = [[False] * fw for _ in range(fh)]
+        stack = []
+        for x in range(fw):
+            for y in (0, fh - 1):
+                if not reach[y][x] and not fg[y0 + y][x0 + x]:
+                    stack.append((x, y))
+            reach[y][x] = True
+        for y in range(fh):
+            for x in (0, fw - 1):
+                if not reach[y][x] and not fg[y0 + y][x0 + x]:
+                    stack.append((x, y))
+            reach[y][x] = True
+        while stack:
+            cx, cy = stack.pop()
+            for dx in (-1, 0, 1):
+                for dy in (-1, 0, 1):
+                    nx, ny = cx + dx, cy + dy
+                    if 0 <= nx < fw and 0 <= ny < fh and not reach[ny][nx] and not fg[y0 + ny][x0 + nx]:
+                        reach[ny][nx] = True
+                        stack.append((nx, ny))
+
+        figure = [
+            (x, y)
+            for y in range(fh)
+            for x in range(fw)
+            if fg[y0 + y][x0 + x] and not reach[y][x]
+        ]
+        rows = collections.defaultdict(list)
+        cols = collections.defaultdict(list)
+        for x, y in figure:
+            rows[y].append(x)
+            cols[x].append(y)
+
+        row_envelope = [[r, min(rows[r]), max(rows[r])] for r in sorted(rows)]
+        col_envelope = [[c, min(cols[c]), max(cols[c])] for c in sorted(cols)]
+
+        touches = {
+            "top": any(x for x, y in figure if y == 0),
+            "bottom": any(x for x, y in figure if y == fh - 1),
+            "left": any(y for x, y in figure if x == 0),
+            "right": any(y for x, y in figure if x == fw - 1),
+        }
+
+        fam = collections.Counter(
+            hue_family(px[x0 + x, y0 + y]) for x, y in figure
+        )
+        rows_occ = sorted(rows)
+        asym = 0.0
+        if rows_occ:
+            asym = (
+                min(
+                    abs(((min(rows[r]) + max(rows[r])) / 2) - (fw - 1) / 2)
+                    for r in rows_occ
+                )
+                / max(1, fw)
+            )
+
+        records.append(
+            {
+                "id": i,
+                "bbox": [x0, y0, x1, y1],
+                "w": fw,
+                "h": fh,
+                "aspect": round(fw / fh, 4) if fh else None,
+                "fgPx": sum(1 for p in pts if fg[p[1]][p[0]]),
+                "figurePx": len(figure),
+                "strokePx": len({(x, y) for x, y in figure}),
+                "rowEnvelope": row_envelope,
+                "colEnvelope": col_envelope,
+                "rowWidths": [max(rows[r]) - min(rows[r]) + 1 for r in rows_occ],
+                "colHeights": [max(cols[c]) - min(cols[c]) + 1 for c in sorted(cols)],
+                "clipped": touches,
+                "touchesCount": sum(touches.values()),
+                "families": dict(fam.most_common()),
+                "rowCentreAsymmetry": round(asym, 5),
+            }
+        )
+
+    out = {
+        "source": "references/sigma-wireframe-sheet.png",
+        "bg": list(bg),
+        "componentCount": len(comps),
+        "records": records,
     }
+    o = exhibit / "spec" / "p0-triage.json"
+    o.write_text(json.dumps(out, indent=2))
 
-    # Cross-frame scale: the same geometry in the four palette frames must measure the
-    # same. Segment the strip on background-only columns rather than hand-placed boxes —
-    # a box that clips one frame invents an error the reference does not have. Any
-    # surviving spread is the instrument's own error and becomes the uncertainty floor.
-    sy0, sy1 = 2560, 2644
-    hit_cols = {x for x in range(380, 610)
-                if any(not is_bg(px[x, y]) for y in range(sy0, sy1))}
-    runs, start = [], None
-    for x in range(380, 611):
-        if x in hit_cols and start is None:
-            start = x
-        elif x not in hit_cols and start is not None:
-            if x - start >= 20:          # 20px floor drops the tiny tail-end frames
-                runs.append((start, x))
-            start = None
-    variants = {}
-    for i, (x0, x1) in enumerate(runs):
-        fams = Counter(hue_family(px[x, y]) for x in range(x0, x1)
-                       for y in range(sy0, sy1) if not is_bg(px[x, y]))
-        fam = fams.most_common(1)[0][0]
-        variants[f"frame{i}-{fam}"] = bbox(px, x0, sy0, x1, sy1, fam)
-
-    hs = [v["h"] for v in variants.values() if v]
-    ws = [v["w"] for v in variants.values() if v]
-    spread_h = (max(hs) - min(hs)) / (sum(hs) / len(hs))
-    spread_w = (max(ws) - min(ws)) / (sum(ws) / len(ws))
-
-    rec = {
-        "sheet": sheet, "sheetSize": [W, H],
-        "measuredBackground": list(measured_bg),
-        "assumedBackground": list(BG),
-        "backgroundMatches": is_bg(measured_bg),
-        "greenFrame": green,
-        "greenFrameColours": [
-            {"rgb": list(c), "count": n, "family": hue_family(c)}
-            for c, n in gc.most_common(12)
-        ],
-        "clipping": clip,
-        "paletteVariants": variants,
-        "crossVariantSpread": {"height": round(spread_h, 4), "width": round(spread_w, 4)},
-        "measurementUncertainty": round(max(spread_h, spread_w), 4),
-    }
-    with open(out, "w") as f:
-        json.dump(rec, f, indent=2)
-    print(json.dumps({k: rec[k] for k in
-                      ("measuredBackground", "backgroundMatches", "greenFrame",
-                       "clipping", "crossVariantSpread", "measurementUncertainty")}, indent=2))
-    print("colours:", json.dumps(rec["greenFrameColours"][:8]))
+    big = [r for r in records if r["h"] >= 62]
+    frag = [r for r in records if r["h"] < 62]
+    clipped = [r for r in records if r["touchCount" if "touchCount" in r else "touchesCount"]]
+    print(
+        f"components>={20}px: {len(records)}  full-scale(h>=62): {len(big)}  "
+        f"small: {len(frag)}  clipped: {len(clipped)}"
+    )
+    for r in records:
+        if r["touchesCount"] or r["w"] * r["h"] > 90 * 85:
+            print(
+                f"  id={r['id']} bbox={r['bbox']} {r['w']}x{r['h']} fig={r['figurePx']} "
+                f"touch={[k for k, v in r['clipped'].items() if v]} fam={r['families']}"
+            )
 
 
-main()
+if __name__ == "__main__":
+    main()

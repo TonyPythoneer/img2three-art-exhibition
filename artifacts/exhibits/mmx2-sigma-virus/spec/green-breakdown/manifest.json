@@ -1,0 +1,845 @@
+{
+  "ost_front_full": {
+    "file": "green-breakdown/ost_front_full.png",
+    "outSize": [
+      2472,
+      2856
+    ],
+    "scale": 8,
+    "source": "references/sigma-front-green-ostation.png",
+    "sourceBox": [
+      117,
+      1,
+      426,
+      358
+    ],
+    "angle": "front 0\u00b0 yaw 0\u00b0 pitch (green)",
+    "reading": "front 0\u00b0 yaw 0\u00b0 pitch (green) \u2014 whole head, 1% cross-validates sheet front within row width"
+  },
+  "ost_front_crown": {
+    "file": "green-breakdown/ost_front_crown.png",
+    "outSize": [
+      1880,
+      744
+    ],
+    "scale": 8,
+    "source": "references/sigma-front-green-ostation.png",
+    "sourceBox": [
+      154,
+      1,
+      389,
+      94
+    ],
+    "angle": "front 0\u00b0 yaw 0\u00b0 pitch (green)",
+    "reading": "front 0\u00b0 \u2014 crown: flat-top trapezoid, cornice beam, centre panel, diagonal rafters converging to ridge"
+  },
+  "ost_front_brow-eyes": {
+    "file": "green-breakdown/ost_front_brow-eyes.png",
+    "outSize": [
+      1976,
+      624
+    ],
+    "scale": 8,
+    "source": "references/sigma-front-green-ostation.png",
+    "sourceBox": [
+      148,
+      144,
+      395,
+      222
+    ],
+    "angle": "front 0\u00b0 yaw 0\u00b0 pitch (green)",
+    "reading": "front 0\u00b0 \u2014 brow band + eyes: angular hexagonal bracket lenses double-rim (pocket rim), joined at centre crossing"
+  },
+  "ost_front_nose-column": {
+    "file": "green-breakdown/ost_front_nose-column.png",
+    "outSize": [
+      696,
+      856
+    ],
+    "scale": 8,
+    "source": "references/sigma-front-green-ostation.png",
+    "sourceBox": [
+      228,
+      158,
+      315,
+      265
+    ],
+    "angle": "front 0\u00b0 yaw 0\u00b0 pitch (green)",
+    "reading": "front 0\u00b0 \u2014 nose: rectangular column 2 parallel verticals from eye-bridge to mouth bar + nose-bottom block"
+  },
+  "ost_front_mouth-chin": {
+    "file": "green-breakdown/ost_front_mouth-chin.png",
+    "outSize": [
+      1784,
+      624
+    ],
+    "scale": 8,
+    "source": "references/sigma-front-green-ostation.png",
+    "sourceBox": [
+      160,
+      237,
+      383,
+      315
+    ],
+    "angle": "front 0\u00b0 yaw 0\u00b0 pitch (green)",
+    "reading": "front 0\u00b0 \u2014 mouth: horizontal bar with offset raised left segment, mouth seam ~77% H, chin trapezoid below"
+  },
+  "ost_front_jaw-chintabs": {
+    "file": "green-breakdown/ost_front_jaw-chintabs.png",
+    "outSize": [
+      2072,
+      512
+    ],
+    "scale": 8,
+    "source": "references/sigma-front-green-ostation.png",
+    "sourceBox": [
+      142,
+      294,
+      401,
+      358
+    ],
+    "angle": "front 0\u00b0 yaw 0\u00b0 pitch (green)",
+    "reading": "front 0\u00b0 \u2014 jaw-chintabs: constant-width column ending in 2 square feet + centre arch (W-shaped notch)"
+  },
+  "ost_front_cheek-lobe-left": {
+    "file": "green-breakdown/ost_front_cheek-lobe-left.png",
+    "outSize": [
+      744,
+      976
+    ],
+    "scale": 8,
+    "source": "references/sigma-front-green-ostation.png",
+    "sourceBox": [
+      117,
+      122,
+      210,
+      244
+    ],
+    "angle": "front 0\u00b0 yaw 0\u00b0 pitch (green)",
+    "reading": "front 0\u00b0 \u2014 left cheek lobe plate: vertical outer edge, double-line inner overlap seam, diagonal facets"
+  },
+  "ost_front_cheek-lobe-right": {
+    "file": "green-breakdown/ost_front_cheek-lobe-right.png",
+    "outSize": [
+      744,
+      976
+    ],
+    "scale": 8,
+    "source": "references/sigma-front-green-ostation.png",
+    "sourceBox": [
+      333,
+      122,
+      426,
+      244
+    ],
+    "angle": "front 0\u00b0 yaw 0\u00b0 pitch (green)",
+    "reading": "front 0\u00b0 \u2014 right cheek lobe plate (mirror)"
+  },
+  "ost_front_temple-left": {
+    "file": "green-breakdown/ost_front_temple-left.png",
+    "outSize": [
+      744,
+      744
+    ],
+    "scale": 8,
+    "source": "references/sigma-front-green-ostation.png",
+    "sourceBox": [
+      123,
+      58,
+      216,
+      151
+    ],
+    "angle": "front 0\u00b0 yaw 0\u00b0 pitch (green)",
+    "reading": "front 0\u00b0 \u2014 left temple shell inside silhouette above lobe"
+  },
+  "ost_front_temple-right": {
+    "file": "green-breakdown/ost_front_temple-right.png",
+    "outSize": [
+      744,
+      744
+    ],
+    "scale": 8,
+    "source": "references/sigma-front-green-ostation.png",
+    "sourceBox": [
+      327,
+      58,
+      420,
+      151
+    ],
+    "angle": "front 0\u00b0 yaw 0\u00b0 pitch (green)",
+    "reading": "front 0\u00b0 \u2014 right temple shell (mirror)"
+  },
+  "sheet_green_yaw_full": {
+    "file": "green-breakdown/sheet_green_yaw_full.png",
+    "outSize": [
+      432,
+      600
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      496,
+      2573,
+      550,
+      2648
+    ],
+    "angle": "three-quarter yaw ~30\u00b0 (green)",
+    "reading": "GREEN yaw authority: one dominant eye per side + far lobe behind, ridge peaked, two-tone #10D830/#10B010"
+  },
+  "sheet_green_yaw_eyes": {
+    "file": "green-breakdown/sheet_green_yaw_eyes.png",
+    "outSize": [
+      432,
+      192
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      496,
+      2601,
+      550,
+      2625
+    ],
+    "angle": "three-quarter yaw ~30\u00b0 (green) \u2014 eye pocket detail",
+    "reading": "eye sits INSIDE face planes \u2192 recessed pocket (G2 confirmed)"
+  },
+  "sheet_front0_supplement_00_id000": {
+    "file": "green-breakdown/sheet_front0_supplement_00_id000.png",
+    "outSize": [
+      392,
+      584
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      90,
+      10,
+      139,
+      83
+    ],
+    "obsId": 0,
+    "aspect": 0.67123,
+    "dominantHue": "blue",
+    "centroidDrift": 0.15306,
+    "rowCentreAsymmetry": 0.06122,
+    "angle": "front ~0\u00b0 (supplement)",
+    "reading": "aspect 0.671 hue blue h73 drift 0.153 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_front0_supplement_01_id042": {
+    "file": "green-breakdown/sheet_front0_supplement_01_id042.png",
+    "outSize": [
+      384,
+      552
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      532,
+      383,
+      580,
+      452
+    ],
+    "obsId": 42,
+    "aspect": 0.69565,
+    "dominantHue": "blue",
+    "centroidDrift": 0.10417,
+    "rowCentreAsymmetry": 0.0,
+    "angle": "front ~0\u00b0 (supplement)",
+    "reading": "aspect 0.696 hue blue h69 drift 0.104 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_front0_supplement_02_id090": {
+    "file": "green-breakdown/sheet_front0_supplement_02_id090.png",
+    "outSize": [
+      384,
+      552
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      134,
+      827,
+      182,
+      896
+    ],
+    "obsId": 90,
+    "aspect": 0.69565,
+    "dominantHue": "blue",
+    "centroidDrift": -0.13542,
+    "rowCentreAsymmetry": 0.02083,
+    "angle": "front ~0\u00b0 (supplement)",
+    "reading": "aspect 0.696 hue blue h69 drift -0.135 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_front0_supplement_03_id155": {
+    "file": "green-breakdown/sheet_front0_supplement_03_id155.png",
+    "outSize": [
+      392,
+      544
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      192,
+      1419,
+      241,
+      1487
+    ],
+    "obsId": 155,
+    "aspect": 0.72059,
+    "dominantHue": "red",
+    "centroidDrift": -0.20408,
+    "rowCentreAsymmetry": 0.04082,
+    "angle": "front ~0\u00b0 (supplement)",
+    "reading": "aspect 0.721 hue red h68 drift -0.204 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_front0_supplement_04_id207": {
+    "file": "green-breakdown/sheet_front0_supplement_04_id207.png",
+    "outSize": [
+      384,
+      552
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      223,
+      1816,
+      271,
+      1885
+    ],
+    "obsId": 207,
+    "aspect": 0.69565,
+    "dominantHue": "red",
+    "centroidDrift": 0.13542,
+    "rowCentreAsymmetry": 0.01042,
+    "angle": "front ~0\u00b0 (supplement)",
+    "reading": "aspect 0.696 hue red h69 drift 0.135 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_front0_supplement_05_id242": {
+    "file": "green-breakdown/sheet_front0_supplement_05_id242.png",
+    "outSize": [
+      440,
+      592
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      3,
+      2162,
+      58,
+      2236
+    ],
+    "obsId": 242,
+    "aspect": 0.74324,
+    "dominantHue": "orange",
+    "centroidDrift": 0.34545,
+    "rowCentreAsymmetry": 0.05455,
+    "angle": "front ~0\u00b0 (supplement)",
+    "reading": "aspect 0.743 hue orange h74 drift 0.345 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_oblique30_supplement_00_id009": {
+    "file": "green-breakdown/sheet_oblique30_supplement_00_id009.png",
+    "outSize": [
+      496,
+      584
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      96,
+      101,
+      158,
+      174
+    ],
+    "obsId": 9,
+    "aspect": 0.84932,
+    "dominantHue": "blue",
+    "centroidDrift": 0.39516,
+    "rowCentreAsymmetry": 0.09677,
+    "angle": "front-oblique ~30\u00b0 (supplement)",
+    "reading": "aspect 0.849 hue blue h73 drift 0.395 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_oblique30_supplement_01_id081": {
+    "file": "green-breakdown/sheet_oblique30_supplement_01_id081.png",
+    "outSize": [
+      472,
+      584
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      93,
+      747,
+      152,
+      820
+    ],
+    "obsId": 81,
+    "aspect": 0.80822,
+    "dominantHue": "blue",
+    "centroidDrift": 0.38136,
+    "rowCentreAsymmetry": 0.13559,
+    "angle": "front-oblique ~30\u00b0 (supplement)",
+    "reading": "aspect 0.808 hue blue h73 drift 0.381 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_oblique30_supplement_02_id114": {
+    "file": "green-breakdown/sheet_oblique30_supplement_02_id114.png",
+    "outSize": [
+      480,
+      552
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      377,
+      1022,
+      437,
+      1091
+    ],
+    "obsId": 114,
+    "aspect": 0.86957,
+    "dominantHue": "red",
+    "centroidDrift": -0.45,
+    "rowCentreAsymmetry": 0.05833,
+    "angle": "front-oblique ~30\u00b0 (supplement)",
+    "reading": "aspect 0.870 hue red h69 drift -0.450 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_oblique30_supplement_03_id126": {
+    "file": "green-breakdown/sheet_oblique30_supplement_03_id126.png",
+    "outSize": [
+      496,
+      552
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      8,
+      1149,
+      70,
+      1218
+    ],
+    "obsId": 126,
+    "aspect": 0.89855,
+    "dominantHue": "red",
+    "centroidDrift": -0.46774,
+    "rowCentreAsymmetry": 0.07258,
+    "angle": "front-oblique ~30\u00b0 (supplement)",
+    "reading": "aspect 0.899 hue red h69 drift -0.468 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_oblique30_supplement_04_id143": {
+    "file": "green-breakdown/sheet_oblique30_supplement_04_id143.png",
+    "outSize": [
+      416,
+      464
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      529,
+      1263,
+      581,
+      1321
+    ],
+    "obsId": 143,
+    "aspect": 0.89655,
+    "dominantHue": "red",
+    "centroidDrift": 0.07692,
+    "rowCentreAsymmetry": 0.02885,
+    "angle": "front-oblique ~30\u00b0 (supplement)",
+    "reading": "aspect 0.897 hue red h58 drift 0.077 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_oblique30_supplement_05_id163": {
+    "file": "green-breakdown/sheet_oblique30_supplement_05_id163.png",
+    "outSize": [
+      504,
+      576
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      346,
+      1502,
+      409,
+      1574
+    ],
+    "obsId": 163,
+    "aspect": 0.875,
+    "dominantHue": "red",
+    "centroidDrift": -0.11111,
+    "rowCentreAsymmetry": 0.06349,
+    "angle": "front-oblique ~30\u00b0 (supplement)",
+    "reading": "aspect 0.875 hue red h72 drift -0.111 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_side60_supplement_00_id013": {
+    "file": "green-breakdown/sheet_side60_supplement_00_id013.png",
+    "outSize": [
+      536,
+      520
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      442,
+      119,
+      509,
+      184
+    ],
+    "obsId": 13,
+    "aspect": 1.03077,
+    "dominantHue": "blue",
+    "centroidDrift": -0.58209,
+    "rowCentreAsymmetry": 0.09701,
+    "angle": "side ~60-90\u00b0 (supplement)",
+    "reading": "aspect 1.031 hue blue h65 drift -0.582 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_side60_supplement_01_id076": {
+    "file": "green-breakdown/sheet_side60_supplement_01_id076.png",
+    "outSize": [
+      536,
+      544
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      311,
+      694,
+      378,
+      762
+    ],
+    "obsId": 76,
+    "aspect": 0.98529,
+    "dominantHue": "blue",
+    "centroidDrift": 0.05224,
+    "rowCentreAsymmetry": 0.14179,
+    "angle": "side ~60-90\u00b0 (supplement)",
+    "reading": "aspect 0.985 hue blue h68 drift 0.052 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_side60_supplement_02_id078": {
+    "file": "green-breakdown/sheet_side60_supplement_02_id078.png",
+    "outSize": [
+      536,
+      536
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      465,
+      699,
+      532,
+      766
+    ],
+    "obsId": 78,
+    "aspect": 1.0,
+    "dominantHue": "blue",
+    "centroidDrift": 0.0597,
+    "rowCentreAsymmetry": 0.1194,
+    "angle": "side ~60-90\u00b0 (supplement)",
+    "reading": "aspect 1.000 hue blue h67 drift 0.060 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_side60_supplement_03_id087": {
+    "file": "green-breakdown/sheet_side60_supplement_03_id087.png",
+    "outSize": [
+      544,
+      480
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      522,
+      779,
+      590,
+      839
+    ],
+    "obsId": 87,
+    "aspect": 1.13333,
+    "dominantHue": "blue",
+    "centroidDrift": 0.45588,
+    "rowCentreAsymmetry": 0.09559,
+    "angle": "side ~60-90\u00b0 (supplement)",
+    "reading": "aspect 1.133 hue blue h60 drift 0.456 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_side60_supplement_04_id149": {
+    "file": "green-breakdown/sheet_side60_supplement_04_id149.png",
+    "outSize": [
+      536,
+      464
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      490,
+      1341,
+      557,
+      1399
+    ],
+    "obsId": 149,
+    "aspect": 1.15517,
+    "dominantHue": "red",
+    "centroidDrift": -0.20896,
+    "rowCentreAsymmetry": 0.09701,
+    "angle": "side ~60-90\u00b0 (supplement)",
+    "reading": "aspect 1.155 hue red h58 drift -0.209 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_side60_supplement_05_id165": {
+    "file": "green-breakdown/sheet_side60_supplement_05_id165.png",
+    "outSize": [
+      456,
+      392
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      82,
+      1504,
+      139,
+      1553
+    ],
+    "obsId": 165,
+    "aspect": 1.16327,
+    "dominantHue": "red",
+    "centroidDrift": -0.10526,
+    "rowCentreAsymmetry": 0.04386,
+    "angle": "side ~60-90\u00b0 (supplement)",
+    "reading": "aspect 1.163 hue red h49 drift -0.105 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_topdown_supplement_00_id011": {
+    "file": "green-breakdown/sheet_topdown_supplement_00_id011.png",
+    "outSize": [
+      552,
+      456
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      11,
+      109,
+      80,
+      166
+    ],
+    "obsId": 11,
+    "aspect": 1.21053,
+    "dominantHue": "blue",
+    "centroidDrift": -0.55072,
+    "rowCentreAsymmetry": 0.07246,
+    "angle": "top-down ~80-90\u00b0 pitch (supplement)",
+    "reading": "aspect 1.211 hue blue h57 drift -0.551 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_topdown_supplement_01_id138": {
+    "file": "green-breakdown/sheet_topdown_supplement_01_id138.png",
+    "outSize": [
+      592,
+      432
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      128,
+      1244,
+      202,
+      1298
+    ],
+    "obsId": 138,
+    "aspect": 1.37037,
+    "dominantHue": "red",
+    "centroidDrift": 0.04054,
+    "rowCentreAsymmetry": 0.02703,
+    "angle": "top-down ~80-90\u00b0 pitch (supplement)",
+    "reading": "aspect 1.370 hue red h54 drift 0.041 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_topdown_supplement_02_id168": {
+    "file": "green-breakdown/sheet_topdown_supplement_02_id168.png",
+    "outSize": [
+      488,
+      376
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      209,
+      1508,
+      270,
+      1555
+    ],
+    "obsId": 168,
+    "aspect": 1.29787,
+    "dominantHue": "red",
+    "centroidDrift": 0.0,
+    "rowCentreAsymmetry": 0.03279,
+    "angle": "top-down ~80-90\u00b0 pitch (supplement)",
+    "reading": "aspect 1.298 hue red h47 drift 0.000 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_topdown_supplement_03_id219": {
+    "file": "green-breakdown/sheet_topdown_supplement_03_id219.png",
+    "outSize": [
+      552,
+      392
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      139,
+      1924,
+      208,
+      1973
+    ],
+    "obsId": 219,
+    "aspect": 1.40816,
+    "dominantHue": "orange",
+    "centroidDrift": 0.01449,
+    "rowCentreAsymmetry": 0.05072,
+    "angle": "top-down ~80-90\u00b0 pitch (supplement)",
+    "reading": "aspect 1.408 hue orange h49 drift 0.014 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_topdown_supplement_04_id252": {
+    "file": "green-breakdown/sheet_topdown_supplement_04_id252.png",
+    "outSize": [
+      560,
+      384
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      8,
+      2245,
+      78,
+      2293
+    ],
+    "obsId": 252,
+    "aspect": 1.45833,
+    "dominantHue": "orange",
+    "centroidDrift": 0.02143,
+    "rowCentreAsymmetry": 0.02143,
+    "angle": "top-down ~80-90\u00b0 pitch (supplement)",
+    "reading": "aspect 1.458 hue orange h48 drift 0.021 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_topdown_supplement_05_id286": {
+    "file": "green-breakdown/sheet_topdown_supplement_05_id286.png",
+    "outSize": [
+      392,
+      320
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      183,
+      2510,
+      232,
+      2550
+    ],
+    "obsId": 286,
+    "aspect": 1.225,
+    "dominantHue": "red",
+    "centroidDrift": 0.47959,
+    "rowCentreAsymmetry": 0.0102,
+    "angle": "top-down ~80-90\u00b0 pitch (supplement)",
+    "reading": "aspect 1.225 hue red h40 drift 0.480 \u2014 plain facets, eye/brow consistent"
+  },
+  "sheet_tiny_anim_00_id176": {
+    "file": "green-breakdown/sheet_tiny_anim_00_id176.png",
+    "outSize": [
+      312,
+      224
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      63,
+      1602,
+      102,
+      1630
+    ],
+    "obsId": 176,
+    "aspect": 1.39286,
+    "dominantHue": "red",
+    "angle": "tiny front (anim shrink, supplement)",
+    "reading": "shrunken front, aspect 1.393, confirms silhouette scales linearly"
+  },
+  "sheet_tiny_anim_01_id287": {
+    "file": "green-breakdown/sheet_tiny_anim_01_id287.png",
+    "outSize": [
+      192,
+      312
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      237,
+      2513,
+      261,
+      2552
+    ],
+    "obsId": 287,
+    "aspect": 0.61538,
+    "dominantHue": "red",
+    "angle": "tiny front (anim shrink, supplement)",
+    "reading": "shrunken front, aspect 0.615, confirms silhouette scales linearly"
+  },
+  "sheet_tiny_anim_02_id295": {
+    "file": "green-breakdown/sheet_tiny_anim_02_id295.png",
+    "outSize": [
+      96,
+      144
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      414,
+      2542,
+      426,
+      2560
+    ],
+    "obsId": 295,
+    "aspect": 0.66667,
+    "dominantHue": "red",
+    "angle": "tiny front (anim shrink, supplement)",
+    "reading": "shrunken front, aspect 0.667, confirms silhouette scales linearly"
+  },
+  "sheet_topDown_12_2247": {
+    "file": "green-breakdown/sheet_topDown_12_2247.png",
+    "outSize": [
+      528,
+      320
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      12,
+      2247,
+      78,
+      2287
+    ],
+    "angle": "top-down ~80-90\u00b0 pitch (supplement)",
+    "reading": "G1 depth evidence: elongated outline 66\u00d740, quad crown facets either side centre seam"
+  },
+  "sheet_side_142_1505": {
+    "file": "green-breakdown/sheet_side_142_1505.png",
+    "outSize": [
+      480,
+      376
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      142,
+      1505,
+      202,
+      1552
+    ],
+    "angle": "side ~60-90\u00b0 yaw (supplement)",
+    "reading": "plain faceted rear continuation (G4), no decorated mechanism"
+  },
+  "sheet_frontRed_63_1811": {
+    "file": "green-breakdown/sheet_frontRed_63_1811.png",
+    "outSize": [
+      384,
+      552
+    ],
+    "scale": 8,
+    "source": "references/sigma-wireframe-sheet.png",
+    "sheetBox": [
+      63,
+      1811,
+      111,
+      1880
+    ],
+    "angle": "front ~0\u00b0 (supplement, red palette)",
+    "reading": "geometry authority pre-OSTation: identical 48\u00d769 / 808px to palette-strip, now supplement only"
+  }
+}
