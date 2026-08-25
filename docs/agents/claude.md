@@ -6,9 +6,10 @@ only what is specific to this harness.
 ## Skill
 
 - Do not auto-activate `superpowers` skills; use one only when the user names it.
-- `img2threejs` is at `~/.claude/skills/img2threejs`, currently detached HEAD @ `d667338`
-  (tag `v1.5-beta`). **`SKILL.md`'s `version:` field says `1.4.4` because upstream never bumped it —
-  trust the commit, not the field.**
+- `img2threejs` is at `~/.claude/skills/img2threejs`, currently detached HEAD @ `dede590`
+  (tag `v1.5.1`, `version: 1.5.1`). Single canonical checkout symlinked for all hosts:
+  `~/.claude/skills/img2threejs` → checkout, `~/.codex/skills/img2threejs` → same checkout,
+  `.agents/skills/img2threejs` → same checkout.
 
 ## The two limits of lean-ctx
 

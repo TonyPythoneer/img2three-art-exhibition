@@ -8,6 +8,11 @@ typed-router.d.ts
 .pnpm-store
 __pycache__/
 
+# User scratchpad. Lives at $HOME/.tmp (outside the repo) and is mirrored here for any
+# in-tree scratch tool output. Never commit.
+.tmp/
+tmp/
+
 # 161 MB working archive, and the lean-ctx tool cache
 Archive.zip
 .lean-ctx/
@@ -16,3 +21,12 @@ Archive.zip
 # produce them, never renders. A gate's PNGs regenerate from the capture script next to
 # them, so a `--out` pointed inside artifacts/ is a mistake, not a deliverable.
 artifacts/exhibits/*/gate-evidence/
+
+# Harness-local: cloned/symlinked superpowers skills + their lockfile. These are loaded
+# by opencode/claude/codex at runtime; they are not project source.
+.agents/skills/
+skills-lock.json
+
+# Harness-local agent config (opencode) + claude skills dir; same class as .agents/skills/.
+.claude/
+.opencode/
