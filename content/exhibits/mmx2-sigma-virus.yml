@@ -1,11 +1,11 @@
 slug: mmx2-sigma-virus
 title: Sigma Virus
 subtitle: >-
-  The green one. A wireframe head ripped from Mega Man X2, rebuilt from the one
-  frame of 307 that measures most nearly symmetric
+  The green one. A low-poly Sigma Virus head rebuilt as projection-equivalent
+  geometry from a multi-view wireframe sprite sheet
 source: >-
   "Wireframe Sigma, Captured from Megaman X2 by Polar Koala" — a 610×2644 sprite
-  sheet carrying three different heads in four palettes
+  sheet carrying repeated projections and palette variants of the head structure
 images:
   - file: green-colour-authority.png
     caption: >-
@@ -26,5 +26,5 @@ images:
       foreshortened — 1.25 depth-over-width is a lower bound, and guess G1
   - file: reference-sprite-sheet.png
     caption: >-
-      The full sheet. 307 segmented frames, three different heads: this one, a
-      grimacing skull with ear pods, and a third with a jutting chin
+      The full multi-view sheet. It is treated as repeated observations of one
+      head/helmet structure, not as a body reference or a texture atlas

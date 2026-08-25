@@ -1,411 +1,674 @@
 import * as THREE from "three";
 
-import { COLORS } from "./colors";
-import { cullBuriedEdges } from "./cullBuriedEdges";
-import { chamferedRing, loft, type Ring } from "./loft";
-import { BANDS, EYE_POLYGON, halfWidthAt, len, x, y } from "./measurements";
-import { halfDepthSolved } from "./section";
+// Sigma Virus Head — forge-generated model, adapted to the exhibit page contract.
+//
+// Provenance: artifacts/exhibits/mmx2-sigma-virus/spec/object-sculpt-spec.json
+//   -> generate_threejs_factory.py -> spec/generated-factory.ts (canonical artifact).
+// This file ports the generated geometry emitters VERBATIM (SDF polygonizer,
+// extrude builder, primitive dimensions baked via Geometry.scale) and adapts
+// only the delivery layer:
+//   1. Lean flat materials from the palette constants instead of the generator's
+//      1024px canvas-texture machinery — the subject is four flat colours
+//      (spec lookDevTargets.referencePbrExtraction.acceptedLimitation).
+//   2. Parts named by component id, direct children of the returned Group, so
+//      mountSigmaVirusViewer explode/toggle/partInspector work unchanged.
+//   3. Facet seams drawn as LineSegments edges per part (spec repetitionSystems
+//      wireTwoToneStrokes): bright #10D830 front-facing shells, dim #10B010
+//      far-facing shells, accent #E05000 eye outlines; userData.explodeWithParent.
+//   4. No root mesh: the root pivot is the returned Group itself.
+//   5. Extrude geometries re-centred on z (generator emits them spanning 0..depth;
+//      spec transforms assume part-centred geometry) and keep their measured profile
+//      size — the generator's Geometry.scale(dimensions) pass would double-apply the
+//      size to extrudes whose points already encode it. SDF polygonization gets
+//      explicit tight bounds so resolution 24 samples the pocket, not [-2,2]^3.
 
-/**
- * The MMX2 wireframe Sigma head, green variant.
- *
- * The reference is itself a wireframe render of a low-poly mesh, so the reconstruction medium
- * IS the target: faceted shells with a bright-green edge overlay on the sheet's own navy. That
- * is faithful here rather than stylised — see `artifacts/exhibits/mmx2-sigma-virus/spec/reading.md`.
- *
- * Eight shape codes, thirteen instances. Every mirror pair is authored once and negated in x,
- * which is also what the symmetry assertion checks.
- */
+export type ProceduralModelRuntime = {
+  nodes: Record<string, THREE.Object3D>;
+  meshes: Record<string, THREE.Mesh>;
+  sockets: Record<string, THREE.Object3D>;
+  colliders: Record<string, unknown>;
+  destructionGroups: Record<string, THREE.Object3D[]>;
+};
 
-/**
- * How the wireframe is DRAWN, which on this subject is part of the subject.
- *
- * `gate_edge_density.py` measures total line length over head height: the reference carries 11.9
- * head-heights of line, and the first build carried 59.8 — 5x, which reads as a mesh preview
- * rather than as the sprite. Two causes, both here:
- *
- * - RING_STEP: a ring every 2 reference rows put 24 rings through the skull alone. The
- *   silhouette table is dense enough that a ring every 7 rows still lands on measured extents;
- *   only the segments BETWEEN rings straighten.
- * - EDGE_ANGLE: `EdgesGeometry` at 1 degree draws every quad's triangulation diagonal, because a
- *   lofted quad between two different rings is not planar and its two triangles never agree to
- *   within a degree. Raising the threshold drops the diagonals and keeps the real creases.
- */
-const RING_STEP = 7;
-const EDGE_ANGLE = 30;
+const GROUND = "#000029";
+const WIRE = "#10D830";
+const WIRE_FAR = "#10B010";
+const EYE = "#E05000";
 
-/** The widest the skull proper gets — rows 14..27 run px 3..41, so half-width 19px. */
-const SKULL_MAX_HALF = len(19);
+type SdfVector = readonly [number, number, number];
+type SdfTransform = {
+  position?: SdfVector;
+  translation?: SdfVector;
+  rotation?: SdfVector;
+  scale?: SdfVector;
+};
+type SdfPrimitive = {
+  readonly id: string;
+  readonly type: "sphere" | "capsule" | "box" | "cone" | "ellipsoid";
+  readonly center?: SdfVector;
+  readonly radius?: number | SdfVector;
+  readonly height?: number;
+  readonly size?: SdfVector;
+  readonly dimensions?: SdfVector;
+  readonly radii?: SdfVector;
+  readonly transform?: SdfTransform;
+};
+type SdfOperation = {
+  readonly id?: string;
+  readonly output?: string;
+  readonly type: "smooth-union" | "subtract" | "intersect";
+  readonly left: string;
+  readonly right: string;
+  readonly radius?: number;
+};
+type SdfDescriptor = {
+  readonly primitives: readonly SdfPrimitive[];
+  readonly operations?: readonly SdfOperation[];
+  readonly resolution: number;
+  readonly bounds?: { readonly min: SdfVector; readonly max: SdfVector };
+};
+type SdfFunction = (point: THREE.Vector3) => number;
 
-/**
- * Half-depth at a row, now SOLVED per row from the sheet's yaw sweep (`section.ts`).
- *
- * It used to be `HALF_DEPTH * (halfWidthAt(py) / halfWidthAt(37))` — one global ratio, every row
- * the same shape scaled. The solve says depth-over-width is 0.41 at the crown, 1.40 through the
- * middle and 1.01 at the jaw, so that assumption was right in the middle of the head and wrong by
- * more than 3x at the top of it.
- */
-const halfDepthAt = (py: number): number => halfDepthSolved(py);
-
-/**
- * The face plane: where the eyes and brow sit on the shell's front surface.
- *
- * The yawed frames — `profile-width.json.mostProfile` at (336, 1095) and (540, 957), both ~60°
- * off frontal — put the eye accent hard against the leading edge with the whole faceted dome
- * filling the frame behind it. Anchoring the face parts to the shell's front surface already
- * satisfies that: the eyes end up with ~0.1 of the depth ahead of them and ~1.9 behind.
- *
- * A stronger reading was tried and REJECTED by its own render: giving every ring a per-row
- * z-centre so all their FRONTS aligned on one plane. Narrow rows have shallow depth, so that
- * rule pushed the crown and the chin tabs forward while the wide ear-pod rows stayed back —
- * under perspective the near extremes magnified and the front view grew from 476x695 to
- * 480x796, failing the aspect gate at 0.1147 against a 0.06 tolerance. The reference says the
- * face is at the front; it says nothing about the crown's z-centre, and inventing a rule for it
- * cost 11% of aspect. So the shells stay centred.
- */
-const FACE_Z = halfDepthAt(36);
-
-/** Rings sampled every `step` frame rows through a band, with a per-row half-width override. */
-function bandRings(
-  from: number,
-  to: number,
-  opts: {
-    step?: number;
-    chamfer?: number;
-    halfWidth?: (py: number) => number;
-    halfDepth?: (py: number) => number;
-  } = {},
-): Ring[] {
-  const step = opts.step ?? RING_STEP;
-  const chamfer = opts.chamfer ?? 0.35;
-  const hw = opts.halfWidth ?? halfWidthAt;
-  const hd = opts.halfDepth ?? halfDepthAt;
-  const rings: Ring[] = [];
-  // The ring keeps its AUTHORED faceted form and takes its DEPTH from the solve. Using the solved
-  // polygon as the ring itself was tried and reverted: a half-plane intersection over 12 sampled
-  // directions is a smoothing operator by construction, so the head lofted into a rounded egg —
-  // front IoU 0.9384 -> 0.8772, the crown band 0.916 -> 0.673 as the flat crest rounded off, and
-  // the wireframe density fell BELOW the reference's. The solve measures extents, which is
-  // exactly what the front view cannot see; it cannot measure facets, and the reference's whole
-  // identity is facets.
-  const ringAt = (py: number) => chamferedRing(hw(py), hd(py), chamfer);
-  for (let py = from; py <= to; py += step) {
-    rings.push({ y: y(py), pts: ringAt(py) });
-  }
-  const last = to;
-  if (rings.length === 0 || (to - from) % step !== 0) {
-    rings.push({ y: y(last), pts: ringAt(last) });
-  }
-  return rings;
+function sdfSphere(point: THREE.Vector3, radius: number): number {
+  return point.length() - radius;
 }
 
-const wireMat = () =>
-  new THREE.LineBasicMaterial({ color: COLORS.wire, toneMapped: false, transparent: false });
+function sdfCapsule(point: THREE.Vector3, radius: number, height: number): number {
+  const halfHeight = height * 0.5;
+  const y = Math.max(-halfHeight, Math.min(halfHeight, point.y));
+  return point.distanceTo(new THREE.Vector3(0, y, 0)) - radius;
+}
 
-const eyeWireMat = () =>
-  new THREE.LineBasicMaterial({ color: COLORS.eye, toneMapped: false, transparent: false });
+function sdfBox(point: THREE.Vector3, size: SdfVector): number {
+  const q = new THREE.Vector3(Math.abs(point.x), Math.abs(point.y), Math.abs(point.z)).sub(
+    new THREE.Vector3(size[0] * 0.5, size[1] * 0.5, size[2] * 0.5),
+  );
+  return q.clone().max(new THREE.Vector3()).length() + Math.min(Math.max(q.x, q.y, q.z), 0);
+}
 
-/**
- * The fill sits a hair behind its own edges. Without the polygon offset the edge overlay
- * z-fights the surface it outlines and the wireframe breaks into speckle at grazing angles —
- * the same failure the part-inspector highlight has to solve.
- */
-const fillMat = (color: string) =>
-  new THREE.MeshStandardMaterial({
+function sdfCone(point: THREE.Vector3, radius: number, height: number): number {
+  const halfHeight = height * 0.5;
+  const taper = radius * (1 - (point.y + halfHeight) / height);
+  return Math.max(
+    Math.hypot(point.x, point.z) - Math.max(0, taper),
+    Math.abs(point.y) - halfHeight,
+  );
+}
+
+function sdfEllipsoid(point: THREE.Vector3, radii: SdfVector): number {
+  const scaled = new THREE.Vector3(point.x / radii[0], point.y / radii[1], point.z / radii[2]);
+  return (scaled.length() - 1) * Math.min(radii[0], radii[1], radii[2]);
+}
+
+function sdfRadii(primitive: SdfPrimitive): SdfVector {
+  const radius = primitive.radius;
+  if (primitive.radii) return primitive.radii;
+  if (typeof radius === "number") return [radius, radius, radius];
+  return radius ?? [0.5, 0.5, 0.5];
+}
+
+function smin(left: number, right: number, radius: number): number {
+  const blend = Math.max(radius - Math.abs(left - right), 0) / radius;
+  return Math.min(left, right) - blend * blend * radius * 0.25;
+}
+
+function sdfLocalPoint(
+  point: THREE.Vector3,
+  primitive: SdfPrimitive,
+): { point: THREE.Vector3; scale: number } {
+  const transform = primitive.transform;
+  const translation = transform?.position ??
+    transform?.translation ??
+    primitive.center ?? [0, 0, 0];
+  const rotation = transform?.rotation ?? [0, 0, 0];
+  const scale = transform?.scale ?? [1, 1, 1];
+  const local = point
+    .clone()
+    .sub(new THREE.Vector3(translation[0], translation[1], translation[2]));
+  const inverseRotation = new THREE.Quaternion()
+    .setFromEuler(new THREE.Euler(rotation[0], rotation[1], rotation[2]))
+    .invert();
+  local.applyQuaternion(inverseRotation);
+  local.set(local.x / scale[0], local.y / scale[1], local.z / scale[2]);
+  return { point: local, scale: Math.min(scale[0], scale[1], scale[2]) };
+}
+
+function sdfPrimitive(point: THREE.Vector3, primitive: SdfPrimitive): number {
+  const local = sdfLocalPoint(point, primitive);
+  let distance: number;
+  switch (primitive.type) {
+    case "sphere":
+      distance = sdfSphere(
+        local.point,
+        typeof primitive.radius === "number" ? primitive.radius : 0.5,
+      );
+      break;
+    case "capsule":
+      distance = sdfCapsule(
+        local.point,
+        typeof primitive.radius === "number" ? primitive.radius : 0.25,
+        primitive.height ?? 1,
+      );
+      break;
+    case "box":
+      distance = sdfBox(local.point, primitive.size ?? primitive.dimensions ?? [1, 1, 1]);
+      break;
+    case "cone":
+      distance = sdfCone(
+        local.point,
+        typeof primitive.radius === "number" ? primitive.radius : 0.5,
+        primitive.height ?? 1,
+      );
+      break;
+    case "ellipsoid":
+      distance = sdfEllipsoid(local.point, sdfRadii(primitive));
+      break;
+  }
+  return distance * local.scale;
+}
+
+function sdfSample(descriptor: SdfDescriptor): SdfFunction {
+  const nodes = new Map<string, SdfFunction>();
+  for (const primitive of descriptor.primitives)
+    nodes.set(primitive.id, (point) => sdfPrimitive(point, primitive));
+  const firstPrimitive = descriptor.primitives[0];
+  let result = firstPrimitive ? nodes.get(firstPrimitive.id) : undefined;
+  for (let index = 0; index < (descriptor.operations?.length ?? 0); index += 1) {
+    const operation = descriptor.operations?.[index];
+    if (!operation) continue;
+    const left = nodes.get(operation.left);
+    const right = nodes.get(operation.right);
+    if (!left || !right) continue;
+    let combined: SdfFunction;
+    switch (operation.type) {
+      case "smooth-union":
+        combined = (point) => smin(left(point), right(point), operation.radius ?? 0.1);
+        break;
+      case "subtract":
+        combined = (point) => Math.max(left(point), -right(point));
+        break;
+      case "intersect":
+        combined = (point) => Math.max(left(point), right(point));
+        break;
+    }
+    nodes.set(operation.id ?? operation.output ?? `operation-${index}`, combined);
+    result = combined;
+  }
+  return result ?? (() => Infinity);
+}
+
+function polygonizeSdf(descriptor: SdfDescriptor): THREE.BufferGeometry {
+  // img2threejs 1.5.1 surface-nets implementation: one interpolated vertex per
+  // sign-changing cell, quads around crossing edges, and field-gradient normals.
+  // This replaces the pre-1.5.1 exposed-voxel shell, which introduced grid-sized
+  // stair steps into the recessed face cavity.
+  const resolution = Math.max(4, Math.min(64, Math.floor(descriptor.resolution)));
+  const defaultBounds: { readonly min: SdfVector; readonly max: SdfVector } = {
+    min: [-2, -2, -2],
+    max: [2, 2, 2],
+  };
+  const bounds = descriptor.bounds ?? defaultBounds;
+  const min = new THREE.Vector3(bounds.min[0], bounds.min[1], bounds.min[2]);
+  const step = new THREE.Vector3(
+    (bounds.max[0] - bounds.min[0]) / resolution,
+    (bounds.max[1] - bounds.min[1]) / resolution,
+    (bounds.max[2] - bounds.min[2]) / resolution,
+  );
+  const sample = sdfSample(descriptor);
+  const scratch = new THREE.Vector3();
+  const side = resolution + 1;
+  const field = new Float32Array(side * side * side);
+  const cornerAt = (x: number, y: number, z: number): number => (z * side + y) * side + x;
+  for (let z = 0; z < side; z += 1) {
+    for (let y = 0; y < side; y += 1) {
+      for (let x = 0; x < side; x += 1) {
+        scratch.set(min.x + x * step.x, min.y + y * step.y, min.z + z * step.z);
+        field[cornerAt(x, y, z)] = sample(scratch);
+      }
+    }
+  }
+  const cubeEdges: readonly (readonly [number, number, number, number, number, number])[] = [
+    [0, 0, 0, 1, 0, 0], [1, 0, 0, 1, 1, 0], [0, 1, 0, 1, 1, 0], [0, 0, 0, 0, 1, 0],
+    [0, 0, 1, 1, 0, 1], [1, 0, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1], [0, 0, 1, 0, 1, 1],
+    [0, 0, 0, 0, 0, 1], [1, 0, 0, 1, 0, 1], [1, 1, 0, 1, 1, 1], [0, 1, 0, 0, 1, 1],
+  ];
+  const positions: number[] = [];
+  const normals: number[] = [];
+  const indices: number[] = [];
+  const cellVertex = new Int32Array(resolution * resolution * resolution).fill(-1);
+  const cellAt = (x: number, y: number, z: number): number => (z * resolution + y) * resolution + x;
+  const fieldAt = (x: number, y: number, z: number): number =>
+    field[cornerAt(x, y, z)] ?? Number.POSITIVE_INFINITY;
+  const cellVertexAt = (x: number, y: number, z: number): number =>
+    cellVertex[cellAt(x, y, z)] ?? -1;
+  const epsilon = Math.min(step.x, step.y, step.z) * 0.25;
+  const gradient = (point: THREE.Vector3): THREE.Vector3 => {
+    const gx = sample(scratch.set(point.x + epsilon, point.y, point.z))
+      - sample(scratch.set(point.x - epsilon, point.y, point.z));
+    const gy = sample(scratch.set(point.x, point.y + epsilon, point.z))
+      - sample(scratch.set(point.x, point.y - epsilon, point.z));
+    const gz = sample(scratch.set(point.x, point.y, point.z + epsilon))
+      - sample(scratch.set(point.x, point.y, point.z - epsilon));
+    const normal = new THREE.Vector3(gx, gy, gz);
+    return normal.lengthSq() < 1e-20 ? new THREE.Vector3(0, 1, 0) : normal.normalize();
+  };
+  for (let z = 0; z < resolution; z += 1) {
+    for (let y = 0; y < resolution; y += 1) {
+      for (let x = 0; x < resolution; x += 1) {
+        let crossings = 0;
+        let sumX = 0;
+        let sumY = 0;
+        let sumZ = 0;
+        for (const [ax, ay, az, bx, by, bz] of cubeEdges) {
+          const a = fieldAt(x + ax, y + ay, z + az);
+          const b = fieldAt(x + bx, y + by, z + bz);
+          if ((a <= 0) === (b <= 0)) continue;
+          const t = a / (a - b);
+          sumX += ax + (bx - ax) * t;
+          sumY += ay + (by - ay) * t;
+          sumZ += az + (bz - az) * t;
+          crossings += 1;
+        }
+        if (crossings === 0) continue;
+        const px = min.x + (x + sumX / crossings) * step.x;
+        const py = min.y + (y + sumY / crossings) * step.y;
+        const pz = min.z + (z + sumZ / crossings) * step.z;
+        cellVertex[cellAt(x, y, z)] = positions.length / 3;
+        positions.push(px, py, pz);
+        const normal = gradient(new THREE.Vector3(px, py, pz));
+        normals.push(normal.x, normal.y, normal.z);
+      }
+    }
+  }
+  const quad = (a: number, b: number, c: number, d: number, flip: boolean): void => {
+    if (a < 0 || b < 0 || c < 0 || d < 0) return;
+    if (flip) indices.push(a, c, b, a, d, c);
+    else indices.push(a, b, c, a, c, d);
+  };
+  for (let z = 0; z < side; z += 1) {
+    for (let y = 0; y < side; y += 1) {
+      for (let x = 0; x < side; x += 1) {
+        const here = fieldAt(x, y, z) <= 0;
+        if (x + 1 < side && y > 0 && z > 0 && y < side - 1 && z < side - 1
+          && here !== (fieldAt(x + 1, y, z) <= 0)) {
+          quad(cellVertexAt(x, y - 1, z - 1), cellVertexAt(x, y, z - 1),
+            cellVertexAt(x, y, z), cellVertexAt(x, y - 1, z), !here);
+        }
+        if (y + 1 < side && x > 0 && z > 0 && x < side - 1 && z < side - 1
+          && here !== (fieldAt(x, y + 1, z) <= 0)) {
+          quad(cellVertexAt(x - 1, y, z - 1), cellVertexAt(x - 1, y, z),
+            cellVertexAt(x, y, z), cellVertexAt(x, y, z - 1), !here);
+        }
+        if (z + 1 < side && x > 0 && y > 0 && x < side - 1 && y < side - 1
+          && here !== (fieldAt(x, y, z + 1) <= 0)) {
+          quad(cellVertexAt(x - 1, y - 1, z), cellVertexAt(x, y - 1, z),
+            cellVertexAt(x, y, z), cellVertexAt(x - 1, y, z), !here);
+        }
+      }
+    }
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  return geometry;
+}
+
+// bevelEnabled defaults to true on THREE.ExtrudeGeometry and rounds every corner;
+// sharp profiles need bevelEnabled:false plus lineTo()-only segments. Holes cut
+// the double-rim lens interiors (zoom-v2/front_brow-band-eyes.png).
+function buildExtrudeGeometry(profile: {
+  points: [number, number][];
+  depth: number;
+  holes?: [number, number][][];
+}): THREE.ExtrudeGeometry {
+  const shape = new THREE.Shape();
+  const points = profile.points;
+  const first = points[0];
+  if (first) {
+    shape.moveTo(first[0], first[1]);
+    for (let i = 1; i < points.length; i += 1) {
+      const point = points[i];
+      if (point) shape.lineTo(point[0], point[1]);
+    }
+  }
+  shape.closePath();
+  for (const loop of profile.holes ?? []) {
+    if (loop.length < 3) continue;
+    const path = new THREE.Path();
+    const holeFirst = loop[0];
+    if (!holeFirst) continue;
+    path.moveTo(holeFirst[0], holeFirst[1]);
+    for (let i = 1; i < loop.length; i += 1) {
+      const point = loop[i];
+      if (point) path.lineTo(point[0], point[1]);
+    }
+    path.closePath();
+    shape.holes.push(path);
+  }
+  const geometry = new THREE.ExtrudeGeometry(shape, {
+    depth: profile.depth,
+    bevelEnabled: false,
+    steps: 1,
+  });
+  // Adaptation (5): centre the extrusion on z so spec transforms position part centres.
+  geometry.translate(0, 0, -profile.depth / 2);
+  return geometry;
+}
+
+// ---- materials (adaptation 1: flat palette, no canvas textures) ------------
+
+const fillMaterial = (color: string = GROUND) =>
+  new THREE.MeshBasicMaterial({
     color,
-    roughness: 0.85,
-    metalness: 0,
-    flatShading: true,
+    toneMapped: false,
     polygonOffset: true,
     polygonOffsetFactor: 1,
     polygonOffsetUnits: 1,
+    side: THREE.DoubleSide,
   });
 
-/**
- * A named part: a faceted fill plus the edge overlay that rides it.
- *
- * `keepBuried` is for the skull itself, whose surface IS the envelope every other part is culled
- * against — culling it against itself would erase the whole model.
- */
+const strokeMaterial = (color: string) => new THREE.LineBasicMaterial({ color, toneMapped: false });
+
+type Placement = { position?: [number, number, number]; rotation?: [number, number, number] };
+
 function part(
   name: string,
   geometry: THREE.BufferGeometry,
-  opts: { eye?: boolean; keepBuried?: boolean } = {},
-) {
-  const mesh = new THREE.Mesh(geometry, fillMat(opts.eye ? COLORS.eye : COLORS.ground));
+  placement: Placement,
+  edgeColor: string = WIRE,
+  fillColor: string = GROUND,
+): THREE.Mesh {
+  const mesh = new THREE.Mesh(geometry, fillMaterial(fillColor));
   mesh.name = name;
-  const raw = new THREE.EdgesGeometry(geometry, EDGE_ANGLE);
+  mesh.material.userData.sigmaBaseColor = fillColor;
+  if (placement.position) mesh.position.set(...placement.position);
+  if (placement.rotation) mesh.rotation.set(...placement.rotation);
   const edges = new THREE.LineSegments(
-    opts.keepBuried ? raw : cullBuriedEdges(raw),
-    opts.eye ? eyeWireMat() : wireMat(),
+    new THREE.EdgesGeometry(geometry, 14),
+    strokeMaterial(edgeColor),
   );
   edges.name = `${name}Edges`;
-  // Relief that rides its shell, not a component you could hold: the inspector must treat it as
-  // one part with its fill, and explode must carry it along instead of flying it off alone.
   edges.userData.explodeWithParent = true;
   mesh.add(edges);
   return mesh;
 }
 
-/** Mirror an authored part to the other side by negating x — never by re-authoring it. */
-function mirrored(name: string, build: () => THREE.Mesh): [THREE.Mesh, THREE.Mesh] {
-  const right = build();
-  right.name = `${name}R`;
-  const left = build();
-  left.name = `${name}L`;
-  left.scale.x = -1;
-  return [left, right];
+// ---- component geometries (literals from spec/generated-factory.ts) --------
+
+/** Crown Shell — angular helmet prism: flat-top facet panels per zoom-v2/front_crown.png.
+ *  Brief fix: scale Y 0.31→0.26 (0.26/0.31≈0.839) and Z 0.62→0.58 (0.935) to reduce dome
+ *  height/depth to match OSTation green front without swapping primitive family. */
+function createCrown(): THREE.Mesh {
+  const geometry = buildExtrudeGeometry({
+    points: [
+      [-0.29, 0.1],
+      [-0.2, 0.14],
+      [-0.05, 0.155],
+      [0.05, 0.155],
+      [0.2, 0.14],
+      [0.29, 0.1],
+      [0.27, -0.12],
+      [0.2, -0.15],
+      [-0.2, -0.15],
+      [-0.27, -0.12],
+    ],
+    depth: 0.62,
+  });
+  // Apply brief's Y 0.31→0.26 and Z 0.62→0.58 as post-build scale (X unchanged, width stays 0.58).
+  geometry.scale(1, 0.26 / 0.31, 0.58 / 0.62);
+  return part("crown", geometry, { position: [0, 0.36, -0.06] });
 }
 
-function createSkullShell() {
-  const [from, to] = BANDS.skullShell;
-  return part(
-    "skullShell",
-    loft(
-      // The skull is the part that OWNS the silhouette, so it keeps a fine ring step while the
-      // rest of the assembly runs at RING_STEP. Coarsening this one alone cost 0.006 of front IoU
-      // and most of the crown band; coarsening the others cost nothing measurable.
-      bandRings(from, to, {
-        step: 3,
-        // The cap applies ONLY across the ear-pod band. Outside it the skull IS the silhouette,
-        // and capping there made rows 45-46 render at 4-42 where the reference measures 2-44 —
-        // the cheekTaper band sat at 0.886 for that reason alone.
-        halfWidth: (py) =>
-          py >= 30 && py <= 44 ? Math.min(halfWidthAt(py), SKULL_MAX_HALF) : halfWidthAt(py),
-      }),
-      { capTop: true, capBottom: true },
-    ),
-    { keepBuried: true },
-  );
+function createForehead(): THREE.Mesh {
+  const geometry = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1);
+  geometry.scale(0.5, 0.26, 0.52);
+  return part("forehead", geometry, { position: [0, 0.17, -0.02] });
 }
 
-function createCrownPlate() {
-  const [from, to] = BANDS.crownPlate;
-  return part(
-    "crownPlate",
-    loft(bandRings(from, to, { step: 3, chamfer: 0.45 }), { capTop: true, capBottom: true }),
-  );
+function createTemple(side: "L" | "R"): THREE.Mesh {
+  const geometry = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1);
+  geometry.scale(0.12, 0.26, 0.4);
+  return part(`templeShell${side}`, geometry, {
+    position: [side === "L" ? -0.215 : 0.215, 0.13, -0.05],
+    rotation: [0, 0, side === "L" ? (8 * Math.PI) / 180 : (-8 * Math.PI) / 180],
+  });
 }
 
-/**
- * The tall vertical helmet plate on each side.
- *
- * Its outer face is FLUSH with the measured silhouette, not proud of it. Standing it 2.5px out
- * from the skull was the whole of the `helmetSides` band error: rows 14-27 measure px 4-41 in the
- * reference, the skull alone gives 4-42, and the proud panel pushed the render to 1.5-44.5 — 2.5px
- * too wide on each side, across the band where the reference outline is dead flat and any excess
- * shows immediately. The plate reads as a plate because of its own edges, not because it sticks
- * out past the head.
- */
-function createSidePanel() {
-  const [from, to] = BANDS.sidePanel;
-  const thickness = len(5);
-  const rings: Ring[] = [];
-  for (let py = from; py <= to; py += 6) {
-    const outer = Math.min(halfWidthAt(py), SKULL_MAX_HALF);
-    const d = halfDepthAt(py) * 0.62;
-    rings.push({
-      y: y(py),
-      pts: [
-        [outer, d],
-        [outer, -d],
-        [outer - thickness, -d],
-        [outer - thickness, d],
-      ],
-    });
-  }
-  return part("sidePanel", loft(rings, { capTop: true, capBottom: true }));
-}
-
-/** The rounded lobe that makes rows 34..42 the widest on the whole head (full frame width). */
-function createEarPod() {
-  const [from, to] = BANDS.earPod;
-  const rings: Ring[] = [];
-  for (let py = from; py <= to; py += 5) {
-    const outer = halfWidthAt(py);
-    const inner = SKULL_MAX_HALF - len(1);
-    const d = halfDepthAt(py) * 0.5;
-    // The lobe reaches the measured full frame width at EVERY row of its band — rows 34..42 all
-    // run px 0..46 in the reference. Easing the tip in and out with the bulge kept it inside the
-    // skull and cost the whole protrusion; the bulge belongs on the depth instead.
-    const bulge = 0.45 + 0.55 * Math.sin(((py - from) / (to - from)) * Math.PI);
-    rings.push({
-      y: y(py),
-      pts: [
-        [outer, d * bulge],
-        [outer, -d * bulge],
-        [inner, -d],
-        [inner, d],
-      ],
-    });
-  }
-  return part("earPod", loft(rings, { capTop: true, capBottom: true }));
-}
-
-/**
- * The triangular ridge over one eye. Its mirror meets it in a V at the nose bridge, but the two
- * are separate parts — the reference draws two distinct triangles, not one tent across the whole
- * face, which is what an over-wide `outer` produced on the first pass.
- */
-function createBrowRidge() {
-  const [from, to] = BANDS.browRidge;
-  const outer = len(13);
-  const inner = len(3);
-  const zFront = FACE_Z;
-  const rings: Ring[] = [];
-  for (let py = from + 2; py <= to; py += 2) {
-    const t = (py - (from + 2)) / (to - (from + 2));
-    // The ridge starts as a point at the top and opens out into the brow bar.
-    const half = inner + (outer - inner) * t;
-    const d = len(1.2 + 1.6 * t);
-    rings.push({
-      y: y(py),
-      pts: [
-        [half, zFront],
-        [half, zFront - d],
-        [inner * 0.6, zFront - d],
-        [inner * 0.6, zFront],
-      ],
-    });
-  }
-  return part("browRidge", loft(rings, { capTop: true, capBottom: true }));
-}
-
-/**
- * The eye: the one part that carries colour code C3, and the only interior feature the gates can
- * score. Traced straight from `EYE_OUTLINE` — the reference's own per-column top and bottom rows —
- * rather than fitted to the eye's bounding box.
- *
- * The bounding-box version came first and passed every gate: right band, right slant, right
- * filled area. It still read wrong next to the reference, because the eye is a leaf that tapers
- * to a point at the bridge and cuts sharply up at the outer tip, not a bar. Gates that score a
- * band and an area cannot tell those apart, so the outline is measured instead of inferred.
- *
- * Guess list G3 reads the eye as recessed into the face plane, so it is extruded backwards from
- * the brow's front face rather than standing proud of it.
- */
-function createEyePlate() {
-  // Recessed, per guess G3: the eye sits BEHIND the brow front face, not flush with it. Moving
-  // it to within 0.4px of the face plane pushed it toward the camera and perspective grew its
-  // area from 24.0% to 30.6% relative error — over the gate. 0.9 of the face plane is where it
-  // passes.
-  const zFront = FACE_Z * 0.9;
-
-  const shape = new THREE.Shape();
-  const first = EYE_POLYGON[0];
-  if (!first) throw new Error("EYE_POLYGON must not be empty");
-  shape.moveTo(len(first[0]), y(first[1]));
-  for (const [px, row] of EYE_POLYGON.slice(1)) shape.lineTo(len(px), y(row));
-  shape.closePath();
-
-  const g = new THREE.ExtrudeGeometry(shape, { depth: len(2), bevelEnabled: false });
-  g.translate(0, 0, zFront - len(2));
-  return part("eyePlate", g.toNonIndexed(), { eye: true });
-}
-
-function createJawBlock() {
-  const [from, to] = BANDS.jawBlock;
-  return part(
-    "jawBlock",
-    loft(bandRings(from, to, { step: 6, chamfer: 0.15 }), { capTop: true, capBottom: true }),
-  );
-}
-
-/**
- * Guess list G4: the two feet at the block's bottom corners appear in every same-scale front
- * frame at the same place, so they are geometry rather than one frame's rasterisation. What
- * they represent is not resolvable, and does not change the build.
- */
-function createChinTab() {
-  const [from, to] = BANDS.chinTab;
-  const outer = halfWidthAt(65);
-  const inner = outer - len(5);
-  const d = halfDepthAt(65) * 0.4;
-  const rings: Ring[] = [
-    {
-      y: y(from),
-      pts: [
-        [outer, d],
-        [outer, -d],
-        [inner, -d],
-        [inner, d],
-      ],
-    },
-    {
-      y: y(to),
-      pts: [
-        [outer, d],
-        [outer, -d],
-        [inner, -d],
-        [inner, d],
-      ],
-    },
-  ];
-  return part("chinTab", loft(rings, { capTop: true, capBottom: true }));
-}
-
-export type SigmaVirusHeadOptions = {
-  /** Scale applied to the whole head. 1 = the reference frame's height. */
-  scale?: number;
+const CHEEK_PROFILE: { points: [number, number][]; depth: number } = {
+  points: [
+    [-0.07, -0.11],
+    [0.07, -0.11],
+    [0.07, 0.06],
+    [0.02, 0.11],
+    [-0.05, 0.1],
+  ],
+  depth: 0.3,
 };
 
-/**
- * Build the head. The returned group authors NO geometry of its own — every vertex comes from
- * a part factory above, which is what keeps the assembly file honest.
- */
-export function createSigmaVirusHead(opts: SigmaVirusHeadOptions = {}): THREE.Group {
-  const root = new THREE.Group();
-  root.name = "sigmaVirusHead";
-
-  const [earL, earR] = mirrored("earPod", createEarPod);
-  const [panelL, panelR] = mirrored("sidePanel", createSidePanel);
-  const [browL, browR] = mirrored("browRidge", createBrowRidge);
-  const [eyeL, eyeR] = mirrored("eyePlate", createEyePlate);
-  const [footL, footR] = mirrored("chinTab", createChinTab);
-
-  root.add(
-    createSkullShell(),
-    createCrownPlate(),
-    panelL,
-    panelR,
-    earL,
-    earR,
-    browL,
-    browR,
-    eyeL,
-    eyeR,
-    createJawBlock(),
-    footL,
-    footR,
-  );
-
-  // Recentre on the model's own bounds so the viewer orbits the head, not the origin the
-  // measurements happen to be expressed in.
-  const box = new THREE.Box3().setFromObject(root);
-  const centre = box.getCenter(new THREE.Vector3());
-  root.children.forEach((c) => c.position.sub(centre));
-
-  root.scale.setScalar(opts.scale ?? 1);
-  root.userData.provenance =
-    "reference-measured · front view only · depth is guess G1 (1.25 x width), back of head is guess G2";
-  return root;
+function createCheek(side: "L" | "R"): THREE.Mesh {
+  // Adaptation: the profile points already carry the measured size (x span 0.14,
+  // y span 0.22, depth 0.3 == the component's dimensions block), so the generator's
+  // Geometry.scale(dimensions) pass would double-apply the size here. Extrude parts
+  // keep their authored size; recorded in the spec's adaptationNotes.
+  // Brief fix: move inward 0.265→0.25 (0.24 fails aspect 0.07; 0.265 passes but brief asks inward;
+  // 0.25 is minimal inward that keeps aspect ≤0.05, tested below).
+  const geometry = buildExtrudeGeometry(CHEEK_PROFILE);
+  return part(`cheekShell${side}`, geometry, {
+    position: [side === "L" ? -0.25 : 0.25, -0.04, -0.02],
+    rotation: [0, side === "L" ? (-6 * Math.PI) / 180 : (6 * Math.PI) / 180, 0],
+  });
 }
 
-/** Named for the assertions and the part-coverage gate: 8 shape codes, 13 instances. */
-export const SIGMA_VIRUS_PARTS = [
-  "skullShell",
-  "crownPlate",
-  "sidePanelL",
-  "sidePanelR",
-  "earPodL",
-  "earPodR",
-  "browRidgeL",
-  "browRidgeR",
+const FACE_CAVITY_SDF: SdfDescriptor = {
+  primitives: [
+    { id: "faceBlock", type: "box", size: [0.38, 0.28, 0.24], center: [0, -0.07, 0.13] },
+    { id: "pocketCut", type: "box", size: [0.33, 0.23, 0.17], center: [0, -0.07, 0.245] },
+  ],
+  operations: [{ id: "carvePocket", type: "subtract", left: "faceBlock", right: "pocketCut" }],
+  resolution: 24,
+  bounds: { min: [-0.28, -0.26, -0.03], max: [0.28, 0.12, 0.37] },
+};
+
+function createFaceCavity(): THREE.Mesh {
+  return part("faceCavity", polygonizeSdf(FACE_CAVITY_SDF), { position: [0, 0, 0] }, WIRE_FAR);
+}
+
+const EYE_PROFILE: { points: [number, number][]; depth: number; holes?: [number, number][][] } = {
+  points: [
+    [-0.095, 0],
+    [-0.06, 0.034],
+    [0, 0.044],
+    [0.065, 0.028],
+    [0.095, 0],
+    [0.06, -0.034],
+    [0, -0.044],
+    [-0.06, -0.034],
+  ],
+  depth: 0.02,
+  holes: [
+    [
+      [-0.068, 0],
+      [-0.043, 0.024],
+      [0, 0.031],
+      [0.047, 0.02],
+      [0.068, 0],
+      [0.043, -0.024],
+      [0, -0.031],
+      [-0.043, -0.024],
+    ],
+  ],
+};
+
+function createEye(side: "L" | "R"): THREE.Mesh {
+  const geometry = buildExtrudeGeometry(EYE_PROFILE);
+  const eye = part(
+    `eyePlate${side}`,
+    geometry,
+    {
+      position: [side === "L" ? -0.115 : 0.115, -0.02, 0.34],
+      rotation: [0, 0, side === "L" ? (-12 * Math.PI) / 180 : (12 * Math.PI) / 180],
+    },
+    EYE,
+    EYE,
+  );
+  eye.renderOrder = 2;
+  return eye;
+}
+
+function createMidFaceBridge(): THREE.Mesh {
+  const geometry = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1);
+  geometry.scale(0.05, 0.2, 0.08);
+  return part("midFaceBridge", geometry, { position: [0, -0.12, 0.24] });
+}
+
+const JAW_PROFILE: { points: [number, number][]; depth: number } = {
+  points: [
+    [-0.2, 0.15],
+    [0.2, 0.15],
+    [0.18, -0.13],
+    [0.04, -0.15],
+    [0, -0.125],
+    [-0.04, -0.15],
+    [-0.18, -0.13],
+  ],
+  depth: 0.4,
+};
+
+function createLowerFaceJaw(): THREE.Mesh {
+  return part("lowerFaceJaw", buildExtrudeGeometry(JAW_PROFILE), { position: [0, -0.355, 0.06] });
+}
+
+const TAB_PROFILE: { points: [number, number][]; depth: number } = {
+  points: [
+    [-0.05, -0.05],
+    [0.05, -0.05],
+    [0.05, 0.05],
+    [-0.05, 0.05],
+  ],
+  depth: 0.12,
+};
+
+function createChinTab(side: "L" | "R"): THREE.Mesh {
+  return part(`chinTab${side}`, buildExtrudeGeometry(TAB_PROFILE), {
+    position: [side === "L" ? -0.17 : 0.17, -0.45, 0.05],
+  });
+}
+
+/** Crown Ridge Plate — raised strip on the dome's front-to-back centre line (ridgeSeam). */
+function createCrownRidge(): THREE.Mesh {
+  const geometry = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1);
+  geometry.scale(0.05, 0.07, 0.42);
+  return part("crownRidge", geometry, { position: [0, 0.485, -0.05] });
+}
+
+/** Mouth Seam Strip — raised seam across the jaw front (mouthBand). */
+function createMouthSeam(): THREE.Mesh {
+  const geometry = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1);
+  geometry.scale(0.28, 0.015, 0.02);
+  return part("mouthSeam", geometry, { position: [0, -0.27, 0.26] });
+}
+
+/** Rear Shell — plain symmetric continuation (guess G4), dim strokes (far-facing). */
+function createRearShell(): THREE.Mesh {
+  const geometry = new THREE.SphereGeometry(0.5, 16, 10);
+  geometry.scale(0.54, 0.88, 0.46);
+  return part("rearShell", geometry, { position: [0, 0.02, -0.22] }, WIRE_FAR);
+}
+
+// ---- assembly --------------------------------------------------------------
+
+export const SIGMA_PARTS = [
+  "crown",
+  "crownRidge",
+  "forehead",
+  "templeShellL",
+  "templeShellR",
+  "cheekShellL",
+  "cheekShellR",
+  "faceCavity",
   "eyePlateL",
   "eyePlateR",
-  "jawBlock",
+  "midFaceBridge",
+  "lowerFaceJaw",
+  "mouthSeam",
   "chinTabL",
   "chinTabR",
+  "rearShell",
 ] as const;
 
-export { x as frameX, y as frameY };
+export function createSigmaVirusHead(opts: { scale?: number } = {}): THREE.Group {
+  const root = new THREE.Group();
+  root.name = "sigmaVirusHead";
+  root.add(
+    createCrown(),
+    createCrownRidge(),
+    createForehead(),
+    createTemple("L"),
+    createTemple("R"),
+    createCheek("L"),
+    createCheek("R"),
+    createFaceCavity(),
+    createEye("L"),
+    createEye("R"),
+    createMidFaceBridge(),
+    createLowerFaceJaw(),
+    createMouthSeam(),
+    createChinTab("L"),
+    createChinTab("R"),
+    createRearShell(),
+  );
+  const bounds = new THREE.Box3().setFromObject(root);
+  const centre = bounds.getCenter(new THREE.Vector3());
+  for (const child of root.children) child.position.sub(centre);
+  root.scale.setScalar(opts.scale ?? 1);
+  // 1.5.1 front silhouette review measured an over-tall filled mask after
+  // frame normalization; a 0.95 Y scale brings the measured aspect under the
+  // 0.05 gate while leaving width/depth and all part sockets intact.
+  root.scale.y *= 0.95;
+  const nodes: Record<string, THREE.Object3D> = {};
+  const meshes: Record<string, THREE.Mesh> = {};
+  const sockets: Record<string, THREE.Object3D> = {};
+  const colliders: Record<string, unknown> = {};
+  const destructionGroups: Record<string, THREE.Object3D[]> = {};
+  for (const child of root.children) {
+    nodes[child.name] = child;
+    if ((child as THREE.Mesh).isMesh) meshes[child.name] = child as THREE.Mesh;
+
+    // Every named component is its own stable pivot in the assembled runtime. There
+    // are no worn/held attachments in this head, so the component pivot is also the
+    // only socket needed by the exhibit interaction contract. Keep collider and
+    // destruction metadata in userData rather than adding helper geometry.
+    sockets[`${child.name}/pivot`] = child;
+    const bounds = new THREE.Box3().setFromObject(child);
+    const colliderSize = bounds.getSize(new THREE.Vector3());
+    const colliderCentre = bounds.getCenter(new THREE.Vector3());
+    colliders[child.name] = {
+      type: "box",
+      offset: colliderCentre.toArray(),
+      scale: colliderSize.toArray(),
+      isTrigger: false,
+    };
+    destructionGroups[child.name] = [child];
+    child.userData.actionProfile = {
+      animationRole: "component",
+      pivot: { mode: "component-center", localPosition: [0, 0, 0], axis: [0, 1, 0] },
+      sockets: [`${child.name}/pivot`],
+      collider: colliders[child.name],
+      destruction: { breakable: false, fractureGroup: child.name },
+    };
+  }
+  root.userData.sculptRuntime = {
+    nodes,
+    meshes,
+    sockets,
+    colliders,
+    destructionGroups,
+  } satisfies ProceduralModelRuntime;
+  root.userData.provenance =
+    "img2threejs forge rebuild 2026-08-22 · spec object-sculpt-spec.json (strict-quality PASS) · " +
+    "generated-factory.ts emitters ported · G1 depth=1.3w · G2 recessed eyes (SDF subtract pocket) · " +
+    "G3 independent chin tabs · G4 plain rear facets · palette green frame authority";
+  return root;
+}

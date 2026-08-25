@@ -66,9 +66,19 @@ const { exhibit, images, prompt, docHref } = useExhibit("mmx2-sigma-virus");
 // G1 against.
 const PRESETS: { id: SigmaPreset; label: string }[] = [
   { id: "front", label: "Front" },
-  { id: "three-quarter", label: "3/4" },
-  { id: "side", label: "Side" },
+  { id: "front-left-30", label: "FL 30°" },
+  { id: "front-left-60", label: "FL 60°" },
+  { id: "left", label: "Left" },
+  { id: "rear-left-60", label: "RL 60°" },
+  { id: "rear-left-30", label: "RL 30°" },
+  { id: "rear", label: "Rear" },
+  { id: "rear-right-30", label: "RR 30°" },
+  { id: "rear-right-60", label: "RR 60°" },
+  { id: "right", label: "Right" },
+  { id: "front-right-60", label: "FR 60°" },
+  { id: "front-right-30", label: "FR 30°" },
   { id: "top", label: "Top" },
+  { id: "bottom", label: "Bottom" },
 ];
 
 const api = shallowRef<SigmaViewerApi | null>(null);
